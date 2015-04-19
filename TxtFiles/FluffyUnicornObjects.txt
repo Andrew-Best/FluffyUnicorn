@@ -1,0 +1,28 @@
+Fluffy Unicorn Objects
+
+Player
+Enemy
+	easy
+	medium
+	hard
+	mini boss
+	Boss
+Beans[]
+	AttackBeans
+	1 Red - basic attack
+	2 Blue - 1.5 x basic attack
+	3 Green - low level special
+	4 Yellow - heavy special
+	5 White - convert all on screen
+	6 Multi - Coloured - random affect, could be any bean when  used
+	Free Life - Purple
+	
+Upgrade Currency
+	Bundles of Hay - basic upgrade currency
+	Carrots - upgrade currency of higher value then hay
+	Apples - buyable upgrade currency(will have significant higher value then hay) 
+
+Upgrades
+	Health
+	Bean Capacity
+	

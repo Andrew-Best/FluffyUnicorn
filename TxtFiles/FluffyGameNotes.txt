@@ -1,0 +1,29 @@
+Fluffy Game Note
+
+Font colour for main page(86, 57, 242)
+ 
+Button colours 
+	Normal(96, 50, 242)
+	Highlighted(44, 72, 118)
+	Pressed(264, 35, 249)
+	Disabled(128, 128, 128).
+	
+Main menu UI
+	Title
+	Start Button
+	Options Button
+	Store Button
+	Quit/Close Button
+	
+	OptionsPanels(need a background)
+		Audio Controls(Panel) 
+			Music 
+			SFX
+		Brightness Control
+		Language??????
+		Controls(Display Panel)
+		
+		Rate Game??????
+		
+Splash Screen
+Loading screen
