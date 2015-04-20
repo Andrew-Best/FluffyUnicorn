@@ -27,10 +27,6 @@ public class SpawnEnemies : MonoBehaviour
 				newEnemy.transform.position = mSpawnPos[i].transform.position;
 				Debug.Log(mSpawnPos[i].transform.position);
 			}
-	//		GetComponent<Collider2D>().enabled = false;
-			//InitEnemy();
-		
-		//this.transform.position = new Vector2(0, 0);
 	}
 
 
