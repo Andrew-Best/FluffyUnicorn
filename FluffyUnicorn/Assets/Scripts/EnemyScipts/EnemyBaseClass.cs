@@ -6,6 +6,10 @@ public class EnemyBaseClass : MonoBehaviour
 	public GameObject Bully;
 
 	public int m_VelocityX;
+	public int m_CurRow;
+
+	public int m_EnemyType;
+
 	public float m_AttackTimer;
 
 	public float m_HP;
@@ -15,7 +19,22 @@ public class EnemyBaseClass : MonoBehaviour
 	public int m_AttackKickOdds;
 	public int m_AttackUniqueOdds;
 
+	public bool m_EnemyInMotion;
+
 	public Rigidbody2D m_RigidBody;
+
+	public virtual void InitEnemy()
+	{
+		m_VelocityX = 0;
+		m_AttackTimer = 0;
+		m_HP = 0;
+		m_CurRow = 0;
+		m_Damage = 0;
+
+		m_AttackPunchOdds = 0;
+		m_AttackKickOdds = 0;
+		m_AttackUniqueOdds = 0;
+	}
 
 	public virtual void EnemyMoveLeft()
 	{
@@ -23,8 +42,14 @@ public class EnemyBaseClass : MonoBehaviour
 		this.m_RigidBody.velocity = new Vector2(this.m_VelocityX, 0);
 	}
 
+	public virtual void EnemyStopMotion()
+	{
+		this.m_RigidBody.velocity = new Vector2(0, 0);
+	}
+
 	public virtual void EnemyAttack()
 	{
+		m_EnemyInMotion = false; //Stop the Enemy's movement when attacking
 		int attackSelector = Random.Range(0, 100);
 		if(attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
 		{
@@ -38,6 +63,12 @@ public class EnemyBaseClass : MonoBehaviour
 		{
 			EnemyAttackUnique();
 		}
+		m_EnemyInMotion = true; //Start the Enemy's movement again
+	}
+
+	public virtual void ResetEnemyAttackTimer(float enemyAttackTimer)
+	{
+		this.m_AttackTimer = enemyAttackTimer;
 	}
 
 	public virtual void EnemyAttackPunch()
@@ -69,44 +100,36 @@ public class EnemyBaseClass : MonoBehaviour
 		//play enemy death animation
 		GameObject.Destroy(transform.root.gameObject);
 	}
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		EnemyMoveLeft();
+		if (m_EnemyInMotion)
+		{
+			EnemyMoveLeft();
+		}
+		else
+		{
+			EnemyStopMotion();
+          }
+		
+		m_AttackTimer -= Time.deltaTime;
+		if(m_AttackTimer <= 0)
+		{
+			EnemyAttack();
+		}
+		//Detect Row
+
 	}
 
+	public virtual void SpawnEnemy(int row, int type)
+	{
+		m_CurRow = row;
+		if (type == 1)
+		{
+			InitEnemy();
+		}
+		this.transform.position = new Vector2(0,0);
+	}
 
 }
-
-/*
-public GameObject mPlayer;
-
-public float mXPos;
-
-// Use this for initialization
-void Start()
-{
-
-}
-
-// Update is called once per frame
-void Update()
-{
-
-	if ((mPlayer.GetComponent<Rigidbody2D>().transform.position.y - this.transform.position.y) >= 4.5f)
-	{
-		this.transform.position = mPlayer.GetComponent<Rigidbody2D>().transform.position - new Vector3(mXPos, 4.5f, 0.0f);
-	}
-	if ((mPlayer.GetComponent<Rigidbody2D>().transform.position.y - this.transform.position.y) <= 4.5f)
-	{
-		this.transform.position = this.transform.position;
-	}
-	//this.rigidbody2D.transform.position.x = 0.0f;
-
-}*/
