@@ -3,14 +3,11 @@ using System.Collections;
 
 public class EnemyControllerScript : MonoBehaviour
 {
-//	public EnemyBaseClass enemyBaseClass;
 	public GameObject enemySpawner;
 	public float m_EnemySpawnTimer = 3.0f;
-//	public GameObject bully;
-//	public GameObject testEnemy;
 
 	public int EnemyType = 0;
-	// Use this for initialization
+
 	void Start ()
 	{
 		/*EnemyType = Random.Range(1, 3);
@@ -20,7 +17,7 @@ public class EnemyControllerScript : MonoBehaviour
 			bully.GetComponent<BullyScript>().SpawnEnemy(1, 1);
 		}*/
 
-		enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(1);
+		enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(1,1);
 
 	}
 	

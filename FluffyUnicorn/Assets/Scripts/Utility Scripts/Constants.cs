@@ -23,6 +23,8 @@ public class Constants : MonoBehaviour
 	public const float BULLY_KICK_RESTTIME = 2;
 	public const float BULLY_PUNCH_RESTTIME = 1;
 	public const float BULLY_UNIQUE_ATK_RESTTIME = 3;
+
+	public const float BULLY_MAX_TRAVEL_DIST = 3;
 	#endregion
 
 	#region fat bully variables
