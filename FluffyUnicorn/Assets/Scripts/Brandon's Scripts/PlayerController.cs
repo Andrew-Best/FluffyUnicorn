@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     #region public variables
     public GameObject m_SpawnPoint;     //projectile spawn point
+    public Collider2D[] m_Tracks;
 
     public string m_ProjectileName = "PlayerProjectile";
 
@@ -14,18 +15,26 @@ public class PlayerController : MonoBehaviour
     public float m_ShotSpeed = 10.0f;
     public float m_FireRate = 1.0f;
     public float m_Deceleration = 1.0f;
+
+    public bool m_onFrontTrack = true;
+    public bool m_onMiddleTrack = false;
+    public bool m_onLastTrack = false;
     #endregion
 
     #region private variables
     private GameObject player_;
 
     private float move_;
+    private float verticalMove_;
     private float nextFire_;
     private float timer_;               //timer to count how long the player has lifted the key. This determines if he is idle or just switching directions
     private float idleTime_ = 0.1f;    //variable used with the timer to determine if the player is idle 
+    private float trackTimer_;
+    private float trackTime = 0.1f;
 
     private bool facingRight_ = true;
     private bool isMoving_ = false;
+    private bool canSwitchTracks = true;
 
     private Rigidbody2D playerRigidBody_;
 
@@ -48,11 +57,13 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         UpdateControls();
+        //ChangeTrack();
     }
 
     void Update()
     {
         UpdateMoveTimer();
+        //UpdateTrackTimer();
     }
 
     void UpdateMoveTimer()
@@ -67,6 +78,20 @@ public class PlayerController : MonoBehaviour
         {
             isMoving_ = false;
             timer_ = 0.0f;
+        }
+    }
+
+    void UpdateTrackTimer()
+    {
+        //when a vertical key is no longer pressed start a timer to determine if the player is on the next track before allowing another key press
+        if (Input.GetAxisRaw("Vertical") == 0)
+        {
+            trackTimer_ += Time.deltaTime;
+        }
+        if (trackTimer_ >= trackTime)
+        {
+            canSwitchTracks = true;
+            trackTimer_ = 0.0f;
         }
     }
 
@@ -121,5 +146,56 @@ public class PlayerController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    void ChangeTrack()
+    {
+        float force = 0.1f;
+        verticalMove_ = Input.GetAxisRaw("Vertical");
+        //check if the player pressed an up key and determine which track to move to. 
+    
+        if(verticalMove_ > 0)
+        {
+            if (m_onFrontTrack && canSwitchTracks)
+            {
+                canSwitchTracks = false;
+                player_.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, force));
+                m_Tracks[0].enabled = false;         
+                m_Tracks[1].enabled = true;
+                m_onFrontTrack = false;
+                m_onMiddleTrack = true;
+            }
+            else if (m_onMiddleTrack && canSwitchTracks)
+            {
+                canSwitchTracks = false;
+                player_.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, force));
+                m_Tracks[2].enabled = true;
+                m_Tracks[1].enabled = false;
+                m_onMiddleTrack = false;
+                m_onLastTrack = true;
+            }
+        }
+        //check if the player pressed an down key and determine which track to move to.
+        if(verticalMove_ < 0)
+        {
+            if (m_onLastTrack && canSwitchTracks)
+            {
+                canSwitchTracks = false;
+                player_.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, -force));
+                m_Tracks[1].enabled = true;
+                m_Tracks[2].enabled = false;
+                m_onLastTrack = false;
+                m_onMiddleTrack = true;
+            }
+            else if (m_onMiddleTrack && canSwitchTracks)
+            {
+                canSwitchTracks = false;
+                player_.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, -force));
+                m_Tracks[0].enabled = true;
+                m_Tracks[1].enabled = false;
+                m_onMiddleTrack = false;
+                m_onFrontTrack = true;
+            }
+        }
     }
 }
