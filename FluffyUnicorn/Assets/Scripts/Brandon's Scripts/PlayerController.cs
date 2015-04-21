@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+    #region public variables
     public GameObject m_SpawnPoint;     //projectile spawn point
-    private GameObject player_;
 
     public string m_ProjectileName = "PlayerProjectile";
 
@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public float m_ShotSpeed = 10.0f;
     public float m_FireRate = 1.0f;
     public float m_Deceleration = 1.0f;
+    #endregion
+
+    #region private variables
+    private GameObject player_;
 
     private float move_;
     private float nextFire_;
@@ -26,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigidBody_;
 
     private Animator playerAnimator_;
+    #endregion
+    
 
     void SetValues()
     {
