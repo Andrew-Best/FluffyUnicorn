@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     private float nextFire_;
 
     private bool facingRight_ = true;
-    private bool isMoving_ = false;
 
     private Rigidbody2D playerRigidBody_;
 
@@ -40,26 +39,23 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         UpdateControls();
-        Flip();
     }
 
     void UpdateControls()
     {
         //Set move_ to be the horizontal axis keys
         move_ = Input.GetAxis("Horizontal");
-        //if player is moving right or left. 1 is right, -1 is left
-        if (move_ > 0 || move_ < 0)
+        playerAnimator_.SetFloat("Speed", Mathf.Abs(move_));
+        player_.GetComponent<Rigidbody2D>().velocity = new Vector2(move_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+         
+        //check if player is moving right or left and flip sprite. 1 is right, -1 is left
+        if (move_ > 0 && !facingRight_)
         {
-            isMoving_ = true;
-            move_ = Input.GetAxis("Horizontal");
-            GetComponent<Rigidbody2D>().velocity = new Vector2(move_ * m_MaxSpeed, GetComponent<Rigidbody2D>().velocity.y);
-            playerAnimator_.SetBool("IsMoving", isMoving_);
+            Flip();     
         }
-        //player isn't moving
-        else /*if(Input.GetButtonUp("Horizontal"))*/
+        else if(move_ < 0 && facingRight_)
         {
-            isMoving_ = false;
-            playerAnimator_.SetBool("IsMoving", isMoving_);
+            Flip();
         }
         //Attack if you press space and you're not in cooldown
         if (Input.GetKeyUp(KeyCode.Space) && Time.time > nextFire_)
@@ -86,15 +82,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void Flip()
-    {
-        //flip the sprite based on direction 
-        if (move_ < 0 && facingRight_ || move_ > 0 && !facingRight_)
-        {
-            facingRight_ = !facingRight_;
-            // Multiply the player's x local scale by -1
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-        }  
+    { 
+        facingRight_ = !facingRight_;
+        // Multiply the player's x local scale by -1
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;  
     }
 }
