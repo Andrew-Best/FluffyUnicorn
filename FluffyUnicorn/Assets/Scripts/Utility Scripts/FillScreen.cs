@@ -11,7 +11,7 @@ public class FillScreen : MonoBehaviour
         if (cam.orthographic)
         {
             float sizeY = cam.orthographicSize * 2.0f;
-            float sizeX = cam.orthographicSize;//sizeY * cam.aspect;
+            float sizeX = cam.orthographicSize * sizeY * cam.aspect;
             transform.localScale = new Vector3(sizeX / m_PlaneSize, 1, sizeY / m_PlaneSize);
         }
         else
@@ -22,7 +22,7 @@ public class FillScreen : MonoBehaviour
             transform.Rotate(90.0f, 0.0f, 0.0f);
 
             float h = (Mathf.Tan(cam.fieldOfView * Mathf.Deg2Rad * 0.5f) * pos * 2f) / m_PlaneSize;
-            transform.localScale = new Vector3(h * cam.aspect, 1.0f, h);
+            transform.localScale = new Vector3((h * cam.aspect) * 2, 1.0f, h);
         }
     }
 }

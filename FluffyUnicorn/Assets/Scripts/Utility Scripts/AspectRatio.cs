@@ -42,9 +42,4 @@ public class AspectRatio : MonoBehaviour
             cam.rect = rect;
         }
 	}
-	
-	void Update () 
-    {
-	
-	}
 }
