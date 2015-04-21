@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
 	    
 	}
 
+    #region Save/Load
     void Save()
     {
         //Check if the save file exists
@@ -28,6 +29,11 @@ public class GameController : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(Application.persistentDataPath + Path.DirectorySeparatorChar + "fuSaveData.dat");
             SaveData sData = new SaveData();
+
+            //Insert save code here
+
+            bf.Serialize(file, sData);
+            file.Close();
         }
         //If It does, save to the existing file
         else
@@ -36,6 +42,11 @@ public class GameController : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + Path.DirectorySeparatorChar + "fuSaveData.dat", FileMode.Open);
             SaveData sData = new SaveData();
+
+            //Insert save code here
+
+            bf.Serialize(file, sData);
+            file.Close();
         }
     }
 
@@ -47,10 +58,15 @@ public class GameController : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + Path.DirectorySeparatorChar + "fuSaveData.dat", FileMode.Open);
             SaveData sData = (SaveData)bf.Deserialize(file);
+
+            //Insert load code here
+
+            file.Close();
         }
         else
         {
             Debug.Log("Failed to load, file doesn't exist");
         }
     }
+    #endregion
 }
