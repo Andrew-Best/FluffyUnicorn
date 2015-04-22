@@ -23,11 +23,11 @@ public class SpawnEnemies : MonoBehaviour
 		m_CurRow = row;
 			for (int i = 0; i < mEnemiesToSpawn.Length; ++i)
 			{
-				GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);							
-				newEnemy.transform.position = mSpawnPos[i].transform.position;
+				GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);					
+				newEnemy.transform.position = mSpawnPos[0].transform.position;
 				if (newEnemy.GetComponent<EnemyBaseClass>().m_EnemyType == 1)
 				{
-					newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[i].transform.position);
+					newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[0].transform.position);
 				}	
 			}
 	}

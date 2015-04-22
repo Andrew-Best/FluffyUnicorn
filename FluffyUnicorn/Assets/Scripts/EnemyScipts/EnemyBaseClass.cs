@@ -14,7 +14,14 @@ public class EnemyBaseClass : MonoBehaviour
 	public float m_AttackTimer;
 
 	public float m_HP;
-	public float m_Damage;
+	public float m_PunchDamage;
+    public float m_KickDamage;
+    public float m_UniqueDamage;
+
+    public float m_AttackResetTime;
+    public float m_PunchRestTime;
+    public float m_KickRestTime;
+    public float m_UniqueRestTime;
 
 	public int m_AttackPunchOdds;
 	public int m_AttackKickOdds;
@@ -128,7 +135,7 @@ public class EnemyBaseClass : MonoBehaviour
 		m_AttackTimer = 0;
 		m_HP = 0;
 		m_CurRow = 0;
-		m_Damage = 0;
+		//m_Damage = 0;
 
 		m_AttackPunchOdds = 0;
 		m_AttackKickOdds = 0;
