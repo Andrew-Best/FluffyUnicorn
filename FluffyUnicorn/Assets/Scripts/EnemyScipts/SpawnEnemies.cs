@@ -15,21 +15,31 @@ public class SpawnEnemies : MonoBehaviour
 		{
 			Debug.LogError("Spawn Area needs spawn positions.");
 		}
-		SpawnEnemyFunc(1, 1);
+		//SpawnEnemyFunc(1, 1);
 	}
 	
 	public void SpawnEnemyFunc(int row, int type)
 	{
 		m_CurRow = row;
-			for (int i = 0; i < mEnemiesToSpawn.Length; ++i)
+		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);
+		newEnemy.transform.position = mSpawnPos[0].transform.position;
+		if (newEnemy.name == "Bully")
+		{
+			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[0].transform.position);
+		}	
+		else
+		{
+			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[0].transform.position);
+		}
+		/*	for (int i = 0; i < mEnemiesToSpawn.Length; ++i)
 			{
 				GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);					
 				newEnemy.transform.position = mSpawnPos[0].transform.position;
-				if (newEnemy.GetComponent<EnemyBaseClass>().m_EnemyType == 1)
+				if (newEnemy.name == "Bully")
 				{
 					newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[0].transform.position);
 				}	
-			}
+			}*/
 	}
 
 

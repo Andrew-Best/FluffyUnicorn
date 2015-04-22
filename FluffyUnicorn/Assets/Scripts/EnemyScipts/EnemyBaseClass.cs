@@ -35,6 +35,8 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public Rigidbody2D m_RigidBody;
 	public Vector2 m_InitialXY;
+
+	public bool m_JustSpawned = true;
 	#endregion
 
 	#region Enemy Movement
@@ -144,6 +146,8 @@ public class EnemyBaseClass : MonoBehaviour
 		m_MaxDist = 0;
 
 		m_InitialXY = spawnPos;
+
+
 			//new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.GetComponent<Rigidbody2D>().transform.position.y);
 	}
 	public virtual void SpawnEnemy(int row, int type)
@@ -163,36 +167,28 @@ public class EnemyBaseClass : MonoBehaviour
 		GameObject tempBully = bully;
 
 		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
+		float pointB = m_MaxDist;
+		float pointA = m_MaxDist * -1;
 
+		//if the bully is travelling left and has exceeded the MxTravelDistance, turn around
+		//if the bully is travelling right and has exceeded the -MxTravelDistance, turn around
+		if(m_JustSpawned)
+		{
+			m_JustSpawned = false;
+			this.EnemyMoveLeft(bully);
+		}
 		if(this.m_isIdle)
 		{
-			if(this.m_EnemyGoingLeft == 1)
-			{
-				this.EnemyMoveLeft(bully);
-				if(differenceThenNow >= m_MaxDist)
-				{
-					this.TurnArond(bully);
-				}
-			}
-			if(this.m_EnemyGoingLeft == -1)
-			{
-				if (differenceThenNow <= -m_MaxDist)
-				{
-					this.TurnArond(bully);
-				}
-			}
-
-/*
-			if(differenceThenNow >= m_MaxDist && this.m_EnemyGoingLeft == -1)
-			{
-				this.EnemyMoveLeft(bully);
-//				this.TurnArond(bully);
-			}
-			else if (differenceThenNow <= m_MaxDist && this.m_EnemyGoingLeft == 1)
+				//moving left and has exceed the MxTravelDistance
+			if(differenceThenNow > pointA && differenceThenNow < pointB)
 			{
 				this.TurnArond(bully);
-//				this.EnemyMoveLeft(bully);			
-			}*/
+			}
+				//moving right and has exceeded the -MxTravelDistance
+			else if (differenceThenNow > pointB && differenceThenNow < pointA)
+			{
+				this.TurnArond(bully);
+			}
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
