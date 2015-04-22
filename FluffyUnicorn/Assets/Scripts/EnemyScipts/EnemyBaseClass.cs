@@ -165,8 +165,6 @@ public class EnemyBaseClass : MonoBehaviour
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		Vector2 playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
 
-		GameObject tempBully = bully;
-
 		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
 		float pointB = m_MaxDist;
 		float pointA = this.m_InitialXY.x + 1;
@@ -191,13 +189,14 @@ public class EnemyBaseClass : MonoBehaviour
 		else // enemy is not idle, therefore player is nearby
 		{
 			this.EnemyMove(bully);
+			m_AttackTimer -= Time.deltaTime;
+			if (m_AttackTimer <= 0)
+			{
+				EnemyAttack();
+			}
 		}
 
-		m_AttackTimer -= Time.deltaTime;
-		if (m_AttackTimer <= 0)
-		{
-			EnemyAttack();
-		}
+		
 		//Detect Row
 	}
 
