@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     #region public variables
-    public GameObject m_SpawnPoint;     //projectile spawn point
-    public Collider2D[] m_Tracks;
+    public GameObject m_SpawnPoint;         //projectile spawn point
+    public GameObject[] m_TargetPoints;     //where the player will move to when switching tracks
+    public Collider2D[] m_Tracks;           //tracks the player will switch to 
 
     public string m_ProjectileName = "PlayerProjectile";
 
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float m_FireRate = 1.0f;
     public float m_Deceleration = 1.0f;
 
+    //used to keep track of what track the player is on
     public bool m_onFrontTrack = true;
     public bool m_onMiddleTrack = false;
     public bool m_onLastTrack = false;
@@ -24,11 +26,11 @@ public class PlayerController : MonoBehaviour
     #region private variables
     private GameObject player_;
 
-    private float move_;
+    private float horizontalMove_;
     private float verticalMove_;
     private float nextFire_;
     private float timer_;               //timer to count how long the player has lifted the key. This determines if he is idle or just switching directions
-    private float idleTime_ = 0.1f;    //variable used with the timer to determine if the player is idle 
+    private float idleTime_ = 0.1f;     //variable used with the timer to determine if the player is idle 
     private float trackTimer_;
     private float trackTime = 0.1f;
 
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         UpdateControls();
-        //ChangeTrack();
+       // ChangeTrack();
     }
 
     void Update()
@@ -98,20 +100,20 @@ public class PlayerController : MonoBehaviour
     void UpdateControls()
     {
         //Set move_ to be the horizontal axis keys
-        move_ = Input.GetAxis("Horizontal");
-        playerAnimator_.SetFloat("Speed", Mathf.Abs(move_));
-        player_.GetComponent<Rigidbody2D>().velocity = new Vector2(move_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
-        if (move_ > 0 || move_ < 0)
+        horizontalMove_ = Input.GetAxis("Horizontal");
+        playerAnimator_.SetFloat("Speed", Mathf.Abs(horizontalMove_));
+        player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+        if (horizontalMove_ > 0 || horizontalMove_ < 0)
         {
             isMoving_ = true;
         }
         playerAnimator_.SetBool("IsMoving", isMoving_);
         //check if player is moving right or left and flip sprite. 1 is right, -1 is left
-        if (move_ > 0 && !facingRight_)
+        if (horizontalMove_ > 0 && !facingRight_)
         {
             Flip();
         }
-        else if (move_ < 0 && facingRight_)
+        else if (horizontalMove_ < 0 && facingRight_)
         {
             Flip();
         }
@@ -150,16 +152,15 @@ public class PlayerController : MonoBehaviour
 
     void ChangeTrack()
     {
-        float force = 0.1f;
         verticalMove_ = Input.GetAxisRaw("Vertical");
         //check if the player pressed an up key and determine which track to move to. 
-    
         if(verticalMove_ > 0)
         {
+            //if the player switches tracks, put the player on the track's target point, disable collison on the previous track and enable collison on the new track
             if (m_onFrontTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                player_.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, force));
+                player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[1].transform.position.y, player_.transform.position.z);
                 m_Tracks[0].enabled = false;         
                 m_Tracks[1].enabled = true;
                 m_onFrontTrack = false;
@@ -168,7 +169,7 @@ public class PlayerController : MonoBehaviour
             else if (m_onMiddleTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                player_.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, force));
+                player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[2].transform.position.y, player_.transform.position.z);
                 m_Tracks[2].enabled = true;
                 m_Tracks[1].enabled = false;
                 m_onMiddleTrack = false;
@@ -178,10 +179,11 @@ public class PlayerController : MonoBehaviour
         //check if the player pressed an down key and determine which track to move to.
         if(verticalMove_ < 0)
         {
+            //if the player switches tracks, put the player on the track's target point, disable collison on the previous track and enable collison on the new track
             if (m_onLastTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                player_.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, -force));
+                player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[1].transform.position.y, player_.transform.position.z);
                 m_Tracks[1].enabled = true;
                 m_Tracks[2].enabled = false;
                 m_onLastTrack = false;
@@ -190,7 +192,7 @@ public class PlayerController : MonoBehaviour
             else if (m_onMiddleTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                player_.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, -force));
+                player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[0].transform.position.y, player_.transform.position.z);
                 m_Tracks[0].enabled = true;
                 m_Tracks[1].enabled = false;
                 m_onMiddleTrack = false;
