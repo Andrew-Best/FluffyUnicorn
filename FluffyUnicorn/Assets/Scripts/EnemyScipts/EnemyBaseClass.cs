@@ -67,7 +67,7 @@ public class EnemyBaseClass : MonoBehaviour
 		if (differenceDistance.x <= this.m_DetectionDist)
 		{
 			//then the enemy is no longer Idle	
-			//this.m_isIdle = false;
+			this.m_isIdle = false;
 		}
 	}
 	#endregion
@@ -186,6 +186,7 @@ public class EnemyBaseClass : MonoBehaviour
 			{
 				this.TurnAround(bully);
 			}
+			DetectPlayer(player.transform.position, enemyPos);
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
