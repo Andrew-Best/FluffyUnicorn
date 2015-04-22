@@ -40,16 +40,16 @@ public class EnemyBaseClass : MonoBehaviour
 	#endregion
 
 	#region Enemy Movement
-	public virtual void EnemyMoveLeft(GameObject bully)
+	public virtual void EnemyMove(GameObject bully)
 	{
 		//		Bully.GetComponent<Rigidbody2D>().transform.position.x += m_VelocityX;
 		this.m_RigidBody.velocity = new Vector2(this.m_VelocityX, 0);
 	}
 
-	public virtual void TurnArond(GameObject bully)
+	public virtual void TurnAround(GameObject bully)
 	{
 		//		this.m_RigidBody.velocity *= new Vector2(-1,0);
-		m_VelocityX *= -1;
+		this.m_VelocityX *= -1;
 		this.m_EnemyGoingLeft *= -1;
 	}
 
@@ -150,6 +150,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 			//new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.GetComponent<Rigidbody2D>().transform.position.y);
 	}
+
 	public virtual void SpawnEnemy(int row, int type)
 	{
 //		m_CurRow = row;
@@ -168,31 +169,27 @@ public class EnemyBaseClass : MonoBehaviour
 
 		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
 		float pointB = m_MaxDist;
-		float pointA = m_MaxDist * -1;
+		float pointA = this.m_InitialXY.x + 1;
 
-		//if the bully is travelling left and has exceeded the MxTravelDistance, turn around
-		//if the bully is travelling right and has exceeded the -MxTravelDistance, turn around
-		if(m_JustSpawned)
-		{
-			m_JustSpawned = false;
-			this.EnemyMoveLeft(bully);
-		}
+		this.EnemyMove(bully);
+
 		if(this.m_isIdle)
 		{
-				//moving left and has exceed the MxTravelDistance
-			if(differenceThenNow > pointA && differenceThenNow < pointB)
+				//moving right and has passed pointA
+			if (enemyPos.x >= pointA && this.m_EnemyGoingLeft == -1)
 			{
-				this.TurnArond(bully);
+				enemyPos.x = pointA;
+				this.TurnAround(bully);
 			}
-				//moving right and has exceeded the -MxTravelDistance
-			else if (differenceThenNow > pointB && differenceThenNow < pointA)
+				//moving left and has passed point B
+			if (enemyPos.x <= pointB && this.m_EnemyGoingLeft == 1)
 			{
-				this.TurnArond(bully);
+				this.TurnAround(bully);
 			}
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
-			this.EnemyMoveLeft(bully);
+			this.EnemyMove(bully);
 		}
 
 		m_AttackTimer -= Time.deltaTime;
@@ -202,6 +199,7 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 		//Detect Row
 	}
+
 	// Update is called once per frame
 	void Update ()
 	{
