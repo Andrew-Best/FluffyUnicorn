@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
         {
             //if the player switches tracks, put the player on the track's target point, disable collison on the previous track and enable collison on the new track
             if (m_onFrontTrack && canSwitchTracks)
-            {
+            {        
                 canSwitchTracks = false;
                 player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[1].transform.position.y, m_TargetPoints[1].transform.position.z);
                 m_Tracks[0].enabled = false;         
@@ -168,6 +168,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (m_onMiddleTrack && canSwitchTracks)
             {
+                player_.GetComponent<SpriteRenderer>().sortingOrder = 0;
                 canSwitchTracks = false;
                 player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[2].transform.position.y, m_TargetPoints[2].transform.position.z);
                 m_Tracks[2].enabled = true;
@@ -182,6 +183,7 @@ public class PlayerController : MonoBehaviour
             //if the player switches tracks, put the player on the track's target point, disable collison on the previous track and enable collison on the new track
             if (m_onLastTrack && canSwitchTracks)
             {
+                player_.GetComponent<SpriteRenderer>().sortingOrder = 1;
                 canSwitchTracks = false;
                 player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[1].transform.position.y, m_TargetPoints[1].transform.position.z);
                 m_Tracks[1].enabled = true;
