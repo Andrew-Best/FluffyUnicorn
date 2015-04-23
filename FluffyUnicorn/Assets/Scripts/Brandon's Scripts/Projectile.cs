@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        //m_Damage = player_.GetComponent<PlayerController>().m_PlayerDamage;
+        m_Damage = player_.GetComponent<PlayerController>().m_PlayerDamage;
         if (other.tag == m_Enemy)
         {
             //do stuff

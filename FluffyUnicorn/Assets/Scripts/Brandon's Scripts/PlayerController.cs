@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public float m_Deceleration = 1.0f;
 
     public int m_PlayerHealth = 3;
+    public int m_PlayerDamage = 1;
+    public int m_Currency = 0;
+    public int m_CurrencyScalar = 1;        //use to determine how much curency the player gains 
 
     //used to keep track of what track the player is on
     public bool m_onFrontTrack = true;
@@ -62,7 +65,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         UpdateControls();
-        //ChangeTrack();
+       // ChangeTrack();
     }
 
     void Update()
