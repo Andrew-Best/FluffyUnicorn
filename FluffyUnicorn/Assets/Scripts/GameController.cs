@@ -7,16 +7,25 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameController : MonoBehaviour 
 {
+    public UIController m_UIControl;
+
+    private int currLevel_; //Current level the player is on
 
 	void Start () 
     {
-	    
+        currLevel_ = 1; //Temporary default
+        StartLevel();
 	}
 	
 	void Update ()
     {
 	    
 	}
+
+    void StartLevel()
+    {
+        m_UIControl.BulliesNeeded = Constants.BULLY_LEVEL_REQUIREMENT + currLevel_;
+    }
 
     #region Save/Load
     void Save()

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     #region public variables
+    public GameController m_GameControl;    //Game Controller object
     public GameObject m_SpawnPoint;         //projectile spawn point
     public GameObject[] m_TargetPoints;     //where the player will move to when switching tracks
     public Collider2D[] m_Tracks;           //tracks the player will switch to 
@@ -202,4 +203,15 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    #region Collision
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Bean")
+        {
+            m_GameControl.m_UIControl.GasLevel += Constants.BEAN_VALUE;
+            Destroy(other.gameObject);
+        }
+    }
+    #endregion
 }

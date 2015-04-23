@@ -6,6 +6,9 @@ public class Constants : MonoBehaviour
     public const float FART_SLIDER_MIN = 0.0f;          //Minumum the fart slider can be at
     public const float FART_SLIDER_MAX = 100.0f;        //Maximum the fart slider can be at
     public const float BEAN_VALUE = 20.0f;              //Value of the beans to increment the fart slider on bean pick up
+    
+    public const int BULLY_LEVEL_REQUIREMENT = 5;       //Base requirement of bullies defeated to successfully pass the first level
+                                                        //This will increase with the level, adding X bullies for the level number (level 1 = +1 bully, level 2 = +2 bullies, etc)
 
 	#region bully variables
 	public const float BULLY_ATTACK_TIMER_RESET_VALUE = 5;
@@ -28,7 +31,7 @@ public class Constants : MonoBehaviour
 	#endregion
 
 	#region fat bully variables
-	public const float FAT_BULLY_ATTACK_TIMER_RESET_VALUE = 8;
+	/*public const float FAT_BULLY_ATTACK_TIMER_RESET_VALUE = 8;
 	public const int FAT_BULLY_VEL_X = -1;
 
 	public const int FAT_BULLY_HP = 5;
@@ -42,11 +45,11 @@ public class Constants : MonoBehaviour
 
 	public const float FAT_BULLY_KICK_RESTTIME = 3;
 	public const float FAT_BULLY_PUNCH_RESTTIME = 3;
-	public const float FAT_BULLY_UNIQUE_ATK_RESTTIME = 6;
+	public const float FAT_BULLY_UNIQUE_ATK_RESTTIME = 6;*/
 	#endregion
 
 	#region jock bully variables
-	public const float JOCK_BULLY_ATTACK_TIMER_RESET_VALUE = 3;
+	/*public const float JOCK_BULLY_ATTACK_TIMER_RESET_VALUE = 3;
 	public const int JOCK_BULLY_VEL_X = -3;
 
 	public const int JOCK_BULLY_HP = 4;
@@ -60,11 +63,11 @@ public class Constants : MonoBehaviour
 
 	public const float JOCK_BULLY_KICK_RESTTIME = 1.5f;
 	public const float JOCK_BULLY_PUNCH_RESTTIME = 1;
-	public const float JOCK_BULLY_UNIQUE_ATK_RESTTIME = 3.5f;
+	public const float JOCK_BULLY_UNIQUE_ATK_RESTTIME = 3.5f;*/
 	#endregion
 
 	#region bling bully variables
-	public const float BLING_BULLY_ATTACK_TIMER_RESET_VALUE = 1;
+	/*public const float BLING_BULLY_ATTACK_TIMER_RESET_VALUE = 1;
 	public const int BLING_BULLY_VEL_X = -2;
 
 	public const int BLING_BULLY_HP = 3;
@@ -78,11 +81,11 @@ public class Constants : MonoBehaviour
 
 	public const float BLING_BULLY_KICK_RESTTIME = 2;
 	public const float BLING_BULLY_PUNCH_RESTTIME = 1;
-	public const float BLING_BULLY_UNIQUE_ATK_RESTTIME = 3;
+	public const float BLING_BULLY_UNIQUE_ATK_RESTTIME = 3;*/
 	#endregion
 
 	#region pepper bully variables
-	public const float PEPPER_BULLY_ATTACK_TIMER_RESET_VALUE = 4;
+	/*public const float PEPPER_BULLY_ATTACK_TIMER_RESET_VALUE = 4;
 	public const int PEPPER_BULLY_VEL_X = -2;
 
 	public const int PEPPER_BULLY_HP = 3;
@@ -96,6 +99,6 @@ public class Constants : MonoBehaviour
 
 	public const float PEPPER_BULLY_KICK_RESTTIME = 1;
 	public const float PEPPER_BULLY_PUNCH_RESTTIME = 0;
-	public const float PEPPER_BULLY_UNIQUE_ATK_RESTTIME = 2;
+	public const float PEPPER_BULLY_UNIQUE_ATK_RESTTIME = 2;*/
 	#endregion
 }
