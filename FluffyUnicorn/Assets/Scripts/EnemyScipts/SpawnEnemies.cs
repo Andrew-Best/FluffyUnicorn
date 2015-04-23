@@ -3,62 +3,30 @@ using System.Collections;
 
 public class SpawnEnemies : MonoBehaviour 
 {
-	public GameObject[] mSpawnPos;
-	public GameObject[] mEnemiesToSpawn;
-	public int m_CurRow;
+	public GameObject[] mSpawnPos; //List of possible spawn locaations
+	public GameObject[] mEnemiesToSpawn; //List of possible enemies to spawn
+	public GameObject[] m_Tracks; //The three tracks an enemy can be anchored to
 
-
-	// Use this for initialization
 	void Start () 
 	{
 		if(mSpawnPos.Length == 0)
 		{
 			Debug.LogError("Spawn Area needs spawn positions.");
 		}
-		//SpawnEnemyFunc(1, 1);
 	}
 	
 	public void SpawnEnemyFunc(int row, int type)
 	{
-		m_CurRow = row;
-		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);
-		newEnemy.transform.position = mSpawnPos[0].transform.position;
+//		m_Tracks[0] = m_Tracks[row]; //Should make the track be the one passed in by the function
+		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
+		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at index ...0...
 		if (newEnemy.name == "Bully")
 		{
-			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[0].transform.position);
+			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position);
 		}	
 		else
 		{
-			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[0].transform.position);
+			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position);
 		}
-		/*	for (int i = 0; i < mEnemiesToSpawn.Length; ++i)
-			{
-				GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);					
-				newEnemy.transform.position = mSpawnPos[0].transform.position;
-				if (newEnemy.name == "Bully")
-				{
-					newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[0].transform.position);
-				}	
-			}*/
 	}
-
-
 }
-
-
-/*
-	//Old code
-	void OnTriggerEnter2D(Collider2D collider)
-	{
-		if(collider.gameObject.tag == "Player")
-		{
-			for(int i =1; i < mEnemiesToSpawn.Length; ++i)
-			{
-				GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);
-				newEnemy.transform.position = mSpawnPos[i].transform.position;
-				Debug.Log(mSpawnPos[i].transform.position);
-			}
-			GetComponent<Collider2D>().enabled= false;
-		}
-	}
-*/

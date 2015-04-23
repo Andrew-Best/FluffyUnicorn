@@ -14,16 +14,12 @@ public class BullyScript : EnemyBaseClass
 
 	public override void InitEnemy(Vector2 spawnPos)
 	{
-        LoadFromXML();
-		//		m_CurRow = Random.Range(1, 3);
-		m_EnemyInMotion = true;
-
-		m_EnemyGoingLeft = 1;
-
-		m_isIdle = true;
-		m_InitialXY = spawnPos;
-		
-		m_MaxDist = this.GetComponent<Rigidbody2D>().position.x - Constants.BULLY_MAX_TRAVEL_DIST;
+        LoadFromXML();			//Load bully's stats from xml file
+		m_EnemyInMotion = true;	//Make the enemy move when it is spawned
+		m_EnemyGoingLeft = 1;	//Set the starting direction
+		m_isIdle = true;		//The enemy begins Idle
+		m_InitialXY = spawnPos;	//Get the initial position to "anchor" it to		
+		m_MaxDist = this.GetComponent<Rigidbody2D>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
 	}
 	#endregion
 
@@ -31,22 +27,22 @@ public class BullyScript : EnemyBaseClass
 	public override void EnemyAttackKick()
 	{
 		//play Bully's Kick Animation
-		float AttackTimer = m_AttackResetTime + m_KickRestTime;
-		ResetEnemyAttackTimer(AttackTimer);
+		float AttackTimer = m_AttackResetTime + m_KickRestTime; //assign the particular bully's Resttime for after a Kick
+		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
 
 	}
 	public override void EnemyAttackPunch()
 	{
 		//play Bully's Kick Animation
-		float AttackTimer = m_AttackResetTime + m_PunchRestTime;
-          ResetEnemyAttackTimer(AttackTimer);
+		float AttackTimer = m_AttackResetTime + m_PunchRestTime; //assign the particular bully's Resttime for after a Punch
+		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
 
 	}
 	public override void EnemyAttackUnique()
 	{
 		//play Bully's Kick Animation
-		float AttackTimer = m_AttackResetTime + m_UniqueRestTime;
-          ResetEnemyAttackTimer(AttackTimer);
+		float AttackTimer = m_AttackResetTime + m_UniqueRestTime; //assign the particular bully's Resttime for after a Unique Attack
+		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
 	}
 	#endregion
 
@@ -60,6 +56,7 @@ public class BullyScript : EnemyBaseClass
 
         foreach(XmlNode node in root.ChildNodes)
         {
+			m_DetectionDist = 5;
             Debug.Log("Node name: " + node.Name + "   This name: " + this.name);
             //Find the node with a matching name as GameObject
             if(node.Name == this.name)

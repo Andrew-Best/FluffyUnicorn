@@ -10,14 +10,11 @@ public class EnemyControllerScript : MonoBehaviour
 
 	void Start ()
 	{
-		/*EnemyType = Random.Range(1, 3);
-		EnemyType = 1;
-		if(EnemyType == 1)
-		{
-			bully.GetComponent<BullyScript>().SpawnEnemy(1, 1);
-		}*/
+		int enemySelector = (int) Random.Range(1, 5);
+		int rowSelector = Random.Range(0, 3);
 
-		enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(1,1);
+		//public void SpawnEnemyFunc(int row, int type)
+		enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(rowSelector, enemySelector);
 
 	}
 	

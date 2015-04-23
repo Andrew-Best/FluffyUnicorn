@@ -61,10 +61,12 @@ public class EnemyBaseClass : MonoBehaviour
 	//Detect the Player
 	public virtual void DetectPlayer(Vector2 playerPos, Vector2 enemyPos)
 	{
-		Vector2 differenceDistance = playerPos - enemyPos;
+		Vector2 differenceInDistance = enemyPos - playerPos;
+		Debug.Log("ooooo" + differenceInDistance);
+		float detectionXPos = enemyPos.x - this.m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
 		//if the difference from the current enemy position and the player's current position
 		//is less than the Detection Distance of the enemy 
-		if (differenceDistance.x <= this.m_DetectionDist)
+		if (playerPos.x >= detectionXPos)
 		{
 			//then the enemy is no longer Idle	
 			this.m_isIdle = false;
