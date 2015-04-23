@@ -58,15 +58,28 @@ public class EnemyBaseClass : MonoBehaviour
 		this.m_RigidBody.velocity = new Vector2(0, 0);
 	}
 
+	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
+	{
+		//If the enemy is to the left of the player and if the enemy is moving to the right
+		if(enemyPos.x < playerPos.x  && this.m_VelocityX < 0)
+		{
+			this.TurnAround(bully);
+		}
+		if (enemyPos.x > playerPos.x && this.m_VelocityX > 0)
+		{
+			this.TurnAround(bully);
+		}
+	}
+
 	//Detect the Player
 	public virtual void DetectPlayer(Vector2 playerPos, Vector2 enemyPos)
 	{
 		Vector2 differenceInDistance = enemyPos - playerPos;
 		Debug.Log("ooooo" + differenceInDistance);
-		float detectionXPos = enemyPos.x - this.m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
+		float forwardDetectionX = enemyPos.x - this.m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
 		//if the difference from the current enemy position and the player's current position
 		//is less than the Detection Distance of the enemy 
-		if (playerPos.x >= detectionXPos)
+		if (playerPos.x >= forwardDetectionX)
 		{
 			//then the enemy is no longer Idle	
 			this.m_isIdle = false;
@@ -75,9 +88,10 @@ public class EnemyBaseClass : MonoBehaviour
 	#endregion
 
 	#region Enemy Attacks
-	public virtual void EnemyAttack()
+	public virtual void EnemyAttack(GameObject bully)
 	{
-		m_EnemyInMotion = false; //Stop the Enemy's movement when attacking
+		EnemyStopMotion(bully);
+//		m_EnemyInMotion = false; //Stop the Enemy's movement when attacking
 		int attackSelector = Random.Range(0, 100);
 		if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
 		{
@@ -190,11 +204,12 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
-			this.EnemyMove(bully);
+			ChasePlayer(playerPos, enemyPos, bully);
+//			this.EnemyMove(bully);
 			m_AttackTimer -= Time.deltaTime;
 			if (m_AttackTimer <= 0)
 			{
-				EnemyAttack();
+				EnemyAttack(bully);
 			}
 		}
 
