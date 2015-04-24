@@ -32,6 +32,11 @@ public class UpgradeManager : MonoBehaviour
             m_Player.m_Currency -= m_AttackRateCost;
             m_Player.m_FireRate -= fireRate;
         }     
+
+        if(m_Player.m_FireRate < 0.1f)
+        {
+            m_Player.m_FireRate = 0.1f;
+        }
     }
 
     public void UpgadeDamage(int playerDamage)
