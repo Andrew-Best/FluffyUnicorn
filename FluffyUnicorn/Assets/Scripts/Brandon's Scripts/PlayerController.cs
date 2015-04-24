@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private bool facingRight_ = true;
     private bool isMoving_ = false;
     private bool canSwitchTracks = true;
+    private bool buttonHeld_ = false;
 
     private Rigidbody2D playerRigidBody_;
 
@@ -103,12 +105,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #region Controls
     void UpdateControls()
     {
         //Set move_ to be the horizontal axis keys
-        horizontalMove_ = Input.GetAxis("Horizontal");
+        //horizontalMove_ = Input.GetAxis("Horizontal");
         playerAnimator_.SetFloat("Speed", Mathf.Abs(horizontalMove_));
-        player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+        //player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
         if (horizontalMove_ > 0 || horizontalMove_ < 0)
         {
             isMoving_ = true;
@@ -129,6 +132,37 @@ public class PlayerController : MonoBehaviour
             Attack();
         }
     }
+
+    public void OnPointerDown()
+    {
+        buttonHeld_ = true;
+    }
+
+    public void OnPointerUp()
+    {
+        buttonHeld_ = false;
+        horizontalMove_ = 0.0f;
+        isMoving_ = false;
+    }
+
+    public void MoveLeft()
+    {
+        if (buttonHeld_)
+        {
+            horizontalMove_ = -1.0f;
+            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+        }
+    }
+
+    public void MoveRight()
+    {
+        if (buttonHeld_)
+        {
+            horizontalMove_ = 1.0f;
+            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+        }
+    }
+    #endregion
 
     void Attack()
     {
