@@ -10,6 +10,7 @@ public class BullyScript : EnemyBaseClass
     {
         LoadFromXML();
     }
+
 	#region Creation
 
 	public override void InitEnemy(Vector2 spawnPos)
@@ -27,20 +28,26 @@ public class BullyScript : EnemyBaseClass
 	public override void EnemyAttackKick()
 	{
 		//play Bully's Kick Animation
+		this.m_BullyWalk.SetBool("IsKick", true);
+		this.m_AnimationLength = 10;
 		float AttackTimer = m_AttackResetTime + m_KickRestTime; //assign the particular bully's Resttime for after a Kick
 		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
-
 	}
+
 	public override void EnemyAttackPunch()
 	{
 		//play Bully's Kick Animation
+		this.m_BullyWalk.SetBool("IsPunch", true);
+		this.m_AnimationLength = 10;
 		float AttackTimer = m_AttackResetTime + m_PunchRestTime; //assign the particular bully's Resttime for after a Punch
 		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
-
 	}
+
 	public override void EnemyAttackUnique()
 	{
 		//play Bully's Kick Animation
+		this.m_BullyWalk.SetBool("IsUnique", true);
+		this.m_AnimationLength = 10;
 		float AttackTimer = m_AttackResetTime + m_UniqueRestTime; //assign the particular bully's Resttime for after a Unique Attack
 		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
 	}
@@ -73,6 +80,7 @@ public class BullyScript : EnemyBaseClass
                 m_AttackUniqueOdds = int.Parse(node.Attributes["UniqueOdds"].Value); //Load the unique attack odds from the XML file
                 m_AttackResetTime = float.Parse(node.Attributes["AttackReset"].Value); //Load the attack reset time from the XML file
                 m_VelocityX = int.Parse(node.Attributes["Velocity"].Value); //Load the velocity from the XML file
+				m_AttackDist = int.Parse(node.Attributes["AttackDist"].Value);
             }
         }
     }

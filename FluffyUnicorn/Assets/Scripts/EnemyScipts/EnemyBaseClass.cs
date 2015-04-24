@@ -13,6 +13,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public int m_EnemyType;
 
 	public float m_AttackTimer;
+	public float m_AnimationLength;
 
 	public float m_HP;
 	public float m_PunchDamage;
@@ -29,6 +30,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public int m_AttackUniqueOdds;
 	public float m_MaxDist;
 	public float m_DetectionDist;
+	public float m_AttackDist;
 
 	public bool m_EnemyInMotion;
 	public bool m_isIdle;
@@ -36,8 +38,6 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public Rigidbody2D m_RigidBody;
 	public Vector2 m_InitialXY;
-
-	public bool m_JustSpawned = true;
 	#endregion
 
 	#region Enemy Movement
@@ -50,7 +50,6 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		this.m_VelocityX *= -1; //turn the enemy around
 		this.m_EnemyGoingLeft *= -1; //tell the enemy it has turned around
-//		this.m_BullyWalk.SetInteger("IsWalkingLeft", *-1);
 	}
 
 	public virtual void EnemyStopMotion(GameObject bully)
@@ -60,6 +59,15 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
 	{
+		//If the enemy is moving Left and 5 pixels to the left of the player, STOP
+		if (this.m_EnemyGoingLeft == -1 && enemyPos.x + this.m_AttackDist > playerPos.x || this.m_EnemyGoingLeft == 1 && enemyPos.x - this.m_AttackDist < playerPos.x)
+		{
+			this.EnemyStopMotion(bully);
+		}
+		else
+		{ 
+			this.EnemyMove(bully); 
+		}
 		//If the enemy is to the left of the player and if the enemy is moving to the right
 		if(enemyPos.x < playerPos.x  && this.m_VelocityX < 0)
 		{
@@ -92,16 +100,16 @@ public class EnemyBaseClass : MonoBehaviour
 		int attackSelector = Random.Range(0, 100);
 		if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
 		{
-			EnemyAttackPunch(); //PAWNCH
+			this.EnemyAttackPunch(); //PAWNCH
 			
 		}
 		else if (attackSelector <= m_AttackKickOdds)//not less than Punch odds, so check if less than kick odds
 		{
-			EnemyAttackKick(); //Kick
+			this.EnemyAttackKick(); //Kick
 		}
 		else if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
 		{
-			EnemyAttackUnique(); //
+			this.EnemyAttackUnique(); //
 		}
 	}
 
@@ -111,23 +119,23 @@ public class EnemyBaseClass : MonoBehaviour
 		this.m_EnemyInMotion = true; //tell the enemy it can move again
 	}
 
-	public virtual void EnemyAttackPunch()
-	{
-		this.m_BullyWalk.SetInteger("AttackType", 1);
+	public virtual void EnemyAttackPunch() //This function is overwritten in the BullyScript
+	{		
+		this.m_BullyWalk.SetBool("IsPunch", true);
 		//play punch animation
 		//set delay for the attack countdown timer to resume only when the animation is done
 	}
 
-	public virtual void EnemyAttackKick()
+	public virtual void EnemyAttackKick()//This function is overwritten in the BullyScript
 	{
-		this.m_BullyWalk.SetInteger("AttackType", 2);
+		this.m_BullyWalk.SetBool("IsKick", true);
 		//play kick animation
-		//set delay for the attack countdown timer to resume only when the animation is done
+		//set delay for the attack countdown timer to resume only when the animation is done	
 	}
 
-	public virtual void EnemyAttackUnique()
+	public virtual void EnemyAttackUnique()//This function is overwritten in the BullyScript
 	{
-		this.m_BullyWalk.SetInteger("AttackType", 3);
+		this.m_BullyWalk.SetBool("IsUnique", true);
 		//play the unique animation
 		//set delay for the attack countdown timer to resume only when the animation is done
 	}
@@ -172,6 +180,15 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyUpdate(GameObject bully)
 	{
+		if(this.m_EnemyGoingLeft == -1)
+		{
+			this.m_BullyWalk.SetInteger("IsWalkingLeft", -1);
+		}
+		else
+		{
+			this.m_BullyWalk.SetInteger("IsWalkingLeft", 1);
+		}
+
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		Vector2 playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
@@ -199,16 +216,31 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
-			if(this.m_EnemyInMotion)
+			if(this.m_EnemyInMotion) //the enemy is awake, chase the player
 			{
 				ChasePlayer(playerPos, enemyPos, bully);
 			}
-			
-			m_AttackTimer -= Time.deltaTime;
-			if (m_AttackTimer <= 0)
+			if (this.m_AnimationLength > 0) //if animating, subtract Delta.Time
 			{
+				this.m_AnimationLength -= Time.deltaTime;
+			}			
+			if(this.m_AttackTimer > 0 && this.m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
+			{
+				this.m_AttackTimer -= Time.deltaTime;
+			}
+			if (this.m_AttackTimer <= 0 && this.m_BullyWalk.GetBool("IsPunch") == false && this.m_BullyWalk.GetBool("IsKick") == false && this.m_BullyWalk.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
+			{
+				this.m_AttackTimer = 0;
 				EnemyAttack(bully);
 			}
+
+			if(this.m_AnimationLength <= 0)
+			{
+				this.m_AnimationLength = 0;
+				this.m_BullyWalk.SetBool("IsPunch", false);				
+				this.m_BullyWalk.SetBool("IsKick", false);
+				this.m_BullyWalk.SetBool("IsUnique", false);
+			}			
 		}		
 		//Detect Row
 	}

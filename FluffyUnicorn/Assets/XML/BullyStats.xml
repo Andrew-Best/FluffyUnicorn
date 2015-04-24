@@ -1,7 +1,7 @@
 <BullyStats>
-  <Bully HP="3" PunchDamage="1" KickDamage="2" UniqueDamage="3" PunchRest="1" KickRest="2" UniqueRest="3" PunchOdds="60" KickOdds="80" UniqueOdds="100" AttackReset="5" Velocity="-2" />
-  <FatBully HP="5" PunchDamage="1" KickDamage="1" UniqueDamage="6" PunchRest="3" KickRest="3" UniqueRest="6" PunchOdds="10" KickOdds="25" UniqueOdds="100" AttackReset="8" Velocity="-1"/>
-  <JockBully HP="4" PunchDamage="3" KickDamage="3" UniqueDamage="4" PunchRest="1.5" KickRest="1" UniqueRest="3.5" PunchOdds="40" KickOdds="60" UniqueOdds="100" AttackReset="3" Velocity="-3"/>
-  <BlingBully HP="3" PunchDamage="2" KickDamage="2" UniqueDamage="5" PunchRest="1" KickRest="2" UniqueRest="3" PunchOdds="60" KickOdds="80" UniqueOdds="100" AttackReset="1" Velocity="-2"/>
-  <PepperBully HP="3" PunchDamage="1" KickDamage="2" UniqueDamage="4" PunchRest="0" KickRest="1" UniqueRest="2" PunchOdds="40" KickOdds="70" UniqueOdds="100" AttackReset="4" Velocity="-2"/>
+  <Bully HP="3" PunchDamage="1" KickDamage="2" UniqueDamage="3" PunchRest="1" KickRest="2" UniqueRest="3" PunchOdds="60" KickOdds="80" UniqueOdds="100" AttackReset="5" Velocity="-2" AttackDist="2" />
+  <FatBully HP="5" PunchDamage="1" KickDamage="1" UniqueDamage="6" PunchRest="3" KickRest="3" UniqueRest="6" PunchOdds="10" KickOdds="25" UniqueOdds="100" AttackReset="8" Velocity="-1" AttackDist="2"/>
+  <JockBully HP="4" PunchDamage="3" KickDamage="3" UniqueDamage="4" PunchRest="1.5" KickRest="1" UniqueRest="3.5" PunchOdds="40" KickOdds="60" UniqueOdds="100" AttackReset="3" Velocity="-3" AttackDist="2"/>
+  <BlingBully HP="3" PunchDamage="2" KickDamage="2" UniqueDamage="5" PunchRest="1" KickRest="2" UniqueRest="3" PunchOdds="60" KickOdds="80" UniqueOdds="100" AttackReset="1" Velocity="-2" AttackDist="2"/>
+  <PepperBully HP="3" PunchDamage="1" KickDamage="2" UniqueDamage="4" PunchRest="0" KickRest="1" UniqueRest="2" PunchOdds="40" KickOdds="70" UniqueOdds="100" AttackReset="4" Velocity="-2" AttackDist="2"/>
 </BullyStats>
