@@ -67,13 +67,13 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         UpdateControls();
-       // ChangeTrack();
+        //ChangeTrack();
     }
 
     void Update()
     {
         UpdateMoveTimer();
-        //UpdateTrackTimer();
+        UpdateTrackTimer();
     }
 
     void UpdateMoveTimer()
@@ -162,6 +162,18 @@ public class PlayerController : MonoBehaviour
             player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
+
+    public void MoveUp()
+    {
+        verticalMove_ = 1.0f;
+        ChangeTrack();
+    }
+
+    public void MoveDown()
+    {
+        verticalMove_ = -1.0f;
+        ChangeTrack();
+    }
     #endregion
 
     void Attack()
@@ -192,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
     void ChangeTrack()
     {
-        verticalMove_ = Input.GetAxisRaw("Vertical");
+        //verticalMove_ = Input.GetAxisRaw("Vertical");
         //check if the player pressed an up key and determine which track to move to. 
         if(verticalMove_ > 0)
         {
