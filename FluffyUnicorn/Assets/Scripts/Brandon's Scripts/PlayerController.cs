@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    void Attack()
+    public void Attack()
     {
         nextFire_ = Time.time + m_FireRate;
         //Get a bullet from the ObjectPool
