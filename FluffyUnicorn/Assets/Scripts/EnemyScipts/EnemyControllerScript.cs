@@ -11,11 +11,10 @@ public class EnemyControllerScript : MonoBehaviour
 	void Start ()
 	{
 		int enemySelector = (int) Random.Range(1, 5);
-		int rowSelector = Random.Range(0, 3);
+		int rowSelector = Random.Range(0, 3); //the track the enemy is going to be placed on
 
 		//public void SpawnEnemyFunc(int row, int type)
 		enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(rowSelector, enemySelector);
-
 	}
 	
 	// Update is called once per frame

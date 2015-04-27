@@ -13,14 +13,21 @@ public class BullyScript : EnemyBaseClass
 
 	#region Creation
 
-	public override void InitEnemy(Vector2 spawnPos)
+	public override void InitEnemy(Vector2 spawnPos, int row)
 	{
         LoadFromXML();			//Load bully's stats from xml file
 		m_EnemyInMotion = true;	//Make the enemy move when it is spawned
 		m_EnemyGoingLeft = 1;	//Set the starting direction
 		m_isIdle = true;		//The enemy begins Idle
-		m_InitialXY = spawnPos;	//Get the initial position to "anchor" it to		
+		m_InitialXY = spawnPos;	//Get the initial position to "anchor" it to	
+
+		m_CurRow = row;
+
+		this.changeTrackCountdown = this.m_ChangeTrackTimer;
 		m_MaxDist = this.GetComponent<Rigidbody2D>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
+
+	//	Bully.GetComponent<Rigidbody2D>().transform.position = new Vector3(Bully.transform.position.x, m_TargetPoints[(int)spawnPos.x].transform.position.y, m_TargetPoints[(int)spawnPos.y].transform.position.z);
+
 	}
 	#endregion
 
@@ -81,6 +88,7 @@ public class BullyScript : EnemyBaseClass
                 m_AttackResetTime = float.Parse(node.Attributes["AttackReset"].Value); //Load the attack reset time from the XML file
                 m_VelocityX = int.Parse(node.Attributes["Velocity"].Value); //Load the velocity from the XML file
 				m_AttackDist = int.Parse(node.Attributes["AttackDist"].Value);
+				m_ChangeTrackTimer = int.Parse(node.Attributes["ChangeTrackDelay"].Value);
             }
         }
     }

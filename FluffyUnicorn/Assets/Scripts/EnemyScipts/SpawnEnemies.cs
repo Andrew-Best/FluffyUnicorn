@@ -19,14 +19,14 @@ public class SpawnEnemies : MonoBehaviour
 	{
 //		m_Tracks[0] = m_Tracks[row]; //Should make the track be the one passed in by the function
 		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
-		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at index ...0...
+		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 		if (newEnemy.name == "Bully")
-		{
-			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position);
+		{			
+			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
 		}	
 		else
 		{
-			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position);
+			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
 		}
 	}
 }

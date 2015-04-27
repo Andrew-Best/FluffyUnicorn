@@ -6,9 +6,15 @@ public class EnemyBaseClass : MonoBehaviour
 	#region Enemy Variables
 	public GameObject Bully;
 	public Animator m_BullyWalk;
-
+	public Collider2D[] m_Tracks;
+	public GameObject[] m_TargetPoints;
+	//m_BullyOnFrontTrack
 	public int m_VelocityX;
+
+	public int m_PlayerCurRow;
 	public int m_CurRow;
+	public bool m_AbleToChangeTrack = false;
+	public float m_ChangeTrackTimer;
 
 	public int m_EnemyType;
 
@@ -17,13 +23,13 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public float m_HP;
 	public float m_PunchDamage;
-    public float m_KickDamage;
-    public float m_UniqueDamage;
+	public float m_KickDamage;
+	public float m_UniqueDamage;
 
-    public float m_AttackResetTime;
-    public float m_PunchRestTime;
-    public float m_KickRestTime;
-    public float m_UniqueRestTime;
+	public float m_AttackResetTime;
+	public float m_PunchRestTime;
+	public float m_KickRestTime;
+	public float m_UniqueRestTime;
 
 	public int m_AttackPunchOdds;
 	public int m_AttackKickOdds;
@@ -34,10 +40,14 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public bool m_EnemyInMotion;
 	public bool m_isIdle;
+
 	public int m_EnemyGoingLeft = 1;
 
 	public Rigidbody2D m_RigidBody;
 	public Vector2 m_InitialXY;
+
+
+	public float changeTrackCountdown;
 	#endregion
 
 	#region Enemy Movement
@@ -57,19 +67,53 @@ public class EnemyBaseClass : MonoBehaviour
 		this.m_RigidBody.velocity = new Vector2(0, 0); //freeze position
 	}
 
-	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
+	public virtual void ChangeTrack(GameObject bully, bool canChangeTrack)
 	{
+		if (this.m_CurRow < this.m_PlayerCurRow)
+		{
+			m_CurRow++;
+		}
+		else if (this.m_CurRow > this.m_PlayerCurRow)
+		{
+			m_CurRow--;
+		}
+		else //function should not have been called in the first place
+		{
+			Debug.Log("Why was this even called?");
+		}
+
+		m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
+		m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
+		m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
+
+		this.GetComponent<Rigidbody2D>().transform.position = new Vector3(this.transform.position.x, m_TargetPoints[this.m_CurRow].transform.position.y, m_TargetPoints[this.m_CurRow].transform.position.z);
+			
+
+	}
+
+	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully, float playerPosY, float thisEnemyYPos, bool canChangeTrack)
+	{
+		//First, if the enemy is on the wrong Track
+		if (m_PlayerCurRow != this.m_CurRow)
+		{
+			if (canChangeTrack)
+			{
+				ChangeTrack(bully, canChangeTrack);
+				changeTrackCountdown = m_ChangeTrackTimer;
+				this.m_AbleToChangeTrack = false;
+			}
+		}
 		//If the enemy is moving Left and 5 pixels to the left of the player, STOP
 		if (this.m_EnemyGoingLeft == -1 && enemyPos.x + this.m_AttackDist > playerPos.x || this.m_EnemyGoingLeft == 1 && enemyPos.x - this.m_AttackDist < playerPos.x)
 		{
 			this.EnemyStopMotion(bully);
 		}
 		else
-		{ 
-			this.EnemyMove(bully); 
+		{
+			this.EnemyMove(bully);
 		}
 		//If the enemy is to the left of the player and if the enemy is moving to the right
-		if(enemyPos.x < playerPos.x  && this.m_VelocityX < 0)
+		if (enemyPos.x < playerPos.x && this.m_VelocityX < 0)
 		{
 			this.TurnAround(bully); //correct movement direction
 		}
@@ -95,19 +139,26 @@ public class EnemyBaseClass : MonoBehaviour
 	#region Enemy Attacks
 	public virtual void EnemyAttack(GameObject bully)
 	{
-		EnemyStopMotion(bully);
-		m_EnemyInMotion = false; //prevent continued motion of the bully
 		int attackSelector = Random.Range(0, 100);
-		if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
+		if (this.m_CurRow == this.m_PlayerCurRow)
 		{
-			this.EnemyAttackPunch(); //PAWNCH
-			
+			EnemyStopMotion(bully);
+			m_EnemyInMotion = false; //prevent continued motion of the bully
+			if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
+			{
+				this.EnemyAttackPunch(); //PAWNCH
+
+			}
+			else if (attackSelector <= m_AttackKickOdds)//not less than Punch odds, so check if less than kick odds
+			{
+				this.EnemyAttackKick(); //Kick
+			}
+			else if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
+			{
+				this.EnemyAttackUnique(); //
+			}
 		}
-		else if (attackSelector <= m_AttackKickOdds)//not less than Punch odds, so check if less than kick odds
-		{
-			this.EnemyAttackKick(); //Kick
-		}
-		else if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
+		if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
 		{
 			this.EnemyAttackUnique(); //
 		}
@@ -120,7 +171,7 @@ public class EnemyBaseClass : MonoBehaviour
 	}
 
 	public virtual void EnemyAttackPunch() //This function is overwritten in the BullyScript
-	{		
+	{
 		this.m_BullyWalk.SetBool("IsPunch", true);
 		//play punch animation
 		//set delay for the attack countdown timer to resume only when the animation is done
@@ -147,7 +198,7 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		this.m_BullyWalk.SetBool("IsHit", true);
 		this.m_HP -= damageDealt;
-		if(m_HP <= 0)
+		if (m_HP <= 0)
 		{
 			KillEnemy(this.gameObject);
 		}
@@ -161,7 +212,7 @@ public class EnemyBaseClass : MonoBehaviour
 	#endregion
 
 	#region Creation
-	public virtual void InitEnemy(Vector2 spawnPos)
+	public virtual void InitEnemy(Vector2 spawnPos, int row)
 	{
 		m_VelocityX = 0;
 		m_AttackTimer = 0;
@@ -173,6 +224,9 @@ public class EnemyBaseClass : MonoBehaviour
 		m_AttackUniqueOdds = 0;
 
 		m_MaxDist = 0;
+		changeTrackCountdown = m_ChangeTrackTimer;
+
+		//		Bully.GetComponent<Rigidbody2D>().transform.position = new Vector3(Bully.transform.position.x, m_TargetPoints[(int) spawnPos.x].transform.position.y, m_TargetPoints[(int) spawnPos.y].transform.position.z);
 
 		m_InitialXY = spawnPos;
 	}
@@ -180,7 +234,23 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyUpdate(GameObject bully)
 	{
-		if(this.m_EnemyGoingLeft == -1)
+		//only change track IF, on a different track than the player && the timer is at 0
+		//After Changing tracks, reset the timer so the enemy cannot switch again immediately
+		if(this.m_PlayerCurRow != this.m_CurRow) //If not on the same track
+		{
+			if (changeTrackCountdown <= 0)//If Timer is at 0
+			{
+				this.m_AbleToChangeTrack = true;
+				changeTrackCountdown = 540;
+			}
+			else if (changeTrackCountdown > 0)
+			{
+				changeTrackCountdown -= Time.deltaTime;
+			}
+		}
+
+
+		if (this.m_EnemyGoingLeft == -1)
 		{
 			this.m_BullyWalk.SetInteger("IsWalkingLeft", -1);
 		}
@@ -192,6 +262,19 @@ public class EnemyBaseClass : MonoBehaviour
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		Vector2 playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
+		
+		if(player.GetComponent<PlayerController>().m_onFrontTrack)
+		{
+			m_PlayerCurRow = 2;
+		}
+		else if (player.GetComponent<PlayerController>().m_onMiddleTrack)
+		{
+			m_PlayerCurRow = 1;
+		}
+		else if (player.GetComponent<PlayerController>().m_onLastTrack)
+		{
+			m_PlayerCurRow = 0;
+		}
 
 		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
 		float pointB = m_MaxDist;
@@ -199,15 +282,15 @@ public class EnemyBaseClass : MonoBehaviour
 
 		this.EnemyMove(bully);
 
-		if(this.m_isIdle)
+		if (this.m_isIdle)
 		{
-				//moving right and has passed pointA
+			//moving right and has passed pointA
 			if (enemyPos.x >= pointA && this.m_EnemyGoingLeft == -1)
 			{
 				enemyPos.x = pointA;
 				this.TurnAround(bully);
 			}
-				//moving left and has passed point B
+			//moving left and has passed point B
 			if (enemyPos.x <= pointB && this.m_EnemyGoingLeft == 1)
 			{
 				this.TurnAround(bully);
@@ -216,15 +299,15 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
-			if(this.m_EnemyInMotion) //the enemy is awake, chase the player
+			if (this.m_EnemyInMotion) //the enemy is awake, chase the player
 			{
-				ChasePlayer(playerPos, enemyPos, bully);
+				ChasePlayer(playerPos, enemyPos, bully, player.GetComponent<Rigidbody2D>().transform.position.y, enemyPos.y, this.m_AbleToChangeTrack);
 			}
 			if (this.m_AnimationLength > 0) //if animating, subtract Delta.Time
 			{
 				this.m_AnimationLength -= Time.deltaTime;
-			}			
-			if(this.m_AttackTimer > 0 && this.m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
+			}
+			if (this.m_AttackTimer > 0 && this.m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
 			{
 				this.m_AttackTimer -= Time.deltaTime;
 			}
@@ -234,19 +317,19 @@ public class EnemyBaseClass : MonoBehaviour
 				EnemyAttack(bully);
 			}
 
-			if(this.m_AnimationLength <= 0)
+			if (this.m_AnimationLength <= 0)
 			{
 				this.m_AnimationLength = 0;
-				this.m_BullyWalk.SetBool("IsPunch", false);				
+				this.m_BullyWalk.SetBool("IsPunch", false);
 				this.m_BullyWalk.SetBool("IsKick", false);
 				this.m_BullyWalk.SetBool("IsUnique", false);
-			}			
-		}		
+			}
+		}
 		//Detect Row
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		EnemyUpdate(Bully);
 	}
