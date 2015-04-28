@@ -7,8 +7,10 @@ public class DestructableObject : MonoBehaviour
     public GameObject m_SpawnPoint;
 
     public float m_Health = 0;
+    public float m_ReactForce = 0.4f;
 
     public bool m_HasParticleEffect = false;
+    public bool m_ReactToDamage = true;
 
     public string m_ParticleName = "";
     #endregion 
@@ -30,6 +32,7 @@ public class DestructableObject : MonoBehaviour
         upgradeManager_ = GameObject.FindGameObjectWithTag("UpgradeManager");
         objectAnimator_ = this.GetComponent<Animator>();
         damage = m_Health / 2;
+
     }
 
     void Update()
@@ -48,7 +51,6 @@ public class DestructableObject : MonoBehaviour
                 RandomItem(1, 4);   //go one number past the one you want for the max
             }
             dead_ = true;
-            this.GetComponent<BoxCollider2D>().enabled = false;
         }
         if (m_HasParticleEffect && !dead_)
         {
@@ -73,6 +75,14 @@ public class DestructableObject : MonoBehaviour
         particle.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(0, 1, 0));
     }
 
+    public void Wiggle()
+    {
+        //if you want the object to move when hit and it hasn't been destroyed
+        if (!dead_ && m_ReactToDamage)
+        {
+            this.GetComponent<Rigidbody2D>().AddForce(new Vector2(m_ReactForce, 0.0f));
+        }
+    }
     #endregion
     
     void RandomItem(int min, int max)
