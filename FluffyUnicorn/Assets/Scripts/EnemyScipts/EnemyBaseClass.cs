@@ -5,10 +5,14 @@ public class EnemyBaseClass : MonoBehaviour
 {
 	#region Enemy Variables
 	public GameObject Bully;
+	public GameObject m_UniqueAttackHolder;
+
+	public GameObject PepperSpray;
+
 	public Animator m_BullyWalk;
 	public Collider2D[] m_Tracks;
 	public GameObject[] m_TargetPoints;
-	//m_BullyOnFrontTrack
+
 	public int m_VelocityX;
 
 	public int m_PlayerCurRow;
@@ -40,14 +44,18 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public bool m_EnemyInMotion;
 	public bool m_isIdle;
+	public bool m_TimerIsCounting; //bool for Timer for changing tracks (primary timer)
 
 	public int m_EnemyGoingLeft = 1;
 
 	public Rigidbody2D m_RigidBody;
 	public Vector2 m_InitialXY;
 
+	//two variables for changing tracks
+	public float changeTrackCountdown = 2.0f; //primary timer, when this reaches 0 the enemy can change tracks, and the secondary timer start counting down and m_TimerIsCounting is set to false
+	public float secondaryTrackTimer = 2.0f; //secondary timer, when this reaches 0 then the primary timer starts counting down and it's bool is set to true
 
-	public float changeTrackCountdown;
+	public const float TRACK_COUNTDOWN_DEFAULT = 2;
 	#endregion
 
 	#region Enemy Movement
@@ -60,6 +68,11 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		this.m_VelocityX *= -1; //turn the enemy around
 		this.m_EnemyGoingLeft *= -1; //tell the enemy it has turned around
+
+		//Brandon's code to fip the animation,,, flips the x 
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
 	}
 
 	public virtual void EnemyStopMotion(GameObject bully)
@@ -67,40 +80,33 @@ public class EnemyBaseClass : MonoBehaviour
 		this.m_RigidBody.velocity = new Vector2(0, 0); //freeze position
 	}
 
-	public virtual void ChangeTrack(GameObject bully, bool canChangeTrack)
+	public virtual void ChangeTrack(GameObject bully)
 	{
+		
 		if (this.m_CurRow < this.m_PlayerCurRow)
 		{
-			m_CurRow++;
+			this.m_CurRow++;
 		}
 		else if (this.m_CurRow > this.m_PlayerCurRow)
 		{
-			m_CurRow--;
+			this.m_CurRow--;
 		}
 		else //function should not have been called in the first place
 		{
 			Debug.Log("Why was this even called?");
 		}
-
-		m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
-		m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
-		m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
-
-		this.GetComponent<Rigidbody2D>().transform.position = new Vector3(this.transform.position.x, m_TargetPoints[this.m_CurRow].transform.position.y, m_TargetPoints[this.m_CurRow].transform.position.z);
-			
-
 	}
 
-	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully, float playerPosY, float thisEnemyYPos, bool canChangeTrack)
+	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully, float playerPosY, float thisEnemyYPos)
 	{
-		//First, if the enemy is on the wrong Track
-		if (m_PlayerCurRow != this.m_CurRow)
+		if (this.changeTrackCountdown <= 0)//If Timer is at 0
 		{
-			if (canChangeTrack)
+			this.changeTrackCountdown = 0; //set the timer to 0
+			this.m_TimerIsCounting = false;//prevent the timer from continueing to count down
+			if (this.m_PlayerCurRow != this.m_CurRow) //If not on the same track
 			{
-				ChangeTrack(bully, canChangeTrack);
-				changeTrackCountdown = m_ChangeTrackTimer;
-				this.m_AbleToChangeTrack = false;
+				this.ChangeTrack(bully);
+				this.secondaryTrackTimer = TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
 			}
 		}
 		//If the enemy is moving Left and 5 pixels to the left of the player, STOP
@@ -146,21 +152,21 @@ public class EnemyBaseClass : MonoBehaviour
 			m_EnemyInMotion = false; //prevent continued motion of the bully
 			if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
 			{
-				this.EnemyAttackPunch(); //PAWNCH
+				this.EnemyAttackPunch(bully); //PAWNCH
 
 			}
 			else if (attackSelector <= m_AttackKickOdds)//not less than Punch odds, so check if less than kick odds
 			{
-				this.EnemyAttackKick(); //Kick
+				this.EnemyAttackKick(bully); //Kick
 			}
 			else if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
 			{
-				this.EnemyAttackUnique(); //
+				this.EnemyAttackUnique(bully); //
 			}
 		}
 		if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
 		{
-			this.EnemyAttackUnique(); //
+			this.EnemyAttackUnique(bully); //
 		}
 	}
 
@@ -170,25 +176,22 @@ public class EnemyBaseClass : MonoBehaviour
 		this.m_EnemyInMotion = true; //tell the enemy it can move again
 	}
 
-	public virtual void EnemyAttackPunch() //This function is overwritten in the BullyScript
+	public virtual void EnemyAttackPunch(GameObject bully) //This function is overwritten in the BullyScript
 	{
 		this.m_BullyWalk.SetBool("IsPunch", true);
 		//play punch animation
 		//set delay for the attack countdown timer to resume only when the animation is done
 	}
 
-	public virtual void EnemyAttackKick()//This function is overwritten in the BullyScript
+	public virtual void EnemyAttackKick(GameObject bully)//This function is overwritten in the BullyScript
 	{
 		this.m_BullyWalk.SetBool("IsKick", true);
 		//play kick animation
 		//set delay for the attack countdown timer to resume only when the animation is done	
 	}
 
-	public virtual void EnemyAttackUnique()//This function is overwritten in the BullyScript
+	public virtual void EnemyAttackUnique(GameObject bully)//This function is overwritten in the BullyScript
 	{
-		this.m_BullyWalk.SetBool("IsUnique", true);
-		//play the unique animation
-		//set delay for the attack countdown timer to resume only when the animation is done
 	}
 	#endregion
 
@@ -232,38 +235,53 @@ public class EnemyBaseClass : MonoBehaviour
 	}
 	#endregion
 
-	public virtual void EnemyUpdate(GameObject bully)
+	public virtual void EnemyUpdate(GameObject bully, GameObject bullets)
 	{
-		//only change track IF, on a different track than the player && the timer is at 0
-		//After Changing tracks, reset the timer so the enemy cannot switch again immediately
-		if(this.m_PlayerCurRow != this.m_CurRow) //If not on the same track
+		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully, bullets);
+
+		//Conditions for changing tracks
+		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
 		{
-			if (changeTrackCountdown <= 0)//If Timer is at 0
-			{
-				this.m_AbleToChangeTrack = true;
-				changeTrackCountdown = 540;
-			}
-			else if (changeTrackCountdown > 0)
-			{
-				changeTrackCountdown -= Time.deltaTime;
-			}
+			this.changeTrackCountdown = TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
+			this.secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
+		}
+		if(secondaryTrackTimer <= 0) //once the secondary timer reaches 0
+		{
+			this.m_TimerIsCounting = true; //enable the primary timer
+			this.secondaryTrackTimer = TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
+		}
+		if(this.m_TimerIsCounting)
+		{
+			this.changeTrackCountdown -= Time.deltaTime;
 		}
 
 
+		//Change Bully's Y position accordin to the track it is on
+/*		float frontTrackY = this.m_TargetPoints[2].transform.position.y;
+		float midTrackY = this.m_TargetPoints[1].transform.position.y;
+		float lastTrackY = this.m_TargetPoints[0].transform.position.y;*/
+
+
+		this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.m_TargetPoints[m_CurRow].transform.position.y);
+
+		
+
+		//Change direction of Anim
 		if (this.m_EnemyGoingLeft == -1)
 		{
-			this.m_BullyWalk.SetInteger("IsWalkingLeft", -1);
+			//this.m_BullyWalk.SetInteger("IsWalkingLeft 0", -1);
 		}
-		else
+		else if (this.m_EnemyGoingLeft == 1)
 		{
-			this.m_BullyWalk.SetInteger("IsWalkingLeft", 1);
+			//this.m_BullyWalk.SetInteger("IsWalkingLeft 0", 1);
 		}
 
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		Vector2 playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
-		
-		if(player.GetComponent<PlayerController>().m_onFrontTrack)
+
+		//Detect Player Track
+		if (player.GetComponent<PlayerController>().m_onFrontTrack)
 		{
 			m_PlayerCurRow = 2;
 		}
@@ -301,8 +319,9 @@ public class EnemyBaseClass : MonoBehaviour
 		{
 			if (this.m_EnemyInMotion) //the enemy is awake, chase the player
 			{
-				ChasePlayer(playerPos, enemyPos, bully, player.GetComponent<Rigidbody2D>().transform.position.y, enemyPos.y, this.m_AbleToChangeTrack);
+				ChasePlayer(playerPos, enemyPos, bully, player.GetComponent<Rigidbody2D>().transform.position.y, enemyPos.y);
 			}
+			//Animation
 			if (this.m_AnimationLength > 0) //if animating, subtract Delta.Time
 			{
 				this.m_AnimationLength -= Time.deltaTime;
@@ -325,13 +344,12 @@ public class EnemyBaseClass : MonoBehaviour
 				this.m_BullyWalk.SetBool("IsUnique", false);
 			}
 		}
-		//Detect Row
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		EnemyUpdate(Bully);
+		EnemyUpdate(Bully, PepperSpray);
 	}
 
 }

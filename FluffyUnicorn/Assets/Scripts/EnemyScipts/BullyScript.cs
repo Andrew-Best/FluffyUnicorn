@@ -6,9 +6,15 @@ using System.Xml;
 
 public class BullyScript : EnemyBaseClass
 {
+	
     void Start()
     {
         LoadFromXML();
+		this.m_UniqueAttackHolder = GameObject.FindGameObjectWithTag("UATKHolder");
+		this.PepperSpray = this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().m_PepperSpray;
+//		this.m_TargetPoints = new[] {GameObject.FindGameObjectWithTag("TargetLastTrack"),
+//		GameObject.FindGameObjectWithTag("TargetMidTrack"),
+//		GameObject.FindGameObjectWithTag("TargetFrontTrack")};
     }
 
 	#region Creation
@@ -23,6 +29,19 @@ public class BullyScript : EnemyBaseClass
 
 		m_CurRow = row;
 
+		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
+		float lastTrackY = this.m_TargetPoints[0].transform.position.y;
+
+		this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
+		float midTrackY = this.m_TargetPoints[1].transform.position.y;
+
+		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
+		float frontTrackY = this.m_TargetPoints[2].transform.position.y;
+		
+
+		
+		
+
 		this.changeTrackCountdown = this.m_ChangeTrackTimer;
 		m_MaxDist = this.GetComponent<Rigidbody2D>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
 
@@ -32,7 +51,7 @@ public class BullyScript : EnemyBaseClass
 	#endregion
 
 	#region Attacks
-	public override void EnemyAttackKick()
+	public override void EnemyAttackKick(GameObject bully)
 	{
 		//play Bully's Kick Animation
 		this.m_BullyWalk.SetBool("IsKick", true);
@@ -41,7 +60,7 @@ public class BullyScript : EnemyBaseClass
 		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
 	}
 
-	public override void EnemyAttackPunch()
+	public override void EnemyAttackPunch(GameObject bully)
 	{
 		//play Bully's Kick Animation
 		this.m_BullyWalk.SetBool("IsPunch", true);
@@ -50,10 +69,14 @@ public class BullyScript : EnemyBaseClass
 		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
 	}
 
-	public override void EnemyAttackUnique()
+	public override void EnemyAttackUnique(GameObject bully)
 	{
 		//play Bully's Kick Animation
 		this.m_BullyWalk.SetBool("IsUnique", true);
+		if (bully.name == "PepperBully")
+		{
+			m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().PepperUniqueAttack(bully);
+		}
 		this.m_AnimationLength = 10;
 		float AttackTimer = m_AttackResetTime + m_UniqueRestTime; //assign the particular bully's Resttime for after a Unique Attack
 		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
