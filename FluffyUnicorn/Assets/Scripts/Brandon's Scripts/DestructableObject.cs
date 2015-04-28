@@ -15,6 +15,7 @@ public class DestructableObject : MonoBehaviour
 
     #region private variables
     private GameObject player_;
+    private GameObject upgradeManager_;
     private Animator objectAnimator_;
 
     private bool dead_ = false;
@@ -26,6 +27,7 @@ public class DestructableObject : MonoBehaviour
     void Start()
     {
         player_ = GameObject.FindGameObjectWithTag("Player");
+        upgradeManager_ = GameObject.FindGameObjectWithTag("UpgradeManager");
         objectAnimator_ = this.GetComponent<Animator>();
         damage = m_Health / 2;
     }
@@ -35,23 +37,28 @@ public class DestructableObject : MonoBehaviour
         UpdateAnimationValues();
     }
 
+    #region DestroyObject
     public void Destroy(float damage)
     {
         m_Health -= damage;
         if (m_Health <= 0)
         {
+            if (!dead_)
+            {
+                RandomItem(1, 4);   //go one number past the one you want for the max
+            }
             dead_ = true;
-            RandomItem();
+            this.GetComponent<BoxCollider2D>().enabled = false;
         }
         if (m_HasParticleEffect && !dead_)
         {
             MoveParticle();
-        }     
+        }
     }
 
     void UpdateAnimationValues()
     {
-        if(m_Health <= damage)
+        if (m_Health <= damage)
         {
             isDamaged_ = true;
         }
@@ -66,8 +73,33 @@ public class DestructableObject : MonoBehaviour
         particle.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(0, 1, 0));
     }
 
-    void RandomItem()
+    #endregion
+    
+    void RandomItem(int min, int max)
     {
-
+        int currencyMin = 1, currencyMax = 15, healthMin = 1, healthMax = 3;        //min and max for the different item random drops
+        int num = Random.Range(min, max);
+        if(num == 1)
+        {
+            //increase the player's health by the number generated
+            int health = Random.Range(healthMin, healthMax);
+            player_.GetComponent<PlayerController>().m_PlayerHealth += health;
+            //if the player's health is past the max health cap, set it back to the highest value it is allow to be at
+            if( player_.GetComponent<PlayerController>().m_PlayerHealth > upgradeManager_.GetComponent<UpgradeManager>().m_MaxHealth)
+            {
+                player_.GetComponent<PlayerController>().m_PlayerHealth = upgradeManager_.GetComponent<UpgradeManager>().m_MaxHealth;
+            }
+        }
+        else if(num == 2)
+        {
+        
+            //increase the player's currency by the random number generated * the player's currency scalar 
+            int currency = Random.Range(currencyMin, currencyMax);
+            player_.GetComponent<PlayerController>().m_Currency += currency * player_.GetComponent<PlayerController>().m_CurrencyScalar;    
+        }
+        else
+        {
+            //do nothing. no item found 
+        }
     }
 }
