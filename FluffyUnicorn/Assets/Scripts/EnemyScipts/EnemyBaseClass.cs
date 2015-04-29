@@ -56,7 +56,6 @@ public class EnemyBaseClass : MonoBehaviour
 	public float changeTrackCountdown = 2.0f; //primary timer, when this reaches 0 the enemy can change tracks, and the secondary timer start counting down and m_TimerIsCounting is set to false
 	public float secondaryTrackTimer = 2.0f; //secondary timer, when this reaches 0 then the primary timer starts counting down and it's bool is set to true
 
-	public const float TRACK_COUNTDOWN_DEFAULT = 2;
 	#endregion
 
 	#region Enemy Movement
@@ -107,13 +106,35 @@ public class EnemyBaseClass : MonoBehaviour
 			if (this.m_PlayerCurRow != this.m_CurRow) //If not on the same track
 			{
 				this.ChangeTrack(bully);
-				this.secondaryTrackTimer = TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
+				this.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
 			}
 		}
-		//If the enemy is moving Left and 5 pixels to the left of the player, STOP
-		if (this.m_EnemyGoingLeft == -1 && enemyPos.x + this.m_AttackDist > playerPos.x || this.m_EnemyGoingLeft == 1 && enemyPos.x - this.m_AttackDist < playerPos.x)
+		if (enemyPos.x + this.m_AttackDist > playerPos.x || enemyPos.x - this.m_AttackDist < playerPos.x) //If the enemy is less than 5 pixels away from the player
 		{
-			this.EnemyStopMotion(bully);
+			float rightOfPlayerAcceptableDistance = enemyPos.x + this.m_AttackDist;//Boundary for the Enemy while to the Right
+			float leftOfPlayerAcceptableDistance = enemyPos.x - this.m_AttackDist;//Boundary for the Enemy while to the Left
+
+			float PdistanceBetweenE = enemyPos.x - playerPos.x;//Distance between the Player and Enemy with the Player on the Left (Player's X is lower)
+			float EdistanceBetweenP = playerPos.x - enemyPos.x;//Distance between the Player and Enemy with the Enemy on the Left (Player's X is higher)
+
+			if (enemyPos.x > playerPos.x)//enemy is on the right
+			{
+				if (PdistanceBetweenE < rightOfPlayerAcceptableDistance)
+				{
+					enemyPos.x = rightOfPlayerAcceptableDistance;
+					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+	//				this.EnemyStopMotion(bully);
+				}
+			}
+			else if (playerPos.x > enemyPos.x)//player is on the right
+			{
+				if (EdistanceBetweenP < leftOfPlayerAcceptableDistance)
+				{
+					enemyPos.x = leftOfPlayerAcceptableDistance;
+					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+	//				this.EnemyStopMotion(bully);
+				}
+			}
 		}
 		else
 		{
@@ -243,13 +264,13 @@ public class EnemyBaseClass : MonoBehaviour
 		//Conditions for changing tracks
 		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
 		{
-			this.changeTrackCountdown = TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
+			this.changeTrackCountdown = Constants.TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
 			this.secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
 		}
 		if(secondaryTrackTimer <= 0) //once the secondary timer reaches 0
 		{
 			this.m_TimerIsCounting = true; //enable the primary timer
-			this.secondaryTrackTimer = TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
+			this.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
 		}
 		if(this.m_TimerIsCounting)
 		{
