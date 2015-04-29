@@ -95,9 +95,9 @@ public class DestructableObject : MonoBehaviour
             int health = Random.Range(healthMin, healthMax);
             player_.GetComponent<PlayerController>().m_PlayerHealth += health;
             //if the player's health is past the max health cap, set it back to the highest value it is allow to be at
-            if( player_.GetComponent<PlayerController>().m_PlayerHealth > upgradeManager_.GetComponent<UpgradeManager>().m_MaxHealth)
+            if( player_.GetComponent<PlayerController>().m_PlayerHealth > Constants.MAX_PLAYER_HEALTH)
             {
-                player_.GetComponent<PlayerController>().m_PlayerHealth = upgradeManager_.GetComponent<UpgradeManager>().m_MaxHealth;
+                player_.GetComponent<PlayerController>().m_PlayerHealth = Constants.MAX_PLAYER_HEALTH;
             }
         }
         else if(num == 2)

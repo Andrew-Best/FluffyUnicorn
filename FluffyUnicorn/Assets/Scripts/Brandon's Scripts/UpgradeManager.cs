@@ -1,24 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UpgradeManager : MonoBehaviour 
+public class UpgradeManager : MonoBehaviour
 {
+    #region public variables
     public PlayerController m_Player;
     public int m_HealthCost = 1;
     public int m_AttackRateCost = 1;
     public int m_DamageCost = 1;
     public int m_SpeedCost = 1;
     public int m_CurrencyCost = 1;
-    public int m_MaxHealth = 5;
-    public int m_MaxDamage = 3;
-    public int m_MaxCurrency = 3;
-
-    public float m_MaxAttackRate = 0.1f;
-    public float m_MaxSpeed = 13.0f;
+    #endregion
 
     public void UpgradeHealth(int health)
     {
-        if (m_Player.m_Currency >= m_HealthCost && m_Player.m_PlayerHealth < m_MaxHealth)
+        if (m_Player.m_Currency >= m_HealthCost && m_Player.m_PlayerHealth < Constants.MAX_PLAYER_HEALTH)
         {
             m_Player.m_Currency -= m_HealthCost;
             m_Player.m_PlayerHealth += health;
@@ -27,7 +23,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeAttackRate(float fireRate)
     {
-        if (m_Player.m_Currency >= m_AttackRateCost && m_Player.m_FireRate > m_MaxAttackRate)
+        if (m_Player.m_Currency >= m_AttackRateCost && m_Player.m_FireRate > Constants.MAX_PLAYER_Attack_Rate)
         {
             m_Player.m_Currency -= m_AttackRateCost;
             m_Player.m_FireRate -= fireRate;
@@ -41,7 +37,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgadeDamage(int playerDamage)
     {
-        if (m_Player.m_Currency >= m_DamageCost && m_Player.m_PlayerDamage < m_MaxDamage)
+        if (m_Player.m_Currency >= m_DamageCost && m_Player.m_PlayerDamage < Constants.MAX_PLAYER_DAMAGE)
         {
             m_Player.m_Currency -= m_DamageCost;
             m_Player.m_PlayerDamage += playerDamage;
@@ -50,7 +46,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeSpeed(float speed)
     {
-        if (m_Player.m_Currency >= m_SpeedCost && m_Player.m_MaxSpeed < m_MaxSpeed)
+        if (m_Player.m_Currency >= m_SpeedCost && m_Player.m_MaxSpeed < Constants.MAX_PLAYER_SPEED)
         {
             m_Player.m_Currency -= m_SpeedCost;
             m_Player.m_MaxSpeed += speed;
@@ -59,7 +55,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeCurrency(int currency)
     {
-        if (m_Player.m_Currency >= m_CurrencyCost && m_Player.m_CurrencyScalar < m_MaxCurrency)
+        if (m_Player.m_Currency >= m_CurrencyCost && m_Player.m_CurrencyScalar < Constants.MAX_PLAYER_CURRENCY)
         {
             m_Player.m_Currency -= m_CurrencyCost;
             m_Player.m_CurrencyScalar += currency;
