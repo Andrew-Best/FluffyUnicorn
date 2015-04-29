@@ -12,9 +12,6 @@ public class BullyScript : EnemyBaseClass
         LoadFromXML();
 		this.m_UniqueAttackHolder = GameObject.FindGameObjectWithTag("UATKHolder");
 		this.PepperSpray = this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().m_PepperSpray;
-//		this.m_TargetPoints = new[] {GameObject.FindGameObjectWithTag("TargetLastTrack"),
-//		GameObject.FindGameObjectWithTag("TargetMidTrack"),
-//		GameObject.FindGameObjectWithTag("TargetFrontTrack")};
     }
 
 	#region Creation

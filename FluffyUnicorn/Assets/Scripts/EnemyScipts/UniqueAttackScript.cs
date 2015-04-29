@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class UniqueAttackScript : MonoBehaviour
 {
 	public GameObject m_PepperSpray;
+	public List<GameObject> bullets = new List<GameObject>();
 
+	public Vector2 m_Velocity;
 	public float m_ShotSpeed;
-
 	public string m_ProjectileName = "PepperSpray";
 
 
@@ -34,25 +37,25 @@ public class UniqueAttackScript : MonoBehaviour
 
 	public void PepperUniqueAttack(GameObject bully)
 	{
-		//create Projectile Attack
-
 		//Get a bullet from the ObjectPool
 		GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
 		bullet.transform.position = bully.transform.position;
-		//Determine which direction to fire in
+		if(bully.GetComponent<BullyScript>().m_VelocityX == -1)//if bully moving left
+		{
+			this.m_ShotSpeed *= -1;
+		}
+		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(this.m_ShotSpeed, 0);
+
+		bullets.Add(bullet);
 	}
 
-	public void UpdateUATKs(GameObject bully, GameObject bullet)
+	public void UpdateUATKs()
 	{
-		if (bully.GetComponent<BullyScript>().m_EnemyGoingLeft == 1)
+		for(int i = 0; i < bullets.Count; ++i)
 		{
-			bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(this.m_ShotSpeed, 0);
-//			bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(this.m_ShotSpeed, 0, 0));
-		}
-		else
-		{
-			bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-this.m_ShotSpeed, 0);
-//			bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-this.m_ShotSpeed, 0, 0));
+			m_Velocity = new Vector2(this.GetComponent<UniqueAttackScript>().m_ShotSpeed, 0);
+
+			bullets[i].GetComponent<Rigidbody2D>().velocity = m_Velocity;
 		}
 	}
 

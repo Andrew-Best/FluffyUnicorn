@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class EnemyProjectileScript : Projectile 
-{
+{/*
+    private GameObject player_;
+	public GameObject m_Enemy;
+
 	public int VX = -2; // Constant to be added to constant files later
 
 	public virtual void FireProjectile(GameObject bully)
@@ -23,4 +26,21 @@ public class EnemyProjectileScript : Projectile
 	}
 
 
+    void Start()
+    {
+        player_ = GameObject.Find("Player");
+		m_Enemy = GameObject.Find("PepperBully");
+    }
+
+    void OnTriggerEnter2D(Collider2D player)
+    {
+        m_Damage = m_Enemy.GetComponent<BullyScript>().m_UniqueDamage;
+        if (player.tag == player_.name)
+        {
+            //do stuff
+        }
+    }*/
 }
+
+
+

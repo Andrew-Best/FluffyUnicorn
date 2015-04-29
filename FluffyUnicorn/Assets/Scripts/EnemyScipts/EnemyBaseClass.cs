@@ -236,9 +236,9 @@ public class EnemyBaseClass : MonoBehaviour
 	}
 	#endregion
 
-	public virtual void EnemyUpdate(GameObject bully, GameObject bullets)
+	public virtual void EnemyUpdate(GameObject bully)
 	{
-		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully, bullets);
+		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(); //Update Enemy Projectiles on screen
 
 		//Conditions for changing tracks
 		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
@@ -256,26 +256,7 @@ public class EnemyBaseClass : MonoBehaviour
 			this.changeTrackCountdown -= Time.deltaTime;
 		}
 
-
-		//Change Bully's Y position accordin to the track it is on
-/*		float frontTrackY = this.m_TargetPoints[2].transform.position.y;
-		float midTrackY = this.m_TargetPoints[1].transform.position.y;
-		float lastTrackY = this.m_TargetPoints[0].transform.position.y;*/
-
-
 		this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.m_TargetPoints[m_CurRow].transform.position.y);
-
-		
-
-		//Change direction of Anim
-		if (this.m_EnemyGoingLeft == -1)
-		{
-			//this.m_BullyWalk.SetInteger("IsWalkingLeft 0", -1);
-		}
-		else if (this.m_EnemyGoingLeft == 1)
-		{
-			//this.m_BullyWalk.SetInteger("IsWalkingLeft 0", 1);
-		}
 
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -350,7 +331,7 @@ public class EnemyBaseClass : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		EnemyUpdate(Bully, PepperSpray);
+		EnemyUpdate(Bully);
 	}
 
 }
