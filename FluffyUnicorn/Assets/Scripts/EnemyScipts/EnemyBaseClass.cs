@@ -45,6 +45,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public bool m_EnemyInMotion;
 	public bool m_isIdle;
 	public bool m_TimerIsCounting; //bool for Timer for changing tracks (primary timer)
+    public bool m_IsDead = false;
 
 	public int m_EnemyGoingLeft = 1;
 
