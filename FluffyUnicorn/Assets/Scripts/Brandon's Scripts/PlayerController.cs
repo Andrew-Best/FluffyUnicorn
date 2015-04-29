@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public float m_FireRate = 1.0f;
     public float m_Deceleration = 1.0f;
 
-    public int m_PlayerHealth = 3;
+    public int m_PlayerHealth = Constants.PLAYER_DEFAULT_MAX_HEALTH;
     public int m_PlayerDamage = 1;
     public int m_Currency = 0;
     public int m_CurrencyScalar = 1;        //use to determine how much curency the player gains 
