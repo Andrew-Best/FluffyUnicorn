@@ -7,6 +7,10 @@ public class EnemyBaseClass : MonoBehaviour
 	public GameObject Bully;
 	public GameObject m_UniqueAttackHolder;
 
+	private GameObject player;// = GameObject.FindGameObjectWithTag("Player");
+	private Vector2 playerPos;// = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
+
+
 	public GameObject PepperSpray;
 
 	public Animator m_BullyWalk;
@@ -99,6 +103,14 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully, float playerPosY, float thisEnemyYPos)
 	{
+		float rightOfPlayerAcceptableDistance = enemyPos.x + this.m_AttackDist;//Boundary for the Enemy while to the Right
+		float leftOfPlayerAcceptableDistance = enemyPos.x - this.m_AttackDist;//Boundary for the Enemy while to the Left
+
+		float distanceBetween = playerPos.x - enemyPos.x;
+
+		float PdistanceBetweenE = enemyPos.x - playerPos.x;//Distance between the Player and Enemy with the Player on the Left (Player's X is lower)
+		float EdistanceBetweenP = playerPos.x - enemyPos.x;//Distance between the Player and Enemy with the Enemy on the Left (Player's X is higher)
+
 		if (this.changeTrackCountdown <= 0)//If Timer is at 0
 		{
 			this.changeTrackCountdown = 0; //set the timer to 0
@@ -109,26 +121,22 @@ public class EnemyBaseClass : MonoBehaviour
 				this.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
 			}
 		}
-		if (enemyPos.x + this.m_AttackDist > playerPos.x || enemyPos.x - this.m_AttackDist < playerPos.x) //If the enemy is less than 5 pixels away from the player
+
+		//Keep Enemy away from Player if 
+		if (rightOfPlayerAcceptableDistance > playerPos.x || leftOfPlayerAcceptableDistance < playerPos.x) //If the enemy is less than 5 pixels away from the player
 		{
-			float rightOfPlayerAcceptableDistance = enemyPos.x + this.m_AttackDist;//Boundary for the Enemy while to the Right
-			float leftOfPlayerAcceptableDistance = enemyPos.x - this.m_AttackDist;//Boundary for the Enemy while to the Left
-
-			float PdistanceBetweenE = enemyPos.x - playerPos.x;//Distance between the Player and Enemy with the Player on the Left (Player's X is lower)
-			float EdistanceBetweenP = playerPos.x - enemyPos.x;//Distance between the Player and Enemy with the Enemy on the Left (Player's X is higher)
-
-			if (enemyPos.x > playerPos.x)//enemy is on the right
+			if (distanceBetween > 0)//enemy is on the right
 			{
-				if (PdistanceBetweenE < rightOfPlayerAcceptableDistance)
+				if (distanceBetween < rightOfPlayerAcceptableDistance)
 				{
 					enemyPos.x = rightOfPlayerAcceptableDistance;
 					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 	//				this.EnemyStopMotion(bully);
 				}
 			}
-			else if (playerPos.x > enemyPos.x)//player is on the right
+			else if (distanceBetween < 0)//player is on the right
 			{
-				if (EdistanceBetweenP < leftOfPlayerAcceptableDistance)
+				if (distanceBetween < leftOfPlayerAcceptableDistance)
 				{
 					enemyPos.x = leftOfPlayerAcceptableDistance;
 					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
@@ -136,7 +144,7 @@ public class EnemyBaseClass : MonoBehaviour
 				}
 			}
 		}
-		else
+		else //Enemy is too far and must move
 		{
 			this.EnemyMove(bully);
 		}
@@ -239,20 +247,11 @@ public class EnemyBaseClass : MonoBehaviour
 	#region Creation
 	public virtual void InitEnemy(Vector2 spawnPos, int row)
 	{
-		m_VelocityX = 0;
-		m_AttackTimer = 0;
-		m_HP = 0;
-		m_CurRow = 0;
-
-		m_AttackPunchOdds = 0;
-		m_AttackKickOdds = 0;
-		m_AttackUniqueOdds = 0;
-
-		m_MaxDist = 0;
 		changeTrackCountdown = m_ChangeTrackTimer;
 
-		//		Bully.GetComponent<Rigidbody2D>().transform.position = new Vector3(Bully.transform.position.x, m_TargetPoints[(int) spawnPos.x].transform.position.y, m_TargetPoints[(int) spawnPos.y].transform.position.z);
-
+		player = GameObject.FindGameObjectWithTag("Player");
+		playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
+		
 		m_InitialXY = spawnPos;
 	}
 	#endregion
@@ -260,6 +259,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public virtual void EnemyUpdate(GameObject bully)
 	{
 		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(); //Update Enemy Projectiles on screen
+
 
 		//Conditions for changing tracks
 		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
@@ -280,8 +280,6 @@ public class EnemyBaseClass : MonoBehaviour
 		this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.m_TargetPoints[m_CurRow].transform.position.y);
 
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		Vector2 playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
 
 		//Detect Player Track
 		if (player.GetComponent<PlayerController>().m_onFrontTrack)

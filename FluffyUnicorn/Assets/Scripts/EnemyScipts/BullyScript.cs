@@ -18,6 +18,8 @@ public class BullyScript : EnemyBaseClass
 
 	public override void InitEnemy(Vector2 spawnPos, int row)
 	{
+		base.InitEnemy(spawnPos, row);
+
         LoadFromXML();			//Load bully's stats from xml file
 		m_EnemyInMotion = true;	//Make the enemy move when it is spawned
 		m_EnemyGoingLeft = 1;	//Set the starting direction
@@ -27,17 +29,10 @@ public class BullyScript : EnemyBaseClass
 		m_CurRow = row;
 
 		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
-		float lastTrackY = this.m_TargetPoints[0].transform.position.y;
 
 		this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
-		float midTrackY = this.m_TargetPoints[1].transform.position.y;
 
 		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
-		float frontTrackY = this.m_TargetPoints[2].transform.position.y;
-		
-
-		
-		
 
 		this.changeTrackCountdown = this.m_ChangeTrackTimer;
 		m_MaxDist = this.GetComponent<Rigidbody2D>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
