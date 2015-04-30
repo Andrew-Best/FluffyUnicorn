@@ -3,8 +3,8 @@ using System.Collections;
 
 public class StateMachine : MonoBehaviour
 {
-	public State m_StartState;
-	private State curState_;
+	public StateScript m_StartState;
+	private StateScript curState_;
 
 	void Start()
 	{
@@ -27,9 +27,9 @@ public class StateMachine : MonoBehaviour
 		curState_.StateGUI();
 	}
 
-	public void ChangeState(State newState)
+	public void ChangeState(StateScript newState)
 	{
-		curState_.OnStateExit();
+//		curState_.OnStateExit();
 		curState_ = newState;
 		curState_.OnStateEntered();
 	}

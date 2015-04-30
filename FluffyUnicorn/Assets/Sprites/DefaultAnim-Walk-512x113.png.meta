@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: fefc7be0bbed27245b356ed5a4f9c04f
+timeCreated: 1430422028
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DefaultAnim-Walk-512x113_0
+    21300002: DefaultAnim-Walk-512x113_1
+    21300004: DefaultAnim-Walk-512x113_2
+    21300006: DefaultAnim-Walk-512x113_3
+    21300008: DefaultAnim-Walk-512x113_4
+    21300010: DefaultAnim-Walk-512x113_5
+    21300012: DefaultAnim-Walk-512x113_6
+    21300014: DefaultAnim-Walk-512x113_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 128
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DefaultAnim-Walk-512x113_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5
+        width: 77
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DefaultAnim-Walk-512x113_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 4
+        width: 66
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DefaultAnim-Walk-512x113_2
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 5
+        width: 46
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DefaultAnim-Walk-512x113_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 5
+        width: 54
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DefaultAnim-Walk-512x113_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 5
+        width: 62
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DefaultAnim-Walk-512x113_5
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 5
+        width: 57
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DefaultAnim-Walk-512x113_6
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 4
+        width: 49
+        height: 108
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DefaultAnim-Walk-512x113_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 55
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

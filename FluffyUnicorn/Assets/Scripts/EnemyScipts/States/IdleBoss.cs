@@ -1,26 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IdleBoss : State
+public class IdleBoss : StateScript
 {
-
 	public override void OnStateEntered()
 	{
-		
+
 	}
 
+/*	public override void OnStateExit()
+	{
+
+	}*/
 	public override void StateUpdate()
 	{
-		
-	}
 
-	public override void OnStateExit()
-	{
-		throw new System.NotImplementedException();
 	}
-
 	public override void StateGUI()
 	{
-		throw new System.NotImplementedException();
+
 	}
 }
