@@ -7,11 +7,14 @@ public class SecretArea : MonoBehaviour
     public SpawnEnemies m_EnemySpawner;     //drag the spawner that is associated with the secret area into this variable
     public int m_Row;                       //which row to spawn the enemies on 
     public int m_EnemyType;                 //number that represents which enemy to spawn
+    public string m_SecretAreaName = "";    //name of scene yoiu want to move to 
     #endregion
 
     #region private
     private GameObject player_;
     private ArrayList enemyArray_;
+    private bool triggerEnemies_ = true;
+    private bool unlockDoor_ = false;
     #endregion
 
 	void Start ()
@@ -31,6 +34,7 @@ public class SecretArea : MonoBehaviour
         if (enemyArray_ != null && enemyArray_.Count == 0)
         {
             //unlock area
+            unlockDoor_ = true;
         }
     }
 
@@ -68,13 +72,29 @@ public class SecretArea : MonoBehaviour
         //when the player collides with the secret area spawn the number of enemies specified by the variable m_NumEnemies
         if (other.tag == "Player")
         {
-            this.GetComponent<BoxCollider2D>().enabled = false;     //disable the collider so you can't spawn the list more than once
-            for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
+            //initial trigger
+            if (triggerEnemies_)
             {
-                m_EnemySpawner.SpawnEnemyFunc(m_Row, m_EnemyType);
+                triggerEnemies_ = false;
+                //loop through the spawner's length and spawn how ever many enemies are in the containier 
+                for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
+                {
+                    m_EnemySpawner.SpawnEnemyFunc(m_Row, m_EnemyType);
+                }
+                SetValues();    //after everything is spawned add the enemies to a list so you can monitor who is alive and determine when to unlock the door
             }
-            SetValues();    //after everything is spawned add the enemies to a list 
+            //if the player touched the secret area and it is unlocked, move to the secret level
+            else if(unlockDoor_)
+            {
+                EnterSecretArea(m_SecretAreaName);
+            }
         }
+    }
+
+    void EnterSecretArea(string areaName)
+    {
+        //load scene based on name 
+        Application.LoadLevel(areaName);
     }
     #endregion
 }
