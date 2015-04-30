@@ -9,6 +9,9 @@ public class SpawnEnemies : MonoBehaviour
 
 	void Start () 
 	{
+		mSpawnPos[0] = GameObject.FindGameObjectWithTag("ESRL");
+		mSpawnPos[1] = GameObject.FindGameObjectWithTag("ESRM");
+		mSpawnPos[2] = GameObject.FindGameObjectWithTag("ESRF");
 		if(mSpawnPos.Length == 0)
 		{
 			Debug.LogError("Spawn Area needs spawn positions.");

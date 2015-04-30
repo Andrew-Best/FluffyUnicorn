@@ -5,6 +5,14 @@ public class BossBaseClass : EnemyBaseClass
 {
 	public GameObject m_Player;
 	public GameObject m_ThisBoss;
+	public Vector2 m_Position;
+
+	public int m_Curstate;
+
+	public string m_Name;
+
+	public int m_CurFrame;
+	public int m_TotalFrames;
 
 	public override void InitEnemy(Vector2 spawnPos, int row)
 	{

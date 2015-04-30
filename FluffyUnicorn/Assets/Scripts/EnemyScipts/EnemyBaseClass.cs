@@ -7,9 +7,10 @@ public class EnemyBaseClass : MonoBehaviour
 	public GameObject Bully;
 	public GameObject m_UniqueAttackHolder;
 
+	public StateMachine m_StateMachine;
+
 	private GameObject player;// = GameObject.FindGameObjectWithTag("Player");
 	private Vector2 playerPos;// = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
-
 
 	public GameObject PepperSpray;
 
@@ -51,7 +52,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public bool m_TimerIsCounting; //bool for Timer for changing tracks (primary timer)
     public bool m_IsDead = false;
 
-	public int m_EnemyGoingLeft = 1;
+	public int m_EnemyGoingLeft = 1; //1 == left, -1 == right
 
 	public Rigidbody2D m_RigidBody;
 	public Vector2 m_InitialXY;
@@ -86,31 +87,30 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void ChangeTrack(GameObject bully)
 	{
+		if(!this.m_isIdle)
+		{
+			if (this.m_CurRow < this.m_PlayerCurRow)
+			{
+				this.m_CurRow++;
+			}
+			else if (this.m_CurRow > this.m_PlayerCurRow)
+			{
+				this.m_CurRow--;
+			}
+			else //function should not have been called in the first place
+			{
+				Debug.Log("Why was this even called?");
+			}
+		}
 		
-		if (this.m_CurRow < this.m_PlayerCurRow)
-		{
-			this.m_CurRow++;
-		}
-		else if (this.m_CurRow > this.m_PlayerCurRow)
-		{
-			this.m_CurRow--;
-		}
-		else //function should not have been called in the first place
-		{
-			Debug.Log("Why was this even called?");
-		}
 	}
 
-	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully, float playerPosY, float thisEnemyYPos)
+	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
 	{
-		float rightOfPlayerAcceptableDistance = enemyPos.x + this.m_AttackDist;//Boundary for the Enemy while to the Right
-		float leftOfPlayerAcceptableDistance = enemyPos.x - this.m_AttackDist;//Boundary for the Enemy while to the Left
+		float curEnemyXPOS = enemyPos.x;
+		float lineOfSight = this.m_AttackDist;
 
-		float distanceBetween = playerPos.x - enemyPos.x;
-
-		float PdistanceBetweenE = enemyPos.x - playerPos.x;//Distance between the Player and Enemy with the Player on the Left (Player's X is lower)
-		float EdistanceBetweenP = playerPos.x - enemyPos.x;//Distance between the Player and Enemy with the Enemy on the Left (Player's X is higher)
-
+		#region track change counter
 		if (this.changeTrackCountdown <= 0)//If Timer is at 0
 		{
 			this.changeTrackCountdown = 0; //set the timer to 0
@@ -121,33 +121,33 @@ public class EnemyBaseClass : MonoBehaviour
 				this.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
 			}
 		}
+		#endregion
 
-		//Keep Enemy away from Player if 
-		if (rightOfPlayerAcceptableDistance > playerPos.x || leftOfPlayerAcceptableDistance < playerPos.x) //If the enemy is less than 5 pixels away from the player
+		if(playerPos.x > curEnemyXPOS)//if the player is on the right
 		{
-			if (distanceBetween > 0)//enemy is on the right
+			//if the player is less to the right than the currentposition of the enemy's line of sight
+			if(playerPos.x < enemyPos.x + lineOfSight)
 			{
-				if (distanceBetween < rightOfPlayerAcceptableDistance)
-				{
-					enemyPos.x = rightOfPlayerAcceptableDistance;
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-	//				this.EnemyStopMotion(bully);
-				}
+				EnemyStopMotion(bully);
 			}
-			else if (distanceBetween < 0)//player is on the right
+			else
 			{
-				if (distanceBetween < leftOfPlayerAcceptableDistance)
-				{
-					enemyPos.x = leftOfPlayerAcceptableDistance;
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-	//				this.EnemyStopMotion(bully);
-				}
+				EnemyMove(bully);
 			}
 		}
-		else //Enemy is too far and must move
+		else //the player is on the left
 		{
-			this.EnemyMove(bully);
+			//if the player is less to the left than the enemy's pos - it's line of sight
+			if(playerPos.x > enemyPos.x - lineOfSight)
+			{
+				EnemyStopMotion(bully);
+			}
+			else
+			{
+				EnemyMove(bully);
+			}
 		}
+
 		//If the enemy is to the left of the player and if the enemy is moving to the right
 		if (enemyPos.x < playerPos.x && this.m_VelocityX < 0)
 		{
@@ -165,10 +165,21 @@ public class EnemyBaseClass : MonoBehaviour
 		Vector2 differenceInDistance = enemyPos - playerPos; //get the difference between the two entities
 		float forwardDetectionX = enemyPos.x - this.m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
 
-		if (playerPos.x >= forwardDetectionX)//if the player is within the detection "range" of a bully
+		if(this.m_CurRow == this.m_PlayerCurRow)
 		{
-			this.m_isIdle = false;//then the enemy is no longer Idle	
+			if (playerPos.x >= forwardDetectionX)//if the player is within the detection "range" of a bully
+			{
+				this.m_isIdle = false;//then the enemy is no longer Idle	
+			}
 		}
+		else
+		{
+			if (playerPos.x <= forwardDetectionX)//if the player is within the detection "range" of a bully
+			{
+				this.m_isIdle = false;//then the enemy is no longer Idle	
+			}
+		}
+
 	}
 	#endregion
 
@@ -260,6 +271,22 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(); //Update Enemy Projectiles on screen
 
+		#region Player Variables
+		playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
+		//Detect Player Track
+		if (player.GetComponent<PlayerController>().m_onFrontTrack)
+		{
+			m_PlayerCurRow = 2;
+		}
+		else if (player.GetComponent<PlayerController>().m_onMiddleTrack)
+		{
+			m_PlayerCurRow = 1;
+		}
+		else if (player.GetComponent<PlayerController>().m_onLastTrack)
+		{
+			m_PlayerCurRow = 0;
+		}
+		#endregion
 
 		//Conditions for changing tracks
 		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
@@ -281,25 +308,11 @@ public class EnemyBaseClass : MonoBehaviour
 
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 
-		//Detect Player Track
-		if (player.GetComponent<PlayerController>().m_onFrontTrack)
-		{
-			m_PlayerCurRow = 2;
-		}
-		else if (player.GetComponent<PlayerController>().m_onMiddleTrack)
-		{
-			m_PlayerCurRow = 1;
-		}
-		else if (player.GetComponent<PlayerController>().m_onLastTrack)
-		{
-			m_PlayerCurRow = 0;
-		}
+		this.EnemyMove(bully);
 
 		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
 		float pointB = m_MaxDist;
 		float pointA = this.m_InitialXY.x + 1;
-
-		this.EnemyMove(bully);
 
 		if (this.m_isIdle)
 		{
@@ -318,10 +331,8 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
-			if (this.m_EnemyInMotion) //the enemy is awake, chase the player
-			{
-				ChasePlayer(playerPos, enemyPos, bully, player.GetComponent<Rigidbody2D>().transform.position.y, enemyPos.y);
-			}
+			this.ChasePlayer(playerPos, enemyPos, bully);
+			
 			//Animation
 			if (this.m_AnimationLength > 0) //if animating, subtract Delta.Time
 			{

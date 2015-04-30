@@ -40,7 +40,7 @@ public class UniqueAttackScript : MonoBehaviour
 		//Get a bullet from the ObjectPool
 		GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
 		bullet.transform.position = bully.transform.position;
-		if(bully.GetComponent<BullyScript>().m_VelocityX == -1)//if bully moving left
+		if(bully.GetComponent<BullyScript>().m_VelocityX < 0)//if bully moving left
 		{
 			this.m_ShotSpeed *= -1;
 		}
