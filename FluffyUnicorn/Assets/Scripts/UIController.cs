@@ -35,4 +35,37 @@ public class UIController : MonoBehaviour
         m_HealthSlider.value = m_PlayerControlller.m_PlayerHealth;
         m_BullyNumberText.text = "0" + "/" + bulliesNeeded_;
 	}
+
+    #region Player Movement UI Controls
+
+    public void OnPointerUp()
+    {
+        m_PlayerControlller.OnPointerUp();
+    }
+
+    public void OnPointerDown()
+    {
+        m_PlayerControlller.OnPointerDown();
+    }
+
+    public void MoveLeft()
+    {
+        m_PlayerControlller.MoveLeft();
+    }
+
+    public void MoveRight()
+    {
+        m_PlayerControlller.MoveRight();
+    }
+
+    public void MoveUp()
+    {
+        m_PlayerControlller.MoveUp();
+    }
+
+    public void MoveDown()
+    {
+        m_PlayerControlller.MoveDown();
+    }
+    #endregion
 }
