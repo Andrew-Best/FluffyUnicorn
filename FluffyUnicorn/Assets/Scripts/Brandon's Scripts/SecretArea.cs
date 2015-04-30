@@ -7,7 +7,6 @@ public class SecretArea : MonoBehaviour
     public SpawnEnemies m_EnemySpawner;     //drag the spawner that is associated with the secret area into this variable
     public int m_Row;                       //which row to spawn the enemies on 
     public int m_EnemyType;                 //number that represents which enemy to spawn
-    public int m_NumEnemies;                //number of enemies you want to spawn 
     #endregion
 
     #region private
@@ -18,18 +17,18 @@ public class SecretArea : MonoBehaviour
 	void Start ()
     {
         player_ = GameObject.Find("Player");
-        SetValues();
+   
 	}
 	
 	void Update () 
     {
-        //RemoveEnemies();
-        //CanUnlockArea();
+        RemoveEnemies();
+        CanUnlockArea();
 	}
 
     void CanUnlockArea()
     {
-        if (enemyArray_.Count == 0)
+        if (enemyArray_ != null && enemyArray_.Count == 0)
         {
             //unlock area
         }
@@ -54,7 +53,7 @@ public class SecretArea : MonoBehaviour
             for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
             {
                 tempBully = m_EnemySpawner.mEnemiesToSpawn[i];
-                if (!tempBully.GetComponent<BullyScript>().m_IsDead)
+                if (tempBully.GetComponent<BullyScript>().m_IsDead)
                 {
                     enemyArray_.RemoveAt(i);
                 }
@@ -69,10 +68,12 @@ public class SecretArea : MonoBehaviour
         //when the player collides with the secret area spawn the number of enemies specified by the variable m_NumEnemies
         if (other.tag == "Player")
         {
-            for (int i = 0; i < m_NumEnemies; ++i)
+            this.GetComponent<BoxCollider2D>().enabled = false;     //disable the collider so you can't spawn the list more than once
+            for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
             {
                 m_EnemySpawner.SpawnEnemyFunc(m_Row, m_EnemyType);
             }
+            SetValues();    //after everything is spawned add the enemies to a list 
         }
     }
     #endregion
