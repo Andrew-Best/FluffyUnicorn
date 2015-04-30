@@ -9,7 +9,7 @@ public class BossBaseClass : EnemyBaseClass
 
 	public int m_Curstate;
 
-	public string m_Name;
+	public string m_BossName;
 
 	public int m_CurFrame;
 	public int m_TotalFrames;
@@ -17,12 +17,12 @@ public class BossBaseClass : EnemyBaseClass
 	public override void InitEnemy(Vector2 spawnPos, int row)
 	{
 		base.InitEnemy(spawnPos, row);
-
+		this.m_ThisBoss.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Set Boss Velocity to 0
 	}
 
 	// Update is called once per frame
-	public void BossUpdate () 
+	public override void EnemyUpdate(GameObject ThisBoss) 
 	{
-		this.m_ThisBoss.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+		
 	}
 }

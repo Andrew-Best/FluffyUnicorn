@@ -29,10 +29,16 @@ public class Constants : MonoBehaviour
 	public const int MOVE_RIGHT = 1; //Not yet implemented
 
 	public const float BULLY_MAX_TRAVEL_DIST = 3;
+
+	#region bosses
+	public const float FATTEST_BULLY_HP = 25;
+	public const float FATTEST_BULLY_JUMP_FORCE = 15;
+	public const float FATTEST_BULLY_ROLL_SPEED = 20;
+	#endregion
 	#endregion
 
-    #region Upgrades
-    public const int MAX_PLAYER_HEALTH = 5;
+	#region Upgrades
+	public const int MAX_PLAYER_HEALTH = 5;
     public const int MAX_PLAYER_DAMAGE = 3;
     public const int MAX_PLAYER_CURRENCY = 3;
 

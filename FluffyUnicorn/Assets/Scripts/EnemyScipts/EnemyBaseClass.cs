@@ -4,13 +4,13 @@ using System.Collections;
 public class EnemyBaseClass : MonoBehaviour
 {
 	#region Enemy Variables
-	public GameObject Bully;
+	public GameObject m_Bully;
 	public GameObject m_UniqueAttackHolder;
 
 	public StateMachine m_StateMachine;
 
-	private GameObject player;// = GameObject.FindGameObjectWithTag("Player");
-	private Vector2 playerPos;// = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
+	private GameObject m_Player;// = GameObject.FindGameObjectWithTag("Player");
+	private Vector2 m_PlayerPos;// = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
 
 	public GameObject PepperSpray;
 
@@ -260,8 +260,8 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		changeTrackCountdown = m_ChangeTrackTimer;
 
-		player = GameObject.FindGameObjectWithTag("Player");
-		playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
+		m_Player = GameObject.FindGameObjectWithTag("Player");
+		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
 		
 		m_InitialXY = spawnPos;
 	}
@@ -272,17 +272,17 @@ public class EnemyBaseClass : MonoBehaviour
 		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(); //Update Enemy Projectiles on screen
 
 		#region Player Variables
-		playerPos = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
+		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
 		//Detect Player Track
-		if (player.GetComponent<PlayerController>().m_onFrontTrack)
+		if (m_Player.GetComponent<PlayerController>().m_onFrontTrack)
 		{
 			m_PlayerCurRow = 2;
 		}
-		else if (player.GetComponent<PlayerController>().m_onMiddleTrack)
+		else if (m_Player.GetComponent<PlayerController>().m_onMiddleTrack)
 		{
 			m_PlayerCurRow = 1;
 		}
-		else if (player.GetComponent<PlayerController>().m_onLastTrack)
+		else if (m_Player.GetComponent<PlayerController>().m_onLastTrack)
 		{
 			m_PlayerCurRow = 0;
 		}
@@ -327,11 +327,11 @@ public class EnemyBaseClass : MonoBehaviour
 			{
 				this.TurnAround(bully);
 			}
-			DetectPlayer(player.transform.position, enemyPos);
+			DetectPlayer(m_Player.transform.position, enemyPos);
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
-			this.ChasePlayer(playerPos, enemyPos, bully);
+			this.ChasePlayer(m_PlayerPos, enemyPos, bully);
 			
 			//Animation
 			if (this.m_AnimationLength > 0) //if animating, subtract Delta.Time
@@ -361,7 +361,7 @@ public class EnemyBaseClass : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		EnemyUpdate(Bully);
+		EnemyUpdate(m_Bully);
 	}
 
 }
