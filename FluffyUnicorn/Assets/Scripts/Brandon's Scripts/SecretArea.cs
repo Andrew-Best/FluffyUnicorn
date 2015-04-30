@@ -79,7 +79,7 @@ public class SecretArea : MonoBehaviour
                 //loop through the spawner's length and spawn how ever many enemies are in the containier 
                 for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
                 {
-                    m_EnemySpawner.SpawnEnemyFunc(m_Row, m_EnemyType);
+                    m_EnemySpawner.SpawnEnemyFunc(m_Row, i);
                 }
                 SetValues();    //after everything is spawned add the enemies to a list so you can monitor who is alive and determine when to unlock the door
             }

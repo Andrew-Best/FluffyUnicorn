@@ -86,7 +86,6 @@ public class BullyScript : EnemyBaseClass
         foreach(XmlNode node in root.ChildNodes)
         {
 			m_DetectionDist = 5;
-            Debug.Log("Node name: " + node.Name + "   This name: " + this.name);
             //Find the node with a matching name as GameObject
             if(node.Name == this.name)
             {
