@@ -4,24 +4,40 @@ using System.Collections;
 public class EnemyControllerScript : MonoBehaviour
 {
 	public GameObject enemySpawner;
-	public float m_EnemySpawnTimer = 3.0f;
+	public int m_MaxAllowableBulliesOnScreenForLevel; //This can be assigned a default constant value + a modifier for each level
+	public int m_BulliesOnScreen;
 
-	public int EnemyType = 0;
+	private float enemySpawnTimer_;
 
-	void Start ()
+	private int enemySelector_;
+	private int rowSelector_; //the track the enemy is going to be placed on
+
+	void Start()
 	{
-		int enemySelector = (int) Random.Range(0, 5);
-		int rowSelector = Random.Range(0, 3); //the track the enemy is going to be placed on
-
-		enemySelector = 0;
-
-		//public void SpawnEnemyFunc(int row, int type)
-		enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(rowSelector, enemySelector);
+		enemySpawnTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;
+		m_MaxAllowableBulliesOnScreenForLevel = 5; //For testing purposes only
 	}
-	
+
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
-	
+		if (m_BulliesOnScreen < m_MaxAllowableBulliesOnScreenForLevel)
+		{
+			enemySelector_ = (int)Random.Range(0, 5);//type of bully that will be spawned
+			rowSelector_ = Random.Range(0, 3); //the track the enemy is going to be placed on
+
+			enemySpawnTimer_ -= Time.deltaTime;
+			if (enemySpawnTimer_ <= 0)
+			{
+				enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(rowSelector_, enemySelector_);
+				enemySpawnTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;
+				m_BulliesOnScreen++;
+			}
+		}
 	}
 }
+
+/****************************************************************
+
+
+******************************************************************/

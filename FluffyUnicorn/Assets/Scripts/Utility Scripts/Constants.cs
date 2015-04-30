@@ -21,6 +21,7 @@ public class Constants : MonoBehaviour
 
     #region bully variables
 
+	public const float ENEMY_SPAWN_TIMER_MAX = 4.5f;
 	public const float TRACK_COUNTDOWN_DEFAULT = 2;
     public const float BULLY_ATTACK_TIMER_RESET_VALUE = 5;
 	public const int BULLY_VEL_X = -2;
