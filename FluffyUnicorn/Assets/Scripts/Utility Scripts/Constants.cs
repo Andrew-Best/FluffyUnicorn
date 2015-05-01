@@ -11,7 +11,7 @@ public class Constants : MonoBehaviour
 
     #region Level Constants
     public const int BULLY_LEVEL_REQUIREMENT = 5;       //Base requirement of bullies defeated to successfully pass the first level
-                                                        //This will increase with the level, adding X bullies for the level number (level 1 = +1 bully, level 2 = +2 bullies, etc)
+    //This will increase with the level, adding X bullies for the level number (level 1 = +1 bully, level 2 = +2 bullies, etc)
     #endregion
 
     #region Player Constants
@@ -21,24 +21,24 @@ public class Constants : MonoBehaviour
 
     #region bully variables
 
-	public const float ENEMY_SPAWN_TIMER_MAX = 4.5f;
-	public const float TRACK_COUNTDOWN_DEFAULT = 2;
+    public const float ENEMY_SPAWN_TIMER_MAX = 4.5f;
+    public const float TRACK_COUNTDOWN_DEFAULT = 2;
     public const float BULLY_ATTACK_TIMER_RESET_VALUE = 5;
-	public const int BULLY_VEL_X = -2;
-	public const int MOVE_LEFT = -1; //Not yet implemented
-	public const int MOVE_RIGHT = 1; //Not yet implemented
+    public const int BULLY_VEL_X = -2;
+    public const int MOVE_LEFT = -1; //Not yet implemented
+    public const int MOVE_RIGHT = 1; //Not yet implemented
 
-	public const float BULLY_MAX_TRAVEL_DIST = 3;
+    public const float BULLY_MAX_TRAVEL_DIST = 3;
+    #endregion
 
-	#region bosses
-	public const float FATTEST_BULLY_HP = 25;
-	public const float FATTEST_BULLY_JUMP_FORCE = 15;
-	public const float FATTEST_BULLY_ROLL_SPEED = 20;
-	#endregion
-	#endregion
+    #region bosses
+    public const float FATTEST_BULLY_HP = 25;
+    public const float FATTEST_BULLY_JUMP_FORCE = 15;
+    public const float FATTEST_BULLY_ROLL_SPEED = 20;
+    #endregion
 
-	#region Upgrades
-	public const int MAX_PLAYER_HEALTH = 5;
+    #region Upgrades
+    public const int MAX_PLAYER_HEALTH = 5;
     public const int MAX_PLAYER_DAMAGE = 3;
     public const int MAX_PLAYER_CURRENCY = 3;
 
