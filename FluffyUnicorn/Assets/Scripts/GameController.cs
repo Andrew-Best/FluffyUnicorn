@@ -8,11 +8,21 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class GameController : MonoBehaviour 
 {
     public UIController m_UIControl;
+    public UIController m_AndroidUI;
 
     private int currLevel_; //Current level the player is on
 
 	void Start () 
     {
+#if UNITY_ANDROID
+        m_AndroidUI.gameObject.SetActive(true);
+        m_UIControl.gameObject.SetActive(false);
+#endif
+
+#if UNITY_EDITOR
+        m_AndroidUI.gameObject.SetActive(false);
+        m_UIControl.gameObject.SetActive(true);
+#endif
         currLevel_ = 1; //Temporary default
         StartLevel();
 	}
