@@ -7,12 +7,14 @@ public class FattestBully : BossBaseClass
 	float tempTimer;
 	float tempTimerResetVal = 5.0f;
 	/**********/
-	public const float MAX_FATTEST_HEIGHT = 100.0f;
-	public const float FATTEST_BULLY_JUMP_TIMER = 2;
+
 
 	private float jumpForce_;
 	private float rollSpeed_;
 	public float m_JumpTimer;
+
+	public bool inSky;
+	public bool isFlying;
 
 	public void Start()
 	{
@@ -38,7 +40,11 @@ public class FattestBully : BossBaseClass
 
 		tempTimer = tempTimerResetVal;
 
-		m_JumpTimer = FATTEST_BULLY_JUMP_TIMER;
+		m_JumpTimer = Constants.FATTEST_BULLY_JUMP_TIMER;
+
+		inSky = false;
+		isFlying = false;
+		
 //		m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
 	}
 
@@ -46,40 +52,62 @@ public class FattestBully : BossBaseClass
 	// Update is called once per frame
 	public override void EnemyUpdate(GameObject ThisBoss) 
 	{
-		Vector2 playerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().transform.position.x, m_Player.GetComponent<Rigidbody2D>().transform.position.y);
+		GetPlayerInfo(ThisBoss);
 
-		tempTimer -= Time.deltaTime;//
+		if (ThisBoss.GetComponent<Rigidbody2D>().transform.position.y <= 0)
+		{
+			isFlying = false;
+			this.inSky = false;
+
+			this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, 0);
+		}
+
+		Vector2 playerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().transform.position.x, m_Player.GetComponent<Rigidbody2D>().transform.position.y);
+		if(!inSky)
+		{
+			tempTimer -= Time.deltaTime;//
+		}
+		
 		if(tempTimer <= 0)
 		{
-			SLAM(playerPos, this.GetComponent<Rigidbody2D>().transform.position);
+			Fly(playerPos, ThisBoss.GetComponent<Rigidbody2D>().transform.position);
+			inSky = true;
 		}
 	}
 
-	public void SLAM(Vector2 playerPos, Vector2 thisBossPos)
-	{
-		float SLAMFORCE = jumpForce_ * -1;
+	public void Fly(Vector2 playerPos, Vector2 thisBossPos)
+	{		
 		//start the helicopter anim
 
 		//after 2 seconds into the animation, FLY
-		m_JumpTimer -= Time.deltaTime; // temp var
+		if(!isFlying)
+		{
+			m_JumpTimer -= Time.deltaTime; // temp var
+		}
+		
 		if (m_JumpTimer <= 0)
 		{
-			m_JumpTimer = 0;
+			m_JumpTimer = Constants.FATTEST_BULLY_JUMP_TIMER;
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, jumpForce_);
+			isFlying = true;
 		}
+
 		//once off screen/high enough, adjust x pos and CurRow to match player
-		if(this.GetComponent<Rigidbody2D>().transform.position.y >= MAX_FATTEST_HEIGHT)
+		if (this.GetComponent<Rigidbody2D>().transform.position.y >= Constants.MAX_FATTEST_HEIGHT)
 		{
 			this.GetComponent<Rigidbody2D>().transform.position = new Vector2(playerPos.x, this.GetComponent<Rigidbody2D>().transform.position.y);
-			this.m_CurRow = 0; //this.m_Bully.GetComponent<BullyScript>().m_PlayerCurRow;
-
-			if(m_Bully.transform.position.y > this.m_Player.transform.position.y)
-			{
-				m_Bully.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, SLAMFORCE);
-			}
-			
+			this.m_CurRow = this.m_PlayerCurRow;
+			Slam(playerPos);		
 		}
-		//SLAM, fly down until boss's y == the curRow's Y
+		
+	}
+
+	//SLAM, fly down until boss's y == the curRow's Y
+	public void Slam(Vector2 playerPos)
+	{
+		float SLAMFORCE = jumpForce_ * -1;
+	
+		m_Bully.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, SLAMFORCE);		
 	}
 
 }

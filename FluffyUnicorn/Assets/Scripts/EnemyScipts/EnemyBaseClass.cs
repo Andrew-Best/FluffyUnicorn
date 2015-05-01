@@ -267,26 +267,32 @@ public class EnemyBaseClass : MonoBehaviour
 	}
 	#endregion
 
+	public virtual void GetPlayerInfo(GameObject thisEnemy)
+	{
+		if (this.m_Player.GetComponent<PlayerController>().m_onFrontTrack)
+		{
+			this.m_PlayerCurRow = 2;
+		}
+		else if (this.m_Player.GetComponent<PlayerController>().m_onMiddleTrack)
+		{
+			this.m_PlayerCurRow = 1;
+		}
+		else if (this.m_Player.GetComponent<PlayerController>().m_onLastTrack)
+		{
+			this.m_PlayerCurRow = 0;
+		}
+
+		m_PlayerPos = m_Player.GetComponent<Rigidbody2D>().transform.position;
+	}
+
 	public virtual void EnemyUpdate(GameObject bully)
 	{
 		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(); //Update Enemy Projectiles on screen
 
-		#region Player Variables
 		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
+	
 		//Detect Player Track
-		if (m_Player.GetComponent<PlayerController>().m_onFrontTrack)
-		{
-			m_PlayerCurRow = 2;
-		}
-		else if (m_Player.GetComponent<PlayerController>().m_onMiddleTrack)
-		{
-			m_PlayerCurRow = 1;
-		}
-		else if (m_Player.GetComponent<PlayerController>().m_onLastTrack)
-		{
-			m_PlayerCurRow = 0;
-		}
-		#endregion
+		GetPlayerInfo(bully);
 
 		//Conditions for changing tracks
 		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
@@ -357,6 +363,7 @@ public class EnemyBaseClass : MonoBehaviour
 			}
 		}
 	}
+
 
 	// Update is called once per frame
 	void Update()

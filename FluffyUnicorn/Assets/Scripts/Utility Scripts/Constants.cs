@@ -34,6 +34,9 @@ public class Constants : MonoBehaviour
 	public const float FATTEST_BULLY_HP = 25;
 	public const float FATTEST_BULLY_JUMP_FORCE = 15;
 	public const float FATTEST_BULLY_ROLL_SPEED = 20;
+
+	public const float MAX_FATTEST_HEIGHT = 100.0f;
+	public const float FATTEST_BULLY_JUMP_TIMER = 2;
 	#endregion
 	#endregion
 
