@@ -9,7 +9,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public StateMachine m_StateMachine;
 
-	private GameObject m_Player;// = GameObject.FindGameObjectWithTag("Player");
+	public GameObject m_Player;// = GameObject.FindGameObjectWithTag("Player");
 	private Vector2 m_PlayerPos;// = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
 
 	public GameObject PepperSpray;
