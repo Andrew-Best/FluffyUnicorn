@@ -29,7 +29,7 @@ public class EnemyControllerScript : MonoBehaviour
 	{
 		if (m_BulliesOnScreen < m_MaxAllowableBulliesOnScreenForLevel)
 		{
-			enemySelector_ = (int)Random.Range(0, 5);//type of bully that will be spawned
+			enemySelector_ = (int)Random.Range(0, 4);//type of bully that will be spawned
 			rowSelector_ = Random.Range(0, 2); //the track the enemy is going to be placed on
 
 			enemySpawnTimer_ -= Time.deltaTime;
@@ -43,7 +43,7 @@ public class EnemyControllerScript : MonoBehaviour
 		tempBossTimer_ -= Time.deltaTime;
 		if(tempBossTimer_ <= 0)
 		{
-			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, 0);
+			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, 5);//Index for Each Boss
 			tempBossTimer_ = 1000;
 		}
 	}

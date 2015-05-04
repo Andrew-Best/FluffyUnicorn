@@ -25,20 +25,21 @@ public class SpawnEnemies : MonoBehaviour
 //		m_Tracks[0] = m_Tracks[row]; //Should make the track be the one passed in by the function
 		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
 		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
+
 		if (newEnemy.name == "Bully")
 		{			
 			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
-		}	
+		}			
 		else
 		{
 			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
 		}
 	}
 
-	public void SpawnBoss(int BossIndex, int row)
+	public void SpawnBoss(int row, int BossIndex)
 	{
 
-		GameObject newBoss = Objectpooler.Instance.GetObjectForType(m_Bosses[BossIndex].name, true);//new enemy is created
+		GameObject newBoss = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[BossIndex].name, true);//new enemy is created
 		newBoss.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 		if (newBoss.name == "FattestBully")
 		{
