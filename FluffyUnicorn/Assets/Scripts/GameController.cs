@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 
 	void Start () 
     {
+        Screen.orientation = ScreenOrientation.Landscape;
 #if UNITY_ANDROID
         m_AndroidUI.gameObject.SetActive(true);
         m_UIControl.gameObject.SetActive(false);
