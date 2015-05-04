@@ -287,7 +287,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyUpdate(GameObject bully)
 	{
-		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(); //Update Enemy Projectiles on screen
+		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully); //Update Enemy Projectiles on screen
 
 		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
 	

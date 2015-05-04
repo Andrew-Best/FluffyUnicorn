@@ -69,6 +69,23 @@ public class BullyScript : EnemyBaseClass
 		{
 			m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().PepperUniqueAttack(bully);
 		}
+		else if (bully.name == "FatBully")
+		{
+			m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().FatUniqueAttack(bully);
+		}
+		else if (bully.name == "JockBully")
+		{
+			m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().JockUniqueAttack(bully);
+		}
+		else if (bully.name == "BlingBully")
+		{
+			m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().BlingUniqueAttack(bully);
+		}
+		else if (bully.name == "Bully")
+		{
+			m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().BullyUniqueAttack(bully);
+		}
+
 		this.m_AnimationLength = 10;
 		float AttackTimer = m_AttackResetTime + m_UniqueRestTime; //assign the particular bully's Resttime for after a Unique Attack
 		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime

@@ -28,6 +28,13 @@ public class Constants : MonoBehaviour
     public const int MOVE_LEFT = -1; //Not yet implemented
     public const int MOVE_RIGHT = 1; //Not yet implemented
 
+	public const float BULLY_UNIQUE_ATK_LENGTH = 4;
+	public const float BLING_UNIQUE_ATK_LENGTH = 4;
+	public const float PEPPER_UNIQUE_ATK_LENGTH = 4;//likely not even used
+	public const float FAT_UNIQUE_ATK_LENGTH = 8;
+	public const float JOCK_UNIQUE_ATK_LENGTH = 4;
+
+
     public const float BULLY_MAX_TRAVEL_DIST = 3;
     #endregion
 
