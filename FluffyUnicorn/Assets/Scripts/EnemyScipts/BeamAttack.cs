@@ -6,7 +6,7 @@ public class BeamAttack : MonoBehaviour
 	public float m_CooldownTimer;
 	public int m_Ammo;
 	public Vector2 m_Offset;
-	public float m_Rotation;
+//	public float m_Rotation;
 
 	public void UpdateWeapon()
 	{
@@ -30,7 +30,7 @@ public class BeamAttack : MonoBehaviour
 										bully.transform.right + this.m_Offset.y *
 										bully.transform.up;
 
-		projectile.transform.Rotate(0.0f, 0.0f, this.m_Rotation);
+//		projectile.transform.Rotate(0.0f, 0.0f, this.m_Rotation);
 
 //		projectile.layer = LayerMask.NameToLayer(collisionLayer);
 

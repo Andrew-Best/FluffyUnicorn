@@ -3,10 +3,10 @@ using System.Collections;
 
 public class LaserScript : MonoBehaviour 
 {
-	public float mAccel = 1.0f;
-	public int mDamage = 1;
-	public float mLifetime = 10.0f; //in seconds
-	public float mDeadTime = 10.0f;
+	public float m_Accel = 1.0f;
+	public int m_Damage = 1;
+	public float m_Lifetime = 10.0f; //in seconds
+	public float m_DeadTime = 10.0f;
 	private float lifeTimer_;
 
 	private bool isDead_;
@@ -18,22 +18,21 @@ public class LaserScript : MonoBehaviour
 		lifeTimer_ = 0.0f;
 		isDead_ = false;
 		emissionRate_ = GetComponent<ParticleSystem>().emissionRate;
-		//	GetComponent<ParticleSystem>().active(true);
-
+//		GetComponent<ParticleSystem>().active(true);
 	}
 
 	void Update()
 	{
 		lifeTimer_ += Time.deltaTime;
 
-		if (!isDead_ && lifeTimer_ > mLifetime)
+		if (!isDead_ && lifeTimer_ > m_Lifetime)
 		{
 			//ObjectPool.Instance.PoolObject(gameObject);
 			isDead_ = true;
 			GetComponent<Collider2D>().enabled = false;
-			lifeTimer_ -= mLifetime;
+			lifeTimer_ -= m_Lifetime;
 		}
-		else if (isDead_ && lifeTimer_ > mDeadTime)
+		else if (isDead_ && lifeTimer_ > m_DeadTime)
 		{
 			isDead_ = false;
 			GetComponent<Collider2D>().enabled = true;
@@ -49,7 +48,7 @@ public class LaserScript : MonoBehaviour
 	{
 		if (!isDead_)
 		{
-			GetComponent<Rigidbody2D>().AddForce(-(transform.up * mAccel));
+			GetComponent<Rigidbody2D>().AddForce(-(transform.up * m_Accel));
 		}
 	}
 
@@ -63,7 +62,8 @@ public class LaserScript : MonoBehaviour
 			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			GetComponent<ParticleSystem>().emissionRate = 0.0f;
 			lifeTimer_ = 0.0f;
-			isDead_ = true;*/
+			isDead_ = true;
+ */
 		}
 	}
 
