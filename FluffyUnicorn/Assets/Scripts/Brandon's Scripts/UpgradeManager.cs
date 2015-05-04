@@ -19,6 +19,10 @@ public class UpgradeManager : MonoBehaviour
             m_Player.m_Currency -= m_HealthCost;
             m_Player.m_PlayerHealth += health;
         }  
+        if(m_Player.m_PlayerHealth > Constants.MAX_PLAYER_HEALTH)
+        {
+            m_Player.m_PlayerHealth = Constants.MAX_PLAYER_HEALTH;
+        }
     }
 
     public void UpgradeAttackRate(float fireRate)

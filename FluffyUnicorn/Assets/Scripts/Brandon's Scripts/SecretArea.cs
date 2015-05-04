@@ -86,12 +86,12 @@ public class SecretArea : MonoBehaviour
             //if the player touched the secret area and it is unlocked, move to the secret level
             else if(unlockDoor_)
             {
-                EnterSecretArea(m_SecretAreaName);
+                EnterArea(m_SecretAreaName);
             }
         }
     }
 
-    void EnterSecretArea(string areaName)
+    public void EnterArea(string areaName)
     {
         //load scene based on name 
         Application.LoadLevel(areaName);
