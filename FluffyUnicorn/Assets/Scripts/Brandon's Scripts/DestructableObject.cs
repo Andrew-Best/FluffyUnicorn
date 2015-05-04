@@ -19,9 +19,11 @@ public class DestructableObject : MonoBehaviour
     private GameObject player_;
     private GameObject upgradeManager_;
     private Animator objectAnimator_;
+    private Vector3 deadPos_;
 
     private bool dead_ = false;
     private bool isDamaged_ = false;
+    private bool canSetDeadPos_ = true;
 
     private float damage;
     #endregion
@@ -32,12 +34,12 @@ public class DestructableObject : MonoBehaviour
         upgradeManager_ = GameObject.FindGameObjectWithTag("UpgradeManager");
         objectAnimator_ = this.GetComponent<Animator>();
         damage = m_Health / 2;
-
     }
 
     void Update()
     {
         UpdateAnimationValues();
+        SetDeadPos();
     }
 
     #region DestroyObject
@@ -83,6 +85,27 @@ public class DestructableObject : MonoBehaviour
             this.GetComponent<Rigidbody2D>().AddForce(new Vector2(m_ReactForce, 0.0f));
         }
     }
+
+    void SetDeadPos()
+    {
+        //if the object is dead then get the current position and assign it to the deadPos var and then set the object's position to the deadPos to keep it in its dead position
+        if (dead_ && canSetDeadPos_)
+        {
+            deadPos_ = this.GetComponent<Rigidbody2D>().transform.position;
+            this.GetComponent<Rigidbody2D>().transform.position = deadPos_;
+            canSetDeadPos_ = !canSetDeadPos_;
+            //destroys the colliders and rigidbody so it doesn't move after the object has been destoryed 
+            Destroy(this.GetComponent<Rigidbody2D>());
+            if (this.GetComponent<BoxCollider2D>() != null)
+            {
+                Destroy(this.GetComponent<BoxCollider2D>());
+            }
+            if (this.GetComponent<CircleCollider2D>() != null)
+            {
+                Destroy(this.GetComponent<CircleCollider2D>());
+            }
+        } 
+    }
     #endregion
     
     void RandomItem(int min, int max)
@@ -110,6 +133,19 @@ public class DestructableObject : MonoBehaviour
         else
         {
             //do nothing. no item found 
+        }
+    }
+
+    public bool HasDied()
+    {
+        //gets the living state of the object
+        if(dead_)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

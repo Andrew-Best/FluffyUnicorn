@@ -24,8 +24,11 @@ public class Projectile : MonoBehaviour {
         {
             ObjectPool.Instance.PoolObject(this.gameObject);
             hitObject = other.gameObject.GetComponentInChildren<DestructableObject>();
-            hitObject.Destroy(m_Damage);
-            hitObject.Wiggle();
+            if(!hitObject.HasDied())
+            {
+                hitObject.Destroy(m_Damage);
+                hitObject.Wiggle();
+            }      
         }
     }
 }
