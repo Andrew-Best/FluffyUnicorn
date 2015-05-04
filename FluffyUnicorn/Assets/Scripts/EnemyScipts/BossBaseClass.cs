@@ -6,6 +6,9 @@ public class BossBaseClass : EnemyBaseClass
 	public GameObject m_ThisBoss;
 	public Vector2 m_Position;
 
+	public GameObject[] mSpawnPos; //List of possible spawn locaations
+	
+
 	public int m_Curstate;
 
 	public string m_BossName;
@@ -19,6 +22,7 @@ public class BossBaseClass : EnemyBaseClass
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 		this.m_ThisBoss.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Set Boss Velocity to 0
 	}
+
 
 
 

@@ -7,6 +7,8 @@ public class SpawnEnemies : MonoBehaviour
 	public GameObject[] mEnemiesToSpawn; //List of possible enemies to spawn
 	public GameObject[] m_Tracks; //The three tracks an enemy can be anchored to
 
+	public GameObject[] m_Bosses; //List of possible enemies to spawn
+
 	void Start () 
 	{
 		mSpawnPos[0] = GameObject.FindGameObjectWithTag("ESRL");
@@ -31,5 +33,21 @@ public class SpawnEnemies : MonoBehaviour
 		{
 			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
 		}
+	}
+
+	public void SpawnBoss(int BossIndex, int row)
+	{
+
+		GameObject newBoss = Objectpooler.Instance.GetObjectForType(m_Bosses[BossIndex].name, true);//new enemy is created
+		newBoss.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
+		if (newBoss.name == "FattestBully")
+		{
+			newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row);
+		}
+		else
+		{
+			Debug.Log("No boss.");
+		}
+
 	}
 }
