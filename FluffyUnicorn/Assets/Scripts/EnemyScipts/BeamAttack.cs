@@ -32,7 +32,7 @@ public class BeamAttack : MonoBehaviour
 
 		float beamSpeed = projectile.GetComponent<LaserScript>().m_Accel;
 
-		if(bully.GetComponent<BullyScript>().m_EnemyGoingLeft == 1)
+		if(bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft == 1)
 		{
 			beamSpeed *= -1;
 		}

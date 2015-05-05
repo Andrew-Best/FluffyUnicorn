@@ -15,8 +15,6 @@ public class UniqueAttackScript : MonoBehaviour
 	public float m_AttackUniqueAnimLength;
 	private float AttackUniqueCurTime = 0;
 
-	private Vector2 oriVel;
-
 	private bool BullyUATK_;
 	private bool JockUATK_;
 	private bool FatUATK_;
@@ -24,19 +22,18 @@ public class UniqueAttackScript : MonoBehaviour
 	private bool PepperUATK_;
 
 	public BullyScript m_Data;
-	public string mExplosionName = "Explosion1";
 
-	public void FireWeapons(GameObject bully, GameObject player)
+/*	public void FireWeapons(GameObject bully, GameObject player)
 	{
 		bully.GetComponent<BeamAttack>().Fire(bully, player);
-	}
+	}*/
 
 	public void Start()
 	{
 	}
 	
 
-	public void BullyUniqueAttack(GameObject bully)//water gun?
+	public void BullyUniqueAttack(GameObject bully)//Done
 	{
 		//create BEAM attack
 		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
@@ -48,7 +45,7 @@ public class UniqueAttackScript : MonoBehaviour
 
 	}
 
-	public void FatUniqueAttack(GameObject bully)
+	public void FatUniqueAttack(GameObject bully)//Requires Animation
 	{
 
 		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
@@ -62,7 +59,7 @@ public class UniqueAttackScript : MonoBehaviour
 		//water gun animation
 	}
 
-	public void JockUniqueAttack(GameObject bully)
+	public void JockUniqueAttack(GameObject bully)//Requires Animation
 	{
 		//Charge Anim
 
@@ -77,7 +74,7 @@ public class UniqueAttackScript : MonoBehaviour
 		
 	}
 
-	public void BlingUniqueAttack(GameObject bully)
+	public void BlingUniqueAttack(GameObject bully)//Requires Animation
 	{
 		//freeze position
 		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
@@ -88,7 +85,7 @@ public class UniqueAttackScript : MonoBehaviour
 		//cane stab animation
 	}
 
-	public void PepperUniqueAttack(GameObject bully)
+	public void PepperUniqueAttack(GameObject bully)//Done
 	{
 		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 		//Get a bullet from the ObjectPool

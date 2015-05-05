@@ -8,7 +8,6 @@ public class FattestBully : BossBaseClass
 	float tempTimerResetVal = 5.0f;
 	/**********/
 
-
 	private float jumpForce_;
 	private float rollSpeed_;
 	public float m_JumpTimer;
@@ -33,9 +32,7 @@ public class FattestBully : BossBaseClass
 		rollSpeed_ = Constants.FATTEST_BULLY_ROLL_SPEED;
 
 		m_Curstate = 0;
-
 		m_BossName = "Fattest Bully";
-
 		m_CurFrame = 0;
 
 		tempTimer = tempTimerResetVal;
