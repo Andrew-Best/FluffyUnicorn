@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 {
     public UIController m_UIControl;
     public UIController m_AndroidUI;
+    public PlayerData m_PData;
 
     private int currLevel_; //Current level the player is on
 
@@ -51,6 +52,7 @@ public class GameController : MonoBehaviour
             SaveData sData = new SaveData();
 
             //Insert save code here
+            
 
             bf.Serialize(file, sData);
             file.Close();

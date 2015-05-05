@@ -116,11 +116,11 @@ public class DestructableObject : MonoBehaviour
         {
             //increase the player's health by the number generated
             int health = Random.Range(healthMin, healthMax);
-            player_.GetComponent<PlayerController>().m_PlayerHealth += health;
+            player_.GetComponent<PlayerData>().m_PlayerHealth += health;
             //if the player's health is past the max health cap, set it back to the highest value it is allow to be at
-            if( player_.GetComponent<PlayerController>().m_PlayerHealth > Constants.MAX_PLAYER_HEALTH)
+            if (player_.GetComponent<PlayerData>().m_PlayerHealth > Constants.MAX_PLAYER_HEALTH)
             {
-                player_.GetComponent<PlayerController>().m_PlayerHealth = Constants.MAX_PLAYER_HEALTH;
+                player_.GetComponent<PlayerData>().m_PlayerHealth = Constants.MAX_PLAYER_HEALTH;
             }
         }
         else if(num == 2)
@@ -128,7 +128,7 @@ public class DestructableObject : MonoBehaviour
         
             //increase the player's currency by the random number generated * the player's currency scalar 
             int currency = Random.Range(currencyMin, currencyMax);
-            player_.GetComponent<PlayerController>().m_Currency += currency * player_.GetComponent<PlayerController>().m_CurrencyScalar;    
+            player_.GetComponent<PlayerData>().m_Currency += currency * player_.GetComponent<PlayerData>().m_CurrencyScalar;    
         }
         else
         {

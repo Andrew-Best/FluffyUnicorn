@@ -4,12 +4,28 @@ using System.Collections;
 public class UpgradeManager : MonoBehaviour
 {
     #region public variables
-    public PlayerController m_Player;
+    public PlayerData m_Player;
     public int m_HealthCost = 1;
     public int m_AttackRateCost = 1;
     public int m_DamageCost = 1;
     public int m_SpeedCost = 1;
     public int m_CurrencyCost = 1;
+    #endregion
+
+    #region Private Variables
+    private int healthUpgradeCounter_ = 1;
+    private int damageUpgradeCounter_ = 1;
+    private int attackRateUpgradeCounter_ = 1;
+    private int speedUpgradeCounter_ = 1;
+    private int currencyUpgradeCounter_ = 1;
+    #endregion
+
+    #region Attributes
+    public int HealthLevel { get { return healthUpgradeCounter_; } set { healthUpgradeCounter_ = value; } }
+    public int DamageLevel { get { return damageUpgradeCounter_; } set { damageUpgradeCounter_ = value; } }
+    public int AttackRateLevel { get { return attackRateUpgradeCounter_; } set { attackRateUpgradeCounter_ = value; } }
+    public int SpeedLevel { get { return speedUpgradeCounter_; } set { speedUpgradeCounter_ = value; } }
+    public int CurrencyLevel { get { return currencyUpgradeCounter_; } set { currencyUpgradeCounter_ = value; } }
     #endregion
 
     public void UpgradeHealth(int health)

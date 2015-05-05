@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour
     public GameObject m_SpawnPoint;         //projectile spawn point
     public GameObject[] m_TargetPoints;     //where the player will move to when switching tracks
     public Collider2D[] m_Tracks;           //tracks the player will switch to 
+    public PlayerData m_PlayerData;         //Player data script
 
     public string m_ProjectileName = "PlayerProjectile";
 
-    public float m_MaxSpeed = 5.0f;
+    /*public float m_MaxSpeed = 5.0f;
     public float m_Acceleration = 1.0f;
     public float m_ShotSpeed = 10.0f;
     public float m_FireRate = 1.0f;
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public int m_PlayerHealth = Constants.PLAYER_DEFAULT_MAX_HEALTH;
     public int m_PlayerDamage = 1;
     public int m_Currency = 0;
-    public int m_CurrencyScalar = 1;        //use to determine how much curency the player gains 
+    public int m_CurrencyScalar = 1;*/        //use to determine how much curency the player gains 
 
     //used to keep track of what track the player is on
     public bool m_onFrontTrack = true;
@@ -150,7 +151,7 @@ public class PlayerController : MonoBehaviour
         if (buttonHeld_)
         {
             horizontalMove_ = -1.0f;
-            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_PlayerData.m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 
@@ -159,7 +160,7 @@ public class PlayerController : MonoBehaviour
         if (buttonHeld_)
         {
             horizontalMove_ = 1.0f;
-            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_PlayerData.m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 
@@ -178,18 +179,18 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        nextFire_ = Time.time + m_FireRate;
+        nextFire_ = Time.time + m_PlayerData.m_FireRate;
         //Get a bullet from the ObjectPool
         GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
         bullet.transform.position = m_SpawnPoint.transform.position;
         //Determine which direction to fire in
         if (facingRight_)
         {
-            bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_ShotSpeed, 0, 0));
+            bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
         }
         else
         {
-            bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_ShotSpeed, 0, 0));
+            bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
         }
     }
 

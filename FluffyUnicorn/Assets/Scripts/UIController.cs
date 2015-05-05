@@ -8,7 +8,8 @@ public class UIController : MonoBehaviour
     public Slider m_FartSlider; //The slider showing progress towards your next possible fart
     public Slider m_HealthSlider; //The slider showing remaining player health
     public Text m_BullyNumberText; //Text element which shows numerically how many bullies are remaining
-    public PlayerController m_PlayerControlller; //Player Controller 
+    public PlayerData m_PlayerData; //Player Data script
+    public PlayerController m_PlayerController; //Player Controller script
     #endregion
 
     #region Private Variables
@@ -32,7 +33,7 @@ public class UIController : MonoBehaviour
 	void Update () 
     {
         m_FartSlider.value = currGasLevel_;
-        m_HealthSlider.value = m_PlayerControlller.m_PlayerHealth;
+        m_HealthSlider.value = m_PlayerData.m_PlayerHealth;
         m_BullyNumberText.text = "0" + "/" + bulliesNeeded_;
 	}
 
@@ -40,32 +41,32 @@ public class UIController : MonoBehaviour
 
     public void OnPointerUp()
     {
-        m_PlayerControlller.OnPointerUp();
+        m_PlayerController.OnPointerUp();
     }
 
     public void OnPointerDown()
     {
-        m_PlayerControlller.OnPointerDown();
+        m_PlayerController.OnPointerDown();
     }
 
     public void MoveLeft()
     {
-        m_PlayerControlller.MoveLeft();
+        m_PlayerController.MoveLeft();
     }
 
     public void MoveRight()
     {
-        m_PlayerControlller.MoveRight();
+        m_PlayerController.MoveRight();
     }
 
     public void MoveUp()
     {
-        m_PlayerControlller.MoveUp();
+        m_PlayerController.MoveUp();
     }
 
     public void MoveDown()
     {
-        m_PlayerControlller.MoveDown();
+        m_PlayerController.MoveDown();
     }
     #endregion
 }

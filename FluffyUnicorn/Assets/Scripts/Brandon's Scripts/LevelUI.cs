@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LevelUI : MonoBehaviour
 {
-    public PlayerController m_Player;
+    public PlayerData m_Player;
     public Text m_Health;
     public Text m_Speed;
     public Text m_AttackRate;

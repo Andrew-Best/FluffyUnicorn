@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        m_Damage = player_.GetComponent<PlayerController>().m_PlayerDamage;
+        m_Damage = player_.GetComponent<PlayerData>().m_PlayerDamage;
         DestructableObject hitObject;
         if (other.tag == m_Enemy)
         {

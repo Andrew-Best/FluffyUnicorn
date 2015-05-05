@@ -15,7 +15,7 @@ public class Item : MonoBehaviour
     #endregion
 
     #region Private variables
-    private PlayerController player_;
+    private PlayerData player_;
 
     private enum m_Item
     {
@@ -27,7 +27,7 @@ public class Item : MonoBehaviour
 
     void Start () 
     {
-        player_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
 	}
 
     #region Set item
