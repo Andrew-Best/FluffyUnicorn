@@ -66,7 +66,11 @@ public class EnemyBaseClass : MonoBehaviour
 	#region Enemy Movement
 	public virtual void EnemyMove(GameObject bully)
 	{
-		this.m_RigidBody.velocity = new Vector2(this.m_VelocityX, 0);//set the enemy's velocity
+		if(this.m_EnemyInMotion)
+		{
+			this.m_RigidBody.velocity = new Vector2(this.m_VelocityX, 0);//set the enemy's velocity
+		}
+		
 	}
 
 	public virtual void TurnAround(GameObject bully)
@@ -83,6 +87,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public virtual void EnemyStopMotion(GameObject bully)
 	{
 		this.m_RigidBody.velocity = new Vector2(0, 0); //freeze position
+		this.m_EnemyInMotion = false;
 	}
 
 	public virtual void ChangeTrack(GameObject bully)
@@ -190,7 +195,7 @@ public class EnemyBaseClass : MonoBehaviour
 		if (this.m_CurRow == this.m_PlayerCurRow)
 		{
 			EnemyStopMotion(bully);
-			m_EnemyInMotion = false; //prevent continued motion of the bully
+//			m_EnemyInMotion = false; //prevent continued motion of the bully
 			if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
 			{
 				this.EnemyAttackPunch(bully); //PAWNCH
@@ -214,7 +219,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public virtual void ResetEnemyAttackTimer(float enemyAttackTimer)
 	{
 		this.m_AttackTimer = enemyAttackTimer; //reassign the attack timer to the enemy's default
-		this.m_EnemyInMotion = true; //tell the enemy it can move again
+//		this.m_EnemyInMotion = true; //tell the enemy it can move again
 	}
 
 	public virtual void EnemyAttackPunch(GameObject bully) //This function is overwritten in the BullyScript
@@ -314,7 +319,11 @@ public class EnemyBaseClass : MonoBehaviour
 
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 
-		this.EnemyMove(bully);
+		if(this.m_EnemyInMotion)
+		{
+			this.EnemyMove(bully);
+		}
+		
 
 		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
 		float pointB = m_MaxDist;

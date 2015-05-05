@@ -30,6 +30,15 @@ public class BeamAttack : MonoBehaviour
 										bully.transform.right + this.m_Offset.y *
 										bully.transform.up;
 
+		float beamSpeed = projectile.GetComponent<LaserScript>().m_Accel;
+
+		if(bully.GetComponent<BullyScript>().m_EnemyGoingLeft == 1)
+		{
+			beamSpeed *= -1;
+		}
+		projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(beamSpeed, 0.0f);
+		
+
 //		projectile.transform.Rotate(0.0f, 0.0f, this.m_Rotation);
 
 //		projectile.layer = LayerMask.NameToLayer(collisionLayer);

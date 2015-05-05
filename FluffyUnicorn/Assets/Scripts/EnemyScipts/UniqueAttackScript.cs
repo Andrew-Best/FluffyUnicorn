@@ -7,7 +7,6 @@ public class UniqueAttackScript : MonoBehaviour
 {
 	public GameObject m_PepperSpray;
 	public List<GameObject> bullets = new List<GameObject>();
-	public LineRenderer line;
 
 	public Vector2 m_Velocity;
 	public float m_ShotSpeed;
@@ -18,8 +17,11 @@ public class UniqueAttackScript : MonoBehaviour
 
 	private Vector2 oriVel;
 
-	private bool JockUATK;
-	private bool FatUATK;
+	private bool BullyUATK_;
+	private bool JockUATK_;
+	private bool FatUATK_;
+	private bool BlingUATK_;
+	private bool PepperUATK_;
 
 	public BullyScript m_Data;
 	public string mExplosionName = "Explosion1";
@@ -31,29 +33,30 @@ public class UniqueAttackScript : MonoBehaviour
 
 	public void Start()
 	{
-		line = gameObject.GetComponent<LineRenderer>();
-		line.enabled = false;
 	}
 	
 
 	public void BullyUniqueAttack(GameObject bully)//water gun?
 	{
 		//create BEAM attack
-//		Fire(WeaponStateData stateData, GameObject bully, string collisionLayer)
-
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 		bully.GetComponent<BeamAttack>().Fire(bully, bully.GetComponent<BullyScript>().m_Player);
-//		BeamAttack.
+
+		this.m_AttackUniqueAnimLength = Constants.BULLY_UNIQUE_ATK_LENGTH;
+		this.AttackUniqueCurTime = 0;
 		//water gun animation
 
 	}
 
 	public void FatUniqueAttack(GameObject bully)
 	{
-		this.oriVel = bully.GetComponent<Rigidbody2D>().velocity;
+
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+
 		this.m_AttackUniqueAnimLength = Constants.FAT_UNIQUE_ATK_LENGTH;
 		this.AttackUniqueCurTime = 0;
 
-		this.FatUATK = true;
+		this.FatUATK_ = true;
 
 		bully.GetComponent<Rigidbody2D>().velocity = this.m_Velocity * 2;
 		//water gun animation
@@ -62,10 +65,12 @@ public class UniqueAttackScript : MonoBehaviour
 	public void JockUniqueAttack(GameObject bully)
 	{
 		//Charge Anim
-		this.oriVel = bully.GetComponent<Rigidbody2D>().velocity;
+
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+
 		this.m_AttackUniqueAnimLength = Constants.JOCK_UNIQUE_ATK_LENGTH;
 		this.AttackUniqueCurTime = 0;
-		this.JockUATK = true;
+		this.JockUATK_ = true;
 
 		//increase Velocity x
 		this.GetComponent<Rigidbody2D>().velocity += new Vector2(this.m_Velocity.x * 2, this.GetComponent<Rigidbody2D>().velocity.y);
@@ -75,11 +80,17 @@ public class UniqueAttackScript : MonoBehaviour
 	public void BlingUniqueAttack(GameObject bully)
 	{
 		//freeze position
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+
+		this.m_AttackUniqueAnimLength = Constants.BLING_UNIQUE_ATK_LENGTH;
+		this.AttackUniqueCurTime = 0;
+		this.BlingUATK_ = true;
 		//cane stab animation
 	}
 
 	public void PepperUniqueAttack(GameObject bully)
 	{
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 		//Get a bullet from the ObjectPool
 		GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
 		bullet.transform.position = bully.transform.position;
@@ -90,6 +101,10 @@ public class UniqueAttackScript : MonoBehaviour
 		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(this.m_ShotSpeed, 0);
 
 		bullets.Add(bullet);
+
+		this.m_AttackUniqueAnimLength = Constants.PEPPER_UNIQUE_ATK_LENGTH;
+		this.AttackUniqueCurTime = 0;
+		this.PepperUATK_ = true;
 	}
 
 	public void UpdateUATKs(GameObject bully)
@@ -102,29 +117,58 @@ public class UniqueAttackScript : MonoBehaviour
 			bullets[i].GetComponent<Rigidbody2D>().velocity = m_Velocity;
 		}
 		//update Water Gun
-		//update Jock Headbutt
-		if(this.JockUATK)
-		{
-			this.AttackUniqueCurTime += Time.deltaTime;
-			if(this.AttackUniqueCurTime >= this.m_AttackUniqueAnimLength)
-			{
-				this.JockUATK = false;
-				bully.GetComponent<Rigidbody2D>().velocity = this.oriVel;
-			}
-		}
-
-		//update Fat Barrel
-		if(this.FatUATK)
+		if (this.BullyUATK_)
 		{
 			this.AttackUniqueCurTime += Time.deltaTime;
 			if (this.AttackUniqueCurTime >= this.m_AttackUniqueAnimLength)
 			{
-				this.FatUATK = false;
-				bully.GetComponent<Rigidbody2D>().velocity = this.oriVel;
+				this.BullyUATK_ = false;
+				bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion = true;
+			}
+		}
+		//update Jock Headbutt
+		if(this.JockUATK_)
+		{
+			this.AttackUniqueCurTime += Time.deltaTime;
+			if(this.AttackUniqueCurTime >= this.m_AttackUniqueAnimLength)
+			{
+				this.JockUATK_ = false;
+				bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion = true;
+			}
+		}
+
+		//update Fat Barrel
+		if(this.FatUATK_)
+		{
+			this.AttackUniqueCurTime += Time.deltaTime;
+			if (this.AttackUniqueCurTime >= this.m_AttackUniqueAnimLength)
+			{
+				this.FatUATK_ = false;
+				bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion = true;
+			}
+		}
+
+		//update PepperBully
+		if (this.PepperUATK_)
+		{
+			this.AttackUniqueCurTime += Time.deltaTime;
+			if (this.AttackUniqueCurTime >= this.m_AttackUniqueAnimLength)
+			{
+				this.PepperUATK_ = false;
+				bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion = true;
 			}
 		}
 		
 		//update Bling Cane Stab
+		if (this.BlingUATK_)
+		{
+			this.AttackUniqueCurTime += Time.deltaTime;
+			if (this.AttackUniqueCurTime >= this.m_AttackUniqueAnimLength)
+			{
+				this.BlingUATK_ = false;
+				bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion = true;
+			}
+		}
 	}
 
 }

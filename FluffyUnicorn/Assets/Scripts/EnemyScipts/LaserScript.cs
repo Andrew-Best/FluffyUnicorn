@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LaserScript : MonoBehaviour 
 {
-	public float m_Accel = 1.0f;
+	public float m_Accel = 10.0f;
 	public int m_Damage = 1;
 	public float m_Lifetime = 10.0f; //in seconds
 	public float m_DeadTime = 10.0f;
@@ -18,6 +18,7 @@ public class LaserScript : MonoBehaviour
 		lifeTimer_ = 0.0f;
 		isDead_ = false;
 		emissionRate_ = GetComponent<ParticleSystem>().emissionRate;
+
 //		GetComponent<ParticleSystem>().active(true);
 	}
 
@@ -48,7 +49,8 @@ public class LaserScript : MonoBehaviour
 	{
 		if (!isDead_)
 		{
-			GetComponent<Rigidbody2D>().AddForce(-(transform.up * m_Accel));
+			GetComponent<Rigidbody2D>().AddForce(GetComponent<Rigidbody2D>().velocity);
+//			GetComponent<Rigidbody2D>().velocity = new Vector2 (m_Accel, 0);
 		}
 	}
 
@@ -57,13 +59,13 @@ public class LaserScript : MonoBehaviour
 		PlayerController hitShip = collision.gameObject.GetComponentInChildren<PlayerController>();
 		if (hitShip != null)
 		{
-/*			hitShip.ApplyDamage(mDamage);
+//			hitShip.ApplyDamage(mDamage);
 			GetComponent<Collider2D>().enabled = false;
 			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			GetComponent<ParticleSystem>().emissionRate = 0.0f;
 			lifeTimer_ = 0.0f;
 			isDead_ = true;
- */
+
 		}
 	}
 
