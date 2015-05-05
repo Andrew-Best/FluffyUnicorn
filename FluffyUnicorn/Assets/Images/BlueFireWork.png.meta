@@ -1,0 +1,254 @@
+fileFormatVersion: 2
+guid: 2952ea7990c810a46b2fbf939d15f435
+timeCreated: 1430834334
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BlueFireWork_0
+    21300002: BlueFireWork_1
+    21300004: BlueFireWork_2
+    21300006: BlueFireWork_3
+    21300008: BlueFireWork_4
+    21300010: BlueFireWork_5
+    21300012: BlueFireWork_6
+    21300014: BlueFireWork_7
+    21300016: BlueFireWork_8
+    21300018: BlueFireWork_9
+    21300020: BlueFireWork_10
+    21300022: BlueFireWork_11
+    21300024: BlueFireWork_12
+    21300026: BlueFireWork_13
+    21300028: BlueFireWork_14
+    21300030: BlueFireWork_15
+    21300032: BlueFireWork_16
+    21300034: BlueFireWork_17
+    21300036: BlueFireWork_18
+    21300038: BlueFireWork_19
+    21300040: BlueFireWork_20
+    21300042: BlueFireWork_21
+    21300044: BlueFireWork_22
+    21300046: BlueFireWork_23
+    21300048: BlueFireWork_24
+    21300050: BlueFireWork_25
+    21300052: BlueFireWork_26
+    21300054: BlueFireWork_27
+    21300056: BlueFireWork_28
+    21300058: BlueFireWork_29
+    21300060: BlueFireWork_30
+    21300062: BlueFireWork_31
+    21300064: BlueFireWork_32
+    21300066: BlueFireWork_33
+    21300068: BlueFireWork_34
+    21300070: BlueFireWork_35
+    21300072: BlueFireWork_36
+    21300074: BlueFireWork_37
+    21300076: BlueFireWork_38
+    21300078: BlueFireWork_39
+    21300080: BlueFireWork_40
+    21300082: BlueFireWork_41
+    21300084: BlueFireWork_42
+    21300086: BlueFireWork_43
+    21300088: BlueFireWork_44
+    21300090: BlueFireWork_45
+    21300092: BlueFireWork_46
+    21300094: BlueFireWork_47
+    21300096: BlueFireWork_48
+    21300098: BlueFireWork_49
+    21300100: BlueFireWork_50
+    21300102: BlueFireWork_51
+    21300104: BlueFireWork_52
+    21300106: BlueFireWork_53
+    21300108: BlueFireWork_54
+    21300110: BlueFireWork_55
+    21300112: BlueFireWork_56
+    21300114: BlueFireWork_57
+    21300116: BlueFireWork_58
+    21300118: BlueFireWork_59
+    21300120: BlueFireWork_60
+    21300122: BlueFireWork_61
+    21300124: BlueFireWork_62
+    21300126: BlueFireWork_63
+    21300128: BlueFireWork_64
+    21300130: BlueFireWork_65
+    21300132: BlueFireWork_66
+    21300134: BlueFireWork_67
+    21300136: BlueFireWork_68
+    21300138: BlueFireWork_69
+    21300140: BlueFireWork_70
+    21300142: BlueFireWork_71
+    21300144: BlueFireWork_72
+    21300146: BlueFireWork_73
+    21300148: BlueFireWork_74
+    21300150: BlueFireWork_75
+    21300152: BlueFireWork_76
+    21300154: BlueFireWork_77
+    21300156: BlueFireWork_78
+    21300158: BlueFireWork_79
+    21300160: BlueFireWork_80
+    21300162: BlueFireWork_81
+    21300164: BlueFireWork_82
+    21300166: BlueFireWork_83
+    21300168: BlueFireWork_84
+    21300170: BlueFireWork_85
+    21300172: BlueFireWork_86
+    21300174: BlueFireWork_87
+    21300176: BlueFireWork_88
+    21300178: BlueFireWork_89
+    21300180: BlueFireWork_90
+    21300182: BlueFireWork_91
+    21300184: BlueFireWork_92
+    21300186: BlueFireWork_93
+    21300188: BlueFireWork_94
+    21300190: BlueFireWork_95
+    21300192: BlueFireWork_96
+    21300194: BlueFireWork_97
+    21300196: BlueFireWork_98
+    21300198: BlueFireWork_99
+    21300200: BlueFireWork_100
+    21300202: BlueFireWork_101
+    21300204: BlueFireWork_102
+    21300206: BlueFireWork_103
+    21300208: BlueFireWork_104
+    21300210: BlueFireWork_105
+    21300212: BlueFireWork_106
+    21300214: BlueFireWork_107
+    21300216: BlueFireWork_108
+    21300218: BlueFireWork_109
+    21300220: BlueFireWork_110
+    21300222: BlueFireWork_111
+    21300224: BlueFireWork_112
+    21300226: BlueFireWork_113
+    21300228: BlueFireWork_114
+    21300230: BlueFireWork_115
+    21300232: BlueFireWork_116
+    21300234: BlueFireWork_117
+    21300236: BlueFireWork_118
+    21300238: BlueFireWork_119
+    21300240: BlueFireWork_120
+    21300242: BlueFireWork_121
+    21300244: BlueFireWork_122
+    21300246: BlueFireWork_123
+    21300248: BlueFireWork_124
+    21300250: BlueFireWork_125
+    21300252: BlueFireWork_126
+    21300254: BlueFireWork_127
+    21300256: BlueFireWork_128
+    21300258: BlueFireWork_129
+    21300260: BlueFireWork_130
+    21300262: BlueFireWork_131
+    21300264: BlueFireWork_132
+    21300266: BlueFireWork_133
+    21300268: BlueFireWork_134
+    21300270: BlueFireWork_135
+    21300272: BlueFireWork_136
+    21300274: BlueFireWork_137
+    21300276: BlueFireWork_138
+    21300278: BlueFireWork_139
+    21300280: BlueFireWork_140
+    21300282: BlueFireWork_141
+    21300284: BlueFireWork_142
+    21300286: BlueFireWork_143
+    21300288: BlueFireWork_144
+    21300290: BlueFireWork_145
+    21300292: BlueFireWork_146
+    21300294: BlueFireWork_147
+    21300296: BlueFireWork_148
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: BlueFireWork_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 570
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BlueFireWork_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 440
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BlueFireWork_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 310
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BlueFireWork_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BlueFireWork_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
