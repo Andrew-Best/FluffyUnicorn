@@ -14,21 +14,24 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        m_Damage = player_.GetComponent<PlayerData>().m_PlayerDamage;
-        DestructableObject hitObject;
-        if (other.tag == m_Enemy)
+        if(player_ != null)
         {
-            //do stuff
-        }
-        else if (other.tag == "Trashcan")
-        {
-            ObjectPool.Instance.PoolObject(this.gameObject);
-            hitObject = other.gameObject.GetComponentInChildren<DestructableObject>();
-            if(!hitObject.HasDied())
+            m_Damage = player_.GetComponent<PlayerData>().m_PlayerDamage;
+            DestructableObject hitObject;
+            if (other.tag == m_Enemy)
             {
-                hitObject.Destroy(m_Damage);
-                hitObject.Wiggle();
-            }      
+                //do stuff
+            }
+            else if (other.tag == "Trashcan")
+            {
+                ObjectPool.Instance.PoolObject(this.gameObject);
+                hitObject = other.gameObject.GetComponentInChildren<DestructableObject>();
+                if (!hitObject.HasDied())
+                {
+                    hitObject.Destroy(m_Damage);
+                    hitObject.Wiggle();
+                }
+            }
         }
     }
 }
