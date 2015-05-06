@@ -23,8 +23,7 @@ public class UniqueAttackScript : MonoBehaviour
 
 	public void Start()
 	{
-	}
-	
+	}	
 
 	public void BullyUniqueAttack(GameObject bully)//Done
 	{
@@ -48,7 +47,6 @@ public class UniqueAttackScript : MonoBehaviour
 		this.FatUATK_ = true;
 
 		bully.GetComponent<Rigidbody2D>().velocity = this.m_Velocity * 2;
-		//water gun animation
 	}
 
 	public void JockUniqueAttack(GameObject bully)//Requires Animation

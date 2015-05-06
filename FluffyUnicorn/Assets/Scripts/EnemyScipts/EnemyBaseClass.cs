@@ -319,7 +319,31 @@ public class EnemyBaseClass : MonoBehaviour
 		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully); //Update Enemy Projectiles on screen
 
 		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
-	
+		#region Keep Bullies away from the same rows if possible
+		if (m_Bullies.Count >= 2)
+		{
+			for (int i = 0; i < m_Bullies.Count; ++i)
+			{
+				if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow > m_Bullies[i + 1].GetComponent<EnemyBaseClass>().m_CurRow)
+				{
+					m_Bullies[i].GetComponent<EnemyBaseClass>().EnemyAttackUnique(bully); //> m_Bullies[i+1].GetComponent<EnemyBaseClass>().m_CurRow
+					m_Bullies[i + 1].GetComponent<EnemyBaseClass>().EnemyAttackUnique(bully);
+				}
+				if(m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow == m_Bullies[i+1].GetComponent<EnemyBaseClass>().m_CurRow)
+				{
+					if(m_Bullies[i+1].GetComponent<EnemyBaseClass>().m_CurRow == 0)
+					{
+						m_Bullies[i + 1].GetComponent<EnemyBaseClass>().m_CurRow++;
+					}
+					if (m_Bullies[i + 1].GetComponent<EnemyBaseClass>().m_CurRow == 2)
+					{
+						m_Bullies[i + 1].GetComponent<EnemyBaseClass>().m_CurRow--;
+					}
+				}
+			}
+		}
+#endregion
+
 		//Detect Player Track
 		GetPlayerInfo(bully);
 
@@ -340,8 +364,6 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 
 		this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.m_TargetPoints[m_CurRow].transform.position.y);
-
-		
 
 		if(this.m_EnemyInMotion)
 		{
