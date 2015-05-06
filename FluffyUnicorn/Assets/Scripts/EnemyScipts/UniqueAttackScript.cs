@@ -29,9 +29,8 @@ public class UniqueAttackScript : MonoBehaviour
 	public void BullyUniqueAttack(GameObject bully)//Done
 	{
 		//create BEAM attack
-		this.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
-//		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
-		this.GetComponent<BeamAttack>().Fire(bully, bully.GetComponent<BullyScript>().m_Player);
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+		bully.GetComponent<BeamAttack>().Fire(bully, bully.GetComponent<EnemyBaseClass>().m_Player);
 
 		this.m_AttackUniqueAnimLength = Constants.BULLY_UNIQUE_ATK_LENGTH;
 		this.AttackUniqueCurTime = 0;
@@ -41,37 +40,35 @@ public class UniqueAttackScript : MonoBehaviour
 
 	public void FatUniqueAttack(GameObject bully)//Requires Animation
 	{
-		this.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
-//		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 
 		this.m_AttackUniqueAnimLength = Constants.FAT_UNIQUE_ATK_LENGTH;
 		this.AttackUniqueCurTime = 0;
 
 		this.FatUATK_ = true;
 
-		this.GetComponent<Rigidbody2D>().velocity = this.m_Velocity * 2;
+		bully.GetComponent<Rigidbody2D>().velocity = this.m_Velocity * 2;
 		//water gun animation
 	}
 
 	public void JockUniqueAttack(GameObject bully)//Requires Animation
 	{
 		//Charge Anim
-		this.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
-//		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 
 		this.m_AttackUniqueAnimLength = Constants.JOCK_UNIQUE_ATK_LENGTH;
 		this.AttackUniqueCurTime = 0;
 		this.JockUATK_ = true;
 
 		//increase Velocity x
-		this.GetComponent<Rigidbody2D>().velocity += new Vector2(this.m_Velocity.x * 2, this.GetComponent<Rigidbody2D>().velocity.y);
+		bully.GetComponent<Rigidbody2D>().velocity += new Vector2(this.m_Velocity.x * 2, this.GetComponent<Rigidbody2D>().velocity.y);
 		
 	}
 
 	public void BlingUniqueAttack(GameObject bully)//Requires Animation
 	{
 		//freeze position
-		this.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 
 		this.m_AttackUniqueAnimLength = Constants.BLING_UNIQUE_ATK_LENGTH;
 		this.AttackUniqueCurTime = 0;
@@ -81,11 +78,11 @@ public class UniqueAttackScript : MonoBehaviour
 
 	public void PepperUniqueAttack(GameObject bully)//Done
 	{
-		this.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 		//Get a bullet from the ObjectPool
 		GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
 		bullet.transform.position = bully.transform.position;
-		if(bully.GetComponent<BullyScript>().m_VelocityX < 0)//if bully moving left
+		if(bully.GetComponent<EnemyBaseClass>().m_VelocityX < 0)//if bully moving left
 		{
 			this.m_ShotSpeed *= -1;
 		}

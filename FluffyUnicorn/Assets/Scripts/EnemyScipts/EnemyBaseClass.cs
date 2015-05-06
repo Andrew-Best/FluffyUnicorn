@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyBaseClass : MonoBehaviour
 {
 	#region Enemy Variables
-	public GameObject m_Bully;
+	public List<GameObject> m_Bullies = new List<GameObject>();
 	public GameObject m_UniqueAttackHolder;
 
 	public StateMachine m_StateMachine;
@@ -154,7 +155,7 @@ public class EnemyBaseClass : MonoBehaviour
 			if(playerPos.x < enemyPos.x + lineOfSight)
 			{
 				
-				//EnemyStopMotion(bully);
+				EnemyStopMotion(bully);
 			}
 			else
 			{
@@ -385,7 +386,10 @@ public class EnemyBaseClass : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		EnemyUpdate(m_Bully);
+		for(int i = 0; i < m_Bullies.Count; ++i)
+		{
+			EnemyUpdate(m_Bullies[i]);
+		}
 	}
 
 }

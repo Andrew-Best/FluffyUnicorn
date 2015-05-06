@@ -104,7 +104,7 @@ public class FattestBully : BossBaseClass
 	{
 		float SLAMFORCE = jumpForce_ * -1;
 	
-		m_Bully.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, SLAMFORCE);		
+		m_Bullies[0].GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, SLAMFORCE);		
 	}
 
 }

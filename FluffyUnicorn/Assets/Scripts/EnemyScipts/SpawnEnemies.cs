@@ -26,24 +26,18 @@ public class SpawnEnemies : MonoBehaviour
 		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
 		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 
-		if (newEnemy.name == "Bully")
-		{			
-			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
-		}			
-		else
-		{
-			newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
-		}
+		newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
+		newEnemy.GetComponent<EnemyBaseClass>().m_Bullies.Add(newEnemy);
 	}
 
 	public void SpawnBoss(int row, int BossIndex)
 	{
-
 		GameObject newBoss = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[BossIndex].name, true);//new enemy is created
 		newBoss.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 		if (newBoss.name == "FattestBully")
 		{
 			newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row);
+			newBoss.GetComponent<EnemyBaseClass>().m_Bullies.Add(newBoss);
 		}
 		else
 		{
