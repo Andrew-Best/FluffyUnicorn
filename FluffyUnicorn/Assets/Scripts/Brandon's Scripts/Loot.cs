@@ -24,6 +24,8 @@ public class Loot : MonoBehaviour
     //animations 
     public string m_AnimationName = "PlayFireWorks";
     public string m_ParticleName = "Firework";
+    //item name
+    public string m_ItemName = "";
 
     //how long you want the explosion to last when the chest is opened 
     public float m_ParticleLifeTime = 0.5f;
@@ -71,7 +73,7 @@ public class Loot : MonoBehaviour
             for(int i = 0; i < m_NumItems; ++i)
             {
                 //pool the item from the object pool and initialize and spawn the appropriate item
-                GameObject item = ObjectPool.Instance.GetObjectForType("Item", true);
+                GameObject item = ObjectPool.Instance.GetObjectForType(m_ItemName, true);
                 SetItem(item.GetComponent<Item>());
                 item.GetComponent<Item>().GiveItem();
             }            
