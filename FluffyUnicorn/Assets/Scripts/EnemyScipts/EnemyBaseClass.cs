@@ -73,6 +73,26 @@ public class EnemyBaseClass : MonoBehaviour
 		
 	}
 
+	public virtual void EnemyIdle(GameObject bully, Vector2 enemyPos)
+	{
+		
+		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
+		float pointB = m_MaxDist;
+		float pointA = this.m_InitialXY.x + 1;
+		//moving right and has passed pointA
+			if (enemyPos.x >= pointA && this.m_EnemyGoingLeft == -1)
+			{
+				enemyPos.x = pointA;
+				this.TurnAround(bully);
+			}
+			//moving left and has passed point B
+			if (enemyPos.x <= pointB && this.m_EnemyGoingLeft == 1)
+			{
+				this.TurnAround(bully);
+			}
+			DetectPlayer(m_Player.transform.position, enemyPos);
+	}
+
 	public virtual void TurnAround(GameObject bully)
 	{
 		this.m_VelocityX *= -1; //turn the enemy around
@@ -87,7 +107,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public virtual void EnemyStopMotion(GameObject bully)
 	{
 		this.m_RigidBody.velocity = new Vector2(0, 0); //freeze position
-		this.m_EnemyInMotion = false;
+		this.m_EnemyInMotion = false; //set bool that prevents movement in the update
 	}
 
 	public virtual void ChangeTrack(GameObject bully)
@@ -122,7 +142,7 @@ public class EnemyBaseClass : MonoBehaviour
 			this.m_TimerIsCounting = false;//prevent the timer from continueing to count down
 			if (this.m_PlayerCurRow != this.m_CurRow) //If not on the same track
 			{
-				this.ChangeTrack(bully);
+				this.ChangeTrack(bully);//will not change track if Idle
 				this.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
 			}
 		}
@@ -133,7 +153,8 @@ public class EnemyBaseClass : MonoBehaviour
 			//if the player is less to the right than the currentposition of the enemy's line of sight
 			if(playerPos.x < enemyPos.x + lineOfSight)
 			{
-				EnemyStopMotion(bully);
+				
+				//EnemyStopMotion(bully);
 			}
 			else
 			{
@@ -145,7 +166,8 @@ public class EnemyBaseClass : MonoBehaviour
 			//if the player is less to the left than the enemy's pos - it's line of sight
 			if(playerPos.x > enemyPos.x - lineOfSight)
 			{
-				EnemyStopMotion(bully);
+				
+				//EnemyStopMotion(bully);
 			}
 			else
 			{
@@ -172,14 +194,15 @@ public class EnemyBaseClass : MonoBehaviour
 
 		if(this.m_CurRow == this.m_PlayerCurRow)
 		{
-			if (playerPos.x >= forwardDetectionX)//if the player is within the detection "range" of a bully
+			/*the difference between the player and bully is less than the detection dist on the right, OR if it is greater than the detection on the left*/
+			if(differenceInDistance.x <= forwardDetectionX || differenceInDistance.x >= -forwardDetectionX)
 			{
 				this.m_isIdle = false;//then the enemy is no longer Idle	
 			}
 		}
 		else
 		{
-			if (playerPos.x <= forwardDetectionX)//if the player is within the detection "range" of a bully
+			if (differenceInDistance.x <= forwardDetectionX)//if the player is within the detection "range" of a bully
 			{
 				this.m_isIdle = false;//then the enemy is no longer Idle	
 			}
@@ -192,14 +215,13 @@ public class EnemyBaseClass : MonoBehaviour
 	public virtual void EnemyAttack(GameObject bully)
 	{
 		int attackSelector = Random.Range(0, 100);
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 		if (this.m_CurRow == this.m_PlayerCurRow)
-		{
-			EnemyStopMotion(bully);
+		{			
 //			m_EnemyInMotion = false; //prevent continued motion of the bully
 			if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
 			{
 				this.EnemyAttackPunch(bully); //PAWNCH
-
 			}
 			else if (attackSelector <= m_AttackKickOdds)//not less than Punch odds, so check if less than kick odds
 			{
@@ -292,6 +314,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyUpdate(GameObject bully)
 	{
+		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully); //Update Enemy Projectiles on screen
 
 		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
@@ -317,32 +340,16 @@ public class EnemyBaseClass : MonoBehaviour
 
 		this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.m_TargetPoints[m_CurRow].transform.position.y);
 
-		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
+		
 
 		if(this.m_EnemyInMotion)
 		{
 			this.EnemyMove(bully);
 		}
-		
-
-		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
-		float pointB = m_MaxDist;
-		float pointA = this.m_InitialXY.x + 1;
 
 		if (this.m_isIdle)
 		{
-			//moving right and has passed pointA
-			if (enemyPos.x >= pointA && this.m_EnemyGoingLeft == -1)
-			{
-				enemyPos.x = pointA;
-				this.TurnAround(bully);
-			}
-			//moving left and has passed point B
-			if (enemyPos.x <= pointB && this.m_EnemyGoingLeft == 1)
-			{
-				this.TurnAround(bully);
-			}
-			DetectPlayer(m_Player.transform.position, enemyPos);
+			this.EnemyIdle(bully, enemyPos);
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
@@ -369,6 +376,7 @@ public class EnemyBaseClass : MonoBehaviour
 				this.m_BullyWalk.SetBool("IsPunch", false);
 				this.m_BullyWalk.SetBool("IsKick", false);
 				this.m_BullyWalk.SetBool("IsUnique", false);
+				this.m_EnemyInMotion = true;
 			}
 		}
 	}

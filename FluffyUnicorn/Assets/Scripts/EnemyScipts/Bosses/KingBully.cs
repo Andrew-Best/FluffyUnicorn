@@ -7,7 +7,7 @@ public class KingBully : BossBaseClass
 	private float AttackUniqueCurTime = 0;
 
 	private float tempTimer;
-	private float tempTimerResetVal = 15.0f;
+	private float tempTimerResetVal = 240.0f;
 
 	public void Start()
 	{
@@ -40,6 +40,8 @@ public class KingBully : BossBaseClass
 		this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
 
 		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
+
+		this.GetComponent<BeamAttack>().m_Ammo = Constants.KB_WATER_AMMO;
 		//m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
 	}
 
@@ -130,6 +132,7 @@ public class KingBully : BossBaseClass
 			{
 				WaterGun();//fire the water gun
 				this.GetComponent<BeamAttack>().m_Ammo--;//decrease ammo
+				tempTimer = tempTimerResetVal;
 			}
 			else //if out of ammo
 			{
@@ -137,8 +140,9 @@ public class KingBully : BossBaseClass
 			}
 			if(tempTimer <= 0)
 			{
+				Debug.Log("Reload");
 				this.GetComponent<BeamAttack>().m_Ammo = Constants.KB_WATER_AMMO;
-				tempTimer = tempTimerResetVal;
+//				tempTimer = tempTimerResetVal;
 			}
 		}
 	}

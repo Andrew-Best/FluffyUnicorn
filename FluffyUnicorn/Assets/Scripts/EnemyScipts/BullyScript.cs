@@ -49,7 +49,7 @@ public class BullyScript : EnemyBaseClass
 		this.m_BullyWalk.SetBool("IsKick", true);
 		this.m_AnimationLength = 3;
 		float AttackTimer = m_AttackResetTime + m_KickRestTime; //assign the particular bully's Resttime for after a Kick
-		ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
+		this.ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
 	}
 
 	public override void EnemyAttackPunch(GameObject bully)
@@ -87,7 +87,7 @@ public class BullyScript : EnemyBaseClass
 		}
 
 		this.m_AnimationLength = 10;
-		float AttackTimer = m_AttackResetTime + m_UniqueRestTime; //assign the particular bully's Resttime for after a Unique Attack
+		float AttackTimer = this.m_AttackResetTime + this.m_UniqueRestTime; //assign the particular bully's Resttime for after a Unique Attack
 		this.ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
 	}
 	#endregion
