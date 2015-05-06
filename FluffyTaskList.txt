@@ -1,0 +1,4 @@
+Brandon -> Next task add a camera to scene and attach to player for side-scrolling
+
+Jonathan-> Continue working with enemies-tweak enemy AI to be more individual 
+	-different "co-operation" to attack the player in unique ways
