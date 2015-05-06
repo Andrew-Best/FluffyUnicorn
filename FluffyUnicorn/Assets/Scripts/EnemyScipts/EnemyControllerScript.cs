@@ -43,7 +43,23 @@ public class EnemyControllerScript : MonoBehaviour
 		tempBossTimer_ -= Time.deltaTime;
 		if(tempBossTimer_ <= 0)
 		{
-			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, 5);//Index for Each Boss
+			string BossName;
+
+			int BossSelectorRange = Random.Range(0, 10);
+			int BossSelector=0;
+
+			if (BossSelectorRange > 5)
+			{
+				//BossSelector = FattestBullyIndex;
+				BossName = "FattestBully";
+			}
+			else
+			{
+				//BossSelector = KingBullyIndex;
+				BossName = "KingBully";
+			}
+
+			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, BossSelector, BossName);//Index for Each Boss
 			tempBossTimer_ = 1000;
 		}
 	}

@@ -30,19 +30,32 @@ public class SpawnEnemies : MonoBehaviour
 		newEnemy.GetComponent<EnemyBaseClass>().m_Bullies.Add(newEnemy);
 	}
 
-	public void SpawnBoss(int row, int BossIndex)
+	public void SpawnBoss(int row, int BossIndex, string BossName)
 	{
-		GameObject newBoss = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[BossIndex].name, true);//new enemy is created
-		newBoss.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
-		if (newBoss.name == "FattestBully")
+		for(int i = 0; i < mEnemiesToSpawn.Length; ++i)
 		{
-			newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row);
-			newBoss.GetComponent<EnemyBaseClass>().m_Bullies.Add(newBoss);
+			if(mEnemiesToSpawn[i].name == BossName)
+			{
+				GameObject newBoss = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);//new enemy is created
+				newBoss.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
+				if (newBoss.name == "FattestBully")
+				{
+					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row);
+					newBoss.GetComponent<EnemyBaseClass>().m_Bullies.Add(newBoss);
+				}
+				else if (newBoss.name == "KingBully")
+				{
+					newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[row].transform.position, row);
+					newBoss.GetComponent<EnemyBaseClass>().m_Bullies.Add(newBoss);
+				}
+				else
+				{
+					Debug.Log("No boss.");
+				}
+			}
 		}
-		else
-		{
-			Debug.Log("No boss.");
-		}
+
+		
 
 	}
 }
