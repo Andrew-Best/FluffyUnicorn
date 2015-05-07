@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnEnemies : MonoBehaviour 
 {
@@ -27,7 +28,7 @@ public class SpawnEnemies : MonoBehaviour
 		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 
 		newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
-		newEnemy.GetComponent<EnemyBaseClass>().m_Bullies.Add(newEnemy);
+		newEnemy.GetComponent<BullyScript>().AddEnemy(newEnemy);
 	}
 
 	public void SpawnBoss(int row, int BossIndex, string BossName)

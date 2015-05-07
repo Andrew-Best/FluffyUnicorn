@@ -16,6 +16,11 @@ public class BullyScript : EnemyBaseClass
 
 	#region Creation
 
+	public void AddEnemy(GameObject bully)
+	{
+		m_Bullies.Add(bully);
+	}
+
 	public override void InitEnemy(Vector2 spawnPos, int row)
 	{
 		base.InitEnemy(spawnPos, row);
