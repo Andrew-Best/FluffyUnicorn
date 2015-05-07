@@ -10,8 +10,7 @@ public class BullyScript : EnemyBaseClass
     void Start()
     {
         LoadFromXML();
-		this.m_UniqueAttackHolder = GameObject.FindGameObjectWithTag("UATKHolder");
-		this.PepperSpray = this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().m_PepperSpray;
+		
     }
 
 	#region Creation
@@ -22,11 +21,15 @@ public class BullyScript : EnemyBaseClass
 	{
 		base.InitEnemy(spawnPos, row);
 
+		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
         LoadFromXML();			//Load bully's stats from xml file
 		m_EnemyInMotion = true;	//Make the enemy move when it is spawned
 		m_EnemyGoingLeft = 1;	//Set the starting direction
 		m_isIdle = true;		//The enemy begins Idle
 		m_InitialXY = spawnPos;	//Get the initial position to "anchor" it to	
+
+		this.m_UniqueAttackHolder = GameObject.FindGameObjectWithTag("UATKHolder");
+		this.PepperSpray = this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().m_PepperSpray;
 
 		m_CurRow = row;
 
