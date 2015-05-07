@@ -44,12 +44,12 @@ public class SpawnEnemies : MonoBehaviour
 				if (newBoss.name == "FattestBully")
 				{
 					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row);
-//					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
+					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
 				else if (newBoss.name == "KingBully")
 				{
 					newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[row].transform.position, row);
-//					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
+					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
 				else
 				{

@@ -21,8 +21,11 @@ public class UniqueAttackScript : MonoBehaviour
 	private bool BlingUATK_;
 	private bool PepperUATK_;
 
+	public const float DEFAULT_PEPPER_SPEED = 5;
+
 	public void Start()
 	{
+		m_ShotSpeed = DEFAULT_PEPPER_SPEED;
 	}	
 
 	public void BullyUniqueAttack(GameObject bully)//Done
@@ -84,6 +87,10 @@ public class UniqueAttackScript : MonoBehaviour
 		{
 			this.m_ShotSpeed *= -1;
 		}
+		else
+		{
+			this.m_ShotSpeed = DEFAULT_PEPPER_SPEED;
+		}
 		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(this.m_ShotSpeed, 0);
 
 		bullets.Add(bullet);
@@ -101,6 +108,12 @@ public class UniqueAttackScript : MonoBehaviour
 			m_Velocity = new Vector2(this.GetComponent<UniqueAttackScript>().m_ShotSpeed, 0);
 
 			bullets[i].GetComponent<Rigidbody2D>().velocity = m_Velocity;
+			//change to Screen width
+			if(bullets[i].GetComponent<Rigidbody2D>().transform.position.x <= -100 || bullets[i].GetComponent<Rigidbody2D>().transform.position.x >= 100)
+			{
+				Destroy(bullets[i]);
+				bullets.Remove(bullets[i].gameObject);
+			}
 		}
 		//update Water Gun
 		if (this.BullyUATK_)
