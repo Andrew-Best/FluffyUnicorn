@@ -4,9 +4,16 @@ using System.Collections;
 public class SecretArea : MonoBehaviour
 {
     #region public
+    public enum EventType
+    {
+        ENEMIESDEAD = 0,    //all enemies are dead
+        ENOUGHMONEY         //have enough money 
+    };
+    public EventType m_EventType;
     public SpawnEnemies m_EnemySpawner;     //drag the spawner that is associated with the secret area into this variable
     public int m_Row;                       //which row to spawn the enemies on 
     public int m_EnemyType;                 //number that represents which enemy to spawn
+    public int m_DoorCost;                  //how much money you need to unlock the door if the event type is ENOUGHMONEY
     public string m_SecretAreaName = "";    //name of scene yoiu want to move to 
     #endregion
 
@@ -31,10 +38,19 @@ public class SecretArea : MonoBehaviour
 
     void CanUnlockArea()
     {
-        if (enemyArray_ != null && enemyArray_.Count == 0)
+        if (enemyArray_ != null)
         {
-            //unlock area
-            unlockDoor_ = true;
+            //all enemies are dead
+            if (m_EventType == EventType.ENEMIESDEAD && enemyArray_.Count == 0)
+            {
+                //unlock area
+                unlockDoor_ = true;
+            }
+            //have the required amount of money to unlock the door
+            else if(m_EventType == EventType.ENOUGHMONEY && player_.GetComponent<PlayerData>().m_Currency >= m_DoorCost)
+            {
+                unlockDoor_ = true;
+            }
         }
     }
 
