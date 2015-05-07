@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyControllerScript : MonoBehaviour
 {
 	public GameObject enemySpawner;
 	public GameObject bossSpawner;
+
+	public List<GameObject> m_Bullies = new List<GameObject>();
 
 	public int m_MaxAllowableBulliesOnScreenForLevel; //This can be assigned a default constant value + a modifier for each level
 	public int m_BulliesOnScreen;
@@ -15,6 +18,11 @@ public class EnemyControllerScript : MonoBehaviour
 
 	private int enemySelector_;
 	private int rowSelector_; //the track the enemy is going to be placed on
+
+	public void AddBullyToList(GameObject bully)
+	{
+		m_Bullies.Add(bully);
+	}
 
 	void Start()
 	{
@@ -27,6 +35,7 @@ public class EnemyControllerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+
 		if (m_BulliesOnScreen < m_MaxAllowableBulliesOnScreenForLevel)
 		{
 			enemySelector_ = (int)Random.Range(0, 4);//type of bully that will be spawned
@@ -38,6 +47,7 @@ public class EnemyControllerScript : MonoBehaviour
 				enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(rowSelector_, enemySelector_);
 				enemySpawnTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;
 				m_BulliesOnScreen++;
+				
 			}
 		}
 		tempBossTimer_ -= Time.deltaTime;

@@ -6,6 +6,8 @@ public class EnemyBaseClass : MonoBehaviour
 {
 	#region Enemy Variables
 	public List<GameObject> m_Bullies = new List<GameObject>();
+
+	public GameObject m_EnemyController;
 	public GameObject m_UniqueAttackHolder;
 
 	public StateMachine m_StateMachine;
@@ -67,9 +69,9 @@ public class EnemyBaseClass : MonoBehaviour
 	#region Enemy Movement
 	public virtual void EnemyMove(GameObject bully)
 	{
-		if(this.m_EnemyInMotion)
+		if(bully.GetComponent<BullyScript>().m_EnemyInMotion)
 		{
-			this.m_RigidBody.velocity = new Vector2(this.m_VelocityX, 0);//set the enemy's velocity
+			bully.GetComponent<Rigidbody2D>().velocity = new Vector2(bully.GetComponent<BullyScript>().m_VelocityX, 0);//set the enemy's velocity
 		}
 		
 	}
@@ -292,8 +294,14 @@ public class EnemyBaseClass : MonoBehaviour
 		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
 		
 		m_InitialXY = spawnPos;
+
+//		m_Bullies = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
 	}
 	#endregion
+	void Start()
+	{
+		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
+	}
 
 	public virtual void GetPlayerInfo(GameObject thisEnemy)
 	{
@@ -313,105 +321,108 @@ public class EnemyBaseClass : MonoBehaviour
 		m_PlayerPos = m_Player.GetComponent<Rigidbody2D>().transform.position;
 	}
 
-	public virtual void EnemyUpdate(GameObject bully)
+	public virtual void EnemyUpdate(List<GameObject> bully)
 	{
-		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
-		this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully); //Update Enemy Projectiles on screen
-
-		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
-		#region Keep Bullies away from the same rows if possible
-		if (m_Bullies.Count >= 2)
+		m_Bullies = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
+		for(int i = 0; i < m_Bullies.Count; ++i)
 		{
-			for (int i = 0; i < m_Bullies.Count; ++i)
+			Vector2 enemyPos = new Vector2(m_Bullies[i].GetComponent<Rigidbody2D>().position.x, m_Bullies[i].GetComponent<Rigidbody2D>().position.y);
+			m_Bullies[i].GetComponent<BullyScript>().m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully[i]); //Update Enemy Projectiles on screen
+
+			m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
+
+			#region Keep Bullies away from the same rows if possible
+			if (m_Bullies.Count >= 2)
 			{
-				if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow > m_Bullies[i + 1].GetComponent<EnemyBaseClass>().m_CurRow)
+				for (int j = 0; j < m_Bullies.Count; ++j)
 				{
-					m_Bullies[i].GetComponent<EnemyBaseClass>().EnemyAttackUnique(bully); //> m_Bullies[i+1].GetComponent<EnemyBaseClass>().m_CurRow
-					m_Bullies[i + 1].GetComponent<EnemyBaseClass>().EnemyAttackUnique(bully);
+					if (m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow > m_Bullies[j + 1].GetComponent<EnemyBaseClass>().m_CurRow)
+					{
+						m_Bullies[j].GetComponent<EnemyBaseClass>().EnemyAttackUnique(bully[i]); //> m_Bullies[i+1].GetComponent<EnemyBaseClass>().m_CurRow
+						m_Bullies[j + 1].GetComponent<EnemyBaseClass>().EnemyAttackUnique(bully[i]);
+					}
+					if (m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow == m_Bullies[j + 1].GetComponent<EnemyBaseClass>().m_CurRow)
+					{
+						if (m_Bullies[j + 1].GetComponent<EnemyBaseClass>().m_CurRow == 0)
+						{
+							m_Bullies[j + 1].GetComponent<EnemyBaseClass>().m_CurRow++;
+						}
+						if (m_Bullies[j + 1].GetComponent<EnemyBaseClass>().m_CurRow == 2)
+						{
+							m_Bullies[j + 1].GetComponent<EnemyBaseClass>().m_CurRow--;
+						}
+					}
 				}
-				if(m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow == m_Bullies[i+1].GetComponent<EnemyBaseClass>().m_CurRow)
+			}
+			#endregion
+
+			//Detect Player Track
+			GetPlayerInfo(bully[i]);
+
+			//Conditions for changing tracks
+			if (!m_Bullies[i].GetComponent<BullyScript>().m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
+			{
+				m_Bullies[i].GetComponent<BullyScript>().changeTrackCountdown = Constants.TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
+				m_Bullies[i].GetComponent<BullyScript>().secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
+			}
+			if (secondaryTrackTimer <= 0) //once the secondary timer reaches 0
+			{
+				m_Bullies[i].GetComponent<BullyScript>().m_TimerIsCounting = true; //enable the primary timer
+				m_Bullies[i].GetComponent<BullyScript>().secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
+			}
+			if (m_Bullies[i].GetComponent<BullyScript>().m_TimerIsCounting)
+			{
+				m_Bullies[i].GetComponent<BullyScript>().changeTrackCountdown -= Time.deltaTime;
+			}
+
+			this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.m_TargetPoints[m_CurRow].transform.position.y);
+
+			if (m_Bullies[i].GetComponent<BullyScript>().m_EnemyInMotion)
+			{
+				m_Bullies[i].GetComponent<BullyScript>().EnemyMove(bully[i]);
+			}
+
+			if (m_Bullies[i].GetComponent<BullyScript>().m_isIdle)
+			{
+				m_Bullies[i].GetComponent<BullyScript>().EnemyIdle(bully[i], enemyPos);
+			}
+			else // enemy is not idle, therefore player is nearby
+			{
+				m_Bullies[i].GetComponent<BullyScript>().ChasePlayer(m_PlayerPos, enemyPos, bully[i]);
+
+				//Animation
+				if (m_Bullies[i].GetComponent<BullyScript>().m_AnimationLength > 0) //if animating, subtract Delta.Time
 				{
-					if(m_Bullies[i+1].GetComponent<EnemyBaseClass>().m_CurRow == 0)
-					{
-						m_Bullies[i + 1].GetComponent<EnemyBaseClass>().m_CurRow++;
-					}
-					if (m_Bullies[i + 1].GetComponent<EnemyBaseClass>().m_CurRow == 2)
-					{
-						m_Bullies[i + 1].GetComponent<EnemyBaseClass>().m_CurRow--;
-					}
+					m_Bullies[i].GetComponent<BullyScript>().m_AnimationLength -= Time.deltaTime;
+				}
+				if (m_Bullies[i].GetComponent<BullyScript>().m_AttackTimer > 0 && m_Bullies[i].GetComponent<BullyScript>().m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
+				{
+					m_Bullies[i].GetComponent<BullyScript>().m_AttackTimer -= Time.deltaTime;
+				}
+				if (m_Bullies[i].GetComponent<BullyScript>().m_AttackTimer <= 0 && m_Bullies[i].GetComponent<BullyScript>().m_BullyWalk.GetBool("IsPunch") == false && m_Bullies[i].GetComponent<BullyScript>().m_BullyWalk.GetBool("IsKick") == false && m_Bullies[i].GetComponent<BullyScript>().m_BullyWalk.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
+				{
+					m_Bullies[i].GetComponent<BullyScript>().m_AttackTimer = 0;
+					EnemyAttack(bully[i]);
+				}
+
+				if (m_Bullies[i].GetComponent<BullyScript>().m_AnimationLength <= 0)
+				{
+					m_Bullies[i].GetComponent<BullyScript>().m_AnimationLength = 0;
+					m_Bullies[i].GetComponent<BullyScript>().m_BullyWalk.SetBool("IsPunch", false);
+					m_Bullies[i].GetComponent<BullyScript>().m_BullyWalk.SetBool("IsKick", false);
+					m_Bullies[i].GetComponent<BullyScript>().m_BullyWalk.SetBool("IsUnique", false);
+					m_Bullies[i].GetComponent<BullyScript>().m_EnemyInMotion = true;
 				}
 			}
 		}
-#endregion
-
-		//Detect Player Track
-		GetPlayerInfo(bully);
-
-		//Conditions for changing tracks
-		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
-		{
-			this.changeTrackCountdown = Constants.TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
-			this.secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
-		}
-		if(secondaryTrackTimer <= 0) //once the secondary timer reaches 0
-		{
-			this.m_TimerIsCounting = true; //enable the primary timer
-			this.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
-		}
-		if(this.m_TimerIsCounting)
-		{
-			this.changeTrackCountdown -= Time.deltaTime;
-		}
-
-		this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.m_TargetPoints[m_CurRow].transform.position.y);
-
-		if(this.m_EnemyInMotion)
-		{
-			this.EnemyMove(bully);
-		}
-
-		if (this.m_isIdle)
-		{
-			this.EnemyIdle(bully, enemyPos);
-		}
-		else // enemy is not idle, therefore player is nearby
-		{
-			this.ChasePlayer(m_PlayerPos, enemyPos, bully);
-			
-			//Animation
-			if (this.m_AnimationLength > 0) //if animating, subtract Delta.Time
-			{
-				this.m_AnimationLength -= Time.deltaTime;
-			}
-			if (this.m_AttackTimer > 0 && this.m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
-			{
-				this.m_AttackTimer -= Time.deltaTime;
-			}
-			if (this.m_AttackTimer <= 0 && this.m_BullyWalk.GetBool("IsPunch") == false && this.m_BullyWalk.GetBool("IsKick") == false && this.m_BullyWalk.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
-			{
-				this.m_AttackTimer = 0;
-				EnemyAttack(bully);
-			}
-
-			if (this.m_AnimationLength <= 0)
-			{
-				this.m_AnimationLength = 0;
-				this.m_BullyWalk.SetBool("IsPunch", false);
-				this.m_BullyWalk.SetBool("IsKick", false);
-				this.m_BullyWalk.SetBool("IsUnique", false);
-				this.m_EnemyInMotion = true;
-			}
-		}
+		
 	}
 
 
 	// Update is called once per frame
 	void Update()
 	{
-		for(int i = 0; i < m_Bullies.Count; ++i)
-		{
-			EnemyUpdate(m_Bullies[i]);
-		}
+			EnemyUpdate(m_Bullies);
 	}
 
 }

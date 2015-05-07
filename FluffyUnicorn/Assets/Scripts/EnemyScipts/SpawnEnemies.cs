@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class SpawnEnemies : MonoBehaviour 
 {
+	public GameObject m_EnemyControl;
 	public GameObject[] mSpawnPos; //List of possible spawn locaations
 	public GameObject[] mEnemiesToSpawn; //List of possible enemies to spawn
 	public GameObject[] m_Tracks; //The three tracks an enemy can be anchored to
@@ -27,8 +28,9 @@ public class SpawnEnemies : MonoBehaviour
 		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
 		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 
+		m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newEnemy);
 		newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
-		newEnemy.GetComponent<BullyScript>().AddEnemy(newEnemy);
+
 	}
 
 	public void SpawnBoss(int row, int BossIndex, string BossName)
@@ -42,12 +44,12 @@ public class SpawnEnemies : MonoBehaviour
 				if (newBoss.name == "FattestBully")
 				{
 					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row);
-					newBoss.GetComponent<EnemyBaseClass>().m_Bullies.Add(newBoss);
+					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
 				else if (newBoss.name == "KingBully")
 				{
 					newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[row].transform.position, row);
-					newBoss.GetComponent<EnemyBaseClass>().m_Bullies.Add(newBoss);
+					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
 				else
 				{

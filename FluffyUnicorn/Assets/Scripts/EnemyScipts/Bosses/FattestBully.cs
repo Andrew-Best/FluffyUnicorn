@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class FattestBully : BossBaseClass
 {
@@ -47,29 +48,33 @@ public class FattestBully : BossBaseClass
 
 	
 	// Update is called once per frame
-	public override void EnemyUpdate(GameObject ThisBoss) 
+	public override void EnemyUpdate(List<GameObject> ThisBoss) 
 	{
-		GetPlayerInfo(ThisBoss);
-
-		if (ThisBoss.GetComponent<Rigidbody2D>().transform.position.y <= 0)
+		for (int i = 0; i < ThisBoss.Count; ++i )
 		{
-			isFlying = false;
-			this.inSky = false;
+			GetPlayerInfo(ThisBoss[i]);
 
-			this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, 0);
-		}
+			if (ThisBoss[i].GetComponent<Rigidbody2D>().transform.position.y <= 0)
+			{
+				isFlying = false;
+				this.inSky = false;
 
-		Vector2 playerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().transform.position.x, m_Player.GetComponent<Rigidbody2D>().transform.position.y);
-		if(!inSky)
-		{
-			tempTimer -= Time.deltaTime;//
+				this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, 0);
+			}
+
+			Vector2 playerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().transform.position.x, m_Player.GetComponent<Rigidbody2D>().transform.position.y);
+			if (!inSky)
+			{
+				tempTimer -= Time.deltaTime;//
+			}
+
+			if (tempTimer <= 0)
+			{
+				Fly(playerPos, ThisBoss[i].GetComponent<Rigidbody2D>().transform.position);
+				inSky = true;
+			}
 		}
 		
-		if(tempTimer <= 0)
-		{
-			Fly(playerPos, ThisBoss.GetComponent<Rigidbody2D>().transform.position);
-			inSky = true;
-		}
 	}
 
 	public void Fly(Vector2 playerPos, Vector2 thisBossPos)
