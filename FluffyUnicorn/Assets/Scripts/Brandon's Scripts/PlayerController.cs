@@ -13,6 +13,20 @@ public class PlayerController : MonoBehaviour
     public PlayerData m_PlayerData;         //Player data script
 
     public string m_ProjectileName = "PlayerProjectile";
+    public string m_ProjectileName2 = "PlayerProjectile2";
+    public string m_ProjectileName3 = "PlayerProjectile3";
+
+    public enum ComboType
+    {
+        IDLE = 0,
+        COMBOHIT1,
+        COMBOHIT2,
+        COMBOHIT3
+    };
+
+    public float m_ComboTimer = 2.0f;
+
+    public ComboType m_CurrentComboState;
 
     /*public float m_MaxSpeed = 5.0f;
     public float m_Acceleration = 1.0f;
@@ -42,10 +56,14 @@ public class PlayerController : MonoBehaviour
     private float trackTimer_;
     private float trackTime = 0.1f;
 
+    private int comboChain_ = 0;
+
     private bool facingRight_ = true;
     private bool isMoving_ = false;
     private bool canSwitchTracks = true;
     private bool buttonHeld_ = false;
+    private bool activateComboTimerReset_ = false;   //combo timer reset boolean 
+    private bool[] attackCombo_ = new bool[3];       //array of bools for the attack combos
 
     private Rigidbody2D playerRigidBody_;
 
@@ -73,8 +91,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        UpdateComboAnimations();
+        ComboSystem();
         UpdateMoveTimer();
         UpdateTrackTimer();
+        ResetComboState(activateComboTimerReset_, 2.0f);
     }
 
     void UpdateMoveTimer()
@@ -127,11 +148,11 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        //Attack if you press space and you're not in cooldown
+        /*//Attack if you press space and you're not in cooldown
         if (Input.GetKeyUp(KeyCode.Space) && Time.time > nextFire_)
         {
             Attack();
-        }
+        }*/
     }
 
     public void OnPointerDown()
@@ -180,18 +201,52 @@ public class PlayerController : MonoBehaviour
     public void Attack()
     {
         nextFire_ = Time.time + m_PlayerData.m_FireRate;
-        //Get a bullet from the ObjectPool
-        GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
-        bullet.transform.position = m_SpawnPoint.transform.position;
-        //Determine which direction to fire in
-        if (facingRight_)
+        if(comboChain_ == 0)
         {
-            bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+            //Get a bullet from the ObjectPool
+            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
+            bullet.transform.position = m_SpawnPoint.transform.position;
+            //Determine which direction to fire in
+            if (facingRight_)
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+            else
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+            }
         }
-        else
+        else if (comboChain_ == 1)
         {
-            bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+            //Get a bullet from the ObjectPool
+            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName2, true);
+            bullet.transform.position = m_SpawnPoint.transform.position;
+            //Determine which direction to fire in
+            if (facingRight_)
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+            else
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+            }
         }
+        else if (comboChain_ >= 2)
+        {
+            //Get a bullet from the ObjectPool
+            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName3, true);
+            bullet.transform.position = m_SpawnPoint.transform.position;
+            //Determine which direction to fire in
+            if (facingRight_)
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+            else
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+        }
+       
     }
 
     void Flip()
@@ -264,6 +319,66 @@ public class PlayerController : MonoBehaviour
             m_GameControl.m_UIControl.GasLevel += Constants.BEAN_VALUE;
             Destroy(other.gameObject);
         }
+    }
+    #endregion
+
+    #region Combos
+    void ResetComboState(bool resetName, float restTime)
+    {
+        if (resetName)
+        //if the bool that you pass to the method is true
+        {
+            m_ComboTimer -= Time.deltaTime;
+            //If the parameter bool is set to true, a timer starts, when the timer runs out
+            //m_CurrentComboState is set back to IDLE.
+            if (m_ComboTimer <= 0)
+            {
+                m_CurrentComboState = ComboType.IDLE;
+                comboChain_ = 0;
+                activateComboTimerReset_ = false;
+                m_ComboTimer = restTime;
+            }
+        }
+    }
+
+    void ComboSystem()
+    {
+        if (Input.GetKeyUp(KeyCode.Space) && Time.time > nextFire_)
+        {
+            switch (comboChain_)
+            {
+                //do different attacks in each case
+                case 0:
+                    attackCombo_[0] = true;
+                    Attack();
+                    comboChain_++;
+                    m_CurrentComboState = ComboType.COMBOHIT1;
+                    activateComboTimerReset_ = true;
+                    attackCombo_[0] = false;
+                    break;
+                case 1:
+                    attackCombo_[1] = true;
+                    Attack();
+                    comboChain_++;
+                    m_CurrentComboState = ComboType.COMBOHIT2;
+                    attackCombo_[1] = false;
+                    break;
+                case 2:
+                    attackCombo_[2] = true;
+                    Attack();
+                    comboChain_++;
+                    m_CurrentComboState = ComboType.IDLE;
+                    attackCombo_[2] = false;
+                    break;
+            }
+        }
+    }
+
+    void UpdateComboAnimations()
+    {
+        playerAnimator_.SetBool("IsAttacking1", attackCombo_[0]);
+        playerAnimator_.SetBool("IsAttacking2", attackCombo_[1]);
+        playerAnimator_.SetBool("IsAttacking2", attackCombo_[2]);
     }
     #endregion
 }
