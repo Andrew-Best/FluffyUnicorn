@@ -380,5 +380,10 @@ public class PlayerController : MonoBehaviour
         playerAnimator_.SetBool("IsAttacking2", attackCombo_[1]);
         playerAnimator_.SetBool("IsAttacking2", attackCombo_[2]);
     }
+
+    void PhysicalAttack()
+    {
+
+    }
     #endregion
 }
