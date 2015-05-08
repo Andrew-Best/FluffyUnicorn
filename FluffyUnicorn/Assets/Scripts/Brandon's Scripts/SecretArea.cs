@@ -15,12 +15,13 @@ public class SecretArea : MonoBehaviour
     public int m_EnemyType;                 //number that represents which enemy to spawn
     public int m_DoorCost;                  //how much money you need to unlock the door if the event type is ENOUGHMONEY
     public string m_SecretAreaName = "";    //name of scene yoiu want to move to 
+    public bool m_TriggerEnemies = true;
+
     #endregion
 
     #region private
     private GameObject player_;
     private ArrayList enemyArray_;
-    private bool triggerEnemies_ = true;
     private bool unlockDoor_ = false;
     #endregion
 
@@ -38,19 +39,19 @@ public class SecretArea : MonoBehaviour
 
     void CanUnlockArea()
     {
-        if (enemyArray_ != null)
+        if (enemyArray_ != null && m_TriggerEnemies)
         {
             //all enemies are dead
             if (m_EventType == EventType.ENEMIESDEAD && enemyArray_.Count == 0)
             {
                 //unlock area
                 unlockDoor_ = true;
-            }
-            //have the required amount of money to unlock the door
-            else if(m_EventType == EventType.ENOUGHMONEY && player_.GetComponent<PlayerData>().m_Currency >= m_DoorCost)
-            {
-                unlockDoor_ = true;
-            }
+            } 
+        }
+        //have the required amount of money to unlock the door
+        else if (m_EventType == EventType.ENOUGHMONEY && player_.GetComponent<PlayerData>().m_Currency >= m_DoorCost)
+        {
+            unlockDoor_ = true;
         }
     }
 
@@ -89,9 +90,9 @@ public class SecretArea : MonoBehaviour
         if (other.tag == "Player")
         {
             //initial trigger
-            if (triggerEnemies_)
+            if (m_TriggerEnemies)
             {
-                triggerEnemies_ = false;
+                m_TriggerEnemies = false;
                 //loop through the spawner's length and spawn how ever many enemies are in the containier 
                 for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
                 {
