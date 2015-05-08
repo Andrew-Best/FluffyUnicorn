@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         COMBOHIT3
     };
 
-    public float m_ComboTimer = 2.0f;
+    public float m_ComboTimer = 4.0f;
 
     public ComboType m_CurrentComboState;
 
@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     private float idleTime_ = 0.1f;     //variable used with the timer to determine if the player is idle 
     private float trackTimer_;
     private float trackTime = 0.1f;
+    private float comboAnimationTimer_ = 0.0f;
+    private float maxComboAnimationTIme_ = 4.0f;
 
     private int comboChain_ = 0;
 
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
     private bool buttonHeld_ = false;
     private bool activateComboTimerReset_ = false;   //combo timer reset boolean 
     private bool[] attackCombo_ = new bool[3];       //array of bools for the attack combos
+    private bool updateComboAnimationTimer_ = false;
 
     private Rigidbody2D playerRigidBody_;
 
@@ -92,6 +95,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ComboSystem();
+        UpdateComboAnimations();
+        ResetComboAnimations(attackCombo_);
         UpdateMoveTimer();
         UpdateTrackTimer();
         ResetComboState(activateComboTimerReset_, 2.0f);
@@ -332,6 +337,7 @@ public class PlayerController : MonoBehaviour
             //m_CurrentComboState is set back to IDLE.
             if (m_ComboTimer <= 0)
             {
+                comboAnimationTimer_ = 0.0f;
                 m_CurrentComboState = ComboType.IDLE;
                 comboChain_ = 0;
                 activateComboTimerReset_ = false;
@@ -348,32 +354,35 @@ public class PlayerController : MonoBehaviour
             {
                 //do different attacks in each case
                 case 0:
+              
+                    attackCombo_[2] = false;
                     attackCombo_[0] = true;
                     UpdateComboAnimations();
+                    updateComboAnimationTimer_ = true;
                     Attack();
                     comboChain_++;
                     m_CurrentComboState = ComboType.COMBOHIT1;
                     activateComboTimerReset_ = true;
-                    attackCombo_[0] = false;
-                    UpdateComboAnimations();
                     break;
                 case 1:
+                    comboAnimationTimer_ = 0.0f;
+                    attackCombo_[0] = false;
                     attackCombo_[1] = true;
                     UpdateComboAnimations();
+                    updateComboAnimationTimer_ = true;
                     Attack();
                     comboChain_++;
                     m_CurrentComboState = ComboType.COMBOHIT2;
-                    attackCombo_[1] = false;
-                    UpdateComboAnimations();
                     break;
                 case 2:
+                    comboAnimationTimer_ = 0.0f;
+                    attackCombo_[1] = false;
                     attackCombo_[2] = true;
                     UpdateComboAnimations();
+                    updateComboAnimationTimer_ = true;
                     Attack();
                     comboChain_++;
                     m_CurrentComboState = ComboType.IDLE;
-                    attackCombo_[2] = false;
-                    UpdateComboAnimations();
                     break;
             }
         }
@@ -384,6 +393,27 @@ public class PlayerController : MonoBehaviour
         playerAnimator_.SetBool("IsAttacking1", attackCombo_[0]);
         playerAnimator_.SetBool("IsAttacking2", attackCombo_[1]);
         playerAnimator_.SetBool("IsAttacking3", attackCombo_[2]);
+    }
+
+    void ResetComboAnimations(bool[] array)
+    {
+        if (updateComboAnimationTimer_)
+        {
+            comboAnimationTimer_ += Time.deltaTime;
+            if (comboAnimationTimer_ >= maxComboAnimationTIme_)
+            {
+                for (int i = 0; i < array.Length; ++i)
+                {
+                    if (array[i] == true)
+                    {
+                        attackCombo_[i] = false;
+                    }
+                }
+                comboAnimationTimer_ = 0.0f;
+                UpdateComboAnimations();
+                updateComboAnimationTimer_ = false;
+            }
+        }     
     }
 
     void PhysicalAttack()
