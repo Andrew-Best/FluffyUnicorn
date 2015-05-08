@@ -91,7 +91,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        UpdateComboAnimations();
         ComboSystem();
         UpdateMoveTimer();
         UpdateTrackTimer();
@@ -350,25 +349,31 @@ public class PlayerController : MonoBehaviour
                 //do different attacks in each case
                 case 0:
                     attackCombo_[0] = true;
+                    UpdateComboAnimations();
                     Attack();
                     comboChain_++;
                     m_CurrentComboState = ComboType.COMBOHIT1;
                     activateComboTimerReset_ = true;
                     attackCombo_[0] = false;
+                    UpdateComboAnimations();
                     break;
                 case 1:
                     attackCombo_[1] = true;
+                    UpdateComboAnimations();
                     Attack();
                     comboChain_++;
                     m_CurrentComboState = ComboType.COMBOHIT2;
                     attackCombo_[1] = false;
+                    UpdateComboAnimations();
                     break;
                 case 2:
                     attackCombo_[2] = true;
+                    UpdateComboAnimations();
                     Attack();
                     comboChain_++;
                     m_CurrentComboState = ComboType.IDLE;
                     attackCombo_[2] = false;
+                    UpdateComboAnimations();
                     break;
             }
         }
@@ -378,7 +383,7 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator_.SetBool("IsAttacking1", attackCombo_[0]);
         playerAnimator_.SetBool("IsAttacking2", attackCombo_[1]);
-        playerAnimator_.SetBool("IsAttacking2", attackCombo_[2]);
+        playerAnimator_.SetBool("IsAttacking3", attackCombo_[2]);
     }
 
     void PhysicalAttack()
