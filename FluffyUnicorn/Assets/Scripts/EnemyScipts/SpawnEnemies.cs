@@ -29,7 +29,7 @@ public class SpawnEnemies : MonoBehaviour
 		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 
 		m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newEnemy);
-		newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row);
+		newEnemy.GetComponent<BullyScript>().InitEnemy(mSpawnPos[row].transform.position, row, newEnemy);
 
 	}
 
@@ -43,12 +43,12 @@ public class SpawnEnemies : MonoBehaviour
 				newBoss.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 				if (newBoss.name == "FattestBully")
 				{
-					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row);
+					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
 				else if (newBoss.name == "KingBully")
 				{
-					newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[row].transform.position, row);
+					newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
 				else

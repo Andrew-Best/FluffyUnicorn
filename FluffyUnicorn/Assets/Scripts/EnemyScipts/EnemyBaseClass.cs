@@ -168,8 +168,7 @@ public class EnemyBaseClass : MonoBehaviour
 		{
 			//if the player is less to the left than the enemy's pos - it's line of sight
 			if(playerPos.x > enemyPos.x - lineOfSight)
-			{
-				
+			{				
 				//EnemyStopMotion(bully);
 			}
 			else
@@ -286,14 +285,14 @@ public class EnemyBaseClass : MonoBehaviour
 	#endregion
 
 	#region Creation
-	public virtual void InitEnemy(Vector2 spawnPos, int row)
+	public virtual void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
 	{
-		changeTrackCountdown = m_ChangeTrackTimer;
+		newBully.GetComponent<EnemyBaseClass>().changeTrackCountdown = m_ChangeTrackTimer;
 
-		m_Player = GameObject.FindGameObjectWithTag("Player");
-		m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
+		newBully.GetComponent<EnemyBaseClass>().m_Player = GameObject.FindGameObjectWithTag("Player");
+		newBully.GetComponent<EnemyBaseClass>().m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
 		
-		m_InitialXY = spawnPos;
+		newBully.GetComponent<EnemyBaseClass>().m_InitialXY = spawnPos;
 
 //		m_Bullies = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
 	}
@@ -323,8 +322,9 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyUpdate(List<GameObject> bully)
 	{
-		m_Bullies = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
-		for(int i = 0; i < m_Bullies.Count; ++i)
+		bully = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
+		
+		for(int i = 0; i < bully.Count; ++i)
 		{
 			Debug.Log(bully[i].name);
 			if(bully[i].name != "FattestBully" && bully[i].name != "KingBully")
@@ -380,7 +380,7 @@ public class EnemyBaseClass : MonoBehaviour
 					bully[i].GetComponent<BullyScript>().changeTrackCountdown -= Time.deltaTime;
 				}
 
-				bully[i].GetComponent<BullyScript>().GetComponent<Rigidbody2D>().transform.position = new Vector2(bully[i].GetComponent<BullyScript>().GetComponent<Rigidbody2D>().transform.position.x, bully[i].GetComponent<BullyScript>().m_TargetPoints[m_CurRow].transform.position.y);
+//				bully[i].GetComponent<BullyScript>().GetComponent<Rigidbody2D>().transform.position = new Vector2(bully[i].GetComponent<BullyScript>().GetComponent<Rigidbody2D>().transform.position.x, bully[i].GetComponent<BullyScript>().m_TargetPoints[m_CurRow].transform.position.y);
 
 				if (bully[i].GetComponent<BullyScript>().m_EnemyInMotion)
 				{
@@ -400,7 +400,7 @@ public class EnemyBaseClass : MonoBehaviour
 					{
 						bully[i].GetComponent<BullyScript>().m_AnimationLength -= Time.deltaTime;
 					}
-					if (bully[i].GetComponent<BullyScript>().m_AttackTimer > 0 && m_Bullies[i].GetComponent<BullyScript>().m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
+					if (bully[i].GetComponent<BullyScript>().m_AttackTimer > 0 && bully[i].GetComponent<BullyScript>().m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
 					{
 						bully[i].GetComponent<BullyScript>().m_AttackTimer -= Time.deltaTime;
 					}
@@ -419,6 +419,16 @@ public class EnemyBaseClass : MonoBehaviour
 						bully[i].GetComponent<BullyScript>().m_EnemyInMotion = true;
 					}
 				}
+			}
+			if(bully[i].name == "FattestBully")
+			{
+				GetPlayerInfo(bully[i]);
+				//bully[i].GetComponent<FattestBully>().EnemyUpdate(bully);//EnemyUpdate,, BREAK
+			}
+			else if (bully[i].name == "KingBully")
+			{
+				GetPlayerInfo(bully[i]);
+				//bully[i].GetComponent<KingBully>().EnemyUpdate(bully);
 			}
 			
 		}

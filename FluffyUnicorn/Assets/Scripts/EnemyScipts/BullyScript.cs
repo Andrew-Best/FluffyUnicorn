@@ -17,21 +17,21 @@ public class BullyScript : EnemyBaseClass
 
 
 
-	public override void InitEnemy(Vector2 spawnPos, int row)
+	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
 	{
-		base.InitEnemy(spawnPos, row);
+		base.InitEnemy(spawnPos, row, newBully);
 
-		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
-        LoadFromXML();			//Load bully's stats from xml file
-		m_EnemyInMotion = true;	//Make the enemy move when it is spawned
-		m_EnemyGoingLeft = 1;	//Set the starting direction
-		m_isIdle = true;		//The enemy begins Idle
-		m_InitialXY = spawnPos;	//Get the initial position to "anchor" it to	
+		this.m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
+        this.LoadFromXML();			//Load bully's stats from xml file
+		this.m_EnemyInMotion = true;	//Make the enemy move when it is spawned
+		this.m_EnemyGoingLeft = 1;	//Set the starting direction
+		this.m_isIdle = true;		//The enemy begins Idle
+		this.m_InitialXY = spawnPos;	//Get the initial position to "anchor" it to	
 
 		this.m_UniqueAttackHolder = GameObject.FindGameObjectWithTag("UATKHolder");
 		this.PepperSpray = this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().m_PepperSpray;
 
-		m_CurRow = row;
+		this.m_CurRow = row;
 
 		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
 

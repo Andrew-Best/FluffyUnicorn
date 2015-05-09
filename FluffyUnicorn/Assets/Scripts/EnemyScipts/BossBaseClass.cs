@@ -15,10 +15,11 @@ public class BossBaseClass : EnemyBaseClass
 	public int m_CurFrame;
 	public int m_TotalFrames;
 
-	public override void InitEnemy(Vector2 spawnPos, int row)
+	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
 	{
-		base.InitEnemy(spawnPos, row);
+		base.InitEnemy(spawnPos, row, m_ThisBoss);
 		m_Player = GameObject.FindGameObjectWithTag("Player");
+		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
 		this.m_ThisBoss.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Set Boss Velocity to 0
 	}
 }
