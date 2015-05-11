@@ -100,7 +100,7 @@ public class KingBully : BossBaseClass
 			{
 				this.TurnAround(m_ThisBoss);
 			}
-			DetectPlayer(m_Player.transform.position, enemyPos);
+			DetectPlayer(m_Player.transform.position, m_ThisBoss);
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
@@ -146,7 +146,7 @@ public class KingBully : BossBaseClass
 			{
 				Debug.Log("Reload");
 				this.GetComponent<BeamAttack>().m_Ammo = Constants.KB_WATER_AMMO;
-				//				tempTimer = tempTimerResetVal;
+				//tempTimer = tempTimerResetVal;
 			}
 		}
 

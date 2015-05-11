@@ -56,6 +56,10 @@ public class EnemyBaseClass : MonoBehaviour
 	public bool m_IsDead = false;
 	public bool m_IsABoss = false;
 
+	public bool Row0Occupied = false;
+	public bool Row1Occupied = false;
+	public bool Row2Occupied = false;
+
 	public int m_EnemyGoingLeft = 1; //1 == left, -1 == right
 
 	public Rigidbody2D m_RigidBody;
@@ -94,7 +98,7 @@ public class EnemyBaseClass : MonoBehaviour
 		{
 			bully.GetComponent<EnemyBaseClass>().TurnAround(bully);
 		}
-		DetectPlayer(m_Player.transform.position, enemyPos);
+		DetectPlayer(m_Player.transform.position, bully);
 	}
 
 	public virtual void TurnAround(GameObject bully)
@@ -114,25 +118,84 @@ public class EnemyBaseClass : MonoBehaviour
 		bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion = false; //set bool that prevents movement in the update
 	}
 
-	public virtual void ChangeTrack(GameObject bully)
+	public void CheckOccupiedTracks()
 	{
-		if (!bully.GetComponent<EnemyBaseClass>().m_isIdle)
+		for (int i = 0; i < m_Bullies.Count; ++i)
 		{
-			if (bully.GetComponent<EnemyBaseClass>().m_CurRow < bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow)
+			if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow == 0)
 			{
-				bully.GetComponent<EnemyBaseClass>().m_CurRow++;
+				Row0Occupied = true;
 			}
-			else if (bully.GetComponent<EnemyBaseClass>().m_CurRow > bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow)
+			else { Row0Occupied = false; }
+			if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow == 1)
 			{
-				bully.GetComponent<EnemyBaseClass>().m_CurRow--;
+				Row1Occupied = true;
 			}
-			else //function should not have been called in the first place
+			else { Row1Occupied = false; }
+			if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow == 2)
 			{
-				Debug.Log("Why was this even called?");
+				Row2Occupied = true;
 			}
-			bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position.x, bully.GetComponent<EnemyBaseClass>().m_TargetPoints[m_CurRow].transform.position.y);
-
+			else { Row2Occupied = false; }
 		}
+	}
+
+	public virtual void ChangeTrack(GameObject bully)//Bully will attempt to change tracks to match the player, but will fail if another bully is on that track
+	{
+		CheckOccupiedTracks();
+
+		//Moving UP tracks (DOWN on the screen)
+		if (bully.GetComponent<EnemyBaseClass>().m_CurRow < bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow)//If Bully's track is lower in the index than the player's
+		{
+			if (bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow++ == 1)//if enemy is on track 0 moving to track 1
+			{
+				if (!Row1Occupied)//if row one does not have a bully on it
+				{
+					bully.GetComponent<EnemyBaseClass>().m_CurRow++;//bully changes rows and occupies the new track
+					Row1Occupied = true;
+					Row0Occupied = false;
+				}
+			}
+			else if (bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow++ == 2)//if enemy is on track 1 moving to 2
+			{
+				if (!Row2Occupied)//if track does not have a bully on it
+				{
+					bully.GetComponent<EnemyBaseClass>().m_CurRow++;//bully changes rows and occupies the new track
+					Row2Occupied = true;
+					Row1Occupied = false;
+				}
+			}
+		}
+
+		if (bully.GetComponent<EnemyBaseClass>().m_CurRow > bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow)//If Bully's track is higher in the index than the player's
+		{
+			if (bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow-- == 0)//if enemy is on track 1 moving to track 0
+			{
+				if (!Row0Occupied)//if row zero does not have a bully on it
+				{
+					bully.GetComponent<EnemyBaseClass>().m_CurRow--;//bully changes rows and occupies the new track
+					Row0Occupied = true;
+					Row1Occupied = false;
+				}
+			}
+			else if (bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow-- == 1)//if enemy is on track 2 moving to 1
+			{
+				if (!Row1Occupied)//if track does not have a bully on it
+				{
+					bully.GetComponent<EnemyBaseClass>().m_CurRow--;//bully changes rows and occupies the new track
+					Row1Occupied = true;
+					Row2Occupied = false;
+				}
+			}
+		}
+
+		else //function should not have been called in the first place
+		{
+			Debug.Log("Why was this even called?");
+		}
+		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position =
+			new Vector2(bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position.x,
+			bully.GetComponent<EnemyBaseClass>().m_TargetPoints[m_CurRow].transform.position.y);
 
 	}
 
@@ -148,7 +211,6 @@ public class EnemyBaseClass : MonoBehaviour
 		{
 			lineOfSight = bully.GetComponent<BullyScript>().m_AttackDist;
 		}
-
 
 		#region track change counter
 		if (bully.GetComponent<EnemyBaseClass>().changeTrackCountdown <= 0)//If Timer is at 0
@@ -168,7 +230,6 @@ public class EnemyBaseClass : MonoBehaviour
 			//if the player is less to the right than the currentposition of the enemy's line of sight
 			if (playerPos.x < enemyPos.x + lineOfSight)
 			{
-
 				EnemyStopMotion(bully);
 			}
 			else
@@ -201,27 +262,29 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 	}
 
-	public virtual void DetectPlayer(Vector2 playerPos, Vector2 enemyPos)
+	public virtual void DetectPlayer(Vector2 playerPos, GameObject bully)
 	{
-		Vector2 differenceInDistance = enemyPos - playerPos; //get the difference between the two entities
-		float forwardDetectionX = enemyPos.x - this.GetComponent<EnemyBaseClass>().m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
+		Vector2 differenceInDistance = new Vector2(bully.transform.position.x, bully.transform.position.y) - playerPos; //get the difference between the two entities
+		float forwardDetectionX = bully.transform.position.x - bully.GetComponent<EnemyBaseClass>().m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
 
-		if (this.GetComponent<EnemyBaseClass>().m_CurRow == this.GetComponent<EnemyBaseClass>().m_PlayerCurRow)
+		if (bully.GetComponent<EnemyBaseClass>().m_CurRow == bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow)
 		{
-			/*the difference between the player and bully is less than the detection dist on the right, OR if it is greater than the detection on the left*/
-			if (differenceInDistance.x <= forwardDetectionX || differenceInDistance.x >= -forwardDetectionX)
+			//e - p = differenceInDistance
+			//difference in distance == a line between the two p_____e
+			//if this "line" is shorter than the bully's forwardDetection aka "Line Of Sight" (while the player is to the left) -|____e____|+
+			//or if the "line" is shorter than (player is inside the line) the bully's ForwardDetectionX (while the player is to the right)
+			if (differenceInDistance.x <= forwardDetectionX || differenceInDistance.x <= -forwardDetectionX)
 			{
-				this.GetComponent<EnemyBaseClass>().m_isIdle = false;//then the enemy is no longer Idle	
+				bully.GetComponent<EnemyBaseClass>().m_isIdle = false;//then the enemy is no longer Idle	
 			}
 		}
 		else
 		{
 			if (differenceInDistance.x <= forwardDetectionX)//if the player is within the detection "range" of a bully
 			{
-				this.GetComponent<EnemyBaseClass>().m_isIdle = false;//then the enemy is no longer Idle	
+				bully.GetComponent<EnemyBaseClass>().m_isIdle = false;//then the enemy is no longer Idle	
 			}
 		}
-
 	}
 	#endregion
 
@@ -305,6 +368,7 @@ public class EnemyBaseClass : MonoBehaviour
 		newBully.GetComponent<EnemyBaseClass>().m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
 
 		newBully.GetComponent<EnemyBaseClass>().m_InitialXY = spawnPos;
+		newBully.GetComponent<EnemyBaseClass>().m_isIdle = true;
 
 		//		
 	}
@@ -418,17 +482,15 @@ public class EnemyBaseClass : MonoBehaviour
 		for (int i = 0; i < m_Bullies.Count; ++i)
 		{
 			EnemyUpdate(m_Bullies[i]);
-		}
 
-		#region Keep Bullies away from the same rows if possible
-		if (m_Bullies.Count >= 2)
-		{
-			for (int i = 0; i < m_Bullies.Count; ++i)
+			#region Keep Bullies away from the same rows if possible
+			if (m_Bullies.Count >= 2)
 			{
-				if(!m_Bullies[i].GetComponent<EnemyBaseClass>().m_IsABoss)
+				if (!m_Bullies[i].GetComponent<EnemyBaseClass>().m_IsABoss)
 				{
 					for (int j = 1; j < m_Bullies.Count; ++j)
 					{
+//						Debug.Log(m_Bullies[i].name + " row " + m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow + " vs " + m_Bullies[j].name + " row " + m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow);
 						if (!m_Bullies[j].GetComponent<EnemyBaseClass>().m_IsABoss)
 						{
 							if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow == m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow)
@@ -437,19 +499,21 @@ public class EnemyBaseClass : MonoBehaviour
 								{
 									m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow++;
 								}
-								else if (m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow !=0)
+								else if (m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow != 0)
 								{
 									m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow--;
 								}
-
 							}
-						}							
+						}
 					}
 				}
-				
 			}
+			#endregion
 		}
-		#endregion
+
+
+
+
 	}
 
 }
