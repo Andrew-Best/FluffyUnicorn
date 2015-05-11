@@ -109,7 +109,7 @@ public class UniqueAttackScript : MonoBehaviour
 
 			bullets[i].GetComponent<Rigidbody2D>().velocity = m_Velocity;
 			//change to Screen width
-			if(bullets[i].GetComponent<Rigidbody2D>().transform.position.x <= -100 || bullets[i].GetComponent<Rigidbody2D>().transform.position.x >= 100)
+			if(bullets[i].GetComponent<Rigidbody2D>().transform.position.x <= -25 || bullets[i].GetComponent<Rigidbody2D>().transform.position.x >= 25)
 			{
 				Destroy(bullets[i]);
 				bullets.Remove(bullets[i].gameObject);

@@ -56,7 +56,7 @@ public class KingBully : BossBaseClass
 		Vector2 playerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
 
 		//Detect Player Track
-//		GetPlayerInfo(m_ThisBoss);
+		GetPlayerInfo(this.gameObject);
 
 		//Conditions for changing tracks
 		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
