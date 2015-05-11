@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         COMBOHIT3
     };
 
-    public float m_ComboTimer = 4.0f;   //amount of time you have to reach next combo
+    private float m_ComboTimer = 4.0f;   //amount of time you have to reach next combo
     public float m_ComboTimerLength = 4.0f;
 
 
@@ -346,7 +346,6 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 1:
                     m_ComboTimer = m_ComboTimerLength;
-                    attackCombo_[0] = false;
                     attackCombo_[1] = true;
                     UpdateComboAnimations();                //updates animations so the right one is played     
                     Attack();
@@ -360,7 +359,7 @@ public class PlayerController : MonoBehaviour
                     UpdateComboAnimations();
                     Attack();
                     comboChain_++;
-                    m_CurrentComboState = ComboType.IDLE;
+                   // m_CurrentComboState = ComboType.IDLE;
                     break;
             }
         }
