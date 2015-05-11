@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
         COMBOHIT3
     };
 
-    public float m_ComboTimer = 4.0f;
+    public float m_ComboTimer = 4.0f;   //amount of time you have to reach next combo
+    public float m_ComboTimerLength = 4.0f;
+
 
     public ComboType m_CurrentComboState;
 
@@ -56,7 +58,6 @@ public class PlayerController : MonoBehaviour
     private float trackTimer_;
     private float trackTime = 0.1f;
     private float comboAnimationTimer_ = 0.0f;
-    private float maxComboAnimationTIme_ = 4.0f;
 
     private int comboChain_ = 0;
 
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour
     private bool buttonHeld_ = false;
     private bool activateComboTimerReset_ = false;   //combo timer reset boolean 
     private bool[] attackCombo_ = new bool[3];       //array of bools for the attack combos
-    private bool updateComboAnimationTimer_ = false;
 
     private Rigidbody2D playerRigidBody_;
 
@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         player_ = GameObject.Find("Player");
         playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
         playerAnimator_ = player_.GetComponent<Animator>();
+        m_ComboTimer = m_ComboTimerLength;
     }
 
     void Start()
@@ -96,10 +97,10 @@ public class PlayerController : MonoBehaviour
     {
         ComboSystem();
         UpdateComboAnimations();
-        ResetComboAnimations(attackCombo_);
+        ResetComboAnimations(m_ComboTimerLength);
         UpdateMoveTimer();
         UpdateTrackTimer();
-        ResetComboState(activateComboTimerReset_, 2.0f);
+        ResetComboState(activateComboTimerReset_);
     }
 
     void UpdateMoveTimer()
@@ -327,7 +328,45 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Combos
-    void ResetComboState(bool resetName, float restTime)
+    void ComboSystem()
+    {
+        if (Input.GetKey(KeyCode.A) && Time.time > nextFire_)
+        {
+            switch (comboChain_)
+            {
+                //do different attacks in each case
+                case 0:             
+                    attackCombo_[2] = false;
+                    attackCombo_[0] = true;
+                    UpdateComboAnimations();
+                    Attack();
+                    comboChain_++;
+                    m_CurrentComboState = ComboType.COMBOHIT1;
+                    activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo 
+                    break;
+                case 1:
+                    m_ComboTimer = m_ComboTimerLength;
+                    attackCombo_[0] = false;
+                    attackCombo_[1] = true;
+                    UpdateComboAnimations();                //updates animations so the right one is played     
+                    Attack();
+                    comboChain_++;
+                    m_CurrentComboState = ComboType.COMBOHIT2;
+                    break;
+                case 2:
+                    m_ComboTimer = m_ComboTimerLength;
+                    attackCombo_[1] = false;
+                    attackCombo_[2] = true;
+                    UpdateComboAnimations();
+                    Attack();
+                    comboChain_++;
+                    m_CurrentComboState = ComboType.IDLE;
+                    break;
+            }
+        }
+    }
+
+    void ResetComboState(bool resetName)
     {
         if (resetName)
         //if the bool that you pass to the method is true
@@ -337,88 +376,39 @@ public class PlayerController : MonoBehaviour
             //m_CurrentComboState is set back to IDLE.
             if (m_ComboTimer <= 0)
             {
-                comboAnimationTimer_ = 0.0f;
                 m_CurrentComboState = ComboType.IDLE;
                 comboChain_ = 0;
                 activateComboTimerReset_ = false;
-                m_ComboTimer = restTime;
-            }
-        }
-    }
-
-    void ComboSystem()
-    {
-        if (Input.GetKeyUp(KeyCode.Space) && Time.time > nextFire_)
-        {
-            switch (comboChain_)
-            {
-                //do different attacks in each case
-                case 0:
-              
-                    attackCombo_[2] = false;
-                    attackCombo_[0] = true;
-                    UpdateComboAnimations();
-                    updateComboAnimationTimer_ = true;
-                    Attack();
-                    comboChain_++;
-                    m_CurrentComboState = ComboType.COMBOHIT1;
-                    activateComboTimerReset_ = true;
-                    break;
-                case 1:
-                    comboAnimationTimer_ = 0.0f;
-                    attackCombo_[0] = false;
-                    attackCombo_[1] = true;
-                    UpdateComboAnimations();
-                    updateComboAnimationTimer_ = true;
-                    Attack();
-                    comboChain_++;
-                    m_CurrentComboState = ComboType.COMBOHIT2;
-                    break;
-                case 2:
-                    comboAnimationTimer_ = 0.0f;
-                    attackCombo_[1] = false;
-                    attackCombo_[2] = true;
-                    UpdateComboAnimations();
-                    updateComboAnimationTimer_ = true;
-                    Attack();
-                    comboChain_++;
-                    m_CurrentComboState = ComboType.IDLE;
-                    break;
+                //combo is over so set player back to idle
+                for (int i = 0; i < attackCombo_.Length; ++i)
+                {
+                    attackCombo_[i] = false;
+                }
+                UpdateComboAnimations();
+                m_ComboTimer = m_ComboTimerLength;
             }
         }
     }
 
     void UpdateComboAnimations()
     {
+        //set the animation bools to the corresponding combo bools
         playerAnimator_.SetBool("IsAttacking1", attackCombo_[0]);
         playerAnimator_.SetBool("IsAttacking2", attackCombo_[1]);
         playerAnimator_.SetBool("IsAttacking3", attackCombo_[2]);
     }
 
-    void ResetComboAnimations(bool[] array)
+    void ResetComboAnimations(float maxTime)
     {
-        if (updateComboAnimationTimer_)
+        //Update animations every time the timer reaches the max time 
+        comboAnimationTimer_ += Time.deltaTime;
+        if(comboAnimationTimer_ >= maxTime)
         {
-            comboAnimationTimer_ += Time.deltaTime;
-            if (comboAnimationTimer_ >= maxComboAnimationTIme_)
-            {
-                for (int i = 0; i < array.Length; ++i)
-                {
-                    if (array[i] == true)
-                    {
-                        attackCombo_[i] = false;
-                    }
-                }
-                comboAnimationTimer_ = 0.0f;
-                UpdateComboAnimations();
-                updateComboAnimationTimer_ = false;
-            }
-        }     
+            UpdateComboAnimations();
+            comboAnimationTimer_ = 0.0f;
+        }
     }
 
-    void PhysicalAttack()
-    {
-
-    }
+    void PhysicalAttack(){}
     #endregion
 }
