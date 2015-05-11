@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
         COMBOHIT3
     };
 
-    private float m_ComboTimer = 4.0f;   //amount of time you have to reach next combo
     public float m_ComboTimerLength = 4.0f;
 
 
@@ -53,13 +52,16 @@ public class PlayerController : MonoBehaviour
     private float horizontalMove_;
     private float verticalMove_;
     private float nextFire_;
+    private float nextMeleeAttack_;
     private float timer_;               //timer to count how long the player has lifted the key. This determines if he is idle or just switching directions
     private float idleTime_ = 0.1f;     //variable used with the timer to determine if the player is idle 
     private float trackTimer_;
     private float trackTime = 0.1f;
     private float comboAnimationTimer_ = 0.0f;
+    private float comboTimer_ = 4.0f;   //amount of time you have to reach next combo
 
     private int comboChain_ = 0;
+    private int meleeChain_ = 0;
 
     private bool facingRight_ = true;
     private bool isMoving_ = false;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
     private bool buttonHeld_ = false;
     private bool activateComboTimerReset_ = false;   //combo timer reset boolean 
     private bool[] attackCombo_ = new bool[3];       //array of bools for the attack combos
+    private bool[] meleeCombo = new bool[3];
 
     private Rigidbody2D playerRigidBody_;
 
@@ -79,7 +82,7 @@ public class PlayerController : MonoBehaviour
         player_ = GameObject.Find("Player");
         playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
         playerAnimator_ = player_.GetComponent<Animator>();
-        m_ComboTimer = m_ComboTimerLength;
+        comboTimer_ = m_ComboTimerLength;
     }
 
     void Start()
@@ -96,6 +99,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ComboSystem();
+        BuildCombos();
         UpdateComboAnimations();
         ResetComboAnimations(m_ComboTimerLength);
         UpdateMoveTimer();
@@ -345,7 +349,7 @@ public class PlayerController : MonoBehaviour
                     activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo 
                     break;
                 case 1:
-                    m_ComboTimer = m_ComboTimerLength;
+                    comboTimer_ = m_ComboTimerLength;
                     attackCombo_[1] = true;
                     UpdateComboAnimations();                //updates animations so the right one is played     
                     Attack();
@@ -353,15 +357,24 @@ public class PlayerController : MonoBehaviour
                     m_CurrentComboState = ComboType.COMBOHIT2;
                     break;
                 case 2:
-                    m_ComboTimer = m_ComboTimerLength;
+                    comboTimer_ = m_ComboTimerLength;
                     attackCombo_[1] = false;
                     attackCombo_[2] = true;
                     UpdateComboAnimations();
                     Attack();
                     comboChain_++;
-                   // m_CurrentComboState = ComboType.IDLE;
                     break;
             }
+        }
+        if (Input.GetKey(KeyCode.S) && Time.time > nextMeleeAttack_)
+        {
+            switch (meleeChain_)
+            {
+                case 0:
+                    PhysicalAttack();
+                    break;
+            }
+
         }
     }
 
@@ -370,10 +383,10 @@ public class PlayerController : MonoBehaviour
         if (resetName)
         //if the bool that you pass to the method is true
         {
-            m_ComboTimer -= Time.deltaTime;
+            comboTimer_ -= Time.deltaTime;
             //If the parameter bool is set to true, a timer starts, when the timer runs out
             //m_CurrentComboState is set back to IDLE.
-            if (m_ComboTimer <= 0)
+            if (comboTimer_ <= 0)
             {
                 m_CurrentComboState = ComboType.IDLE;
                 comboChain_ = 0;
@@ -384,7 +397,7 @@ public class PlayerController : MonoBehaviour
                     attackCombo_[i] = false;
                 }
                 UpdateComboAnimations();
-                m_ComboTimer = m_ComboTimerLength;
+                comboTimer_ = m_ComboTimerLength;
             }
         }
     }
@@ -408,6 +421,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void PhysicalAttack(){}
+    void PhysicalAttack()
+    {
+         nextMeleeAttack_ = Time.time + m_PlayerData.m_FireRate;
+         if (meleeChain_ == 0)
+         {
+         }
+    }
+
+    void BuildCombos()
+    {
+        //set states based on what bools are true and false;
+    }
     #endregion
 }
