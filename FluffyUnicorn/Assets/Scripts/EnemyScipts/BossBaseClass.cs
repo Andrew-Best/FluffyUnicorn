@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BossBaseClass : EnemyBaseClass
 {
@@ -21,5 +22,23 @@ public class BossBaseClass : EnemyBaseClass
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
 		this.m_ThisBoss.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Set Boss Velocity to 0
+		this.m_IsABoss = true;
+	}
+
+	void Update()
+	{
+		List<GameObject> enemiesInList = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
+
+		for (int i = 0; i < enemiesInList.Count; ++i)
+		{
+			if (enemiesInList[i].name == "KingBully")
+			{
+				enemiesInList[i].GetComponent<KingBully>().KingUpdate();
+			}
+			if (enemiesInList[i].name == "FattestBully")
+			{
+				enemiesInList[i].GetComponent<FattestBully>().FattestUpdate();
+			}
+		}
 	}
 }

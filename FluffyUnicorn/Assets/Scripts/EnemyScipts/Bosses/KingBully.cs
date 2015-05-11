@@ -35,6 +35,7 @@ public class KingBully : BossBaseClass
 		this.m_Curstate = 0;
 		this.m_BossName = "King Bully";
 		this.m_CurFrame = 0;
+		this.m_CurRow = row;
 
 		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
 
@@ -48,7 +49,7 @@ public class KingBully : BossBaseClass
 
 
 	// Update is called once per frame
-	void KingUpdate()
+	public void KingUpdate()
 	{
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 		

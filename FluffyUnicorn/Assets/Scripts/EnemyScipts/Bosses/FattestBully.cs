@@ -35,6 +35,7 @@ public class FattestBully : BossBaseClass
 		m_Curstate = 0;
 		m_BossName = "Fattest Bully";
 		m_CurFrame = 0;
+		this.m_CurRow = row;
 
 		tempTimer = tempTimerResetVal;
 
@@ -50,7 +51,7 @@ public class FattestBully : BossBaseClass
 
 
 	// Update is called once per frame
-	void FattestUpdate()
+	public void FattestUpdate()
 	{
 //		GetPlayerInfo(this.gameObject);
 

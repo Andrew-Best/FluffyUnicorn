@@ -54,6 +54,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public bool m_isIdle;
 	public bool m_TimerIsCounting; //bool for Timer for changing tracks (primary timer)
     public bool m_IsDead = false;
+	public bool m_IsABoss = false;
 
 	public int m_EnemyGoingLeft = 1; //1 == left, -1 == right
 
@@ -69,37 +70,37 @@ public class EnemyBaseClass : MonoBehaviour
 	#region Enemy Movement
 	public virtual void EnemyMove(GameObject bully)
 	{
-		if(bully.GetComponent<BullyScript>().m_EnemyInMotion)
+		if (bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion)
 		{
-			bully.GetComponent<Rigidbody2D>().velocity = new Vector2(bully.GetComponent<BullyScript>().m_VelocityX, 0);//set the enemy's velocity
+			bully.GetComponent<Rigidbody2D>().velocity = new Vector2(bully.GetComponent<EnemyBaseClass>().m_VelocityX, 0);//set the enemy's velocity
 		}
 		
 	}
 
 	public virtual void EnemyIdle(GameObject bully, Vector2 enemyPos)
 	{
-		
-		float differenceThenNow = bully.GetComponent<BullyScript>().m_InitialXY.x - enemyPos.x;
+
+		float differenceThenNow = bully.GetComponent<EnemyBaseClass>().m_InitialXY.x - enemyPos.x;
 		float pointB = m_MaxDist;
-		float pointA = bully.GetComponent<BullyScript>().m_InitialXY.x + 1;
+		float pointA = bully.GetComponent<EnemyBaseClass>().m_InitialXY.x + 1;
 		//moving right and has passed pointA
-			if (enemyPos.x >= pointA && bully.GetComponent<BullyScript>().m_EnemyGoingLeft == -1)
+		if (enemyPos.x >= pointA && bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft == -1)
 			{
 				enemyPos.x = pointA;
-				bully.GetComponent<BullyScript>().TurnAround(bully);
+				bully.GetComponent<EnemyBaseClass>().TurnAround(bully);
 			}
 			//moving left and has passed point B
-			if (enemyPos.x <= pointB && bully.GetComponent<BullyScript>().m_EnemyGoingLeft == 1)
+		if (enemyPos.x <= pointB && bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft == 1)
 			{
-				bully.GetComponent<BullyScript>().TurnAround(bully);
+				bully.GetComponent<EnemyBaseClass>().TurnAround(bully);
 			}
 			DetectPlayer(m_Player.transform.position, enemyPos);
 	}
 
 	public virtual void TurnAround(GameObject bully)
 	{
-		bully.GetComponent<BullyScript>().m_VelocityX *= -1; //turn the enemy around
-		bully.GetComponent<BullyScript>().m_EnemyGoingLeft *= -1; //tell the enemy it has turned around
+		bully.GetComponent<EnemyBaseClass>().m_VelocityX *= -1; //turn the enemy around
+		bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft *= -1; //tell the enemy it has turned around
 
 		//Brandon's code to fip the animation,,, flips the x 
 		Vector3 theScale = transform.localScale;
@@ -109,26 +110,28 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyStopMotion(GameObject bully)
 	{
-		bully.GetComponent<BullyScript>().m_RigidBody.velocity = new Vector2(0, 0); //freeze position
-		bully.GetComponent<BullyScript>().m_EnemyInMotion = false; //set bool that prevents movement in the update
+		bully.GetComponent<EnemyBaseClass>().m_RigidBody.velocity = new Vector2(0, 0); //freeze position
+		bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion = false; //set bool that prevents movement in the update
 	}
 
 	public virtual void ChangeTrack(GameObject bully)
 	{
-		if(!bully.GetComponent<BullyScript>().m_isIdle)
+		if (!bully.GetComponent<EnemyBaseClass>().m_isIdle)
 		{
-			if (bully.GetComponent<BullyScript>().m_CurRow < bully.GetComponent<BullyScript>().m_PlayerCurRow)
+			if (bully.GetComponent<EnemyBaseClass>().m_CurRow < bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow)
 			{
-				bully.GetComponent<BullyScript>().m_CurRow++;
+				bully.GetComponent<EnemyBaseClass>().m_CurRow++;
 			}
-			else if (bully.GetComponent<BullyScript>().m_CurRow > bully.GetComponent<BullyScript>().m_PlayerCurRow)
+			else if (bully.GetComponent<EnemyBaseClass>().m_CurRow > bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow)
 			{
-				bully.GetComponent<BullyScript>().m_CurRow--;
+				bully.GetComponent<EnemyBaseClass>().m_CurRow--;
 			}
 			else //function should not have been called in the first place
 			{
 				Debug.Log("Why was this even called?");
 			}
+			bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position.x, bully.GetComponent<EnemyBaseClass>().m_TargetPoints[m_CurRow].transform.position.y);
+
 		}
 		
 	}
@@ -136,17 +139,26 @@ public class EnemyBaseClass : MonoBehaviour
 	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
 	{
 		float curEnemyXPOS = enemyPos.x;
-		float lineOfSight = bully.GetComponent<BullyScript>().m_AttackDist;
+		float lineOfSight;
+		if(bully.GetComponent<EnemyBaseClass>().m_IsABoss)
+		{
+			lineOfSight = bully.GetComponent<BossBaseClass>().m_AttackDist;
+		}
+		else
+		{
+			lineOfSight = bully.GetComponent<BullyScript>().m_AttackDist;
+		}
+		
 
 		#region track change counter
-		if (bully.GetComponent<BullyScript>().changeTrackCountdown <= 0)//If Timer is at 0
+		if (bully.GetComponent<EnemyBaseClass>().changeTrackCountdown <= 0)//If Timer is at 0
 		{
-			bully.GetComponent<BullyScript>().changeTrackCountdown = 0; //set the timer to 0
-			bully.GetComponent<BullyScript>().m_TimerIsCounting = false;//prevent the timer from continueing to count down
-			if (bully.GetComponent<BullyScript>().m_PlayerCurRow != bully.GetComponent<BullyScript>().m_CurRow) //If not on the same track
+			bully.GetComponent<EnemyBaseClass>().changeTrackCountdown = 0; //set the timer to 0
+			bully.GetComponent<EnemyBaseClass>().m_TimerIsCounting = false;//prevent the timer from continueing to count down
+			if (bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow != bully.GetComponent<EnemyBaseClass>().m_CurRow) //If not on the same track
 			{
-				bully.GetComponent<BullyScript>().ChangeTrack(bully);//will not change track if Idle
-				bully.GetComponent<BullyScript>().secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
+				bully.GetComponent<EnemyBaseClass>().ChangeTrack(bully);//will not change track if Idle
+				bully.GetComponent<EnemyBaseClass>().secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
 			}
 		}
 		#endregion
@@ -178,35 +190,35 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 
 		//If the enemy is to the left of the player and if the enemy is moving to the right
-		if (enemyPos.x < playerPos.x && bully.GetComponent<BullyScript>().m_VelocityX < 0)
+		if (enemyPos.x < playerPos.x && bully.GetComponent<EnemyBaseClass>().m_VelocityX < 0)
 		{
-			bully.GetComponent<BullyScript>().TurnAround(bully); //correct movement direction
+			bully.GetComponent<EnemyBaseClass>().TurnAround(bully); //correct movement direction
 		}
 		//If the enemy is to the right, and moving left
-		if (enemyPos.x > playerPos.x && bully.GetComponent<BullyScript>().m_VelocityX > 0)
+		if (enemyPos.x > playerPos.x && bully.GetComponent<EnemyBaseClass>().m_VelocityX > 0)
 		{
-			bully.GetComponent<BullyScript>().TurnAround(bully); //correct movement direction
+			bully.GetComponent<EnemyBaseClass>().TurnAround(bully); //correct movement direction
 		}
 	}
 
 	public virtual void DetectPlayer(Vector2 playerPos, Vector2 enemyPos)
 	{
 		Vector2 differenceInDistance = enemyPos - playerPos; //get the difference between the two entities
-		float forwardDetectionX = enemyPos.x - this.GetComponent<BullyScript>().m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
+		float forwardDetectionX = enemyPos.x - this.GetComponent<EnemyBaseClass>().m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
 
-		if(this.GetComponent<BullyScript>().m_CurRow == this.GetComponent<BullyScript>().m_PlayerCurRow)
+		if (this.GetComponent<EnemyBaseClass>().m_CurRow == this.GetComponent<EnemyBaseClass>().m_PlayerCurRow)
 		{
 			/*the difference between the player and bully is less than the detection dist on the right, OR if it is greater than the detection on the left*/
 			if(differenceInDistance.x <= forwardDetectionX || differenceInDistance.x >= -forwardDetectionX)
 			{
-				this.GetComponent<BullyScript>().m_isIdle = false;//then the enemy is no longer Idle	
+				this.GetComponent<EnemyBaseClass>().m_isIdle = false;//then the enemy is no longer Idle	
 			}
 		}
 		else
 		{
 			if (differenceInDistance.x <= forwardDetectionX)//if the player is within the detection "range" of a bully
 			{
-				this.GetComponent<BullyScript>().m_isIdle = false;//then the enemy is no longer Idle	
+				this.GetComponent<EnemyBaseClass>().m_isIdle = false;//then the enemy is no longer Idle	
 			}
 		}
 
@@ -218,44 +230,44 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		int attackSelector = Random.Range(0, 100);
 		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
-		if (bully.GetComponent<BullyScript>().m_CurRow == bully.GetComponent<BullyScript>().m_PlayerCurRow)
+		if (bully.GetComponent<EnemyBaseClass>().m_CurRow == bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow)
 		{			
 //			m_EnemyInMotion = false; //prevent continued motion of the bully
 			if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
 			{
-				bully.GetComponent<BullyScript>().EnemyAttackPunch(bully); //PAWNCH
+				bully.GetComponent<EnemyBaseClass>().EnemyAttackPunch(bully); //PAWNCH
 			}
 			else if (attackSelector <= m_AttackKickOdds)//not less than Punch odds, so check if less than kick odds
 			{
-				bully.GetComponent<BullyScript>().EnemyAttackKick(bully); //Kick
+				bully.GetComponent<EnemyBaseClass>().EnemyAttackKick(bully); //Kick
 			}
 			else if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
 			{
-				bully.GetComponent<BullyScript>().EnemyAttackUnique(bully); //
+				bully.GetComponent<EnemyBaseClass>().EnemyAttackUnique(bully); //
 			}
 		}
 		if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
 		{
-			bully.GetComponent<BullyScript>().EnemyAttackUnique(bully); //
+			bully.GetComponent<EnemyBaseClass>().EnemyAttackUnique(bully); //
 		}
 	}
 
 	public virtual void ResetEnemyAttackTimer(float enemyAttackTimer)
 	{
-		this.GetComponent<BullyScript>().m_AttackTimer = enemyAttackTimer; //reassign the attack timer to the enemy's default
+		this.GetComponent<EnemyBaseClass>().m_AttackTimer = enemyAttackTimer; //reassign the attack timer to the enemy's default
 //		this.m_EnemyInMotion = true; //tell the enemy it can move again
 	}
 
 	public virtual void EnemyAttackPunch(GameObject bully) //This function is overwritten in the BullyScript
 	{
-		bully.GetComponent<BullyScript>().m_BullyWalk.SetBool("IsPunch", true);
+		bully.GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsPunch", true);
 		//play punch animation
 		//set delay for the attack countdown timer to resume only when the animation is done
 	}
 
 	public virtual void EnemyAttackKick(GameObject bully)//This function is overwritten in the BullyScript
 	{
-		bully.GetComponent<BullyScript>().m_BullyWalk.SetBool("IsKick", true);
+		bully.GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsKick", true);
 		//play kick animation
 		//set delay for the attack countdown timer to resume only when the animation is done	
 	}
@@ -365,70 +377,63 @@ public class EnemyBaseClass : MonoBehaviour
 				GetPlayerInfo(bully[i]);
 
 				//Conditions for changing tracks
-				if (!bully[i].GetComponent<BullyScript>().m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
+				if (!bully[i].GetComponent<EnemyBaseClass>().m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
 				{
-					bully[i].GetComponent<BullyScript>().changeTrackCountdown = Constants.TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
-					bully[i].GetComponent<BullyScript>().secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
+					bully[i].GetComponent<EnemyBaseClass>().changeTrackCountdown = Constants.TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
+					bully[i].GetComponent<EnemyBaseClass>().secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
 				}
 				if (secondaryTrackTimer <= 0) //once the secondary timer reaches 0
 				{
-					bully[i].GetComponent<BullyScript>().m_TimerIsCounting = true; //enable the primary timer
-					bully[i].GetComponent<BullyScript>().secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
+					bully[i].GetComponent<EnemyBaseClass>().m_TimerIsCounting = true; //enable the primary timer
+					bully[i].GetComponent<EnemyBaseClass>().secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
 				}
-				if (bully[i].GetComponent<BullyScript>().m_TimerIsCounting)
+				if (bully[i].GetComponent<EnemyBaseClass>().m_TimerIsCounting)
 				{
-					bully[i].GetComponent<BullyScript>().changeTrackCountdown -= Time.deltaTime;
+					bully[i].GetComponent<EnemyBaseClass>().changeTrackCountdown -= Time.deltaTime;
 				}
 
 //				bully[i].GetComponent<BullyScript>().GetComponent<Rigidbody2D>().transform.position = new Vector2(bully[i].GetComponent<BullyScript>().GetComponent<Rigidbody2D>().transform.position.x, bully[i].GetComponent<BullyScript>().m_TargetPoints[m_CurRow].transform.position.y);
 
-				if (bully[i].GetComponent<BullyScript>().m_EnemyInMotion)
+				if (bully[i].GetComponent<EnemyBaseClass>().m_EnemyInMotion)
 				{
-					bully[i].GetComponent<BullyScript>().EnemyMove(bully[i]);
+					bully[i].GetComponent<EnemyBaseClass>().EnemyMove(bully[i]);
 				}
 
-				if (bully[i].GetComponent<BullyScript>().m_isIdle)
+				if (bully[i].GetComponent<EnemyBaseClass>().m_isIdle)
 				{
-					bully[i].GetComponent<BullyScript>().EnemyIdle(bully[i], enemyPos);
+					bully[i].GetComponent<EnemyBaseClass>().EnemyIdle(bully[i], enemyPos);
 				}
 				else // enemy is not idle, therefore player is nearby
 				{
-					bully[i].GetComponent<BullyScript>().ChasePlayer(m_PlayerPos, enemyPos, bully[i]);
+					bully[i].GetComponent<EnemyBaseClass>().ChasePlayer(m_PlayerPos, enemyPos, bully[i]);
 
 					//Animation
-					if (bully[i].GetComponent<BullyScript>().m_AnimationLength > 0) //if animating, subtract Delta.Time
+					if (bully[i].GetComponent<EnemyBaseClass>().m_AnimationLength > 0) //if animating, subtract Delta.Time
 					{
-						bully[i].GetComponent<BullyScript>().m_AnimationLength -= Time.deltaTime;
+						bully[i].GetComponent<EnemyBaseClass>().m_AnimationLength -= Time.deltaTime;
 					}
-					if (bully[i].GetComponent<BullyScript>().m_AttackTimer > 0 && bully[i].GetComponent<BullyScript>().m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
+					if (bully[i].GetComponent<EnemyBaseClass>().m_AttackTimer > 0 && bully[i].GetComponent<EnemyBaseClass>().m_AnimationLength <= 0) //if the enemy isn't cooled down, and is not animating
 					{
-						bully[i].GetComponent<BullyScript>().m_AttackTimer -= Time.deltaTime;
+						bully[i].GetComponent<EnemyBaseClass>().m_AttackTimer -= Time.deltaTime;
 					}
-					if (bully[i].GetComponent<BullyScript>().m_AttackTimer <= 0 && bully[i].GetComponent<BullyScript>().m_BullyWalk.GetBool("IsPunch") == false && bully[i].GetComponent<BullyScript>().m_BullyWalk.GetBool("IsKick") == false && bully[i].GetComponent<BullyScript>().m_BullyWalk.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
+					if (bully[i].GetComponent<EnemyBaseClass>().m_AttackTimer <= 0 && bully[i].GetComponent<EnemyBaseClass>().m_BullyWalk.GetBool("IsPunch") == false && bully[i].GetComponent<EnemyBaseClass>().m_BullyWalk.GetBool("IsKick") == false && bully[i].GetComponent<EnemyBaseClass>().m_BullyWalk.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
 					{
-						bully[i].GetComponent<BullyScript>().m_AttackTimer = 0;
+						bully[i].GetComponent<EnemyBaseClass>().m_AttackTimer = 0;
 						EnemyAttack(bully[i]);
 					}
 
-					if (bully[i].GetComponent<BullyScript>().m_AnimationLength <= 0)
+					if (bully[i].GetComponent<EnemyBaseClass>().m_AnimationLength <= 0)
 					{
-						bully[i].GetComponent<BullyScript>().m_AnimationLength = 0;
-						bully[i].GetComponent<BullyScript>().m_BullyWalk.SetBool("IsPunch", false);
-						bully[i].GetComponent<BullyScript>().m_BullyWalk.SetBool("IsKick", false);
-						bully[i].GetComponent<BullyScript>().m_BullyWalk.SetBool("IsUnique", false);
-						bully[i].GetComponent<BullyScript>().m_EnemyInMotion = true;
+						bully[i].GetComponent<EnemyBaseClass>().m_AnimationLength = 0;
+						bully[i].GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsPunch", false);
+						bully[i].GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsKick", false);
+						bully[i].GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsUnique", false);
+						bully[i].GetComponent<EnemyBaseClass>().m_EnemyInMotion = true;
 					}
 				}
 			}
-			if(bully[i].name == "FattestBully")
+			else
 			{
-				GetPlayerInfo(bully[i]);
-				//bully[i].GetComponent<FattestBully>().EnemyUpdate(bully);//EnemyUpdate,, BREAK
-			}
-			else if (bully[i].name == "KingBully")
-			{
-				GetPlayerInfo(bully[i]);
-				//bully[i].GetComponent<KingBully>().EnemyUpdate(bully);
 			}
 			
 		}
