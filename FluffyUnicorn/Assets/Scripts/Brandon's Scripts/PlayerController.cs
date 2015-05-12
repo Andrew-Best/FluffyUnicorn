@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
     private bool activateComboTimerReset_ = false;   //combo timer reset boolean 
     private bool[] attackCombo_ = new bool[3];       //array of bools for the attack combos
     private bool[] meleeCombo = new bool[3];
+    private bool[] combinedCombos = new bool[3];
 
     private Rigidbody2D playerRigidBody_;
 
@@ -101,8 +102,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        ComboSystem();
         BuildCombos();
+        ComboSystem();
         UpdateComboAnimations();
         ResetComboAnimations(m_ComboTimerLength);
         UpdateMoveTimer();
@@ -210,57 +211,6 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public void Attack()
-    {
-        nextFire_ = Time.time + m_PlayerData.m_FireRate;
-        if(comboChain_ == 0)
-        {
-            //Get a bullet from the ObjectPool
-            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
-            bullet.transform.position = m_SpawnPoint.transform.position;
-            //Determine which direction to fire in
-            if (facingRight_)
-            {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
-            }
-            else
-            {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
-            }
-        }
-        else if (comboChain_ == 1)
-        {
-            //Get a bullet from the ObjectPool
-            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName2, true);
-            bullet.transform.position = m_SpawnPoint.transform.position;
-            //Determine which direction to fire in
-            if (facingRight_)
-            {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
-            }
-            else
-            {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
-            }
-        }
-        else if (comboChain_ >= 2)
-        {
-            //Get a bullet from the ObjectPool
-            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName3, true);
-            bullet.transform.position = m_SpawnPoint.transform.position;
-            //Determine which direction to fire in
-            if (facingRight_)
-            {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
-            }
-            else
-            {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
-            }
-        }
-       
-    }
-
     void Flip()
     {
         facingRight_ = !facingRight_;
@@ -341,6 +291,7 @@ public class PlayerController : MonoBehaviour
     #region Combos
     void ComboSystem()
     {
+        #region Projectile Attack
         if (Input.GetKey(KeyCode.A) && Time.time > nextFire_)
         {
             switch (comboChain_)
@@ -372,7 +323,11 @@ public class PlayerController : MonoBehaviour
                     comboChain_++;
                     break;
             }
+            ComboAttack();
         }
+        #endregion
+
+        #region Melee Attack
         if (Input.GetKey(KeyCode.S) && Time.time > nextMeleeAttack_)
         {
             switch (meleeChain_)
@@ -384,8 +339,7 @@ public class PlayerController : MonoBehaviour
                     UpdateComboAnimations();
                     PhysicalAttack();
                     meleeChain_++;
-                    playerBoxCollider_.isTrigger = true;
-                    UpdateComboAnimations();                 
+                    playerBoxCollider_.isTrigger = true;               
                     activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo
                     break;
 
@@ -396,7 +350,6 @@ public class PlayerController : MonoBehaviour
                     PhysicalAttack();
                     meleeChain_++;
                     playerBoxCollider_.isTrigger = true;
-                    UpdateComboAnimations();
                     break;
 
                 case 2:
@@ -407,16 +360,17 @@ public class PlayerController : MonoBehaviour
                     PhysicalAttack();
                     meleeChain_++;
                     playerBoxCollider_.isTrigger = true;
-                    UpdateComboAnimations();
                     break;
             }
+            ComboAttack();
         }
+        #endregion
     }
 
     void ResetComboState(bool resetName)
     {
-        if (resetName)
         //if the bool that you pass to the method is true
+        if (resetName)
         {
             comboTimer_ -= Time.deltaTime;
             //If the parameter bool is set to true, a timer starts, when the timer runs out
@@ -437,6 +391,10 @@ public class PlayerController : MonoBehaviour
                 for (int i = 0; i < meleeCombo.Length; ++i)
                 {
                     meleeCombo[i] = false;
+                }
+                for (int i = 0; i < combinedCombos.Length; ++i)
+                {
+                    combinedCombos[i] = false;
                 }
                 UpdateComboAnimations();
                 comboTimer_ = m_ComboTimerLength;
@@ -466,6 +424,57 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Attack()
+    {
+        nextFire_ = Time.time + m_PlayerData.m_FireRate;
+        if (comboChain_ == 0)
+        {
+            //Get a bullet from the ObjectPool
+            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
+            bullet.transform.position = m_SpawnPoint.transform.position;
+            //Determine which direction to fire in
+            if (facingRight_)
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+            else
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+        }
+        else if (comboChain_ == 1)
+        {
+            //Get a bullet from the ObjectPool
+            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName2, true);
+            bullet.transform.position = m_SpawnPoint.transform.position;
+            //Determine which direction to fire in
+            if (facingRight_)
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+            else
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+        }
+        else if (comboChain_ >= 2)
+        {
+            //Get a bullet from the ObjectPool
+            GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName3, true);
+            bullet.transform.position = m_SpawnPoint.transform.position;
+            //Determine which direction to fire in
+            if (facingRight_)
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+            else
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+            }
+        }
+
+    }
+
     void PhysicalAttack()
     {
          nextMeleeAttack_ = Time.time + m_PlayerData.m_FireRate;
@@ -486,9 +495,30 @@ public class PlayerController : MonoBehaviour
          }      
     }
 
+    void ComboAttack()
+    {
+        if (attackCombo_[0] == true)
+        {
+            comboTimer_ = m_ComboTimerLength;
+            UpdateComboAnimations();
+            PhysicalAttack();
+            Attack();
+            activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo 
+        }
+    }
+
     void BuildCombos()
     {
         //set states based on what bools are true and false;
+        if (attackCombo_[0] == true && meleeCombo[0] == true)
+        {
+            combinedCombos[0] = true;
+
+        }
+        else
+        {
+            //do nothing
+        }
     }
     #endregion
 }
