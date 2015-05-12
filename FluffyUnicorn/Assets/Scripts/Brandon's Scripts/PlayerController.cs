@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     };
 
     public float m_ComboTimerLength = 4.0f;
-
-
+    public float m_PhysicalDamage = 1.0f;
+    public float[] m_PhysicalDamageIncreases = new float[4];    //as physical combos go up so will the physical damage
     public ComboType m_CurrentComboState;
 
     /*public float m_MaxSpeed = 5.0f;
@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public bool m_onFrontTrack = true;
     public bool m_onMiddleTrack = false;
     public bool m_onLastTrack = false;
+    public bool m_IsHitting = false;     //determine if the player is using his physical attack
     #endregion
 
     #region private variables
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigidBody_;
 
     private Animator playerAnimator_;
+    private BoxCollider2D playerBoxCollider_;
     #endregion
     
 
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
         player_ = GameObject.Find("Player");
         playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
         playerAnimator_ = player_.GetComponent<Animator>();
+        playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
         comboTimer_ = m_ComboTimerLength;
     }
 
@@ -328,6 +331,10 @@ public class PlayerController : MonoBehaviour
             m_GameControl.m_UIControl.GasLevel += Constants.BEAN_VALUE;
             Destroy(other.gameObject);
         }
+        else if (m_IsHitting)
+        {
+            //attack enemies and do your thing
+        }
     }
     #endregion
 
@@ -374,7 +381,6 @@ public class PlayerController : MonoBehaviour
                     PhysicalAttack();
                     break;
             }
-
         }
     }
 
@@ -391,6 +397,8 @@ public class PlayerController : MonoBehaviour
                 m_CurrentComboState = ComboType.IDLE;
                 comboChain_ = 0;
                 activateComboTimerReset_ = false;
+                m_IsHitting = false;
+                playerBoxCollider_.isTrigger = false;
                 //combo is over so set player back to idle
                 for (int i = 0; i < attackCombo_.Length; ++i)
                 {
@@ -426,7 +434,29 @@ public class PlayerController : MonoBehaviour
          nextMeleeAttack_ = Time.time + m_PlayerData.m_FireRate;
          if (meleeChain_ == 0)
          {
+             m_IsHitting = true;
+             playerBoxCollider_.isTrigger = true;
+             UpdateComboAnimations();
+             comboTimer_ = m_ComboTimerLength;
+             m_PhysicalDamage = m_PhysicalDamageIncreases[0];  //reset attack damage back to default
+             activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo 
          }
+         else if (meleeChain_ == 1)
+         {
+             m_IsHitting = true;
+             playerBoxCollider_.isTrigger = true;
+             UpdateComboAnimations();
+             comboTimer_ = m_ComboTimerLength;
+             m_PhysicalDamage += m_PhysicalDamageIncreases[1];
+         }
+         else if (meleeChain_ == 2)
+         {
+             m_IsHitting = true;
+             playerBoxCollider_.isTrigger = true;
+             UpdateComboAnimations();
+             comboTimer_ = m_ComboTimerLength;
+             m_PhysicalDamage += m_PhysicalDamageIncreases[2];
+         }      
     }
 
     void BuildCombos()
