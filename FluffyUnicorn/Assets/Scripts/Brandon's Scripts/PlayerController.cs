@@ -378,7 +378,36 @@ public class PlayerController : MonoBehaviour
             switch (meleeChain_)
             {
                 case 0:
+                    comboTimer_ = m_ComboTimerLength;
+                    meleeCombo[0] = true;
+                    meleeCombo[2] = false;
+                    UpdateComboAnimations();
                     PhysicalAttack();
+                    meleeChain_++;
+                    playerBoxCollider_.isTrigger = true;
+                    UpdateComboAnimations();                 
+                    activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo
+                    break;
+
+                case 1:
+                    comboTimer_ = m_ComboTimerLength;
+                    meleeCombo[1] = true;
+                    UpdateComboAnimations();
+                    PhysicalAttack();
+                    meleeChain_++;
+                    playerBoxCollider_.isTrigger = true;
+                    UpdateComboAnimations();
+                    break;
+
+                case 2:
+                    comboTimer_ = m_ComboTimerLength;
+                    meleeCombo[1] = false;
+                    meleeCombo[2] = true;
+                    UpdateComboAnimations();
+                    PhysicalAttack();
+                    meleeChain_++;
+                    playerBoxCollider_.isTrigger = true;
+                    UpdateComboAnimations();
                     break;
             }
         }
@@ -396,6 +425,7 @@ public class PlayerController : MonoBehaviour
             {
                 m_CurrentComboState = ComboType.IDLE;
                 comboChain_ = 0;
+                meleeChain_ = 0;
                 activateComboTimerReset_ = false;
                 m_IsHitting = false;
                 playerBoxCollider_.isTrigger = false;
@@ -403,6 +433,10 @@ public class PlayerController : MonoBehaviour
                 for (int i = 0; i < attackCombo_.Length; ++i)
                 {
                     attackCombo_[i] = false;
+                }
+                for (int i = 0; i < meleeCombo.Length; ++i)
+                {
+                    meleeCombo[i] = false;
                 }
                 UpdateComboAnimations();
                 comboTimer_ = m_ComboTimerLength;
@@ -416,6 +450,9 @@ public class PlayerController : MonoBehaviour
         playerAnimator_.SetBool("IsAttacking1", attackCombo_[0]);
         playerAnimator_.SetBool("IsAttacking2", attackCombo_[1]);
         playerAnimator_.SetBool("IsAttacking3", attackCombo_[2]);
+        playerAnimator_.SetBool("IsPunching1", meleeCombo[0]);
+        playerAnimator_.SetBool("IsPunching2", meleeCombo[1]);
+        playerAnimator_.SetBool("IsPunching3", meleeCombo[2]);
     }
 
     void ResetComboAnimations(float maxTime)
@@ -435,26 +472,16 @@ public class PlayerController : MonoBehaviour
          if (meleeChain_ == 0)
          {
              m_IsHitting = true;
-             playerBoxCollider_.isTrigger = true;
-             UpdateComboAnimations();
-             comboTimer_ = m_ComboTimerLength;
              m_PhysicalDamage = m_PhysicalDamageIncreases[0];  //reset attack damage back to default
-             activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo 
          }
          else if (meleeChain_ == 1)
          {
              m_IsHitting = true;
-             playerBoxCollider_.isTrigger = true;
-             UpdateComboAnimations();
-             comboTimer_ = m_ComboTimerLength;
              m_PhysicalDamage += m_PhysicalDamageIncreases[1];
          }
          else if (meleeChain_ == 2)
          {
              m_IsHitting = true;
-             playerBoxCollider_.isTrigger = true;
-             UpdateComboAnimations();
-             comboTimer_ = m_ComboTimerLength;
              m_PhysicalDamage += m_PhysicalDamageIncreases[2];
          }      
     }
