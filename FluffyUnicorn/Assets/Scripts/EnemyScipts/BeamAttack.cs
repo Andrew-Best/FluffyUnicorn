@@ -32,21 +32,13 @@ public class BeamAttack : MonoBehaviour
 
 		float beamSpeed = projectile.GetComponent<LaserScript>().m_Accel;
 
-		if(bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft == 1)
+		if(bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft > 0)//Left is 1, Right is -1
 		{
-			beamSpeed *= -1;
+			beamSpeed *= -1;//default is 10 (moving right)
 		}
 		projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(beamSpeed, 0.0f);
-		
-
-//		projectile.transform.Rotate(0.0f, 0.0f, this.m_Rotation);
-
-//		projectile.layer = LayerMask.NameToLayer(collisionLayer);
-
-		//		projectile.GetComponent<ParticleSystem>().Play();
 
 		this.m_CooldownTimer = m_Cooldown;
 		this.m_Ammo--;
-	}
-	
+	}	
 }

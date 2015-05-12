@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class UniqueAttackScript : MonoBehaviour
 {
 	public GameObject m_PepperSpray;
+	public GameObject m_UATKController;
 	public List<GameObject> bullets = new List<GameObject>();
 
 	public Vector2 m_Velocity;
@@ -21,7 +22,7 @@ public class UniqueAttackScript : MonoBehaviour
 	private bool BlingUATK_;
 	private bool PepperUATK_;
 
-	public const float DEFAULT_PEPPER_SPEED = 5;
+	public const float DEFAULT_PEPPER_SPEED = 5;//Move to Constants file (default moves to the right)
 
 	public void Start()
 	{
@@ -37,7 +38,6 @@ public class UniqueAttackScript : MonoBehaviour
 		this.m_AttackUniqueAnimLength = Constants.BULLY_UNIQUE_ATK_LENGTH;
 		this.AttackUniqueCurTime = 0;
 		//water gun animation
-
 	}
 
 	public void FatUniqueAttack(GameObject bully)//Requires Animation
@@ -49,7 +49,7 @@ public class UniqueAttackScript : MonoBehaviour
 
 		this.FatUATK_ = true;
 
-		bully.GetComponent<Rigidbody2D>().velocity = this.m_Velocity * 2;
+		bully.GetComponent<Rigidbody2D>().velocity = this.m_Velocity * 2;	
 	}
 
 	public void JockUniqueAttack(GameObject bully)//Requires Animation
@@ -83,16 +83,12 @@ public class UniqueAttackScript : MonoBehaviour
 		//Get a bullet from the ObjectPool
 		GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
 		bullet.transform.position = bully.transform.position;
-		if(bully.GetComponent<EnemyBaseClass>().m_VelocityX < 0)//if bully moving left
+		this.GetComponent<UniqueAttackScript>().m_ShotSpeed = DEFAULT_PEPPER_SPEED;//positive number, moves to the right
+		if(bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft > 0)//if bully moving left
 		{
-			this.m_ShotSpeed *= -1;
+			this.GetComponent<UniqueAttackScript>().m_ShotSpeed *= -1;//make the shot go left
 		}
-		else
-		{
-			this.m_ShotSpeed = DEFAULT_PEPPER_SPEED;
-		}
-		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(this.m_ShotSpeed, 0);
-
+		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<UniqueAttackScript>().m_ShotSpeed, 0);
 		bullets.Add(bullet);
 
 		this.m_AttackUniqueAnimLength = Constants.PEPPER_UNIQUE_ATK_LENGTH;
@@ -105,15 +101,15 @@ public class UniqueAttackScript : MonoBehaviour
 		//update Pepper Spray
 		for(int i = 0; i < bullets.Count; ++i)
 		{
-			m_Velocity = new Vector2(this.GetComponent<UniqueAttackScript>().m_ShotSpeed, 0);
-
-			bullets[i].GetComponent<Rigidbody2D>().velocity = m_Velocity;
+			//bullets[i].GetComponent<Rigidbody2D>().velocity = this.m_Velocity;
 			//change to Screen width
 			if(bullets[i].GetComponent<Rigidbody2D>().transform.position.x <= -25 || bullets[i].GetComponent<Rigidbody2D>().transform.position.x >= 25)
 			{
 				Destroy(bullets[i]);
 				bullets.Remove(bullets[i].gameObject);
 			}
+			
+//			if(Collider2D)
 		}
 		//update Water Gun
 		if (this.BullyUATK_)
