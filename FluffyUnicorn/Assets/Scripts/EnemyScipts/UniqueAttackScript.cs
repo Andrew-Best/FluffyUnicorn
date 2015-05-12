@@ -22,11 +22,11 @@ public class UniqueAttackScript : MonoBehaviour
 	private bool BlingUATK_;
 	private bool PepperUATK_;
 
-	public const float DEFAULT_PEPPER_SPEED = 5;//Move to Constants file (default moves to the right)
+	
 
 	public void Start()
 	{
-		m_ShotSpeed = DEFAULT_PEPPER_SPEED;
+		m_ShotSpeed = Constants.DEFAULT_PEPPER_SPEED;
 	}	
 
 	public void BullyUniqueAttack(GameObject bully)//Done
@@ -83,7 +83,7 @@ public class UniqueAttackScript : MonoBehaviour
 		//Get a bullet from the ObjectPool
 		GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
 		bullet.transform.position = bully.transform.position;
-		this.GetComponent<UniqueAttackScript>().m_ShotSpeed = DEFAULT_PEPPER_SPEED;//positive number, moves to the right
+		this.GetComponent<UniqueAttackScript>().m_ShotSpeed = Constants.DEFAULT_PEPPER_SPEED;//positive number, moves to the right
 		if(bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft > 0)//if bully moving left
 		{
 			this.GetComponent<UniqueAttackScript>().m_ShotSpeed *= -1;//make the shot go left
@@ -103,6 +103,10 @@ public class UniqueAttackScript : MonoBehaviour
 		{
 			//bullets[i].GetComponent<Rigidbody2D>().velocity = this.m_Velocity;
 			//change to Screen width
+			if(bullets[i] == null)
+			{
+				bullets.Remove(bullets[i].gameObject);
+			}
 			if(bullets[i].GetComponent<Rigidbody2D>().transform.position.x <= -25 || bullets[i].GetComponent<Rigidbody2D>().transform.position.x >= 25)
 			{
 				Destroy(bullets[i]);

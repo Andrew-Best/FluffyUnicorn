@@ -33,6 +33,7 @@ public class Constants : MonoBehaviour
 	public const float PEPPER_UNIQUE_ATK_LENGTH = 4;//likely not even used
 	public const float FAT_UNIQUE_ATK_LENGTH = 8;
 	public const float JOCK_UNIQUE_ATK_LENGTH = 4;
+	public const float DEFAULT_PEPPER_SPEED = 5;
 
 
     public const float BULLY_MAX_TRAVEL_DIST = 3;
@@ -47,8 +48,12 @@ public class Constants : MonoBehaviour
 	public const float KB_WATER_GUN_LENGTH = 4;
 	public const int KB_WATER_AMMO = 99;
 
+	public const float QUEEN_BULLY_HP = 25;
+
 	public const float MAX_FATTEST_HEIGHT = 100.0f;
 	public const float FATTEST_BULLY_JUMP_TIMER = 2;
+
+
 	#endregion
 
     #region Upgrades
