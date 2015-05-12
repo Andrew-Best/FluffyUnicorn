@@ -3,7 +3,11 @@ using System.Collections;
 
 public class QueenBully : BossBaseClass 
 {
+	public GameObject m_Junk;
+	public string m_JunkName;
 
+	public Vector2 m_ThrowForce;
+	private Vector2 playerPosition_;
 	// Use this for initialization
 	void Start () 
 	{
@@ -14,6 +18,43 @@ public class QueenBully : BossBaseClass
 	void Update () 
 	{
 	
+	}
+
+	public void ThrowStuff(GameObject bully, GameObject junk)//Done
+	{
+
+		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
+		//First, Get the Boss' position
+		//Next, get object from pool
+		int JunkSelect = Random.Range(0, 3);
+		if(JunkSelect == 1)
+		{
+			m_JunkName = "PopCan";
+		}
+		else if(JunkSelect == 2)
+		{
+			m_JunkName = "DeadFish";
+		}
+		else
+		{
+			m_JunkName = "BurntToast";
+		}
+		GameObject m_Junk = ObjectPool.Instance.GetObjectForType(m_JunkName, true);
+		//get player position
+		GetPlayerInfo(bully);
+		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
+		//send object in an arc toward the player
+
+		//Get a bullet from the ObjectPool
+		
+		m_Junk.transform.position = bully.transform.position;
+		
+		if (bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft > 0)//if bully moving left
+		{
+			m_ThrowForce.x *= -1;//make the junk go left
+		}
+		m_Junk.GetComponent<Rigidbody2D>().velocity = new Vector2(m_ThrowForce.x, m_ThrowForce.y);
+
 	}
 
 	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
