@@ -23,13 +23,15 @@ public class QueenBully : BossBaseClass
 	{
 		if(timeUntilNextThrow_ > 0)
 		{
+//			this.GetComponent<QueenBully>();
+			GetComponent<EnemyBaseClass>().m_BullyWalk.SetFloat("TimeUntilNextThrow", 10);
 			timeUntilNextThrow_-=Time.deltaTime;
 		}
 		else
 		{
 //			m_JunkName = "DeadFish";//Junk Selector
 //			m_Junk = ObjectPool.Instance.GetObjectForType(m_JunkName, true);
-
+			GetComponent<EnemyBaseClass>().m_BullyWalk.SetFloat("TimeUntilNextThrow", 0);
 			ThrowStuff(this.gameObject, m_Junk);
 			timeUntilNextThrow_ = DEFAULT_TIME_UNTIL_THROW;
 		}
@@ -60,12 +62,6 @@ public class QueenBully : BossBaseClass
 		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
 		m_Junk.transform.position = bully.transform.position;
 		//send object in an arc toward the player
-/*		if (bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft > 0)//if bully moving left
-		{
-			m_ThrowForce.x *= -1;//make the junk go left
-		}*/
-//		m_Junk.GetComponent<Rigidbody2D>().velocity = new Vector2(m_ThrowForce.x, m_ThrowForce.y);
-
 	}
 
 	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
