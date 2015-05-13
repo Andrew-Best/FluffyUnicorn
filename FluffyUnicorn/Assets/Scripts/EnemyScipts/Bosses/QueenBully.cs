@@ -17,12 +17,12 @@ public class QueenBully : BossBaseClass
 	// Update is called once per frame
 	void Update () 
 	{
+		
 	
 	}
 
 	public void ThrowStuff(GameObject bully, GameObject junk)//Done
 	{
-
 		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 		//First, Get the Boss' position
 		//Next, get object from pool
@@ -43,12 +43,8 @@ public class QueenBully : BossBaseClass
 		//get player position
 		GetPlayerInfo(bully);
 		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
-		//send object in an arc toward the player
-
-		//Get a bullet from the ObjectPool
-		
 		m_Junk.transform.position = bully.transform.position;
-		
+		//send object in an arc toward the player
 		if (bully.GetComponent<EnemyBaseClass>().m_EnemyGoingLeft > 0)//if bully moving left
 		{
 			m_ThrowForce.x *= -1;//make the junk go left
