@@ -10,7 +10,18 @@ public class JunkScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-	
+		if(this.name == "DeadFish")
+		{
+			m_HP = Constants.DEAD_FISH_HP;
+		}
+		if (this.name == "DeadFish")
+		{
+			m_HP = Constants.POP_CAN_HP;
+		}
+		if (this.name == "DeadFish")
+		{
+			m_HP = Constants.BURNT_TOAST_HP;
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)

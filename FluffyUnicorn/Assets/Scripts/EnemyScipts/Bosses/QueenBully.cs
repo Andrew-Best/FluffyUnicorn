@@ -8,6 +8,10 @@ public class QueenBully : BossBaseClass
 
 	public Vector2 m_ThrowForce;
 	private Vector2 playerPosition_;
+
+	private float timeUntilNextThrow_;
+	public const float DEFAULT_TIME_UNTIL_THROW = 10;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -17,7 +21,18 @@ public class QueenBully : BossBaseClass
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		if(timeUntilNextThrow_ > 0)
+		{
+			timeUntilNextThrow_--;
+		}
+		else
+		{
+//			m_JunkName = "DeadFish";//Junk Selector
+//			m_Junk = ObjectPool.Instance.GetObjectForType(m_JunkName, true);
+
+			ThrowStuff(this.gameObject, m_Junk);
+			timeUntilNextThrow_ = DEFAULT_TIME_UNTIL_THROW;
+		}
 	
 	}
 
