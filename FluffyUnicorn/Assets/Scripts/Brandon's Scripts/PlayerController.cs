@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D playerBoxCollider_;
     #endregion
 
-
     void SetValues()
     {
         player_ = GameObject.Find("Player");
@@ -419,6 +418,9 @@ public class PlayerController : MonoBehaviour
         playerAnimator_.SetBool("IsPunching1", meleeCombo[0]);
         playerAnimator_.SetBool("IsPunching2", meleeCombo[1]);
         playerAnimator_.SetBool("IsPunching3", meleeCombo[2]);
+        playerAnimator_.SetBool("CombinedCombo1", combinedCombos[0]);
+        playerAnimator_.SetBool("CombinedCombo2", combinedCombos[1]);
+        playerAnimator_.SetBool("CombinedCombo3", combinedCombos[2]);
     }
 
     void ResetComboAnimations(float maxTime)
