@@ -51,7 +51,7 @@ public class Constants : MonoBehaviour
 	public const int KB_WATER_AMMO = 99;
 
 	public const float QUEEN_BULLY_HP = 25;
-	public const float DEFAULT_TIME_UNTIL_THROW = 10;
+	public const float DEFAULT_TIME_UNTIL_THROW = 20;
 	public const float DEAD_FISH_HP = 3;
 	public const float POP_CAN_HP = 5;
 	public const float BURNT_TOAST_HP = 1;
