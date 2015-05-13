@@ -38,7 +38,8 @@ public class PlayerController : MonoBehaviour
     public int m_PlayerHealth = Constants.PLAYER_DEFAULT_MAX_HEALTH;
     public int m_PlayerDamage = 1;
     public int m_Currency = 0;
-    public int m_CurrencyScalar = 1;*/        //use to determine how much curency the player gains 
+    public int m_CurrencyScalar = 1;*/
+    //use to determine how much curency the player gains 
 
     //used to keep track of what track the player is on
     public bool m_onFrontTrack = true;
@@ -72,13 +73,14 @@ public class PlayerController : MonoBehaviour
     private bool[] attackCombo_ = new bool[3];       //array of bools for the attack combos
     private bool[] meleeCombo = new bool[3];
     private bool[] combinedCombos = new bool[3];
+    private bool canUseCombo_ = false;
 
     private Rigidbody2D playerRigidBody_;
 
     private Animator playerAnimator_;
     private BoxCollider2D playerBoxCollider_;
     #endregion
-    
+
 
     void SetValues()
     {
@@ -102,7 +104,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        BuildCombos();
         ComboSystem();
         UpdateComboAnimations();
         ResetComboAnimations(m_ComboTimerLength);
@@ -224,14 +225,14 @@ public class PlayerController : MonoBehaviour
     {
         //verticalMove_ = Input.GetAxisRaw("Vertical");
         //check if the player pressed an up key and determine which track to move to. 
-        if(verticalMove_ > 0)
+        if (verticalMove_ > 0)
         {
             //if the player switches tracks, put the player on the track's target point, disable collison on the previous track and enable collison on the new track
             if (m_onFrontTrack && canSwitchTracks)
-            {        
+            {
                 canSwitchTracks = false;
                 player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[1].transform.position.y, m_TargetPoints[1].transform.position.z);
-                m_Tracks[0].enabled = false;         
+                m_Tracks[0].enabled = false;
                 m_Tracks[1].enabled = true;
                 m_onFrontTrack = false;
                 m_onMiddleTrack = true;
@@ -247,7 +248,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         //check if the player pressed an down key and determine which track to move to.
-        if(verticalMove_ < 0)
+        if (verticalMove_ < 0)
         {
             //if the player switches tracks, put the player on the track's target point, disable collison on the previous track and enable collison on the new track
             if (m_onLastTrack && canSwitchTracks)
@@ -276,13 +277,14 @@ public class PlayerController : MonoBehaviour
     #region Collision
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Bean")
+        if (other.tag == "Bean")
         {
             m_GameControl.m_UIControl.GasLevel += Constants.BEAN_VALUE;
             Destroy(other.gameObject);
         }
         else if (m_IsHitting)
         {
+            m_IsHitting = false;
             //attack enemies and do your thing
         }
     }
@@ -297,10 +299,11 @@ public class PlayerController : MonoBehaviour
             switch (comboChain_)
             {
                 //do different attacks in each case
-                case 0:             
+                case 0:
                     attackCombo_[2] = false;
                     attackCombo_[0] = true;
                     UpdateComboAnimations();
+                    BuildCombos();
                     Attack();
                     comboChain_++;
                     m_CurrentComboState = ComboType.COMBOHIT1;
@@ -309,7 +312,8 @@ public class PlayerController : MonoBehaviour
                 case 1:
                     comboTimer_ = m_ComboTimerLength;
                     attackCombo_[1] = true;
-                    UpdateComboAnimations();                //updates animations so the right one is played     
+                    UpdateComboAnimations();                //updates animations so the right one is played    
+                    BuildCombos();
                     Attack();
                     comboChain_++;
                     m_CurrentComboState = ComboType.COMBOHIT2;
@@ -319,6 +323,7 @@ public class PlayerController : MonoBehaviour
                     attackCombo_[1] = false;
                     attackCombo_[2] = true;
                     UpdateComboAnimations();
+                    BuildCombos();
                     Attack();
                     comboChain_++;
                     break;
@@ -337,9 +342,10 @@ public class PlayerController : MonoBehaviour
                     meleeCombo[0] = true;
                     meleeCombo[2] = false;
                     UpdateComboAnimations();
+                    BuildCombos();
                     PhysicalAttack();
                     meleeChain_++;
-                    playerBoxCollider_.isTrigger = true;               
+                    playerBoxCollider_.isTrigger = true;
                     activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo
                     break;
 
@@ -347,6 +353,7 @@ public class PlayerController : MonoBehaviour
                     comboTimer_ = m_ComboTimerLength;
                     meleeCombo[1] = true;
                     UpdateComboAnimations();
+                    BuildCombos();
                     PhysicalAttack();
                     meleeChain_++;
                     playerBoxCollider_.isTrigger = true;
@@ -357,6 +364,7 @@ public class PlayerController : MonoBehaviour
                     meleeCombo[1] = false;
                     meleeCombo[2] = true;
                     UpdateComboAnimations();
+                    BuildCombos();
                     PhysicalAttack();
                     meleeChain_++;
                     playerBoxCollider_.isTrigger = true;
@@ -417,7 +425,7 @@ public class PlayerController : MonoBehaviour
     {
         //Update animations every time the timer reaches the max time 
         comboAnimationTimer_ += Time.deltaTime;
-        if(comboAnimationTimer_ >= maxTime)
+        if (comboAnimationTimer_ >= maxTime)
         {
             UpdateComboAnimations();
             comboAnimationTimer_ = 0.0f;
@@ -477,28 +485,29 @@ public class PlayerController : MonoBehaviour
 
     void PhysicalAttack()
     {
-         nextMeleeAttack_ = Time.time + m_PlayerData.m_FireRate;
-         if (meleeChain_ == 0)
-         {
-             m_IsHitting = true;
-             m_PhysicalDamage = m_PhysicalDamageIncreases[0];  //reset attack damage back to default
-         }
-         else if (meleeChain_ == 1)
-         {
-             m_IsHitting = true;
-             m_PhysicalDamage += m_PhysicalDamageIncreases[1];
-         }
-         else if (meleeChain_ == 2)
-         {
-             m_IsHitting = true;
-             m_PhysicalDamage += m_PhysicalDamageIncreases[2];
-         }      
+        nextMeleeAttack_ = Time.time + m_PlayerData.m_FireRate;
+        if (meleeChain_ == 0)
+        {
+            m_IsHitting = true;
+            m_PhysicalDamage = m_PhysicalDamageIncreases[0];  //reset attack damage back to default
+        }
+        else if (meleeChain_ == 1)
+        {
+            m_IsHitting = true;
+            m_PhysicalDamage += m_PhysicalDamageIncreases[1];
+        }
+        else if (meleeChain_ == 2)
+        {
+            m_IsHitting = true;
+            m_PhysicalDamage += m_PhysicalDamageIncreases[2];
+        }
     }
 
     void ComboAttack()
     {
-        if (attackCombo_[0] == true)
+        if (canUseCombo_)
         {
+            canUseCombo_ = false;
             comboTimer_ = m_ComboTimerLength;
             UpdateComboAnimations();
             PhysicalAttack();
@@ -509,16 +518,25 @@ public class PlayerController : MonoBehaviour
 
     void BuildCombos()
     {
-        //set states based on what bools are true and false;
+        //for different animations for the combos
+        //set states based on what bools are true and false;    
         if (attackCombo_[0] == true && meleeCombo[0] == true)
         {
             combinedCombos[0] = true;
-
+            canUseCombo_ = true;
         }
-        else
+        if (attackCombo_[0] == true && meleeCombo[1] == true)
         {
-            //do nothing
+            combinedCombos[0] = false;
+            combinedCombos[1] = true;
+            canUseCombo_ = true;
         }
+        if (attackCombo_[1] == true && meleeCombo[0] == true)
+        {
+            combinedCombos[1] = false;
+            combinedCombos[2] = true;
+            canUseCombo_ = true;
+        }      
     }
     #endregion
 }
