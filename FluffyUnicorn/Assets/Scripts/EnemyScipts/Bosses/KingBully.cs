@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class KingBully : BossBaseClass
 {
+	public GameObject enemySpawner;
+
 	public float m_AttackUniqueAnimLength;
 	private float AttackUniqueCurTime = 0;
 
@@ -115,7 +117,7 @@ public class KingBully : BossBaseClass
 			{
 				this.m_AttackTimer -= Time.deltaTime;
 			}
-			if (this.m_AttackTimer <= 0 && this.m_BullyWalk.GetBool("IsPunch") == false && this.m_BullyWalk.GetBool("IsKick") == false && this.m_BullyWalk.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
+			if (this.m_AttackTimer <= 0 && this.m_BullyAnimator.GetBool("IsPunch") == false && this.m_BullyAnimator.GetBool("IsKick") == false && this.m_BullyAnimator.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
 			{
 				this.m_AttackTimer = 0;
 				EnemyAttack(m_ThisBoss);
@@ -124,9 +126,9 @@ public class KingBully : BossBaseClass
 			if (this.m_AnimationLength <= 0)
 			{
 				this.m_AnimationLength = 0;
-				this.m_BullyWalk.SetBool("IsPunch", false);
-				this.m_BullyWalk.SetBool("IsKick", false);
-				this.m_BullyWalk.SetBool("IsUnique", false);
+				this.m_BullyAnimator.SetBool("IsPunch", false);
+				this.m_BullyAnimator.SetBool("IsKick", false);
+				this.m_BullyAnimator.SetBool("IsUnique", false);
 			}
 		}
 
@@ -149,7 +151,10 @@ public class KingBully : BossBaseClass
 				//tempTimer = tempTimerResetVal;
 			}
 		}
-
+		if (this.m_HP <= 0)
+		{
+			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(1, "QueenBully");
+		}
 	}
-
+	//
 }

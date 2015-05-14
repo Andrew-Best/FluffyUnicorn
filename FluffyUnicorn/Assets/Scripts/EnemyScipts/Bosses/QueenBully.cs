@@ -23,15 +23,12 @@ public class QueenBully : BossBaseClass
 	{
 		if(timeUntilNextThrow_ > 0)
 		{
-//			this.GetComponent<QueenBully>();
-			GetComponent<EnemyBaseClass>().m_BullyWalk.SetFloat("TimeUntilNextThrow", 10);
+			this.m_BullyAnimator.SetFloat("TimeUntilNextThrow", 10);
 			timeUntilNextThrow_-=Time.deltaTime;
 		}
 		else
 		{
-//			m_JunkName = "DeadFish";//Junk Selector
-//			m_Junk = ObjectPool.Instance.GetObjectForType(m_JunkName, true);
-			GetComponent<EnemyBaseClass>().m_BullyWalk.SetFloat("TimeUntilNextThrow", 0);
+			this.m_BullyAnimator.SetFloat("TimeUntilNextThrow", 0);
 			ThrowStuff(this.gameObject, m_Junk);
 			timeUntilNextThrow_ = DEFAULT_TIME_UNTIL_THROW;
 		}
@@ -43,16 +40,16 @@ public class QueenBully : BossBaseClass
 		bully.GetComponent<EnemyBaseClass>().EnemyStopMotion(bully);
 		//First, Get the Boss' position
 		//Next, get object from pool
-		int JunkSelect = Random.Range(0, 3);
-		if(JunkSelect == 1)
+		int JunkSelect = Random.Range(0, 2);
+		if(JunkSelect == 0)
 		{
-			m_JunkName = "PopCan";
+			m_JunkName = "Popcan";
 		}
-		else if(JunkSelect == 2)
+		else if(JunkSelect == 1)
 		{
 			m_JunkName = "DeadFish";
 		}
-		else
+		else if(JunkSelect == 2)
 		{
 			m_JunkName = "BurntToast";
 		}
@@ -78,4 +75,6 @@ public class QueenBully : BossBaseClass
 		this.m_CurRow = row;
 		//m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
 	}
+
+
 }

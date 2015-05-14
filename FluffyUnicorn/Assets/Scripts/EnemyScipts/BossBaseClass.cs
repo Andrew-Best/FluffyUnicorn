@@ -7,7 +7,7 @@ public class BossBaseClass : EnemyBaseClass
 	public GameObject m_ThisBoss;
 	public Vector2 m_Position;
 
-	public GameObject[] mSpawnPos; //List of possible spawn locaations
+	public GameObject[] m_SpawnPos; //List of possible spawn locaations
 
 	public int m_Curstate;
 

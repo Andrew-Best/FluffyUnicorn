@@ -14,9 +14,6 @@ public class BullyScript : EnemyBaseClass
     }
 
 	#region Creation
-
-
-
 	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
 	{
 		base.InitEnemy(spawnPos, row, newBully);
@@ -51,7 +48,7 @@ public class BullyScript : EnemyBaseClass
 	public override void EnemyAttackKick(GameObject bully)
 	{
 		//play Bully's Kick Animation
-		this.m_BullyWalk.SetBool("IsKick", true);
+		this.m_BullyAnimator.SetBool("IsKick", true);
 		this.m_AnimationLength = 3;
 		float AttackTimer = m_AttackResetTime + m_KickRestTime; //assign the particular bully's Resttime for after a Kick
 		this.ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
@@ -60,7 +57,7 @@ public class BullyScript : EnemyBaseClass
 	public override void EnemyAttackPunch(GameObject bully)
 	{
 		//play Bully's Kick Animation
-		this.m_BullyWalk.SetBool("IsPunch", true);
+		this.m_BullyAnimator.SetBool("IsPunch", true);
 		this.m_AnimationLength = 2;
 		float AttackTimer = m_AttackResetTime + m_PunchRestTime; //assign the particular bully's Resttime for after a Punch
 		this.ResetEnemyAttackTimer(AttackTimer); //Reset the AttackTimer according to the last attack and the bully's default resttime
@@ -69,7 +66,7 @@ public class BullyScript : EnemyBaseClass
 	public override void EnemyAttackUnique(GameObject bully)
 	{
 		//play Bully's Kick Animation
-		this.m_BullyWalk.SetBool("IsUnique", true);
+		this.m_BullyAnimator.SetBool("IsUnique", true);
 		if (bully.name == "PepperBully")
 		{
 			m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().PepperUniqueAttack(bully);

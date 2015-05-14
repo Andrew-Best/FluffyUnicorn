@@ -33,7 +33,7 @@ public class SpawnEnemies : MonoBehaviour
 
 	}
 
-	public void SpawnBoss(int row, int BossIndex, string BossName)
+	public void SpawnBoss(int row, string BossName)
 	{
 		for(int i = 0; i < mEnemiesToSpawn.Length; ++i)
 		{

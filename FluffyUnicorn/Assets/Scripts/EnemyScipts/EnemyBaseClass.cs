@@ -17,7 +17,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public GameObject PepperSpray;
 
-	public Animator m_BullyWalk;
+	public Animator m_BullyAnimator;
 	public Collider2D[] m_Tracks;
 	public GameObject[] m_TargetPoints;
 
@@ -49,6 +49,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public float m_MaxDist;
 	public float m_DetectionDist;
 	public float m_AttackDist;
+	public float m_ReactForce = 0.4f;//set this in constants for different enemies
 
 	public bool m_EnemyInMotion;
 	public bool m_isIdle;
@@ -323,14 +324,14 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyAttackPunch(GameObject bully) //This function is overwritten in the BullyScript
 	{
-		bully.GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsPunch", true);
+		bully.GetComponent<EnemyBaseClass>().m_BullyAnimator.SetBool("IsPunch", true);
 		//play punch animation
 		//set delay for the attack countdown timer to resume only when the animation is done
 	}
 
 	public virtual void EnemyAttackKick(GameObject bully)//This function is overwritten in the BullyScript
 	{
-		bully.GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsKick", true);
+		bully.GetComponent<EnemyBaseClass>().m_BullyAnimator.SetBool("IsKick", true);
 		//play kick animation
 		//set delay for the attack countdown timer to resume only when the animation is done	
 	}
@@ -344,7 +345,7 @@ public class EnemyBaseClass : MonoBehaviour
 	//Straightforward
 	public virtual void EnemyTakeDamage(int damageDealt)
 	{
-		this.GetComponent<BullyScript>().m_BullyWalk.SetBool("IsHit", true);
+		this.GetComponent<BullyScript>().m_BullyAnimator.SetBool("IsHit", true);
 		this.GetComponent<BullyScript>().m_HP -= damageDealt;
 		if (m_HP <= 0)
 		{
@@ -354,7 +355,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void KillEnemy(GameObject enemy)
 	{
-		enemy.GetComponent<BullyScript>().m_BullyWalk.SetBool("IsDead", true);//play enemy death animation
+		enemy.GetComponent<BullyScript>().m_BullyAnimator.SetBool("IsDead", true);//play enemy death animation
 		GameObject.Destroy(transform.root.gameObject);
 	}
 	#endregion
@@ -369,6 +370,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 		newBully.GetComponent<EnemyBaseClass>().m_InitialXY = spawnPos;
 		newBully.GetComponent<EnemyBaseClass>().m_isIdle = true;
+		newBully.GetComponent<EnemyBaseClass>().m_BullyAnimator = newBully.GetComponent<Animator>();
 
 		//		
 	}
@@ -452,7 +454,7 @@ public class EnemyBaseClass : MonoBehaviour
 				{
 					bully.GetComponent<EnemyBaseClass>().m_AttackTimer -= Time.deltaTime;
 				}
-				if (bully.GetComponent<EnemyBaseClass>().m_AttackTimer <= 0 && bully.GetComponent<EnemyBaseClass>().m_BullyWalk.GetBool("IsPunch") == false && bully.GetComponent<EnemyBaseClass>().m_BullyWalk.GetBool("IsKick") == false && bully.GetComponent<EnemyBaseClass>().m_BullyWalk.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
+				if (bully.GetComponent<EnemyBaseClass>().m_AttackTimer <= 0 && bully.GetComponent<EnemyBaseClass>().m_BullyAnimator.GetBool("IsPunch") == false && bully.GetComponent<EnemyBaseClass>().m_BullyAnimator.GetBool("IsKick") == false && bully.GetComponent<EnemyBaseClass>().m_BullyAnimator.GetBool("IsUnique") == false) //If the enemy is cooled down, and is not animating
 				{
 					bully.GetComponent<EnemyBaseClass>().m_AttackTimer = 0;
 					EnemyAttack(bully);
@@ -461,9 +463,9 @@ public class EnemyBaseClass : MonoBehaviour
 				if (bully.GetComponent<EnemyBaseClass>().m_AnimationLength <= 0)
 				{
 					bully.GetComponent<EnemyBaseClass>().m_AnimationLength = 0;
-					bully.GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsPunch", false);
-					bully.GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsKick", false);
-					bully.GetComponent<EnemyBaseClass>().m_BullyWalk.SetBool("IsUnique", false);
+					bully.GetComponent<EnemyBaseClass>().m_BullyAnimator.SetBool("IsPunch", false);
+					bully.GetComponent<EnemyBaseClass>().m_BullyAnimator.SetBool("IsKick", false);
+					bully.GetComponent<EnemyBaseClass>().m_BullyAnimator.SetBool("IsUnique", false);
 					bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion = true;
 				}
 			}
@@ -509,11 +511,38 @@ public class EnemyBaseClass : MonoBehaviour
 				}
 			}
 			#endregion
+			if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_HP <= 0)
+			{
+				Destroy(m_Bullies[i]);
+				m_Bullies.Remove(m_Bullies[i].gameObject);
+			}
 		}
-
-
-
-
+		
 	}
+
+	#region Collision
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "PlayerProjectile")
+		{
+			m_HP -= GetComponent<Projectile>().m_Damage;
+			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			this.GetComponent<Rigidbody2D>().isKinematic = true;
+		}
+		if (collision.gameObject.tag == "PlayerProjectile2")
+		{
+			m_HP -= GetComponent<Projectile>().m_Damage;
+			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			this.GetComponent<Rigidbody2D>().isKinematic = true;
+		}
+		if (collision.gameObject.tag == "PlayerProjectile3")
+		{
+			m_HP -= GetComponent<Projectile>().m_Damage;
+			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			this.GetComponent<Rigidbody2D>().isKinematic = true;
+		}
+		this.GetComponent<Rigidbody2D>().AddForce(new Vector2(m_ReactForce, 0.0f));//Brandon's Wiggle
+	}
+	#endregion
 
 }

@@ -17,11 +17,11 @@ public class JunkScript : MonoBehaviour
 		{
 			m_HP = Constants.DEAD_FISH_HP;
 		}
-		if (this.name == "DeadFish")
+		if (this.name == "Popcan")
 		{
 			m_HP = Constants.POP_CAN_HP;
 		}
-		if (this.name == "DeadFish")
+		if (this.name == "BurntToast")
 		{
 			m_HP = Constants.BURNT_TOAST_HP;
 		}

@@ -56,6 +56,10 @@ public class Constants : MonoBehaviour
 	public const float POP_CAN_HP = 5;
 	public const float BURNT_TOAST_HP = 1;
 
+	public const float HORDE_CHARGE_LEFT_SPEED = -7.5f;
+	public const float HORDE_CHARGE_RIGHT_SPEED = 7.5f;
+	public const float HORDE_CHARGE_UP_SPEED = 7.5f; 
+	public const float HORDE_CHARGE_DOWN_SPEED = 7.5f;
 
 
 
