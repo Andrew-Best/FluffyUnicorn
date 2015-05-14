@@ -16,19 +16,6 @@ public class PlayerController : MonoBehaviour
     public string m_ProjectileName2 = "PlayerProjectile2";
     public string m_ProjectileName3 = "PlayerProjectile3";
 
-    public enum ComboType
-    {
-        IDLE = 0,
-        COMBOHIT1,
-        COMBOHIT2,
-        COMBOHIT3
-    };
-
-    public float m_ComboTimerLength = 4.0f;
-    public float m_PhysicalDamage = 1.0f;
-    public float[] m_PhysicalDamageIncreases = new float[4];    //as physical combos go up so will the physical damage
-    public ComboType m_CurrentComboState;
-
     /*public float m_MaxSpeed = 5.0f;
     public float m_Acceleration = 1.0f;
     public float m_ShotSpeed = 10.0f;
@@ -38,8 +25,8 @@ public class PlayerController : MonoBehaviour
     public int m_PlayerHealth = Constants.PLAYER_DEFAULT_MAX_HEALTH;
     public int m_PlayerDamage = 1;
     public int m_Currency = 0;
-    public int m_CurrencyScalar = 1;*/
-    //use to determine how much curency the player gains 
+    public int m_CurrencyScalar = 1;
+    //use to determine how much curency the player gains */
 
     //used to keep track of what track the player is on
     public bool m_onFrontTrack = true;
@@ -53,32 +40,49 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalMove_;
     private float verticalMove_;
-    private float nextFire_;
-    private float nextMeleeAttack_;
     private float timer_;               //timer to count how long the player has lifted the key. This determines if he is idle or just switching directions
     private float idleTime_ = 0.1f;     //variable used with the timer to determine if the player is idle 
     private float trackTimer_;
     private float trackTime = 0.1f;
-    private float comboAnimationTimer_ = 0.0f;
-    private float comboTimer_ = 4.0f;   //amount of time you have to reach next combo
-
-    private int comboChain_ = 0;
-    private int meleeChain_ = 0;
 
     private bool facingRight_ = true;
     private bool isMoving_ = false;
     private bool canSwitchTracks = true;
     private bool buttonHeld_ = false;
-    private bool activateComboTimerReset_ = false;   //combo timer reset boolean 
-    private bool[] attackCombo_ = new bool[3];       //array of bools for the attack combos
-    private bool[] meleeCombo = new bool[3];
-    private bool[] combinedCombos = new bool[3];
-    private bool canUseCombo_ = false;
 
     private Rigidbody2D playerRigidBody_;
 
     private Animator playerAnimator_;
     private BoxCollider2D playerBoxCollider_;
+    #endregion
+
+    #region Combo variables
+    public enum ComboType
+    {
+        IDLE = 0,
+        COMBOHIT1,
+        COMBOHIT2,
+        COMBOHIT3
+    };
+
+    public float m_ComboTimerLength = 4.0f;                     //how long you have between combos to move onto the next one
+    public float m_PhysicalDamage = 1.0f;                       //melee attack damage
+    public float[] m_PhysicalDamageIncreases = new float[4];    //as physical combos go up so will the physical damage
+    public ComboType m_CurrentComboState;                       //current combo state
+
+    private bool activateComboTimerReset_ = false;      //combo timer reset boolean 
+    private bool[] projectileCombo_ = new bool[3];      //array of bools for the projectiles combos
+    private bool[] meleeCombo = new bool[3];            //array of bools for the melee combos          
+    private bool[] combinedCombos = new bool[3];        //array of bools for the combined combos
+    private bool canUseCombo_ = false;                  //if there is a combined combo this becomes true
+
+    private int projectileChain_ = 0;   //combo chain for projectiles 
+    private int meleeChain_ = 0;        //combo chain for melee
+
+    private float comboAnimationTimer_ = 0.0f;  //keep track of how long it's been since the next state of the combo has happened 
+    private float comboTimer_ = 4.0f;           //amount of time you have to reach next combo
+    private float nextFire_;                    //next time you can use a projectile attack
+    private float nextMeleeAttack_;             //next time you can use a melee attack
     #endregion
 
     void SetValues()
@@ -103,8 +107,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        ComboSystem();
-        UpdateComboAnimations();
+        ComboSystem();              //controls the combo system
+        UpdateComboAnimations();    //update combo animations
         ResetComboAnimations(m_ComboTimerLength);
         UpdateMoveTimer();
         UpdateTrackTimer();
@@ -295,35 +299,36 @@ public class PlayerController : MonoBehaviour
         #region Projectile Attack
         if (Input.GetKey(KeyCode.A) && Time.time > nextFire_)
         {
-            switch (comboChain_)
+            switch (projectileChain_)
             {
-                //do different attacks in each case
-                case 0:
-                    attackCombo_[2] = false;
-                    attackCombo_[0] = true;
+                //set the last combo to false and turn the current one one and update all the proper variables to what they need to be
+                case 0: 
+                    projectileCombo_[2] = false;
+                    projectileCombo_[0] = true;
                     BuildCombos();
                     Attack();
-                    comboChain_++;
+                    projectileChain_++;
                     m_CurrentComboState = ComboType.COMBOHIT1;
                     activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo 
                     break;
                 case 1:
                     comboTimer_ = m_ComboTimerLength;
-                    attackCombo_[1] = true; 
+                    projectileCombo_[1] = true; 
                     BuildCombos();
                     Attack();
-                    comboChain_++;
+                    projectileChain_++;
                     m_CurrentComboState = ComboType.COMBOHIT2;
                     break;
                 case 2:
                     comboTimer_ = m_ComboTimerLength;
-                    attackCombo_[1] = false;
-                    attackCombo_[2] = true;
+                    projectileCombo_[1] = false;
+                    projectileCombo_[2] = true;
                     BuildCombos();
                     Attack();
-                    comboChain_++;
+                    projectileChain_++;
                     break;
             }
+            //check if a combo attack has been created
             ComboAttack();
         }
         #endregion
@@ -333,6 +338,7 @@ public class PlayerController : MonoBehaviour
         {
             switch (meleeChain_)
             {
+                //set the last combo to false and turn the current one one and update all the proper variables to what they need to be
                 case 0:
                     comboTimer_ = m_ComboTimerLength;
                     meleeCombo[2] = false;
@@ -363,7 +369,8 @@ public class PlayerController : MonoBehaviour
                     playerBoxCollider_.isTrigger = true;
                     break;
             }
-            ComboAttack();
+            //check if a combo attack has been created
+            ComboAttack();      
         }
         #endregion
     }
@@ -379,15 +386,15 @@ public class PlayerController : MonoBehaviour
             if (comboTimer_ <= 0)
             {
                 m_CurrentComboState = ComboType.IDLE;
-                comboChain_ = 0;
+                projectileChain_ = 0;
                 meleeChain_ = 0;
                 activateComboTimerReset_ = false;
                 m_IsHitting = false;
                 playerBoxCollider_.isTrigger = false;
-                //combo is over so set player back to idle
-                for (int i = 0; i < attackCombo_.Length; ++i)
+                //combo is over so set player back to idle by setting all combo bools to false
+                for (int i = 0; i < projectileCombo_.Length; ++i)
                 {
-                    attackCombo_[i] = false;
+                    projectileCombo_[i] = false;
                 }
                 for (int i = 0; i < meleeCombo.Length; ++i)
                 {
@@ -406,9 +413,9 @@ public class PlayerController : MonoBehaviour
     void UpdateComboAnimations()
     {
         //set the animation bools to the corresponding combo bools
-        playerAnimator_.SetBool("IsAttacking1", attackCombo_[0]);
-        playerAnimator_.SetBool("IsAttacking2", attackCombo_[1]);
-        playerAnimator_.SetBool("IsAttacking3", attackCombo_[2]);
+        playerAnimator_.SetBool("IsAttacking1", projectileCombo_[0]);
+        playerAnimator_.SetBool("IsAttacking2", projectileCombo_[1]);
+        playerAnimator_.SetBool("IsAttacking3", projectileCombo_[2]);
         playerAnimator_.SetBool("IsPunching1", meleeCombo[0]);
         playerAnimator_.SetBool("IsPunching2", meleeCombo[1]);
         playerAnimator_.SetBool("IsPunching3", meleeCombo[2]);
@@ -431,7 +438,8 @@ public class PlayerController : MonoBehaviour
     public void Attack()
     {
         nextFire_ = Time.time + m_PlayerData.m_FireRate;
-        if (comboChain_ == 0)
+        //use the right projectile based on how far the projectile combo is in the chain
+        if (projectileChain_ == 0)
         {
             //Get a bullet from the ObjectPool
             GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName, true);
@@ -446,7 +454,7 @@ public class PlayerController : MonoBehaviour
                 bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
             }
         }
-        else if (comboChain_ == 1)
+        else if (projectileChain_ == 1)
         {
             //Get a bullet from the ObjectPool
             GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName2, true);
@@ -461,7 +469,7 @@ public class PlayerController : MonoBehaviour
                 bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
             }
         }
-        else if (comboChain_ >= 2)
+        else if (projectileChain_ >= 2)
         {
             //Get a bullet from the ObjectPool
             GameObject bullet = ObjectPool.Instance.GetObjectForType(m_ProjectileName3, true);
@@ -476,12 +484,12 @@ public class PlayerController : MonoBehaviour
                 bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
             }
         }
-
     }
 
     void PhysicalAttack()
     {
         nextMeleeAttack_ = Time.time + m_PlayerData.m_PunchRate;
+        //set the physical damage to the appropriate variable based on where the melee state is at 
         if (meleeChain_ == 0)
         {
             m_IsHitting = true;
@@ -501,6 +509,7 @@ public class PlayerController : MonoBehaviour
 
     void ComboAttack()
     {
+        //combo has been reached so use a physical and projectile attack
         if (canUseCombo_)
         {
             canUseCombo_ = false;
@@ -515,18 +524,18 @@ public class PlayerController : MonoBehaviour
     {
         //for different animations for the combos
         //set states based on what bools are true and false;    
-        if (attackCombo_[0] == true && meleeCombo[0] == true)
+        if (projectileCombo_[0] == true && meleeCombo[0] == true)
         {
             combinedCombos[0] = true;
             canUseCombo_ = true;
         }
-        if (attackCombo_[0] == true && meleeCombo[1] == true)
+        if (projectileCombo_[0] == true && meleeCombo[1] == true)
         {
             combinedCombos[0] = false;
             combinedCombos[1] = true;
             canUseCombo_ = true;
         }
-        if (attackCombo_[1] == true && meleeCombo[0] == true)
+        if (projectileCombo_[1] == true && meleeCombo[0] == true)
         {
             combinedCombos[1] = false;
             combinedCombos[2] = true;
