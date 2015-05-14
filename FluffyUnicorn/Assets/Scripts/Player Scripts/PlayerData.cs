@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour
     public float m_Acceleration = 1.0f;
     public float m_ShotSpeed = 10.0f;
     public float m_FireRate = 1.0f;
+    public float m_PunchRate = 1.0f;
     public float m_Deceleration = 1.0f;
 
     public int m_PlayerHealth = Constants.PLAYER_DEFAULT_MAX_HEALTH;

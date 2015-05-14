@@ -301,7 +301,6 @@ public class PlayerController : MonoBehaviour
                 case 0:
                     attackCombo_[2] = false;
                     attackCombo_[0] = true;
-                    UpdateComboAnimations();
                     BuildCombos();
                     Attack();
                     comboChain_++;
@@ -310,8 +309,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 1:
                     comboTimer_ = m_ComboTimerLength;
-                    attackCombo_[1] = true;
-                    UpdateComboAnimations();                //updates animations so the right one is played    
+                    attackCombo_[1] = true; 
                     BuildCombos();
                     Attack();
                     comboChain_++;
@@ -321,7 +319,6 @@ public class PlayerController : MonoBehaviour
                     comboTimer_ = m_ComboTimerLength;
                     attackCombo_[1] = false;
                     attackCombo_[2] = true;
-                    UpdateComboAnimations();
                     BuildCombos();
                     Attack();
                     comboChain_++;
@@ -332,15 +329,14 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Melee Attack
-        if (Input.GetKey(KeyCode.S) && Time.time > nextMeleeAttack_)
+        else if (Input.GetKey(KeyCode.S) && Time.time > nextMeleeAttack_)
         {
             switch (meleeChain_)
             {
                 case 0:
                     comboTimer_ = m_ComboTimerLength;
-                    meleeCombo[0] = true;
                     meleeCombo[2] = false;
-                    UpdateComboAnimations();
+                    meleeCombo[0] = true;              
                     BuildCombos();
                     PhysicalAttack();
                     meleeChain_++;
@@ -351,7 +347,6 @@ public class PlayerController : MonoBehaviour
                 case 1:
                     comboTimer_ = m_ComboTimerLength;
                     meleeCombo[1] = true;
-                    UpdateComboAnimations();
                     BuildCombos();
                     PhysicalAttack();
                     meleeChain_++;
@@ -362,7 +357,6 @@ public class PlayerController : MonoBehaviour
                     comboTimer_ = m_ComboTimerLength;
                     meleeCombo[1] = false;
                     meleeCombo[2] = true;
-                    UpdateComboAnimations();
                     BuildCombos();
                     PhysicalAttack();
                     meleeChain_++;
@@ -487,7 +481,7 @@ public class PlayerController : MonoBehaviour
 
     void PhysicalAttack()
     {
-        nextMeleeAttack_ = Time.time + m_PlayerData.m_FireRate;
+        nextMeleeAttack_ = Time.time + m_PlayerData.m_PunchRate;
         if (meleeChain_ == 0)
         {
             m_IsHitting = true;
@@ -511,7 +505,6 @@ public class PlayerController : MonoBehaviour
         {
             canUseCombo_ = false;
             comboTimer_ = m_ComboTimerLength;
-            UpdateComboAnimations();
             PhysicalAttack();
             Attack();
             activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo 
