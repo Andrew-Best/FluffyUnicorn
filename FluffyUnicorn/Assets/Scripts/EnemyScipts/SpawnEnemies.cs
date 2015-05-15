@@ -24,7 +24,6 @@ public class SpawnEnemies : MonoBehaviour
 	
 	public void SpawnEnemyFunc(int row, int type)
 	{
-//		m_Tracks[0] = m_Tracks[row]; //Should make the track be the one passed in by the function
 		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
 		newEnemy.transform.position = mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 

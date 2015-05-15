@@ -60,6 +60,7 @@ public class Constants : MonoBehaviour
 	public const float HORDE_CHARGE_RIGHT_SPEED = 7.5f;
 	public const float HORDE_CHARGE_UP_SPEED = 7.5f; 
 	public const float HORDE_CHARGE_DOWN_SPEED = 7.5f;
+	public const int JOCK_INDEX = 4;
 
 
 
