@@ -21,18 +21,19 @@ public class QueenBully : BossBaseClass
 	// Update is called once per frame
 	void Update () 
 	{
-		if(timeUntilNextThrow_ > 0)
+		timeUntilNextThrow_ -= Time.deltaTime;
+
+		if(timeUntilNextThrow_ <= 0)
 		{
-			this.m_BullyAnimator.SetFloat("TimeUntilNextThrow", 10);
-			timeUntilNextThrow_-=Time.deltaTime;
+			PlayThrowAnim();
 		}
-		else
-		{
-			this.m_BullyAnimator.SetFloat("TimeUntilNextThrow", 0);
-			ThrowStuff(this.gameObject, m_Junk);
-			timeUntilNextThrow_ = DEFAULT_TIME_UNTIL_THROW;
-		}
-	
+	}
+
+	void PlayThrowAnim()
+	{
+		this.m_BullyAnimator.SetFloat("TimeUntilNextThrow", 0);
+		ThrowStuff(this.gameObject, m_Junk);
+		timeUntilNextThrow_ = DEFAULT_TIME_UNTIL_THROW;
 	}
 
 	public void ThrowStuff(GameObject bully, GameObject junk)//Done
@@ -56,8 +57,8 @@ public class QueenBully : BossBaseClass
 		GameObject m_Junk = ObjectPool.Instance.GetObjectForType(m_JunkName, true);
 		//get player position
 		GetPlayerInfo(bully);
-		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
-		m_Junk.transform.position = bully.transform.position;
+//		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
+//		m_Junk.transform.position = bully.transform.position;
 		//send object in an arc toward the player
 	}
 

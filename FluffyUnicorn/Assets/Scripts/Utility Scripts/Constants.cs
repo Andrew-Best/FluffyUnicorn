@@ -51,20 +51,20 @@ public class Constants : MonoBehaviour
 	public const int KB_WATER_AMMO = 99;
 
 	public const float QUEEN_BULLY_HP = 25;
+	public const float ARC_DEGREE = 15;
 	public const float DEFAULT_TIME_UNTIL_THROW = 20;
 	public const float DEAD_FISH_HP = 3;
 	public const float POP_CAN_HP = 5;
 	public const float BURNT_TOAST_HP = 1;
 
-	public const float HORDE_CHARGE_LEFT_SPEED = -7.5f;
-	public const float HORDE_CHARGE_RIGHT_SPEED = 7.5f;
-	public const float HORDE_CHARGE_UP_SPEED = 7.5f; 
-	public const float HORDE_CHARGE_DOWN_SPEED = 7.5f;
+	public const int HORDE_SIZE = 11;
+	public const float HORDE_LIFESPAN = 7.0f;
+	public const float HORDE_CHARGE_LEFT_SPEED = -2.5f;
+	public const float HORDE_CHARGE_RIGHT_SPEED = 2.5f;
+	public const float HORDE_CHARGE_UP_SPEED = 2.5f; 
+	public const float HORDE_CHARGE_DOWN_SPEED = 2.5f;
+	public const float HORDE_MAX_SPEED_MOD = 3.5f;
 	public const int JOCK_INDEX = 4;
-
-
-
-
 
 	#endregion
 
