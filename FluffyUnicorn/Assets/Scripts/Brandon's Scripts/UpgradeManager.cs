@@ -5,11 +5,16 @@ public class UpgradeManager : MonoBehaviour
 {
     #region public variables
     public PlayerData m_Player;
+    public PlayerController m_PlayerController;
     public int m_HealthCost = 1;
     public int m_AttackRateCost = 1;
     public int m_DamageCost = 1;
     public int m_SpeedCost = 1;
     public int m_CurrencyCost = 1;
+    public int[] m_MeleeComboCost;
+    public int[] m_ProjectileComboCost;
+    public int[] m_MultiComboCost;
+
     #endregion
 
     #region Private Variables
@@ -80,5 +85,32 @@ public class UpgradeManager : MonoBehaviour
             m_Player.m_Currency -= m_CurrencyCost;
             m_Player.m_CurrencyScalar += currency;
         }
+    }
+
+    public void UpgradeMeleeCombo(int combo)
+    {
+        if (m_Player.m_Currency >= m_MeleeComboCost[combo] && m_PlayerController.m_UnlockedMeleeCombos[combo] != true)
+        {
+            m_PlayerController.m_UnlockedMeleeCombos[combo] = true;
+            m_Player.m_Currency -= m_MeleeComboCost[combo];
+        }  
+    }
+
+    public void UpgradeProjectileCombo(int combo)
+    {
+        if (m_Player.m_Currency >= m_ProjectileComboCost[combo] && m_PlayerController.m_UnlockedProjectileCombos[combo] != true)
+        {
+            m_PlayerController.m_UnlockedProjectileCombos[combo] = true;
+            m_Player.m_Currency -= m_ProjectileComboCost[combo];
+        }  
+    }
+
+    public void UpgradeMultiCombo(int combo)
+    {
+        if (m_Player.m_Currency >= m_MultiComboCost[combo] && m_PlayerController.m_UnlockedCombinedCombos[combo] != true)
+        {
+            m_PlayerController.m_UnlockedCombinedCombos[combo] = true;
+            m_Player.m_Currency -= m_MultiComboCost[combo];
+        }  
     }
 }
