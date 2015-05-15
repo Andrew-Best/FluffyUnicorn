@@ -3,9 +3,35 @@ using System.Collections;
 
 public class LevelSelect : MonoBehaviour
 {
+    private HighlightScript highlightScript_;
+    private int timesClicked_;
+    private GameObject lastClicked_;
+    private GameObject currentClick_;
+    
     public void ChooseLevel(GameObject go)
     {
-        //Debug.Log(go.name);
-        Application.LoadLevel(go.name);
+        currentClick_ = go;
+        if (lastClicked_ == null)
+        {
+            lastClicked_ = currentClick_;
+        }
+
+        if (currentClick_.name == lastClicked_.name)
+        {
+            timesClicked_++;
+            lastClicked_.GetComponent<HighlightScript>().enabled = true;
+
+            if (timesClicked_ >= 2)
+            {
+                Application.LoadLevel(go.name);
+            }
+        }
+        else
+        {
+            lastClicked_.GetComponent<HighlightScript>().enabled = false;
+            lastClicked_ = currentClick_;
+            currentClick_.GetComponent<HighlightScript>().enabled = true;
+            timesClicked_ = 0;
+        }
     }
 }
