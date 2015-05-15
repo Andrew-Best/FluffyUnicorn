@@ -21,7 +21,7 @@ public class RefereeBully : BossBaseClass
 	// Use this for initialization
 	void Start()
 	{
-//		this.m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
+
 	}
 
 	// Update is called once per frame
@@ -92,7 +92,12 @@ public class RefereeBully : BossBaseClass
 			{
 				for (int j = 0; j < maxJockCount_; ++j )
 				{
-					m_EnemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(row, i);
+					//m_EnemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(row, i);
+					GameObject newEnemy = Objectpooler.Instance.GetObjectForType(bullyName, true);//new enemy is created
+					newEnemy.transform.position = m_RefStartPos[StartPos].transform.position; //the enemy's position is assigned the position at the selected row
+
+					m_JockHorde.Add(newEnemy);
+					newEnemy.GetComponent<BullyScript>().InitEnemy(m_RefStartPos[StartPos].transform.position, row, newEnemy);
 				}
 					
 			}
