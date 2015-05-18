@@ -4,15 +4,16 @@ using System.Collections;
 public class QueenBully : BossBaseClass 
 {
 	public GameObject m_Junk;
+    public Animator m_QueenAnim;
 	public string m_JunkName;
 
 	public Vector2 m_ThrowForce;
 	private Vector2 playerPosition_;
 
-	private float timeUntilNextThrow_;
-	public const float DEFAULT_TIME_UNTIL_THROW = 10;
+	private float timeUntilNextThrow_ = 5.0f;
+	public const float DEFAULT_TIME_UNTIL_THROW = 5;
 
-	// Use this for initialization
+    // Use this for initialization
 	void Start () 
 	{
 		InitEnemy(new Vector2(0, 0), 2, this.gameObject);
@@ -23,15 +24,21 @@ public class QueenBully : BossBaseClass
 	{
 		timeUntilNextThrow_ -= Time.deltaTime;
 
-		if(timeUntilNextThrow_ <= 0)
-		{
-			PlayThrowAnim();
-		}
+        if (timeUntilNextThrow_ <= 0.0f)
+        {
+            m_QueenAnim.SetBool("Thrown", true);
+            PlayThrowAnim();
+        }
+        else
+        {
+            m_QueenAnim.SetBool("Thrown", false);
+        }
 	}
 
 	void PlayThrowAnim()
 	{
-		this.m_BullyAnimator.SetFloat("TimeUntilNextThrow", 0);
+		//this.m_BullyAnimator.SetFloat("TimeUntilNextThrow", 0);
+        
 		ThrowStuff(this.gameObject, m_Junk);
 		timeUntilNextThrow_ = DEFAULT_TIME_UNTIL_THROW;
 	}
@@ -55,7 +62,7 @@ public class QueenBully : BossBaseClass
 			m_JunkName = "BurntToast";
 		}
 		GameObject m_Junk = ObjectPool.Instance.GetObjectForType(m_JunkName, true);
-		//get player position
+        //get player position
 		GetPlayerInfo(bully);
 //		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
 //		m_Junk.transform.position = bully.transform.position;

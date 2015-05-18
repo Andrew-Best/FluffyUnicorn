@@ -10,6 +10,8 @@ public class JunkScript : MonoBehaviour
 	public float m_ReactForce = 0.4f;
 	public int m_Damage = 1;
 
+    private float Death_ = 4.0f;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -90,5 +92,12 @@ public class JunkScript : MonoBehaviour
 		{
 			Destroy(this.gameObject);
 		}
+
+        Death_ -= Time.deltaTime;
+        if(Death_ <= 0.0f)
+        {
+            Destroy(gameObject);
+            Death_ = 4.0f;
+        }
 	}
 }
