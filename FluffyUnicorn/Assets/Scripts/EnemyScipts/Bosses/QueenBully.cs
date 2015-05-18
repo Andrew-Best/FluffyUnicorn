@@ -39,7 +39,7 @@ public class QueenBully : BossBaseClass
 	{
 		//this.m_BullyAnimator.SetFloat("TimeUntilNextThrow", 0);
         
-		ThrowStuff(this.gameObject, m_Junk);
+		ThrowStuff(gameObject, m_Junk);
 		timeUntilNextThrow_ = DEFAULT_TIME_UNTIL_THROW;
 	}
 
@@ -64,8 +64,8 @@ public class QueenBully : BossBaseClass
 		GameObject m_Junk = ObjectPool.Instance.GetObjectForType(m_JunkName, true);
         //get player position
 		GetPlayerInfo(bully);
-//		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
-//		m_Junk.transform.position = bully.transform.position;
+		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
+    	m_Junk.transform.position = bully.transform.position;
 		//send object in an arc toward the player
 	}
 

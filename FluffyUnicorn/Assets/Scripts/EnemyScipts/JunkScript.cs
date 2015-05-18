@@ -3,8 +3,8 @@ using System.Collections;
 
 public class JunkScript : MonoBehaviour 
 {
-	private GameObject QueenBully_;
-	private GameObject Player_;
+	public GameObject QueenBully_;
+	public GameObject Player_;
 
 	public float m_HP;
 	public float m_ReactForce = 0.4f;
@@ -28,11 +28,11 @@ public class JunkScript : MonoBehaviour
 			m_HP = Constants.BURNT_TOAST_HP;
 		}
 
-		QueenBully_ = GameObject.FindGameObjectWithTag("QueenBully");
-		Player_ = GameObject.FindGameObjectWithTag("Player");
+		//QueenBully_ = GameObject.FindGameObjectWithTag("QueenBully");
+		//Player_ = GameObject.FindGameObjectWithTag("Player");
 
 		this.GetComponent<Rigidbody2D>().transform.position = QueenBully_.transform.position;
-		this.GetComponent<Rigidbody2D>().velocity = ArcShot(Player_.GetComponent<Rigidbody2D>().transform, Constants.ARC_DEGREE);//throw angle
+		this.GetComponent<Rigidbody2D>().velocity = ArcShot(Player_.transform, Constants.ARC_DEGREE);//throw angle
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
