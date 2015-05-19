@@ -526,7 +526,7 @@ public class EnemyBaseClass : MonoBehaviour
 		{		
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 			this.GetComponent<Rigidbody2D>().isKinematic = true;
-			m_HP -= GetComponent<Projectile>().m_Damage;
+			m_HP -= collision.gameObject.GetComponent<Projectile>().m_Damage;
 		}
 		if (collision.tag == "PlayerProjectile2")
 		{
