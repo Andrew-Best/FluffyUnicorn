@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
     #region public variables
     public GameController m_GameControl;    //Game Controller object
     public GameObject m_SpawnPoint;         //projectile spawn point
-    public GameObject[] m_TargetPoints;     //where the player will move to when switching tracks
-    public Collider2D[] m_Tracks;           //tracks the player will switch to 
+    
     public PlayerData m_PlayerData;         //Player data script
 
     public string m_ProjectileName = "PlayerProjectile";
@@ -37,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     #region private variables
     private GameObject player_;
+    private GameObject startPosition_;
 
     private float horizontalMove_;
     private float verticalMove_;
@@ -49,6 +49,9 @@ public class PlayerController : MonoBehaviour
     private bool isMoving_ = false;
     private bool canSwitchTracks = true;
     private bool buttonHeld_ = false;
+
+    private GameObject[] targetPoints_ = new GameObject[3];     //where the player will move to when switching tracks
+    private Collider2D[] tracks_ = new Collider2D[3];           //tracks the player will switch to 
 
     private Rigidbody2D playerRigidBody_;
 
@@ -90,13 +93,25 @@ public class PlayerController : MonoBehaviour
     private float nextMeleeAttack_;             //next time you can use a melee attack
     #endregion
 
-    void SetValues()
+    public void SetValues()
     {
+        startPosition_ = GameObject.FindGameObjectWithTag("StartPositon");
         player_ = GameObject.Find("Player");
         playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
         playerAnimator_ = player_.GetComponent<Animator>();
         playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
         comboTimer_ = m_ComboTimerLength;
+        for(int i = 0; i < 3; ++i)
+        {
+            targetPoints_[i] = GameObject.FindGameObjectWithTag("Targetpoint" + i);
+            tracks_[i] = GameObject.FindGameObjectWithTag("Track" + i).GetComponent<Collider2D>();
+        }
+        player_.transform.position = targetPoints_[0].transform.position;
+    }
+
+    void OnLevelWasLoaded(int level)
+    {
+        SetValues();
     }
 
     void Start()
@@ -239,18 +254,18 @@ public class PlayerController : MonoBehaviour
             if (m_onFrontTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[1].transform.position.y, m_TargetPoints[1].transform.position.z);
-                m_Tracks[0].enabled = false;
-                m_Tracks[1].enabled = true;
+                player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z);
+                tracks_[0].enabled = false;
+                tracks_[1].enabled = true;
                 m_onFrontTrack = false;
                 m_onMiddleTrack = true;
             }
             else if (m_onMiddleTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[2].transform.position.y, m_TargetPoints[2].transform.position.z);
-                m_Tracks[2].enabled = true;
-                m_Tracks[1].enabled = false;
+                player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, targetPoints_[2].transform.position.y, targetPoints_[2].transform.position.z);
+                tracks_[2].enabled = true;
+                tracks_[1].enabled = false;
                 m_onMiddleTrack = false;
                 m_onLastTrack = true;
             }
@@ -262,20 +277,20 @@ public class PlayerController : MonoBehaviour
             if (m_onLastTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                player_.GetComponent<Rigidbody2D>().transform.Translate(new Vector3(player_.transform.position.x, m_TargetPoints[1].transform.position.y, m_TargetPoints[1].transform.position.z) * Time.deltaTime);
+                player_.GetComponent<Rigidbody2D>().transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z) * Time.deltaTime);
                 //player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[1].transform.position.y, m_TargetPoints[1].transform.position.z);
-                m_Tracks[1].enabled = true;
-                m_Tracks[2].enabled = false;
+                tracks_[1].enabled = true;
+                tracks_[2].enabled = false;
                 m_onLastTrack = false;
                 m_onMiddleTrack = true;
             }
             else if (m_onMiddleTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                player_.GetComponent<Rigidbody2D>().transform.Translate(new Vector3(player_.transform.position.x, m_TargetPoints[0].transform.position.y, m_TargetPoints[0].transform.position.z) * Time.deltaTime);
+                player_.GetComponent<Rigidbody2D>().transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z) * Time.deltaTime);
                 //player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(player_.transform.position.x, m_TargetPoints[0].transform.position.y, m_TargetPoints[0].transform.position.z);
-                m_Tracks[0].enabled = true;
-                m_Tracks[1].enabled = false;
+                tracks_[0].enabled = true;
+                tracks_[1].enabled = false;
                 m_onMiddleTrack = false;
                 m_onFrontTrack = true;
             }
