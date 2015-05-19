@@ -512,8 +512,13 @@ public class EnemyBaseClass : MonoBehaviour
 			#endregion
 			if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_HP <= 0)
 			{
+				string BullyJustKilled = m_Bullies[i].name;			
 				Destroy(m_Bullies[i]);
 				m_Bullies.Remove(m_Bullies[i].gameObject);
+				if (BullyJustKilled == "KingBully")
+				{
+					m_EnemyController.GetComponent<SpawnEnemies>().SpawnBoss(1, "QueenBully");
+				}
 			}
 		}
 		
@@ -526,21 +531,8 @@ public class EnemyBaseClass : MonoBehaviour
 		{		
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 			this.GetComponent<Rigidbody2D>().isKinematic = true;
-			m_HP -= collision.gameObject.GetComponent<Projectile>().m_Damage;
+			this.m_HP -= collision.gameObject.GetComponent<Projectile>().m_Damage;
 		}
-		if (collision.tag == "PlayerProjectile2")
-		{
-			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-			this.GetComponent<Rigidbody2D>().isKinematic = true;
-			m_HP -= GetComponent<Projectile>().m_Damage;
-		}
-		if (collision.tag == "PlayerProjectile3")
-		{
-			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-			this.GetComponent<Rigidbody2D>().isKinematic = true;
-			m_HP -= GetComponent<Projectile>().m_Damage;
-		}
-		
 		this.GetComponent<Rigidbody2D>().AddForce(new Vector2(m_ReactForce, 0.0f));//Brandon's Wiggle
 	}
 	#endregion

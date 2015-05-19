@@ -55,21 +55,25 @@ public class EnemyControllerScript : MonoBehaviour
 		{
 			string BossName;
 
-			int BossSelectorRange = Random.Range(0, 10);
+			int BossSelectorRange = Random.Range(0, 30);
 			int BossSelector=0;
 
-			if (BossSelectorRange > 5)
+			if (BossSelectorRange < 11)
 			{
 				//BossSelector = FattestBullyIndex;
 				BossName = "FattestBully";
 			}
-			else
+			else if(BossSelectorRange < 21)
 			{
 				//BossSelector = KingBullyIndex;
 				BossName = "KingBully";
 			}
-
-			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_,  BossName);//Index for Each Boss
+			else
+			{
+				BossName = "RefereeBully";
+			}
+			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, "KingBully");
+//			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, BossName);//Index for Each Boss
 			tempBossTimer_ = 1000;
 		}
 	}
