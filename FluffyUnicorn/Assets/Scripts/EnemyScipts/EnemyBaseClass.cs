@@ -202,6 +202,14 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
 	{
+		for (int i = 0; i < Physics2D.AllLayers; ++i )
+		{
+			string LayerName = LayerMask.LayerToName(i);
+			if(LayerName == "ActiveBully")
+			{
+				bully.layer = i;
+			}
+		}
 		float curEnemyXPOS = enemyPos.x;
 		float lineOfSight;
 		if (bully.GetComponent<EnemyBaseClass>().m_IsABoss)

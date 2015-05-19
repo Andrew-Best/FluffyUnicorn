@@ -35,6 +35,7 @@ public class EnemyControllerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		m_BulliesOnScreen = m_Bullies.Count;
 
 		if (m_BulliesOnScreen < m_MaxAllowableBulliesOnScreenForLevel)
 		{
@@ -45,9 +46,7 @@ public class EnemyControllerScript : MonoBehaviour
 			if (enemySpawnTimer_ <= 0)
 			{
 				enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(rowSelector_, enemySelector_);
-				enemySpawnTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;
-				m_BulliesOnScreen++;
-				
+				enemySpawnTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;				
 			}
 		}
 		tempBossTimer_ -= Time.deltaTime;
