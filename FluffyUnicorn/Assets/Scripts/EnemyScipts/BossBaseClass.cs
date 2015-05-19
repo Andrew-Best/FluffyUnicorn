@@ -39,6 +39,11 @@ public class BossBaseClass : EnemyBaseClass
 			{
 				enemiesInList[i].GetComponent<FattestBully>().FattestUpdate();
 			}
+
+			if(enemiesInList[i].GetComponent<BossBaseClass>().m_HP <= 0)
+			{
+				Destroy(enemiesInList[i]);
+			}
 		}
 	}
 }
