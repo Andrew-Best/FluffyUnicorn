@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -14,15 +15,36 @@ public class UpgradeManager : MonoBehaviour
     public int[] m_MeleeComboCost;
     public int[] m_ProjectileComboCost;
     public int[] m_MultiComboCost;
-
+    public int m_AmountOfUpgrades = 3;
     #endregion
 
     #region Private Variables
+    private int meleeCounter_ = 0;
+    private int projectileCounter_ = 0;
+    private int combinedComboCounter_ = 0;
     private int healthUpgradeCounter_ = 1;
     private int damageUpgradeCounter_ = 1;
     private int attackRateUpgradeCounter_ = 1;
     private int speedUpgradeCounter_ = 1;
     private int currencyUpgradeCounter_ = 1;
+    //these bools are used once to set the upgrades counters to their right locations. After they are set to false and are not used again. 
+    private bool checkProjectileCounter_ = true;
+    private bool checkMeleeCounter_ = true;
+    private bool checkCombinedCounter_ = true;
+    #endregion
+
+    #region UI Variables
+    public GameObject[] m_UIElements;
+    public GameObject m_UpgradeMenu;
+    public Image[] m_MeleeImages;
+    public Image[] m_ProjectileImages;
+    public Image[] m_CombinedComboImages;
+    public Sprite m_FilledJewel;
+    public Text m_Health;
+    public Text m_Currency;
+    public Text m_FireRate;
+    public Text m_Damage;
+    public Text m_Speed;
     #endregion
 
     #region Attributes
@@ -87,30 +109,116 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    public void UpgradeMeleeCombo(int combo)
+    void Update()
     {
-        if (m_Player.m_Currency >= m_MeleeComboCost[combo] && m_PlayerController.m_UnlockedMeleeCombos[combo] != true)
+        UpdateUpgradeUI();
+    }
+
+    public void UpgradeMeleeCombo()
+    {
+        //set the counter to the right variable as the player may already have upgrades
+        for (int i = 0; i < m_PlayerController.m_UnlockedMeleeCombos.Length; ++i)
         {
-            m_PlayerController.m_UnlockedMeleeCombos[combo] = true;
-            m_Player.m_Currency -= m_MeleeComboCost[combo];
+            if (m_PlayerController.m_UnlockedMeleeCombos[i] == true && checkMeleeCounter_)
+            {
+                meleeCounter_++;
+            }
+        }
+        checkMeleeCounter_ = false;
+        //if you have enough money and the combo isn't already unlocked then upgrade
+        if (m_Player.m_Currency >= m_MeleeComboCost[meleeCounter_] && m_PlayerController.m_UnlockedMeleeCombos[meleeCounter_] != true)
+        {       
+            m_MeleeImages[meleeCounter_].sprite = m_FilledJewel;     
+            m_PlayerController.m_UnlockedMeleeCombos[meleeCounter_] = true;
+            m_Player.m_Currency -= m_MeleeComboCost[meleeCounter_];
+            meleeCounter_++;
         }  
     }
 
-    public void UpgradeProjectileCombo(int combo)
+    public void UpgradeProjectileCombo()
     {
-        if (m_Player.m_Currency >= m_ProjectileComboCost[combo] && m_PlayerController.m_UnlockedProjectileCombos[combo] != true)
+        //set the counter to the right variable as the player may already have upgrades
+        for (int i = 0; i < m_PlayerController.m_UnlockedProjectileCombos.Length; ++i)
         {
-            m_PlayerController.m_UnlockedProjectileCombos[combo] = true;
-            m_Player.m_Currency -= m_ProjectileComboCost[combo];
+            if (m_PlayerController.m_UnlockedProjectileCombos[i] == true && checkProjectileCounter_)
+            {
+                projectileCounter_++;
+            }
+        }
+        checkProjectileCounter_ = false;
+        //if you have enough money and the combo isn't already unlocked then upgrade
+        if (m_Player.m_Currency >= m_ProjectileComboCost[projectileCounter_] && m_PlayerController.m_UnlockedProjectileCombos[projectileCounter_] != true)
+        {
+            m_ProjectileImages[projectileCounter_].sprite = m_FilledJewel;
+            m_PlayerController.m_UnlockedProjectileCombos[projectileCounter_] = true;
+            m_Player.m_Currency -= m_ProjectileComboCost[projectileCounter_];
+            projectileCounter_++;
         }  
     }
 
-    public void UpgradeMultiCombo(int combo)
+    public void UpgradeMultiCombo()
     {
-        if (m_Player.m_Currency >= m_MultiComboCost[combo] && m_PlayerController.m_UnlockedCombinedCombos[combo] != true)
+        //set the counter to the right variable as the player may already have upgrades
+        for (int i = 0; i < m_PlayerController.m_UnlockedCombinedCombos.Length; ++i)
         {
-            m_PlayerController.m_UnlockedCombinedCombos[combo] = true;
-            m_Player.m_Currency -= m_MultiComboCost[combo];
+            if (m_PlayerController.m_UnlockedCombinedCombos[i] == true && checkCombinedCounter_)
+            {
+                combinedComboCounter_++;
+            }
+        }
+        checkCombinedCounter_ = false;
+        //if you have enough money and the combo isn't already unlocked then upgrade
+        if (m_Player.m_Currency >= m_MultiComboCost[combinedComboCounter_] && m_PlayerController.m_UnlockedCombinedCombos[combinedComboCounter_] != true)
+        {           
+            m_CombinedComboImages[combinedComboCounter_].sprite = m_FilledJewel;
+            m_PlayerController.m_UnlockedCombinedCombos[combinedComboCounter_] = true;
+            m_Player.m_Currency -= m_MultiComboCost[combinedComboCounter_];
+            combinedComboCounter_++;
         }  
+    }
+
+    public void OpenMenu()
+    {
+        //disable previous items and enable the upgrade menu 
+        for(int i = 0; i < m_UIElements.Length; ++i)
+        {
+            m_UIElements[i].SetActive(false);
+        }
+        m_UpgradeMenu.SetActive(true);
+    }
+
+    public void CloseMenu()
+    {
+        //disable upgrade menu and reenable everything else 
+        m_UpgradeMenu.SetActive(false);
+        for(int i = 0; i < m_UIElements.Length; ++i)
+        {
+            m_UIElements[i].SetActive(true);
+        }
+    }
+
+    void UpdateUpgradeUI()
+    {
+        //if there is an upgraded combo switch the image of that upgrade to a filled circle. 
+        for (int i = 0; i < m_AmountOfUpgrades; i++)
+        {
+           if(m_PlayerController.m_UnlockedCombinedCombos[i] == true)
+           {
+               m_CombinedComboImages[i].sprite = m_FilledJewel;
+           }
+           if (m_PlayerController.m_UnlockedProjectileCombos[i] == true)
+           {
+               m_ProjectileImages[i].sprite = m_FilledJewel;
+           }
+           if (m_PlayerController.m_UnlockedMeleeCombos[i] == true)
+           {
+               m_MeleeImages[i].sprite = m_FilledJewel;
+           }
+        }
+        m_Health.text = "Player Health: " + m_Player.m_PlayerHealth.ToString();
+        m_Speed.text = "Player Speed: " + m_Player.m_MaxSpeed.ToString("F1");   //'F1' makes it one decimal
+        m_Currency.text = "Currency Scalar: " + m_Player.m_CurrencyScalar.ToString();
+        m_FireRate.text = "Fire Rate: " + m_Player.m_FireRate.ToString("F1");   //'F1' makes it one decimal
+        m_Damage.text = "Player Damage: " + m_Player.m_PlayerDamage.ToString();
     }
 }
