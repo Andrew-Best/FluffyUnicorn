@@ -400,7 +400,6 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyUpdate(GameObject bully)
 	{
-
 		Debug.Log(bully.name);
 		if (bully.name != "FattestBully" && bully.name != "KingBully")
 		{
@@ -521,26 +520,27 @@ public class EnemyBaseClass : MonoBehaviour
 	}
 
 	#region Collision
-	void OnCollisionEnter2D(Collision2D collision)
+	void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "PlayerProjectile")
-		{
-			m_HP -= GetComponent<Projectile>().m_Damage;
+		if (collision.tag == "PlayerProjectile")
+		{		
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 			this.GetComponent<Rigidbody2D>().isKinematic = true;
-		}
-		if (collision.gameObject.tag == "PlayerProjectile2")
-		{
 			m_HP -= GetComponent<Projectile>().m_Damage;
+		}
+		if (collision.tag == "PlayerProjectile2")
+		{
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 			this.GetComponent<Rigidbody2D>().isKinematic = true;
-		}
-		if (collision.gameObject.tag == "PlayerProjectile3")
-		{
 			m_HP -= GetComponent<Projectile>().m_Damage;
+		}
+		if (collision.tag == "PlayerProjectile3")
+		{
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 			this.GetComponent<Rigidbody2D>().isKinematic = true;
+			m_HP -= GetComponent<Projectile>().m_Damage;
 		}
+		
 		this.GetComponent<Rigidbody2D>().AddForce(new Vector2(m_ReactForce, 0.0f));//Brandon's Wiggle
 	}
 	#endregion

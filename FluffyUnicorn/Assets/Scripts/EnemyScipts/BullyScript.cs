@@ -9,8 +9,7 @@ public class BullyScript : EnemyBaseClass
 	
     void Start()
     {
-        LoadFromXML();
-		
+        LoadFromXML();		
     }
 
 	#region Creation

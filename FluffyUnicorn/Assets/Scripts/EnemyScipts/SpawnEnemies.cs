@@ -13,6 +13,7 @@ public class SpawnEnemies : MonoBehaviour
 
 	void Start () 
 	{
+		m_EnemyControl = GameObject.FindGameObjectWithTag("EnemyController"); 
 		mSpawnPos[0] = GameObject.FindGameObjectWithTag("ESRL");
 		mSpawnPos[1] = GameObject.FindGameObjectWithTag("ESRM");
 		mSpawnPos[2] = GameObject.FindGameObjectWithTag("ESRF");
