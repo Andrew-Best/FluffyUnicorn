@@ -8,6 +8,7 @@ public class RefereeBully : BossBaseClass
 	List<GameObject> m_JockHorde = new List<GameObject>();
 	GameObject newJock;
 	public GameObject m_EnemySpawner;
+    public EnemyBaseClass m_EnemyBase;
 
 	private int maxJockCount_;
 	private int direction_;
@@ -26,7 +27,17 @@ public class RefereeBully : BossBaseClass
     private bool firstStrike_ = true;
 
     private GameObject newEnemy;
-
+    public List<GameObject> m_SpawnPoints = new List<GameObject>();
+    private float travelTime_ = 1.5f;
+    public GameObject m_player;
+    private bool isRight_ = false;
+    private bool isLeft_ = false;
+    private bool isMoving_ = false;
+    public Transform m_RefTran;
+    private float wait_ = 0.0f;
+    private float distance = 0.0f;
+    private List<float> lastDistance_ = new List<float>();
+   
 	// Use this for initialization
 	void Start()
 	{
@@ -38,6 +49,7 @@ public class RefereeBully : BossBaseClass
 	// Update is called once per frame
 	void Update()
 	{
+        FacePlayer();
         if(firstStrike_ == true)
         {
             ChargeTheField();
@@ -46,8 +58,9 @@ public class RefereeBully : BossBaseClass
         timeUntilNextCharge_ -= Time.deltaTime;
 		if (timeUntilNextCharge_ <= 0.0f)
 		{
+            MoveRef();
             RecycleBullies();
-            timeUntilNextCharge_ = 8.0f;
+            timeUntilNextCharge_ = 12.0f;
 		}
 
         for (int i = 0; i < m_JockHorde.Count; ++i)
@@ -60,7 +73,16 @@ public class RefereeBully : BossBaseClass
             }
 		}
 
+        if (gameObject.transform.position.x <= distance)
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+            isMoving_ = false;
+        }
+
+       //travelTime_ = 1 * Time.deltaTime;
+
 		curLifeTime_+= Time.deltaTime;
+        wait_ += Time.deltaTime;
 
 		if(curLifeTime_ >= lifeSpan_)
 		{
@@ -72,6 +94,91 @@ public class RefereeBully : BossBaseClass
 		}
 
 	}
+
+    void MoveRef()
+    {
+        int StartPos = Random.Range(0, 7);
+        int row = 0;
+
+        if (StartPos == 0 || StartPos == 1 || StartPos == 2)
+        {
+            row = 0;
+        }
+        else if (StartPos == 6 || StartPos == 7)
+        {
+            row = 1;
+        }
+        else if (StartPos == 3 || StartPos == 4 || StartPos == 5)
+        {
+            row = 2;
+        }
+
+        gameObject.transform.position = new Vector2(gameObject.transform.position.x, m_EnemyBase.m_TargetPoints[row].transform.position.y);
+
+        if(wait_ >= 1.0 && isMoving_ == false)
+        {
+            distance = (float)Random.Range(3.0f, -4.0f);
+            lastDistance_.Add(distance);
+            Debug.Log(distance);
+            if (lastDistance_[lastDistance_.Count - 1] >= distance)
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(1.0f, 0.0f);
+            }
+            
+            if (lastDistance_[lastDistance_.Count - 1] <= distance)
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-1.0f, 0.0f);
+            }
+            isMoving_ = true;
+            //transform.Translate(distance * travelTime_ * Time.deltaTime, 0.0f, 0.0f, Space.Self);
+            
+            wait_ = 0.0f;
+           
+        }
+        else
+        {
+            isMoving_ = false;
+        }
+
+       
+        /*transform.position += (m_SpawnPoints[SpawnSpot].transform.position - gameObject.transform.position) * travelTime_ * Time.deltaTime;     
+        //gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(1.0f, 1.0f);
+        //gameObject.transform.position = m_SpawnPoints[SpawnSpot].transform.position; 
+        
+        //gameObject.transform.position = Vector2.Lerp(gameObject.transform.position, m_SpawnPoints[SpawnSpot].transform.position, travelTime_ / 150);
+        gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, m_SpawnPoints[SpawnSpot].transform.position, 300 * Time.deltaTime);
+        if( gameObject.transform.position == m_SpawnPoints[SpawnSpot].transform.position)
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+            Debug.Log("move achieved");
+           
+        }*/
+    }
+
+    void FacePlayer()
+    {
+        Vector3 toPlayer = gameObject.transform.position - m_Player.transform.position;
+        //transform.LookAt(m_Player.transform.position);
+        //transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+        if (toPlayer.x > 0.0f && isRight_ == false)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+            isRight_ = true;
+            isLeft_ = false;
+        }
+        else if (toPlayer.x < 0.0f && isLeft_ == false)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x *= 1;
+            transform.localScale = theScale;
+            isLeft_ = true;
+            isRight_ = false;
+        }
+
+               
+    }
 
 	void ChargeTheField()
 	{	
@@ -110,6 +217,18 @@ public class RefereeBully : BossBaseClass
 
                 }
             }
+            if (StartPos == 0 || StartPos == 6 || StartPos == 5)
+            {
+                Vector3 theScale = transform.localScale;
+                theScale.x *= -1;
+                transform.localScale = theScale;
+            }
+            if (StartPos == 2 || StartPos == 7 || StartPos == 3)
+            {
+                Vector3 theScale = transform.localScale;
+                theScale.x *= 1;
+                transform.localScale = theScale;
+            }
 	}
 
     //reuses the bullies by simple moving them back to a new position since their off the screen by the new spawn time, no point in destroying/making new ones
@@ -139,11 +258,26 @@ public class RefereeBully : BossBaseClass
             {
                 for (int j = 0; j < m_JockHorde.Count; ++j)
                 {
-                    m_JockHorde[j].transform.position = m_RefStartPos[StartPos].transform.position;
-                    m_JockHorde[j].GetComponent<BullyScript>().InitEnemy(m_RefStartPos[StartPos].transform.position, row, newEnemy);
+                    m_JockHorde[j].transform.position = gameObject.transform.position;
+                   // m_JockHorde[j].transform.position = m_RefStartPos[StartPos].transform.position;
+                    m_JockHorde[j].GetComponent<BullyScript>().InitEnemy(gameObject.transform.position, row, newEnemy);
+
+                    if (StartPos == 0 || StartPos == 6 || StartPos == 5)
+                    {
+                        Vector3 theScale = m_JockHorde[j].transform.localScale;
+                        theScale.x *= -1;
+                        m_JockHorde[j].transform.localScale = theScale;
+                    }
+                    if (StartPos == 2 || StartPos == 7 || StartPos == 3)
+                    {
+                        Vector3 theScale = m_JockHorde[j].transform.localScale;
+                        theScale.x *= 1;
+                        m_JockHorde[j].transform.localScale = theScale;
+                    }
                 }
             }
         }
+       
             
         
     }
@@ -156,6 +290,7 @@ public class RefereeBully : BossBaseClass
 			verticalSpeedMin = 0;
 			horizontalSpeedMax = Constants.HORDE_CHARGE_RIGHT_SPEED * Constants.HORDE_MAX_SPEED_MOD;
 			verticalSpeedMax = 0;
+
 		}
 		if(StartPos == 2 || StartPos == 7 || StartPos == 3)
 		{
@@ -180,6 +315,8 @@ public class RefereeBully : BossBaseClass
 		}
 	}
 }
+
+
 
 /*		int DirSelect = Random.Range(0, 3);
 		if (DirSelect == 0)

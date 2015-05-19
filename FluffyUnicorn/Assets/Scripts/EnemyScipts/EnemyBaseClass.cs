@@ -408,7 +408,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void EnemyUpdate(GameObject bully)
 	{
-		Debug.Log(bully.name);
+		//Debug.Log(bully.name);
 		if (bully.name != "FattestBully" && bully.name != "KingBully")
 		{
 			Vector2 enemyPos = new Vector2(bully.GetComponent<Rigidbody2D>().position.x, bully.GetComponent<Rigidbody2D>().position.y);
