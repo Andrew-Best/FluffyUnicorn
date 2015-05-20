@@ -194,10 +194,19 @@ public class EnemyBaseClass : MonoBehaviour
 		{
 			Debug.Log("Why was this even called?");
 		}
-		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position =
-			new Vector2(bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position.x,
-			bully.GetComponent<EnemyBaseClass>().m_TargetPoints[m_CurRow].transform.position.y);
 
+		float xPos = bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position.x;
+
+
+//		float yPos = bully.GetComponent<EnemyBaseClass>().m_TargetPoints[bully.GetComponent<EnemyBaseClass>().m_CurRow].transform.position.y;
+//		float yPos = m_TargetPoints[bully.GetComponent<EnemyBaseClass>().m_CurRow].transform.position.y;
+//		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, yPos);
+
+		//Brendan, fix the above code. I get a null reference
+
+		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, 0);
+
+		
 	}
 
 	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
@@ -409,7 +418,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public virtual void EnemyUpdate(GameObject bully)
 	{
 		//Debug.Log(bully.name);
-		if (bully.name != "FattestBully" && bully.name != "KingBully")
+		if (bully.name != "FattestBully" && bully.name != "KingBully" && bully.name != "RefereeBully" && bully.name != "QueenBully")
 		{
 			Vector2 enemyPos = new Vector2(bully.GetComponent<Rigidbody2D>().position.x, bully.GetComponent<Rigidbody2D>().position.y);
 			bully.GetComponent<BullyScript>().m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully); //Update Enemy Projectiles on screen

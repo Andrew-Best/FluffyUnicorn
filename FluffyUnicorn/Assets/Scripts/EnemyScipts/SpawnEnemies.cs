@@ -46,17 +46,17 @@ public class SpawnEnemies : MonoBehaviour
 					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
-				if (newBoss.name == "RefereeBully")
+				else if (newBoss.name == "RefereeBully")
 				{
 					newBoss.GetComponent<RefereeBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
-				if (newBoss.name == "QueenBully")
+				else if (newBoss.name == "QueenBully")
 				{
 					newBoss.GetComponent<QueenBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
 				}
-				if (newBoss.name == "KingBully")
+				else if (newBoss.name == "KingBully")
 				{
 					newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);

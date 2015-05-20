@@ -44,6 +44,22 @@ public class RefereeBully : BossBaseClass
 		lifeSpan_ = Constants.HORDE_LIFESPAN;
 		curLifeTime_ = 0.0f;
 		maxJockCount_ = Constants.HORDE_SIZE;
+		m_EnemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner"); 
+	}
+
+	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
+	{
+		base.InitEnemy(spawnPos, row, newBully);
+
+		m_Position = m_ThisBoss.GetComponent<Rigidbody2D>().position;
+
+		m_HP = Constants.REFEREE_BULLY_HP;
+
+		m_Curstate = 0;
+		m_BossName = "Referee Bully";
+		m_CurFrame = 0;
+		this.m_CurRow = row;
+		//m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
 	}
 
 	// Update is called once per frame
