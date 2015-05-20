@@ -9,15 +9,17 @@ public class PepperDragon : BossBaseClass
 
 	public GameObject m_PepperDragon;
 
+	public const float DRAGON_PART_MOVEMENT = 0.5f;
+
 	private void GetRow(GameObject gameObject)
 	{
 
 	}
 
-	private void SwitchRow(GameObject head, GameObject hitArm)
+	public void SwitchRow(GameObject head, GameObject hitArm)
 	{
 		float headStartYPos = head.GetComponent<Rigidbody2D>().transform.position.y;
-		float armStartYPos = head.GetComponent<Rigidbody2D>().transform.position.y;
+		float armStartYPos = hitArm.GetComponent<Rigidbody2D>().transform.position.y;
 
 		float headYPosDest = armStartYPos;
 		float armYPosDest = headStartYPos;
@@ -29,16 +31,16 @@ public class PepperDragon : BossBaseClass
 		{
 			if(headStartYPos > headYPosDest && armStartYPos < armYPosDest )
 			{
-				head.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f);
-				hitArm.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 1.0f);
+				head.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -DRAGON_PART_MOVEMENT);
+				hitArm.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, DRAGON_PART_MOVEMENT);
 			}
 		}
 		else//head needs to rise, arm needs to lower
 		{
 			if (headStartYPos < headYPosDest && armStartYPos > armYPosDest)
 			{
-				head.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 1.0f);
-				hitArm.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f);
+				head.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, DRAGON_PART_MOVEMENT);
+				hitArm.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -DRAGON_PART_MOVEMENT);
 			}
 		}
 	}
@@ -60,15 +62,5 @@ public class PepperDragon : BossBaseClass
 	
 	}
 
-	void OnTriggerEnter2D(Collider2D playerAttack)
-	{
-		if (playerAttack.tag == "PlayerProjectile")
-		{
-			if(this.gameObject.tag == "DragonArm")
-			{
-				m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;
-				SwitchRow(m_Head, this.gameObject);
-			}
-		}
-	}
+	
 }
