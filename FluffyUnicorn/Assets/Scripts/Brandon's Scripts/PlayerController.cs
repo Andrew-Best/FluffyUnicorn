@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
         tracks_.Clear();
 
         player_ = GameObject.Find("Player");
+        m_PlayerData = GetComponent<PlayerData>();
         playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
         playerAnimator_ = player_.GetComponent<Animator>();
         playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
