@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
     private bool canSwitchTracks = true;
     private bool buttonHeld_ = false;
 
-    private List<GameObject> targetPoints_ = new List<GameObject>();     //where the player will move to when switching tracks
-    private List<Collider2D> tracks_ = new List<Collider2D>();           //tracks the player will switch to 
+    public List<GameObject> targetPoints_ = new List<GameObject>();     //where the player will move to when switching tracks
+    public List<Collider2D> tracks_ = new List<Collider2D>();           //tracks the player will switch to 
 
     private Rigidbody2D playerRigidBody_;
 
@@ -95,19 +95,25 @@ public class PlayerController : MonoBehaviour
 
     public void SetValues()
     {
+        targetPoints_.Clear();
+        tracks_.Clear();
+
         player_ = GameObject.Find("Player");
+        playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
+        playerAnimator_ = player_.GetComponent<Animator>();
+        playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
+
         for (int i = 0; i < 3; ++i)
         {
             targetPoints_.Add(GameObject.FindGameObjectWithTag("Targetpoint" + i));
             tracks_.Add(GameObject.FindGameObjectWithTag("Track" + i).GetComponent<Collider2D>());
         }
-        player_.transform.position = targetPoints_[0].transform.position;
-       // playerRigidBody_.velocity = new Vector2(0.0f, 0.0f);
-        playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
-        playerAnimator_ = player_.GetComponent<Animator>();
-        playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
-        comboTimer_ = m_ComboTimerLength;
+       // player_.transform.position = targetPoints_[0].transform.position;
        
+       // playerRigidBody_.velocity = new Vector2(0.0f, 0.0f);
+        
+        comboTimer_ = m_ComboTimerLength;
+        player_.GetComponent<Rigidbody2D>().transform.position = new Vector3(targetPoints_[0].transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
     }
 
     void OnLevelWasLoaded(int level)
