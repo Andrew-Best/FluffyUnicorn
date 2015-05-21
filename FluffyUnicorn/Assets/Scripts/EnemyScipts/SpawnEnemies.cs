@@ -11,6 +11,8 @@ public class SpawnEnemies : MonoBehaviour
 
 	public GameObject[] m_Bosses; //List of possible enemies to spawn
 
+    public static bool bossSpawned_ = false;
+
 	void Start () 
 	{
 		m_EnemyControl = GameObject.FindGameObjectWithTag("EnemyController"); 
@@ -45,24 +47,29 @@ public class SpawnEnemies : MonoBehaviour
 				{
 					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
+                    bossSpawned_ = true;
 				}
 				else if (newBoss.name == "RefereeBully")
 				{
 					newBoss.GetComponent<RefereeBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
+                    bossSpawned_ = true;
 				}
 				else if (newBoss.name == "QueenBully")
 				{
 					newBoss.GetComponent<QueenBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
+                    bossSpawned_ = true;
 				}
 				else if (newBoss.name == "KingBully")
 				{
 					newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[row].transform.position, row, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
+                    bossSpawned_ = true;
 				}
 				else
 				{
+                    bossSpawned_ = false;
 					Debug.Log("No boss.");
 				}
 			}

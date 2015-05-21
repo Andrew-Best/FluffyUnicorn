@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public UIController m_UIControl;
     public UIController m_AndroidUI;
     public PlayerData m_PData;
+    
 
     private int currLevel_; //Current level the player is on
 
@@ -37,6 +38,18 @@ public class GameController : MonoBehaviour
     void StartLevel()
     {
         m_UIControl.BulliesNeeded = Constants.BULLY_LEVEL_REQUIREMENT + currLevel_;
+    }
+
+    void UpdateLevel()
+    {
+        /*if(SpawnEnemies.bossSpawned_ == true)
+        {
+            m_EnemySpawner.gameObject.SetActive(false);
+        }
+        else
+        {
+            m_EnemySpawner.gameObject.SetActive(true);
+        }*/
     }
 
     #region Save/Load
