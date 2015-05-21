@@ -39,6 +39,7 @@ public class UpgradeManager : MonoBehaviour
     #region UI Variables
     public GameObject[] m_UIElements;
     public GameObject m_UpgradeMenu;
+    public GameObject m_Description;
     public Image[] m_MeleeImages;
     public Image[] m_ProjectileImages;
     public Image[] m_CombinedComboImages;
@@ -234,6 +235,18 @@ public class UpgradeManager : MonoBehaviour
         {
             m_UIElements[i].SetActive(true);
         }
+    }
+
+    public void OpenDescription()
+    {
+        m_UpgradeMenu.SetActive(false);
+        m_Description.SetActive(true);
+    }
+
+    public void CloseDescription()
+    {
+        m_UpgradeMenu.SetActive(true);
+        m_Description.SetActive(false);
     }
 
     void UpdateUpgradeUI()
