@@ -49,6 +49,9 @@ public class UpgradeManager : MonoBehaviour
     public Text m_FireRate;
     public Text m_Damage;
     public Text m_Speed;
+    public Slider m_FireRateSlider;
+    public float m_IncreaseSliderAmount;
+    private float sliderValue_ = 0.0f;
     #endregion
 
     #region Attributes
@@ -67,6 +70,7 @@ public class UpgradeManager : MonoBehaviour
     void Update()
     {
         UpdateUpgradeUI();
+        m_FireRateSlider.value = sliderValue_;
     }
 
     public void UpgradeHealth(int health)
@@ -92,6 +96,7 @@ public class UpgradeManager : MonoBehaviour
         {
             m_Player.m_Currency -= m_AttackRateCost;
             m_Player.m_FireRate -= fireRate;
+            sliderValue_ += m_IncreaseSliderAmount;
         }
         else
         {
