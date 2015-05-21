@@ -74,7 +74,7 @@ public class Constants : MonoBehaviour
     public const int MAX_PLAYER_DAMAGE = 3;
     public const int MAX_PLAYER_CURRENCY = 3;
 
-    public const float MAX_PLAYER_Attack_Rate = 0.1f;
+    public const float MAX_PLAYER_Attack_Rate = 0.7f;
     public const float MAX_PLAYER_SPEED = 13.0f;
     #endregion
 }

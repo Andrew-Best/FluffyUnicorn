@@ -9,37 +9,43 @@ public class PepperDragon : BossBaseClass
 
 	public GameObject m_PepperDragon;
 
-	private void GetRow(GameObject gameObject)
-	{
+	public string m_PlayerLayer;
 
+	public const float DRAGON_PART_MOVEMENT = 0.5f;
+
+	public void SwitchRow(GameObject head, GameObject hitArm)
+	{
+		head.GetComponent<PepperDragonHead>().m_ThisHeadStartYPos = m_Head.GetComponent<Rigidbody2D>().transform.position.y;
+		hitArm.GetComponent<PepperDragonArm>().m_ThisArmStartPosY = hitArm.GetComponent<Rigidbody2D>().transform.position.y;
+
+		string headStartLayer = head.gameObject.layer.ToString();
+		string armStartLayer = hitArm.gameObject.layer.ToString();
+
+		head.GetComponent<PepperDragonHead>().MoveToArmPos(hitArm, armStartLayer, headStartLayer);
+		hitArm.GetComponent<PepperDragonArm>().MoveToHeadPos(armStartLayer, headStartLayer);
 	}
 
-	private void SwitchRow(GameObject head, GameObject hitArm)
+	protected bool MatchPlayerRowToLayer(string LayerOfEnemy)
 	{
-		float headStartYPos = head.GetComponent<Rigidbody2D>().transform.position.y;
-		float armStartYPos = head.GetComponent<Rigidbody2D>().transform.position.y;
-
-		float headYPosDest = armStartYPos;
-		float armYPosDest = headStartYPos;
-
-		float headCurYPos = headStartYPos;
-		float armCurYPos = armStartYPos;
-
-		if(headStartYPos > armStartYPos)//head needs to lower, arms needs to rise
+		if (this.GetComponent<EnemyBaseClass>().m_PlayerCurRow == 0)
 		{
-			if(headStartYPos > headYPosDest && armStartYPos < armYPosDest )
-			{
-				head.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f);
-				hitArm.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 1.0f);
-			}
+			m_PlayerLayer = "PDBackRow";
 		}
-		else//head needs to rise, arm needs to lower
+		else if (this.GetComponent<EnemyBaseClass>().m_PlayerCurRow == 1)
 		{
-			if (headStartYPos < headYPosDest && armStartYPos > armYPosDest)
-			{
-				head.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 1.0f);
-				hitArm.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f);
-			}
+			m_PlayerLayer = "PDMidRow";
+		}
+		else if (this.GetComponent<EnemyBaseClass>().m_PlayerCurRow == 2)
+		{
+			m_PlayerLayer = "PDFrontRow";
+		}
+		if(LayerOfEnemy == m_PlayerLayer)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
@@ -52,23 +58,5 @@ public class PepperDragon : BossBaseClass
 	void Start () 
 	{
 	
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-	}
-
-	void OnTriggerEnter2D(Collider2D playerAttack)
-	{
-		if (playerAttack.tag == "PlayerProjectile")
-		{
-			if(this.gameObject.tag == "DragonArm")
-			{
-				m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;
-				SwitchRow(m_Head, this.gameObject);
-			}
-		}
 	}
 }

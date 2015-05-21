@@ -7,6 +7,7 @@ public class UpgradeManager : MonoBehaviour
     #region public variables
     public PlayerData m_Player;
     public PlayerController m_PlayerController;
+    public AudioClip m_Error;
     public int m_HealthCost = 1;
     public int m_AttackRateCost = 1;
     public int m_DamageCost = 1;
@@ -31,11 +32,14 @@ public class UpgradeManager : MonoBehaviour
     private bool checkProjectileCounter_ = true;
     private bool checkMeleeCounter_ = true;
     private bool checkCombinedCounter_ = true;
+
+    private AudioSource audio_;
     #endregion
 
     #region UI Variables
     public GameObject[] m_UIElements;
     public GameObject m_UpgradeMenu;
+    public GameObject m_Description;
     public Image[] m_MeleeImages;
     public Image[] m_ProjectileImages;
     public Image[] m_CombinedComboImages;
@@ -45,6 +49,9 @@ public class UpgradeManager : MonoBehaviour
     public Text m_FireRate;
     public Text m_Damage;
     public Text m_Speed;
+    public Slider m_FireRateSlider;
+    public float m_IncreaseSliderAmount;
+    private float sliderValue_ = 0.0f;
     #endregion
 
     #region Attributes
@@ -55,13 +62,28 @@ public class UpgradeManager : MonoBehaviour
     public int CurrencyLevel { get { return currencyUpgradeCounter_; } set { currencyUpgradeCounter_ = value; } }
     #endregion
 
+    void Start()
+    {
+        audio_ = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        UpdateUpgradeUI();
+        m_FireRateSlider.value = sliderValue_;
+    }
+
     public void UpgradeHealth(int health)
     {
         if (m_Player.m_Currency >= m_HealthCost && m_Player.m_PlayerHealth < Constants.MAX_PLAYER_HEALTH)
         {
             m_Player.m_Currency -= m_HealthCost;
             m_Player.m_PlayerHealth += health;
-        }  
+        }
+        else
+        {
+            PlayAudio(m_Error);
+        }
         if(m_Player.m_PlayerHealth > Constants.MAX_PLAYER_HEALTH)
         {
             m_Player.m_PlayerHealth = Constants.MAX_PLAYER_HEALTH;
@@ -74,8 +96,12 @@ public class UpgradeManager : MonoBehaviour
         {
             m_Player.m_Currency -= m_AttackRateCost;
             m_Player.m_FireRate -= fireRate;
-        }     
-
+            sliderValue_ += m_IncreaseSliderAmount;
+        }
+        else
+        {
+            PlayAudio(m_Error);
+        }
         if(m_Player.m_FireRate < 0.1f)
         {
             m_Player.m_FireRate = 0.1f;
@@ -88,7 +114,11 @@ public class UpgradeManager : MonoBehaviour
         {
             m_Player.m_Currency -= m_DamageCost;
             m_Player.m_PlayerDamage += playerDamage;
-        }   
+        }
+        else
+        {
+            PlayAudio(m_Error);
+        }
     }
 
     public void UpgradeSpeed(float speed)
@@ -97,7 +127,11 @@ public class UpgradeManager : MonoBehaviour
         {
             m_Player.m_Currency -= m_SpeedCost;
             m_Player.m_MaxSpeed += speed;
-        }  
+        }
+        else
+        {
+            PlayAudio(m_Error);
+        }
     }
 
     public void UpgradeCurrency(int currency)
@@ -107,11 +141,10 @@ public class UpgradeManager : MonoBehaviour
             m_Player.m_Currency -= m_CurrencyCost;
             m_Player.m_CurrencyScalar += currency;
         }
-    }
-
-    void Update()
-    {
-        UpdateUpgradeUI();
+        else
+        {
+            PlayAudio(m_Error);
+        }
     }
 
     public void UpgradeMeleeCombo()
@@ -132,7 +165,11 @@ public class UpgradeManager : MonoBehaviour
             m_PlayerController.m_UnlockedMeleeCombos[meleeCounter_] = true;
             m_Player.m_Currency -= m_MeleeComboCost[meleeCounter_];
             meleeCounter_++;
-        }  
+        }
+        else
+        {
+            PlayAudio(m_Error);
+        }
     }
 
     public void UpgradeProjectileCombo()
@@ -153,7 +190,11 @@ public class UpgradeManager : MonoBehaviour
             m_PlayerController.m_UnlockedProjectileCombos[projectileCounter_] = true;
             m_Player.m_Currency -= m_ProjectileComboCost[projectileCounter_];
             projectileCounter_++;
-        }  
+        }
+        else
+        {
+            PlayAudio(m_Error);
+        }
     }
 
     public void UpgradeMultiCombo()
@@ -174,7 +215,11 @@ public class UpgradeManager : MonoBehaviour
             m_PlayerController.m_UnlockedCombinedCombos[combinedComboCounter_] = true;
             m_Player.m_Currency -= m_MultiComboCost[combinedComboCounter_];
             combinedComboCounter_++;
-        }  
+        }
+        else
+        {
+            PlayAudio(m_Error);
+        }
     }
 
     public void OpenMenu()
@@ -195,6 +240,18 @@ public class UpgradeManager : MonoBehaviour
         {
             m_UIElements[i].SetActive(true);
         }
+    }
+
+    public void OpenDescription()
+    {
+        m_UpgradeMenu.SetActive(false);
+        m_Description.SetActive(true);
+    }
+
+    public void CloseDescription()
+    {
+        m_UpgradeMenu.SetActive(true);
+        m_Description.SetActive(false);
     }
 
     void UpdateUpgradeUI()
@@ -220,5 +277,13 @@ public class UpgradeManager : MonoBehaviour
         m_Currency.text = "Currency Scalar: " + m_Player.m_CurrencyScalar.ToString();
         m_FireRate.text = "Fire Rate: " + m_Player.m_FireRate.ToString("F1");   //'F1' makes it one decimal
         m_Damage.text = "Player Damage: " + m_Player.m_PlayerDamage.ToString();
+    }
+
+    public void PlayAudio(AudioClip audioClip)
+    {
+        if (!audio_.isPlaying)
+        {
+           AudioSource.PlayClipAtPoint(audioClip, this.transform.position);
+        }  
     }
 }
