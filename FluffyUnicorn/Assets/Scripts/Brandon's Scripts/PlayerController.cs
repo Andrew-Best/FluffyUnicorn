@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
         playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
         playerAnimator_ = player_.GetComponent<Animator>();
         playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
-
+        m_GameControl = GameObject.Find("Main Camera").GetComponent<GameController>();
         for (int i = 0; i < 3; ++i)
         {
             targetPoints_.Add(GameObject.FindGameObjectWithTag("Targetpoint" + i));
