@@ -7,26 +7,29 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameController : MonoBehaviour 
 {
-    public UIController m_UIControl;
-    public UIController m_AndroidUI;
-    public PlayerData m_PData;
-    
+    private PlayerData pData_;
+    private UIController UIControl_;
+    private UIController AndroidUI_;
 
     private int currLevel_; //Current level the player is on
 
 	void Start () 
     {
+        UIControl_ = GameObject.Find("UI").GetComponent<UIController>();
+        AndroidUI_ = GameObject.Find("AndroidUI").GetComponent<UIController>();
+
         Screen.orientation = ScreenOrientation.Landscape;
 #if UNITY_ANDROID
-        m_AndroidUI.gameObject.SetActive(true);
-        m_UIControl.gameObject.SetActive(false);
+        AndroidUI_.gameObject.SetActive(true);
+        UIControl_.gameObject.SetActive(false);
 #endif
 
 #if UNITY_EDITOR
-        m_AndroidUI.gameObject.SetActive(false);
-        m_UIControl.gameObject.SetActive(true);
+        AndroidUI_.gameObject.SetActive(false);
+        UIControl_.gameObject.SetActive(true);
 #endif
         currLevel_ = 1; //Temporary default
+        pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
         StartLevel();
 	}
 	
@@ -37,7 +40,7 @@ public class GameController : MonoBehaviour
 
     void StartLevel()
     {
-        m_UIControl.BulliesNeeded = Constants.BULLY_LEVEL_REQUIREMENT + currLevel_;
+        UIControl_.BulliesNeeded = Constants.BULLY_LEVEL_REQUIREMENT + currLevel_;
     }
 
     void UpdateLevel()
@@ -50,6 +53,12 @@ public class GameController : MonoBehaviour
         {
             m_EnemySpawner.gameObject.SetActive(true);
         }*/
+    }
+
+    //This function is called whenever you want to increase the gas level on the UI
+    public void IncreaseGasLevel(float val)
+    {
+        UIControl_.GasLevel += val;
     }
 
     #region Save/Load

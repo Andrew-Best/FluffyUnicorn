@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class UpgradeManager : MonoBehaviour
 {
     #region public variables
-    public PlayerData m_Player;
-    public PlayerController m_PlayerController;
     public AudioClip m_Error;
     public int m_HealthCost = 1;
     public int m_AttackRateCost = 1;
@@ -20,6 +18,9 @@ public class UpgradeManager : MonoBehaviour
     #endregion
 
     #region Private Variables
+    private PlayerData pData_;
+    private PlayerController pController_;
+
     private int meleeCounter_ = 0;
     private int projectileCounter_ = 0;
     private int combinedComboCounter_ = 0;
@@ -64,6 +65,8 @@ public class UpgradeManager : MonoBehaviour
 
     void Start()
     {
+        pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
+        pController_ = GameObject.Find("Player").GetComponent<PlayerController>();
         audio_ = GetComponent<AudioSource>();
     }
 
@@ -75,45 +78,45 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeHealth(int health)
     {
-        if (m_Player.m_Currency >= m_HealthCost && m_Player.m_PlayerHealth < Constants.MAX_PLAYER_HEALTH)
+        if (pData_.m_Currency >= m_HealthCost && pData_.m_PlayerHealth < Constants.MAX_PLAYER_HEALTH)
         {
-            m_Player.m_Currency -= m_HealthCost;
-            m_Player.m_PlayerHealth += health;
+            pData_.m_Currency -= m_HealthCost;
+            pData_.m_PlayerHealth += health;
         }
         else
         {
             PlayAudio(m_Error);
         }
-        if(m_Player.m_PlayerHealth > Constants.MAX_PLAYER_HEALTH)
+        if(pData_.m_PlayerHealth > Constants.MAX_PLAYER_HEALTH)
         {
-            m_Player.m_PlayerHealth = Constants.MAX_PLAYER_HEALTH;
+            pData_.m_PlayerHealth = Constants.MAX_PLAYER_HEALTH;
         }
     }
 
     public void UpgradeAttackRate(float fireRate)
     {
-        if (m_Player.m_Currency >= m_AttackRateCost && m_Player.m_FireRate > Constants.MAX_PLAYER_Attack_Rate)
+        if (pData_.m_Currency >= m_AttackRateCost && pData_.m_FireRate > Constants.MAX_PLAYER_Attack_Rate)
         {
-            m_Player.m_Currency -= m_AttackRateCost;
-            m_Player.m_FireRate -= fireRate;
+            pData_.m_Currency -= m_AttackRateCost;
+            pData_.m_FireRate -= fireRate;
             sliderValue_ += m_IncreaseSliderAmount;
         }
         else
         {
             PlayAudio(m_Error);
         }
-        if(m_Player.m_FireRate < 0.1f)
+        if(pData_.m_FireRate < 0.1f)
         {
-            m_Player.m_FireRate = 0.1f;
+            pData_.m_FireRate = 0.1f;
         }
     }
 
     public void UpgadeDamage(int playerDamage)
     {
-        if (m_Player.m_Currency >= m_DamageCost && m_Player.m_PlayerDamage < Constants.MAX_PLAYER_DAMAGE)
+        if (pData_.m_Currency >= m_DamageCost && pData_.m_PlayerDamage < Constants.MAX_PLAYER_DAMAGE)
         {
-            m_Player.m_Currency -= m_DamageCost;
-            m_Player.m_PlayerDamage += playerDamage;
+            pData_.m_Currency -= m_DamageCost;
+            pData_.m_PlayerDamage += playerDamage;
         }
         else
         {
@@ -123,10 +126,10 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeSpeed(float speed)
     {
-        if (m_Player.m_Currency >= m_SpeedCost && m_Player.m_MaxSpeed < Constants.MAX_PLAYER_SPEED)
+        if (pData_.m_Currency >= m_SpeedCost && pData_.m_MaxSpeed < Constants.MAX_PLAYER_SPEED)
         {
-            m_Player.m_Currency -= m_SpeedCost;
-            m_Player.m_MaxSpeed += speed;
+            pData_.m_Currency -= m_SpeedCost;
+            pData_.m_MaxSpeed += speed;
         }
         else
         {
@@ -136,10 +139,10 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeCurrency(int currency)
     {
-        if (m_Player.m_Currency >= m_CurrencyCost && m_Player.m_CurrencyScalar < Constants.MAX_PLAYER_CURRENCY)
+        if (pData_.m_Currency >= m_CurrencyCost && pData_.m_CurrencyScalar < Constants.MAX_PLAYER_CURRENCY)
         {
-            m_Player.m_Currency -= m_CurrencyCost;
-            m_Player.m_CurrencyScalar += currency;
+            pData_.m_Currency -= m_CurrencyCost;
+            pData_.m_CurrencyScalar += currency;
         }
         else
         {
@@ -150,22 +153,22 @@ public class UpgradeManager : MonoBehaviour
     public void UpgradeMeleeCombo()
     {
         //set the counter to the right variable as the player may already have upgrades
-        for (int i = 0; i < m_PlayerController.m_UnlockedMeleeCombos.Length; ++i)
+        for (int i = 0; i < pController_.m_UnlockedMeleeCombos.Length; ++i)
         {
-            if (m_PlayerController.m_UnlockedMeleeCombos[i] == true && checkMeleeCounter_)
+            if (pController_.m_UnlockedMeleeCombos[i] == true && checkMeleeCounter_)
             {
                 meleeCounter_++;
             }
         }
         checkMeleeCounter_ = false;
-        if (meleeCounter_ < m_PlayerController.m_UnlockedMeleeCombos.Length)
+        if (meleeCounter_ < pController_.m_UnlockedMeleeCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
-            if (m_Player.m_Currency >= m_MeleeComboCost[meleeCounter_] && m_PlayerController.m_UnlockedMeleeCombos[meleeCounter_] != true)
+            if (pData_.m_Currency >= m_MeleeComboCost[meleeCounter_] && pController_.m_UnlockedMeleeCombos[meleeCounter_] != true)
             {
                 m_MeleeImages[meleeCounter_].sprite = m_FilledJewel;
-                m_PlayerController.m_UnlockedMeleeCombos[meleeCounter_] = true;
-                m_Player.m_Currency -= m_MeleeComboCost[meleeCounter_];
+                pController_.m_UnlockedMeleeCombos[meleeCounter_] = true;
+                pData_.m_Currency -= m_MeleeComboCost[meleeCounter_];
                 meleeCounter_++;
             }
             else
@@ -178,22 +181,22 @@ public class UpgradeManager : MonoBehaviour
     public void UpgradeProjectileCombo()
     {
         //set the counter to the right variable as the player may already have upgrades
-        for (int i = 0; i < m_PlayerController.m_UnlockedProjectileCombos.Length; ++i)
+        for (int i = 0; i < pController_.m_UnlockedProjectileCombos.Length; ++i)
         {
-            if (m_PlayerController.m_UnlockedProjectileCombos[i] == true && checkProjectileCounter_)
+            if (pController_.m_UnlockedProjectileCombos[i] == true && checkProjectileCounter_)
             {
                 projectileCounter_++;
             }
         }
         checkProjectileCounter_ = false;
-        if (projectileCounter_ < m_PlayerController.m_UnlockedProjectileCombos.Length)
+        if (projectileCounter_ < pController_.m_UnlockedProjectileCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
-            if (m_Player.m_Currency >= m_ProjectileComboCost[projectileCounter_] && m_PlayerController.m_UnlockedProjectileCombos[projectileCounter_] != true)
+            if (pData_.m_Currency >= m_ProjectileComboCost[projectileCounter_] && pController_.m_UnlockedProjectileCombos[projectileCounter_] != true)
             {
                 m_ProjectileImages[projectileCounter_].sprite = m_FilledJewel;
-                m_PlayerController.m_UnlockedProjectileCombos[projectileCounter_] = true;
-                m_Player.m_Currency -= m_ProjectileComboCost[projectileCounter_];
+                pController_.m_UnlockedProjectileCombos[projectileCounter_] = true;
+                pData_.m_Currency -= m_ProjectileComboCost[projectileCounter_];
                 projectileCounter_++;
             }
             else
@@ -206,22 +209,22 @@ public class UpgradeManager : MonoBehaviour
     public void UpgradeMultiCombo()
     {
         //set the counter to the right variable as the player may already have upgrades
-        for (int i = 0; i < m_PlayerController.m_UnlockedCombinedCombos.Length; ++i)
+        for (int i = 0; i < pController_.m_UnlockedCombinedCombos.Length; ++i)
         {
-            if (m_PlayerController.m_UnlockedCombinedCombos[i] == true && checkCombinedCounter_)
+            if (pController_.m_UnlockedCombinedCombos[i] == true && checkCombinedCounter_)
             {
                 combinedComboCounter_++;
             }
         }
         checkCombinedCounter_ = false;
-        if (combinedComboCounter_ < m_PlayerController.m_UnlockedCombinedCombos.Length)
+        if (combinedComboCounter_ < pController_.m_UnlockedCombinedCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
-            if (m_Player.m_Currency >= m_MultiComboCost[combinedComboCounter_] && m_PlayerController.m_UnlockedCombinedCombos[combinedComboCounter_] != true)
+            if (pData_.m_Currency >= m_MultiComboCost[combinedComboCounter_] && pController_.m_UnlockedCombinedCombos[combinedComboCounter_] != true)
             {
                 m_CombinedComboImages[combinedComboCounter_].sprite = m_FilledJewel;
-                m_PlayerController.m_UnlockedCombinedCombos[combinedComboCounter_] = true;
-                m_Player.m_Currency -= m_MultiComboCost[combinedComboCounter_];
+                pController_.m_UnlockedCombinedCombos[combinedComboCounter_] = true;
+                pData_.m_Currency -= m_MultiComboCost[combinedComboCounter_];
                 combinedComboCounter_++;
             }
             else
@@ -268,24 +271,24 @@ public class UpgradeManager : MonoBehaviour
         //if there is an upgraded combo switch the image of that upgrade to a filled circle. 
         for (int i = 0; i < m_AmountOfUpgrades; i++)
         {
-           if(m_PlayerController.m_UnlockedCombinedCombos[i] == true)
+           if(pController_.m_UnlockedCombinedCombos[i] == true)
            {
                m_CombinedComboImages[i].sprite = m_FilledJewel;
            }
-           if (m_PlayerController.m_UnlockedProjectileCombos[i] == true)
+           if (pController_.m_UnlockedProjectileCombos[i] == true)
            {
                m_ProjectileImages[i].sprite = m_FilledJewel;
            }
-           if (m_PlayerController.m_UnlockedMeleeCombos[i] == true)
+           if (pController_.m_UnlockedMeleeCombos[i] == true)
            {
                m_MeleeImages[i].sprite = m_FilledJewel;
            }
         }
-        m_Health.text = "Player Health: " + m_Player.m_PlayerHealth.ToString();
-        m_Speed.text = "Player Speed: " + m_Player.m_MaxSpeed.ToString("F1");   //'F1' makes it one decimal
-        m_Currency.text = "Currency Scalar: " + m_Player.m_CurrencyScalar.ToString();
-        m_FireRate.text = "Fire Rate: " + m_Player.m_FireRate.ToString("F1");   //'F1' makes it one decimal
-        m_Damage.text = "Player Damage: " + m_Player.m_PlayerDamage.ToString();
+        m_Health.text = "Player Health: " + pData_.m_PlayerHealth.ToString();
+        m_Speed.text = "Player Speed: " + pData_.m_MaxSpeed.ToString("F1");   //'F1' makes it one decimal
+        m_Currency.text = "Currency Scalar: " + pData_.m_CurrencyScalar.ToString();
+        m_FireRate.text = "Fire Rate: " + pData_.m_FireRate.ToString("F1");   //'F1' makes it one decimal
+        m_Damage.text = "Player Damage: " + pData_.m_PlayerDamage.ToString();
     }
 
     public void PlayAudio(AudioClip audioClip)

@@ -291,7 +291,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Bean")
         {
-            gameControl_.m_UIControl.GasLevel += Constants.BEAN_VALUE;
+            gameControl_.IncreaseGasLevel(Constants.BEAN_VALUE);
             Destroy(other.gameObject);
         }
         else if (m_IsHitting)

@@ -8,11 +8,12 @@ public class UIController : MonoBehaviour
     public Slider m_FartSlider; //The slider showing progress towards your next possible fart
     public Slider m_HealthSlider; //The slider showing remaining player health
     public Text m_BullyNumberText; //Text element which shows numerically how many bullies are remaining
-    public PlayerData m_PlayerData; //Player Data script
-    public PlayerController m_PlayerController; //Player Controller script
     #endregion
 
     #region Private Variables
+    private PlayerData pData_; //Player Data script
+    private PlayerController pController_; //Player Controller script
+
     private float currGasLevel_; //Value of the fart slider, how much gas has been built up
     private int bulliesNeeded_; //Value showing how many bullies are required to beat the level
     #endregion
@@ -26,8 +27,8 @@ public class UIController : MonoBehaviour
     {
         m_FartSlider.minValue = Constants.FART_SLIDER_MIN;
         m_FartSlider.maxValue = Constants.FART_SLIDER_MAX;
-        m_PlayerData = GameObject.Find("Player").GetComponent<PlayerData>();
-        m_PlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
+        pController_ = GameObject.Find("Player").GetComponent<PlayerController>();
        // m_HealthSlider.minValue = Constants.PLAYER_MIN_HEALTH;
       //  m_HealthSlider.maxValue = Constants.PLAYER_DEFAULT_MAX_HEALTH;
 	}
@@ -43,32 +44,32 @@ public class UIController : MonoBehaviour
 
     public void OnPointerUp()
     {
-        m_PlayerController.OnPointerUp();
+        pController_.OnPointerUp();
     }
 
     public void OnPointerDown()
     {
-        m_PlayerController.OnPointerDown();
+        pController_.OnPointerDown();
     }
 
     public void MoveLeft()
     {
-        m_PlayerController.MoveLeft();
+        pController_.MoveLeft();
     }
 
     public void MoveRight()
     {
-        m_PlayerController.MoveRight();
+        pController_.MoveRight();
     }
 
     public void MoveUp()
     {
-        m_PlayerController.MoveUp();
+        pController_.MoveUp();
     }
 
     public void MoveDown()
     {
-        m_PlayerController.MoveDown();
+        pController_.MoveDown();
     }
     #endregion
 }
