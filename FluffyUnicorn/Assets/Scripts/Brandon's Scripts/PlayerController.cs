@@ -6,27 +6,10 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     #region public variables
-    public GameController m_GameControl;    //Game Controller object
     public GameObject m_SpawnPoint;         //projectile spawn point
-    
-    public PlayerData m_PlayerData;         //Player data script
-
     public string m_ProjectileName = "PlayerProjectile";
     public string m_ProjectileName2 = "PlayerProjectile2";
     public string m_ProjectileName3 = "PlayerProjectile3";
-
-    /*public float m_MaxSpeed = 5.0f;
-    public float m_Acceleration = 1.0f;
-    public float m_ShotSpeed = 10.0f;
-    public float m_FireRate = 1.0f;
-    public float m_Deceleration = 1.0f;
-
-    public int m_PlayerHealth = Constants.PLAYER_DEFAULT_MAX_HEALTH;
-    public int m_PlayerDamage = 1;
-    public int m_Currency = 0;
-    public int m_CurrencyScalar = 1;
-    //use to determine how much curency the player gains */
-
     //used to keep track of what track the player is on
     public bool m_onFrontTrack = true;
     public bool m_onMiddleTrack = false;
@@ -37,6 +20,9 @@ public class PlayerController : MonoBehaviour
     #region private variables
     private GameObject player_;
     private GameObject startPosition_;
+
+    private PlayerData playerData_;         //Player data script
+    private GameController gameControl_;    //Game Controller object
 
     private float horizontalMove_;
     private float verticalMove_;
@@ -98,11 +84,11 @@ public class PlayerController : MonoBehaviour
         targetPoints_.Clear();
         tracks_.Clear();
         player_ = GameObject.Find("Player");
-        m_PlayerData = GetComponent<PlayerData>();
+        playerData_ = GetComponent<PlayerData>();
         playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
         playerAnimator_ = player_.GetComponent<Animator>();
         playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
-        m_GameControl = GameObject.Find("Main Camera").GetComponent<GameController>();
+        gameControl_ = GameObject.Find("Main Camera").GetComponent<GameController>();
         for (int i = 0; i < 3; ++i)
         {
             targetPoints_.Add(GameObject.FindGameObjectWithTag("Targetpoint" + i));
@@ -212,7 +198,7 @@ public class PlayerController : MonoBehaviour
         if (buttonHeld_)
         {
             horizontalMove_ = -1.0f;
-            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_PlayerData.m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * playerData_.m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 
@@ -221,7 +207,7 @@ public class PlayerController : MonoBehaviour
         if (buttonHeld_)
         {
             horizontalMove_ = 1.0f;
-            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_PlayerData.m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+            player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * playerData_.m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 
@@ -305,7 +291,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Bean")
         {
-            m_GameControl.m_UIControl.GasLevel += Constants.BEAN_VALUE;
+            gameControl_.m_UIControl.GasLevel += Constants.BEAN_VALUE;
             Destroy(other.gameObject);
         }
         else if (m_IsHitting)
@@ -478,7 +464,7 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        nextFire_ = Time.time + m_PlayerData.m_FireRate;
+        nextFire_ = Time.time + playerData_.m_FireRate;
         //use the right projectile based on how far the projectile combo is in the chain
         if (projectileChain_ == 0)
         {
@@ -488,11 +474,11 @@ public class PlayerController : MonoBehaviour
             //Determine which direction to fire in
             if (facingRight_)
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
             }
             else
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
             }
         }
         else if (projectileChain_ == 1)
@@ -503,11 +489,11 @@ public class PlayerController : MonoBehaviour
             //Determine which direction to fire in
             if (facingRight_)
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
             }
             else
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
             }
         }
         else if (projectileChain_ >= 2)
@@ -518,18 +504,18 @@ public class PlayerController : MonoBehaviour
             //Determine which direction to fire in
             if (facingRight_)
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(m_PlayerData.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
             }
             else
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-m_PlayerData.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
             }
         }
     }
 
     void PhysicalAttack()
     {
-        nextMeleeAttack_ = Time.time + m_PlayerData.m_PunchRate;
+        nextMeleeAttack_ = Time.time + playerData_.m_PunchRate;
         //set the physical damage to the appropriate variable based on where the melee state is at 
         if (meleeChain_ == 0)
         {
