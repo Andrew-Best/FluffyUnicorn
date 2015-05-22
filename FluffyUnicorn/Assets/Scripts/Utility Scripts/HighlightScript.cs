@@ -9,7 +9,7 @@ public class HighlightScript : MonoBehaviour
     private Color endColour_;
 
     private float alphaMin_ = 0.0f;          //Lowest number the alpha can go to
-    private float alphaMax_ = 0.7f;        //Highest number the alpha can go to
+    private float alphaMax_ = 0.8f;        //Highest number the alpha can go to
 
     private float alphaTimer_;          //Timer for the alpha interpolation
     private float timerMax_ = 0.8f;     //Max time for the alphaTimer_
