@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class LevelSelect : MonoBehaviour
@@ -23,7 +24,15 @@ public class LevelSelect : MonoBehaviour
 
             if (timesClicked_ >= 2)
             {
-                Application.LoadLevel(go.name);
+                try
+                {
+                    Application.LoadLevel(go.name);
+                }
+                catch(Exception e)
+                {
+                    Debug.Log("Level does not exist or is not unlocked, " + e);
+                }
+                
             }
         }
         else
