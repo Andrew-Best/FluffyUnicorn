@@ -51,6 +51,14 @@ public class UpgradeManager : MonoBehaviour
     public Text m_Damage;
     public Text m_Speed;
     public Slider m_FireRateSlider;
+    public Button m_HealthButton;
+    public Button m_DamageButton;
+    public Button m_SpeedButton;
+    public Button m_ScalarButton;
+    public Button m_FireRateButton;
+    public Button m_ProjectileButton;
+    public Button m_MeleeButton;
+    public Button m_ComboButton;
     public float m_IncreaseSliderAmount;
     private float sliderValue_ = 0.0f;
     #endregion
@@ -83,9 +91,13 @@ public class UpgradeManager : MonoBehaviour
             pData_.m_Currency -= m_HealthCost;
             pData_.m_PlayerHealth += health;
         }
-        else
+        else if (pData_.m_Currency <= m_HealthCost)
         {
             PlayAudio(m_Error);
+        }
+        else
+        {
+            m_HealthButton.interactable = false;
         }
         if(pData_.m_PlayerHealth > Constants.MAX_PLAYER_HEALTH)
         {
@@ -101,9 +113,13 @@ public class UpgradeManager : MonoBehaviour
             pData_.m_FireRate -= fireRate;
             sliderValue_ += m_IncreaseSliderAmount;
         }
-        else
+        else if (pData_.m_Currency <= m_AttackRateCost)
         {
             PlayAudio(m_Error);
+        }
+        else
+        {
+            m_FireRateButton.interactable = false;
         }
         if(pData_.m_FireRate < 0.1f)
         {
@@ -118,9 +134,13 @@ public class UpgradeManager : MonoBehaviour
             pData_.m_Currency -= m_DamageCost;
             pData_.m_PlayerDamage += playerDamage;
         }
-        else
+        else if (pData_.m_Currency <= m_DamageCost)
         {
             PlayAudio(m_Error);
+        }
+        else
+        {
+            m_DamageButton.interactable = false;
         }
     }
 
@@ -131,9 +151,13 @@ public class UpgradeManager : MonoBehaviour
             pData_.m_Currency -= m_SpeedCost;
             pData_.m_MaxSpeed += speed;
         }
-        else
+        else if (pData_.m_Currency <= m_SpeedCost)
         {
             PlayAudio(m_Error);
+        }
+        else
+        {
+            m_SpeedButton.interactable = false;
         }
     }
 
@@ -144,9 +168,13 @@ public class UpgradeManager : MonoBehaviour
             pData_.m_Currency -= m_CurrencyCost;
             pData_.m_CurrencyScalar += currency;
         }
-        else
+        else if (pData_.m_Currency <= m_CurrencyCost)
         {
             PlayAudio(m_Error);
+        }
+        else
+        {
+            m_ScalarButton.interactable = false;
         }
     }
 
@@ -171,10 +199,14 @@ public class UpgradeManager : MonoBehaviour
                 pData_.m_Currency -= m_MeleeComboCost[meleeCounter_];
                 meleeCounter_++;
             }
-            else
+            else 
             {
                 PlayAudio(m_Error);
             }
+        }
+        else
+        {
+            m_MeleeButton.interactable = false;
         }
     }
 
@@ -204,6 +236,10 @@ public class UpgradeManager : MonoBehaviour
                 PlayAudio(m_Error);
             }
         }
+        else
+        {
+            m_ProjectileButton.interactable = false;
+        }
     }
 
     public void UpgradeMultiCombo()
@@ -231,6 +267,10 @@ public class UpgradeManager : MonoBehaviour
             {
                 PlayAudio(m_Error);
             }
+        }
+        else
+        {
+            m_ComboButton.interactable = false;
         }
     }
 
