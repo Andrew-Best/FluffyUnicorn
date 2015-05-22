@@ -9,9 +9,15 @@ public class PepperDragon : BossBaseClass
 
 	public GameObject m_PepperDragon;
 
-	public string m_PlayerLayer;
+	public float m_BackRowZ = -5.5f;
+	public float m_MidRowZ = -5.0f;
+	public float m_FrontRowZ = -4.5f;
 
-	public const float DRAGON_PART_MOVEMENT = 0.5f;
+	protected string layerNameAsIndex;
+	protected int layerIndex;
+	protected string curLayerName;
+
+	public string m_PlayerLayer;
 
 	public void SwitchRow(GameObject head, GameObject hitArm)
 	{
@@ -21,23 +27,91 @@ public class PepperDragon : BossBaseClass
 		string headStartLayer = head.gameObject.layer.ToString();
 		string armStartLayer = hitArm.gameObject.layer.ToString();
 
-		head.GetComponent<PepperDragonHead>().MoveToArmPos(hitArm, armStartLayer, headStartLayer);
-		hitArm.GetComponent<PepperDragonArm>().MoveToHeadPos(armStartLayer, headStartLayer);
+		int headStartLayerIndex = int.Parse(headStartLayer);
+		int armStartLayerIndex = int.Parse(armStartLayer);
+
+		head.GetComponent<PepperDragonHead>().MoveToArmPos(hitArm, armStartLayerIndex, headStartLayerIndex);
+		hitArm.GetComponent<PepperDragonArm>().MoveToHeadPos(armStartLayerIndex, headStartLayerIndex);
+	}
+
+	protected void GetCurLayer()
+	{
+		layerNameAsIndex = this.gameObject.layer.ToString();
+		layerIndex = int.Parse(layerNameAsIndex);
+
+		curLayerName = LayerMask.LayerToName(layerIndex);
+	}
+	protected void ChangeZPos()
+	{
+		float curVelX = this.gameObject.GetComponent<Rigidbody2D>().velocity.x;
+		float curVelY = this.gameObject.GetComponent<Rigidbody2D>().velocity.y;
+
+		float curZPos = this.gameObject.GetComponent<Rigidbody2D>().transform.position.z;
+		Vector3 curVel = this.gameObject.GetComponent<Rigidbody2D>().velocity;
+
+		if (curLayerName == "PDBackRow")
+		{
+			//If the layer is the BackRow, and the Z pos isn't the assigned backrow z pos
+			if (curZPos != Constants.PEPPER_DRAGON_Z_POS_BACKROW)
+			{
+				//if the z pos is higher than the position it should be then
+				if (curZPos > Constants.PEPPER_DRAGON_Z_POS_BACKROW)
+				{
+					//assign the velocity to move the object lower until is reaches the designated position
+					curVel = new Vector3(curVelX, curVelY, -Constants.PEPPER_DRAGON_Z_VELOCITY);
+				}
+				else
+				{
+					curVel = new Vector3(curVelX, curVelY, Constants.PEPPER_DRAGON_Z_VELOCITY);
+				}				
+			}
+		}
+		if (curLayerName == "PDMidRow")
+		{
+			if (curZPos != Constants.PEPPER_DRAGON_Z_POS_MIDROW)
+			{
+				if (curZPos > Constants.PEPPER_DRAGON_Z_POS_MIDROW)
+				{
+					curVel = new Vector3(curVelX, curVelY, -Constants.PEPPER_DRAGON_Z_VELOCITY);
+				}
+				else
+				{
+					curVel = new Vector3(curVelX, curVelY, Constants.PEPPER_DRAGON_Z_VELOCITY);
+				}
+			}
+		}
+		if (curLayerName == "PDFrontRow")
+		{
+			if (curZPos != Constants.PEPPER_DRAGON_Z_POS_FRONTROW)
+			{
+				if (curZPos > Constants.PEPPER_DRAGON_Z_POS_FRONTROW)
+				{
+					curVel = new Vector3(curVelX, curVelY, -Constants.PEPPER_DRAGON_Z_VELOCITY);
+				}
+				else
+				{
+					curVel = new Vector3(curVelX, curVelY, Constants.PEPPER_DRAGON_Z_VELOCITY);
+				}
+			}
+		}
+		this.gameObject.GetComponent<Rigidbody2D>().velocity = curVel;
 	}
 
 	protected bool MatchPlayerRowToLayer(string LayerOfEnemy)
 	{
-		if (this.GetComponent<EnemyBaseClass>().m_PlayerCurRow == 0)
+		int curPlayerRow = m_PlayerCurRow;
+
+		if (curPlayerRow == 0)
 		{
-			m_PlayerLayer = "PDBackRow";
+			m_PlayerLayer = "PDFrontRow";
 		}
-		else if (this.GetComponent<EnemyBaseClass>().m_PlayerCurRow == 1)
+		else if (curPlayerRow == 1)
 		{
 			m_PlayerLayer = "PDMidRow";
 		}
-		else if (this.GetComponent<EnemyBaseClass>().m_PlayerCurRow == 2)
+		else if (curPlayerRow == 2)
 		{
-			m_PlayerLayer = "PDFrontRow";
+			m_PlayerLayer = "PDBackRow";
 		}
 		if(LayerOfEnemy == m_PlayerLayer)
 		{

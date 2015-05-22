@@ -11,10 +11,11 @@ public class PepperDragonHead : PepperDragon
 
 	private bool HeadIsMoving_;
 
-	public GameObject MoveToArmPos(GameObject hitArm, string armLayer, string headLayer)
+	public GameObject MoveToArmPos(GameObject hitArm, int armLayerIndex, int headLayerIndex)
 	{
-		this.gameObject.layer = LayerMask.NameToLayer(armLayer);
+		this.gameObject.layer = armLayerIndex;
 		m_ArmToMove = hitArm;
+		HeadIsMoving_ = true;
 		return m_ArmToMove;
 	}
 
@@ -36,6 +37,11 @@ public class PepperDragonHead : PepperDragon
 				{
 					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f);
 				}
+				else
+				{
+					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					HeadIsMoving_ = false;
+				}
 			}
 			else//the arm is lower and must be raised
 			{
@@ -43,7 +49,14 @@ public class PepperDragonHead : PepperDragon
 				{
 					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 1.0f);
 				}
+				else
+				{
+					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					HeadIsMoving_ = false;
+				}
 			}
+			ChangeZPos();
 		}
+		
 	}
 }

@@ -11,24 +11,20 @@ public class PepperDragonArm : PepperDragon
 
 	public GameObject m_DragonHead;
 
-	public void MoveToHeadPos(string armLayer, string headLayer)
+	public void MoveToHeadPos(int armLayerIndex, int headLayerIndex)
 	{		
 		ArmIsMoving_ = true;
-		this.gameObject.layer = LayerMask.NameToLayer(headLayer);
+		this.gameObject.layer =headLayerIndex;
 	}
 
 	void OnTriggerEnter2D(Collider2D playerAttack)
 	{
 		if (playerAttack.tag == "PlayerProjectile")
 		{
-			string ass = this.gameObject.layer.ToString();
-			int assValue = int.Parse(ass);
-
-			string curLayerName = LayerMask.LayerToName(assValue);
+			GetCurLayer();
 		
 			if (MatchPlayerRowToLayer(curLayerName))
-			{
-				
+			{				
 				m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;
 				m_PepperDragon.GetComponent<PepperDragon>().SwitchRow(m_Head, this.gameObject);
 			}
@@ -53,6 +49,11 @@ public class PepperDragonArm : PepperDragon
 				{
 					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f);
 				}
+				else
+				{
+					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					ArmIsMoving_ = false;
+				}
 			}
 			else//the arm is lower and must be raised
 			{
@@ -60,8 +61,15 @@ public class PepperDragonArm : PepperDragon
 				{
 					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 1.0f);
 				}
+				else
+				{
+					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					ArmIsMoving_ = false;
+				}
 			}
+			ChangeZPos();
 		}
+		GetCurLayer();
 	}
 
 }

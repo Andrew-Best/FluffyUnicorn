@@ -67,6 +67,12 @@ public class Constants : MonoBehaviour
 	public const float HORDE_MAX_SPEED_MOD = 3.5f;
 	public const int JOCK_INDEX = 4;
 
+	public const float PEPPER_DRAGON_Z_POS_BACKROW = -5.5f;
+	public const float PEPPER_DRAGON_Z_POS_MIDROW = -5.0f;
+	public const float PEPPER_DRAGON_Z_POS_FRONTROW = -4.5f;
+	public const float PEPPER_DRAGON_Z_VELOCITY = 0.1f;
+	public const float DRAGON_PART_MOVEMENT = 0.5f;
+
 	#endregion
 
     #region Upgrades
