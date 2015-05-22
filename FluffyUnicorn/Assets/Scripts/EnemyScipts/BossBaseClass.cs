@@ -40,6 +40,7 @@ public class BossBaseClass : EnemyBaseClass
 				enemiesInList[i].GetComponent<FattestBully>().FattestUpdate();
 			}
 			//Referee updates all on his own
+			//Pepper Dragon updates on its own
 
 		}
 	}

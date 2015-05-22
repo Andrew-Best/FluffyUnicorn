@@ -35,11 +35,13 @@ public class PepperDragonArm : PepperDragon
 	void Start()
 	{
 		ArmIsMoving_ = false;
+		m_Player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+
 		m_ThisArmCurPosY = this.GetComponent<Rigidbody2D>().transform.position.y;
 		if(ArmIsMoving_)
 		{

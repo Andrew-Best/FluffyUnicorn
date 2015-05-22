@@ -8,11 +8,7 @@ public class PepperDragon : BossBaseClass
 	public GameObject m_Head;
 
 	public GameObject m_PepperDragon;
-
-	public float m_BackRowZ = -5.5f;
-	public float m_MidRowZ = -5.0f;
-	public float m_FrontRowZ = -4.5f;
-
+	
 	protected string layerNameAsIndex;
 	protected int layerIndex;
 	protected string curLayerName;
@@ -99,9 +95,10 @@ public class PepperDragon : BossBaseClass
 
 	protected bool MatchPlayerRowToLayer(string LayerOfEnemy)
 	{
+		GetPlayerInfo(this.gameObject);
 		int curPlayerRow = m_PlayerCurRow;
 
-		if (curPlayerRow == 0)
+		if (curPlayerRow == 2)
 		{
 			m_PlayerLayer = "PDFrontRow";
 		}
@@ -109,7 +106,7 @@ public class PepperDragon : BossBaseClass
 		{
 			m_PlayerLayer = "PDMidRow";
 		}
-		else if (curPlayerRow == 2)
+		else if (curPlayerRow == 0)
 		{
 			m_PlayerLayer = "PDBackRow";
 		}
@@ -131,6 +128,6 @@ public class PepperDragon : BossBaseClass
 	// Use this for initialization
 	void Start () 
 	{
-	
+		m_Player = GameObject.FindGameObjectWithTag("Player");
 	}
 }

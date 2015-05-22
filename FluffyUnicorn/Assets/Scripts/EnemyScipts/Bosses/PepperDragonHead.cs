@@ -23,11 +23,14 @@ public class PepperDragonHead : PepperDragon
 	void Start () 
 	{
 		HeadIsMoving_ = false;
+		m_Player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+
+
 		m_ThisHeadCurPosY = this.GetComponent<Rigidbody2D>().transform.position.y;
 		if(HeadIsMoving_)
 		{
