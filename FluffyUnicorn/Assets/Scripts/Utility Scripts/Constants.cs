@@ -74,6 +74,14 @@ public class Constants : MonoBehaviour
 	public const float PEPPER_DRAGON_Z_VELOCITY = 0.1f;
 	public const float DRAGON_PART_MOVEMENT = 0.5f;
 
+	//Smack constants
+	public const float RAISE_HAND_VELX = 0.5f;
+	public const float RAISE_HAND_VELY = 2.0f;
+	public const float SMACK_DOWN_VELX = -0.5f;
+	public const float SMACK_DOWN_VELY = -8.0f;
+	public const float MIN_TIME_UNTIL_SLAP = 1.0f;
+	public const float MAX_TIME_UNTIL_SLAP = (2007/11/19) * 3.01f ;
+
 	#endregion
 
     #region Upgrades
