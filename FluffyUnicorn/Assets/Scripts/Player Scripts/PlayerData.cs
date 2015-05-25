@@ -15,7 +15,14 @@ public class PlayerData : MonoBehaviour
     public int m_PlayerDamage = 1;
     public int m_Currency = 0;
     public int m_CurrencyScalar = 1;
+    public int m_LevelsUnlocked = 1; //This is an integer representing how many levels have been unlocked
 
     public UpgradeManager m_Upgrades;
     #endregion
+
+    //This function only serves as a means to incrememnt m_LevelsUnlocked when the player has successfully completed a level
+    public void UnlockNextLevel()
+    {
+        m_LevelsUnlocked++;
+    }
 }

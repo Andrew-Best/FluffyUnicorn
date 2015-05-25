@@ -61,6 +61,11 @@ public class GameController : MonoBehaviour
         UIControl_.GasLevel += val;
     }
 
+    void EndLevel()
+    {
+        pData_.UnlockNextLevel();
+    }
+
     #region Save/Load
     void Save()
     {

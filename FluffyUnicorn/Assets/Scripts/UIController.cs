@@ -29,19 +29,19 @@ public class UIController : MonoBehaviour
         m_FartSlider.maxValue = Constants.FART_SLIDER_MAX;
         pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
         pController_ = GameObject.Find("Player").GetComponent<PlayerController>();
-       // m_HealthSlider.minValue = Constants.PLAYER_MIN_HEALTH;
-      //  m_HealthSlider.maxValue = Constants.PLAYER_DEFAULT_MAX_HEALTH;
+        m_HealthSlider.minValue = Constants.PLAYER_MIN_HEALTH;
+        m_HealthSlider.maxValue = Constants.PLAYER_DEFAULT_MAX_HEALTH;
 	}
 	
 	void Update () 
     {
         m_FartSlider.value = currGasLevel_;
-//        m_HealthSlider.value = m_PlayerData.m_PlayerHealth;
+        m_HealthSlider.value = pData_.m_PlayerHealth;
         m_BullyNumberText.text = "0" + "/" + bulliesNeeded_;
 	}
 
+    //This region might be temporary, however as of right now it calls the player movement functions within the player controller and nothing else.
     #region Player Movement UI Controls
-
     public void OnPointerUp()
     {
         pController_.OnPointerUp();

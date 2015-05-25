@@ -11,7 +11,8 @@ public class Constants : MonoBehaviour
 
     #region Level Constants
     public const int BULLY_LEVEL_REQUIREMENT = 5;       //Base requirement of bullies defeated to successfully pass the first level
-    //This will increase with the level, adding X bullies for the level number (level 1 = +1 bully, level 2 = +2 bullies, etc)
+                                                        //This will increase with the level, adding X bullies for the level number (level 1 = +1 bully, level 2 = +2 bullies, etc)
+    public const int LEVELS_PER_STAGE = 8;              //The amount of levels there are in each stage
     #endregion
 
     #region Player Constants
