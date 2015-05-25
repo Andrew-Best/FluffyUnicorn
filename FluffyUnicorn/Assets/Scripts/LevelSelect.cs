@@ -28,31 +28,33 @@ public class LevelSelect : MonoBehaviour
         CreateButtons();
     }
 
+    //This function creates the buttons for the Level Select scene
     void CreateButtons()
     {
-        //float startXPos = -476.25f;
-        //float startYPos = 159.966f;
+        //Set initial values - locally as they aren't needed elsewhere
         float startXPos = -438.8f;
         float startYPos = 134.0f;
-        //float startXPos = 0.0f;
-        //float startYPos = -1.0f;
         int row = 0;
         int col = 0;
         int maxCol = 4;
         int maxRow = 2;
 
+        //Create a button per level
         for(int i = 0; i < Constants.LEVELS_PER_STAGE; ++i)
         {
+            //Here we instantiate the button prefab we have already made, give it a position, set it's parent, size it properly, assign the function it calls and name it appropriately
             GameObject go = (GameObject)Instantiate(m_ButtonPrefab, new Vector3(startXPos, startYPos, 0.0f), Quaternion.identity);
             go.gameObject.transform.SetParent(m_LevelButtonsParent.transform, false);
             go.GetComponent<RectTransform>().sizeDelta = new Vector2(buttonWidth_, buttonHeight_);
             go.GetComponent<Button>().onClick.AddListener(delegate { ChooseLevel(go); });
             go.gameObject.name = "Level" + (i + 1);
 
+            //If the column has not reached it's maximum, increment the amount of columns and increase the X position for the next button
             if(col < maxCol)
             {
                 col++;
                 startXPos += buttonWidth_;
+                //If the column has reached it's maximum, reset the columns and X position, then incrememnt rows and decrease the Y pos for the next row
                 if(col >= maxCol)
                 {
                     if(row < maxRow)
@@ -64,13 +66,13 @@ public class LevelSelect : MonoBehaviour
                     }
                 }
             }
-
+            //Add the new button to our list of buttons
             levelButtons_.Add(go);
         }
-
         CheckLevelProgress();
     }
 
+    //This function checks how many levels the player has unlocked, and unlocks the appropriate level accordingly
     public void CheckLevelProgress()
     {
         for(int i = 0; i < levelButtons_.Count; ++i)

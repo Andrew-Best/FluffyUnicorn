@@ -64,11 +64,20 @@ public class UpgradeManager : MonoBehaviour
     #endregion
 
     #region Attributes
+    #region UpgradeCounters
     public int HealthLevel { get { return healthUpgradeCounter_; } set { healthUpgradeCounter_ = value; } }
     public int DamageLevel { get { return damageUpgradeCounter_; } set { damageUpgradeCounter_ = value; } }
     public int AttackRateLevel { get { return attackRateUpgradeCounter_; } set { attackRateUpgradeCounter_ = value; } }
     public int SpeedLevel { get { return speedUpgradeCounter_; } set { speedUpgradeCounter_ = value; } }
     public int CurrencyLevel { get { return currencyUpgradeCounter_; } set { currencyUpgradeCounter_ = value; } }
+    #endregion
+    #region UpgradeCosts
+    public int HealthCost { get { return Constants.BASE_UPGRADE_COST * healthUpgradeCounter_; } }
+    public int DamageCost { get { return Constants.BASE_UPGRADE_COST * damageUpgradeCounter_; } }
+    public int AttackRateCost { get { return Constants.BASE_UPGRADE_COST * attackRateUpgradeCounter_; } }
+    public int SpeedCost { get { return Constants.BASE_UPGRADE_COST * speedUpgradeCounter_; } }
+    public int CurrencyCost { get { return Constants.BASE_UPGRADE_COST * currencyUpgradeCounter_; } }
+    #endregion
     #endregion
 
     void Start()
