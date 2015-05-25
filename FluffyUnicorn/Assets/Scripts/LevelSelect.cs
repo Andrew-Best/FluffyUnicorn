@@ -9,7 +9,6 @@ public class LevelSelect : MonoBehaviour
     public GameObject m_ButtonPrefab;
     public GameObject m_LevelButtonsParent;
 
-    private HighlightScript highlightScript_;
     private GameObject lastClicked_;
     private GameObject currentClick_;
     private PlayerData pData_;
@@ -67,6 +66,23 @@ public class LevelSelect : MonoBehaviour
             }
 
             levelButtons_.Add(go);
+        }
+
+        CheckLevelProgress();
+    }
+
+    public void CheckLevelProgress()
+    {
+        for(int i = 0; i < levelButtons_.Count; ++i)
+        {
+            for (int j = 1; j < pData_.m_LevelsUnlocked + 1; ++j)
+            {
+                if (levelButtons_[i].name == "Level" + j)
+                {
+                    levelButtons_[i].GetComponent<Button>().interactable = true;
+                    levelButtons_[i].gameObject.transform.FindChild("Lock").GetComponent<Image>().enabled = false;
+                }
+            }
         }
     }
 
