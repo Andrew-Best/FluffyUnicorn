@@ -93,6 +93,14 @@ public class BullyScript : EnemyBaseClass
 	}
 	#endregion
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+        }
+    }
+
     #region Data Loading
     void LoadFromXML()
     {
