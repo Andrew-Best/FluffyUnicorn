@@ -107,7 +107,7 @@ public class UniqueAttackScript : MonoBehaviour
 			{
 				bullets.Remove(bullets[i].gameObject);
 			}
-			if(bullets[i].GetComponent<Rigidbody2D>().transform.position.x <= -25 || bullets[i].GetComponent<Rigidbody2D>().transform.position.x >= 25)
+			else if(bullets[i].GetComponent<Rigidbody2D>().transform.position.x <= -25 || bullets[i].GetComponent<Rigidbody2D>().transform.position.x >= 25)
 			{
 				Destroy(bullets[i]);
 				bullets.Remove(bullets[i].gameObject);
