@@ -197,16 +197,13 @@ public class EnemyBaseClass : MonoBehaviour
 
 		float xPos = bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position.x;
 
+		float yPos = bully.GetComponent<BullyScript>().m_TargetPoints[m_CurRow].transform.position.y;
+
 
 //		float yPos = bully.GetComponent<EnemyBaseClass>().m_TargetPoints[bully.GetComponent<EnemyBaseClass>().m_CurRow].transform.position.y;
 //		float yPos = m_TargetPoints[bully.GetComponent<EnemyBaseClass>().m_CurRow].transform.position.y;
-//		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, yPos);
 
-		//Brendan, fix the above code. I get a null reference
-
-//		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, 0);
-
-		
+		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, yPos);		
 	}
 
 	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
