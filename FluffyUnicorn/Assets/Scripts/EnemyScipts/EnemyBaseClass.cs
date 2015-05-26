@@ -204,7 +204,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 		//Brendan, fix the above code. I get a null reference
 
-		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, 0);
+//		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, 0);
 
 		
 	}

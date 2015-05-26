@@ -59,6 +59,10 @@ public class PepperDragonArm : PepperDragon
 	// Update is called once per frame
 	void Update()
 	{
+		#region Smack Attack
+		////////////////////////
+		// Hand Smack //
+		////////////////////////
 		if (!HandRaising_)//if the hand is not raising (i.e if falling down or not moving)
 		{
 			timeUntilHandRises_ -= Time.deltaTime;//countdown until the next time the hand is raised
@@ -79,6 +83,11 @@ public class PepperDragonArm : PepperDragon
 				HandRaising_ = false;//Change the boolean to clarify the hand should now be smacking the ground
 			}
 		}
+		#endregion
+		#region Part Pos Swap
+		/////////////////////////////////////////////////////////////////////////
+		// Arm and Head Pos Swap //
+		/////////////////////////////////////////////////////////////////////////
 		m_ThisArmCurPosY = this.GetComponent<Rigidbody2D>().transform.position.y;
 		if(ArmIsMoving_)
 		{
@@ -109,6 +118,7 @@ public class PepperDragonArm : PepperDragon
 			ChangeZPos();
 		}
 		GetCurLayer();
+		#endregion
 	}
 
 	void OnCollisionEnter2D(Collision2D ground)
