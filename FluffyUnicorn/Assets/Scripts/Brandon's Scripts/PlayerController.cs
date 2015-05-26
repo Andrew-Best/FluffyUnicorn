@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public bool m_onMiddleTrack = false;
     public bool m_onLastTrack = false;
     public bool m_IsHitting = false;     //determine if the player is using his physical attack
+
+    public BoxCollider2D m_MeleeCollider;
     #endregion
 
     #region private variables
@@ -124,6 +126,7 @@ public class PlayerController : MonoBehaviour
         UpdateMoveTimer();
         UpdateTrackTimer();
         ResetComboState(activateComboTimerReset_);
+        EnableMeleeCollision();
     }
 
     void UpdateMoveTimer()
@@ -299,6 +302,15 @@ public class PlayerController : MonoBehaviour
         else if (m_IsHitting)
         {
             m_IsHitting = false;
+            if(other.tag == "Trashcan")
+            {
+                DestructableObject hitObject;
+                hitObject = other.gameObject.GetComponentInChildren<DestructableObject>();
+                if (!hitObject.HasDied())
+                {
+                    hitObject.Destroy(playerData_.m_PunchDamage);
+                }
+            }
             //attack enemies and do your thing
         }
     }
@@ -570,6 +582,18 @@ public class PlayerController : MonoBehaviour
             combinedCombos[2] = true;
             canUseCombo_ = true;
         }      
+    }
+
+    void EnableMeleeCollision()
+    {
+        if(m_IsHitting)
+        {
+            m_MeleeCollider.enabled = true;
+        }
+        else
+        {
+            m_MeleeCollider.enabled = false;
+        }
     }
     #endregion
 }

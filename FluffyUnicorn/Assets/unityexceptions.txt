@@ -1,0 +1,1460 @@
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:38)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+
+Exception: NullReferenceException: Object reference not set to an instance of an object
+SpawnEnemies.SpawnEnemyFunc (Int32 row, Int32 type) (at Assets/Scripts/EnemyScipts/SpawnEnemies.cs:42)
+EnemyControllerScript.Update () (at Assets/Scripts/EnemyScipts/EnemyControllerScript.cs:48)
+

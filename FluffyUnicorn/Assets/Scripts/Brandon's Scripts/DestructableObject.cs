@@ -18,13 +18,11 @@ public class DestructableObject : MonoBehaviour
     private GameObject player_;
     private GameObject upgradeManager_;
     private Animator objectAnimator_;
-    private Vector3 deadPos_;
 
     private Vector3 startPos_;
 
     private bool dead_ = false;
     private bool isDamaged_ = false;
-    private bool canSetDeadPos_ = true;
 
     private float damage;
     #endregion
