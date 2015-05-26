@@ -29,7 +29,6 @@ public class Projectile : MonoBehaviour {
                 if (!hitObject.HasDied())
                 {
                     hitObject.Destroy(m_Damage);
-                    hitObject.Wiggle();
                 }
             }
         }

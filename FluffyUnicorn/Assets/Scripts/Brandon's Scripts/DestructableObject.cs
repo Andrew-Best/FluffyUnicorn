@@ -10,7 +10,6 @@ public class DestructableObject : MonoBehaviour
     public float m_ReactForce = 0.4f;
 
     public bool m_HasParticleEffect = false;
-    public bool m_ReactToDamage = true;
 
     public string m_ParticleName = "";
     #endregion 
@@ -20,6 +19,8 @@ public class DestructableObject : MonoBehaviour
     private GameObject upgradeManager_;
     private Animator objectAnimator_;
     private Vector3 deadPos_;
+
+    private Vector3 startPos_;
 
     private bool dead_ = false;
     private bool isDamaged_ = false;
@@ -34,10 +35,12 @@ public class DestructableObject : MonoBehaviour
         upgradeManager_ = GameObject.FindGameObjectWithTag("UpgradeManager");
         objectAnimator_ = this.GetComponent<Animator>();
         damage = m_Health / 2;
+        startPos_ = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
     }
 
     void Update()
     {
+        //this.transform.position = startPos_;//new Vector3(this.transform.position.x, startPos_.y, this.transform.position.z);
         UpdateAnimationValues();
         SetDeadPos();
     }
@@ -77,23 +80,11 @@ public class DestructableObject : MonoBehaviour
         particle.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(0, 1, 0));
     }
 
-    public void Wiggle()
-    {
-        //if you want the object to move when hit and it hasn't been destroyed
-        if (!dead_ && m_ReactToDamage)
-        {
-            this.GetComponent<Rigidbody2D>().AddForce(new Vector2(m_ReactForce, 0.0f));
-        }
-    }
-
     void SetDeadPos()
     {
         //if the object is dead then get the current position and assign it to the deadPos var and then set the object's position to the deadPos to keep it in its dead position
-        if (dead_ && canSetDeadPos_)
+        if (dead_)
         {
-            deadPos_ = this.GetComponent<Rigidbody2D>().transform.position;
-            this.GetComponent<Rigidbody2D>().transform.position = deadPos_;
-            canSetDeadPos_ = !canSetDeadPos_;
             //destroys the colliders and rigidbody so it doesn't move after the object has been destoryed 
             Destroy(this.GetComponent<Rigidbody2D>());
             if (this.GetComponent<BoxCollider2D>() != null)
