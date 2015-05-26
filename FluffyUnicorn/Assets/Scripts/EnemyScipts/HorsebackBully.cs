@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class HorsebackBully : MonoBehaviour
-
+{
     private GameObject Player_;
     private SpawnEnemies EnemySpawner_;
     private GameObject newEnemy;
@@ -77,7 +77,7 @@ public class HorsebackBully : MonoBehaviour
                     newEnemy = Objectpooler.Instance.GetObjectForType(bullyName, true);//new enemy is created
                     newEnemy.transform.position = StartPos;
                     Horses_.Add(newEnemy);
-                    newEnemy.Bully_.InitEnemy(StartPos, row, newEnemy);
+                    //newEnemy.GetComponent<BullyScript>().InitEnemy(StartPos, row, newEnemy);
                 }
 
             }
@@ -103,7 +103,7 @@ public class HorsebackBully : MonoBehaviour
 
         for (int j = 0; j < Horses_.Count; ++j)
         {
-            Horses_[j].transform.position = new Vector2(Horses_[j].transform.position.x, m_TargetPoints[row].transform.position.y);
+            Horses_[j].transform.position = new Vector2(11.0f, Bully_.m_TargetPoints[row].transform.position.y);
         }
     }
 }
