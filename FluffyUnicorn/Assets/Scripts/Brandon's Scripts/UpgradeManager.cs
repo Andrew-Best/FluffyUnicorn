@@ -6,11 +6,6 @@ public class UpgradeManager : MonoBehaviour
 {
     #region public variables
     public AudioClip m_Error;
-    public int m_HealthCost = 1;
-    public int m_AttackRateCost = 1;
-    public int m_DamageCost = 1;
-    public int m_SpeedCost = 1;
-    public int m_CurrencyCost = 1;
     public int[] m_MeleeComboCost;
     public int[] m_ProjectileComboCost;
     public int[] m_MultiComboCost;
@@ -95,12 +90,12 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeHealth(int health)
     {
-        if (pData_.m_Currency >= m_HealthCost && pData_.m_PlayerHealth < Constants.MAX_PLAYER_HEALTH)
+        if (pData_.m_Currency >= HealthCost && pData_.m_PlayerHealth < Constants.MAX_PLAYER_HEALTH)
         {
-            pData_.m_Currency -= m_HealthCost;
+            pData_.m_Currency -= HealthCost;
             pData_.m_PlayerHealth += health;
         }
-        else if (pData_.m_Currency <= m_HealthCost)
+        else if (pData_.m_Currency <= HealthCost)
         {
             PlayAudio(m_Error);
         }
@@ -116,13 +111,13 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeAttackRate(float fireRate)
     {
-        if (pData_.m_Currency >= m_AttackRateCost && pData_.m_FireRate > Constants.MAX_PLAYER_Attack_Rate)
+        if (pData_.m_Currency >= AttackRateCost && pData_.m_FireRate > Constants.MAX_PLAYER_Attack_Rate)
         {
-            pData_.m_Currency -= m_AttackRateCost;
+            pData_.m_Currency -= AttackRateCost;
             pData_.m_FireRate -= fireRate;
             sliderValue_ += m_IncreaseSliderAmount;
         }
-        else if (pData_.m_Currency <= m_AttackRateCost)
+        else if (pData_.m_Currency <= AttackRateCost)
         {
             PlayAudio(m_Error);
         }
@@ -138,12 +133,12 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgadeDamage(int playerDamage)
     {
-        if (pData_.m_Currency >= m_DamageCost && pData_.m_PlayerDamage < Constants.MAX_PLAYER_DAMAGE)
+        if (pData_.m_Currency >= DamageCost && pData_.m_PlayerDamage < Constants.MAX_PLAYER_DAMAGE)
         {
-            pData_.m_Currency -= m_DamageCost;
+            pData_.m_Currency -= DamageCost;
             pData_.m_PlayerDamage += playerDamage;
         }
-        else if (pData_.m_Currency <= m_DamageCost)
+        else if (pData_.m_Currency <= DamageCost)
         {
             PlayAudio(m_Error);
         }
@@ -155,12 +150,12 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeSpeed(float speed)
     {
-        if (pData_.m_Currency >= m_SpeedCost && pData_.m_MaxSpeed < Constants.MAX_PLAYER_SPEED)
+        if (pData_.m_Currency >= SpeedCost && pData_.m_MaxSpeed < Constants.MAX_PLAYER_SPEED)
         {
-            pData_.m_Currency -= m_SpeedCost;
+            pData_.m_Currency -= SpeedCost;
             pData_.m_MaxSpeed += speed;
         }
-        else if (pData_.m_Currency <= m_SpeedCost)
+        else if (pData_.m_Currency <= SpeedCost)
         {
             PlayAudio(m_Error);
         }
@@ -172,12 +167,12 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeCurrency(int currency)
     {
-        if (pData_.m_Currency >= m_CurrencyCost && pData_.m_CurrencyScalar < Constants.MAX_PLAYER_CURRENCY)
+        if (pData_.m_Currency >= CurrencyCost && pData_.m_CurrencyScalar < Constants.MAX_PLAYER_CURRENCY)
         {
-            pData_.m_Currency -= m_CurrencyCost;
+            pData_.m_Currency -= CurrencyCost;
             pData_.m_CurrencyScalar += currency;
         }
-        else if (pData_.m_Currency <= m_CurrencyCost)
+        else if (pData_.m_Currency <= CurrencyCost)
         {
             PlayAudio(m_Error);
         }
