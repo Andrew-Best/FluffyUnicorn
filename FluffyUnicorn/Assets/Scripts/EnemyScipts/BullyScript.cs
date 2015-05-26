@@ -29,11 +29,11 @@ public class BullyScript : EnemyBaseClass
 
 		this.m_CurRow = row;
 
-		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("Track2");
+		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("Targetpoint2");
 
-		this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("Track1");
+		this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("Targetpoint1");
 
-		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("Track0");
+		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("Targetpoint0");
 
 		this.changeTrackCountdown = this.m_ChangeTrackTimer;
 		m_MaxDist = this.GetComponent<Rigidbody2D>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
