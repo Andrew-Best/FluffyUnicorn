@@ -199,10 +199,6 @@ public class EnemyBaseClass : MonoBehaviour
 
 		float yPos = bully.GetComponent<BullyScript>().m_TargetPoints[m_CurRow].transform.position.y;
 
-
-//		float yPos = bully.GetComponent<EnemyBaseClass>().m_TargetPoints[bully.GetComponent<EnemyBaseClass>().m_CurRow].transform.position.y;
-//		float yPos = m_TargetPoints[bully.GetComponent<EnemyBaseClass>().m_CurRow].transform.position.y;
-
 		bully.GetComponent<EnemyBaseClass>().GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, yPos);		
 	}
 
