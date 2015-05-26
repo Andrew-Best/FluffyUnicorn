@@ -6,6 +6,7 @@ public class UpgradeManager : MonoBehaviour
 {
     #region public variables
     public AudioClip m_Error;
+    public AudioClip m_Unlock;
     public int[] m_MeleeComboCost;
     public int[] m_ProjectileComboCost;
     public int[] m_MultiComboCost;
@@ -94,6 +95,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= HealthCost;
             pData_.m_PlayerHealth += health;
+            PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= HealthCost)
         {
@@ -116,6 +118,7 @@ public class UpgradeManager : MonoBehaviour
             pData_.m_Currency -= AttackRateCost;
             pData_.m_FireRate -= fireRate;
             sliderValue_ += m_IncreaseSliderAmount;
+            PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= AttackRateCost)
         {
@@ -137,6 +140,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= DamageCost;
             pData_.m_PlayerDamage += playerDamage;
+            PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= DamageCost)
         {
@@ -154,6 +158,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= SpeedCost;
             pData_.m_MaxSpeed += speed;
+            PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= SpeedCost)
         {
@@ -171,6 +176,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= CurrencyCost;
             pData_.m_CurrencyScalar += currency;
+            PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= CurrencyCost)
         {
@@ -202,6 +208,7 @@ public class UpgradeManager : MonoBehaviour
                 pController_.m_UnlockedMeleeCombos[meleeCounter_] = true;
                 pData_.m_Currency -= m_MeleeComboCost[meleeCounter_];
                 meleeCounter_++;
+                PlayAudio(m_Unlock);
             }
             else 
             {
@@ -234,6 +241,7 @@ public class UpgradeManager : MonoBehaviour
                 pController_.m_UnlockedProjectileCombos[projectileCounter_] = true;
                 pData_.m_Currency -= m_ProjectileComboCost[projectileCounter_];
                 projectileCounter_++;
+                PlayAudio(m_Unlock);
             }
             else
             {
@@ -266,6 +274,7 @@ public class UpgradeManager : MonoBehaviour
                 pController_.m_UnlockedCombinedCombos[combinedComboCounter_] = true;
                 pData_.m_Currency -= m_MultiComboCost[combinedComboCounter_];
                 combinedComboCounter_++;
+                PlayAudio(m_Unlock);
             }
             else
             {
