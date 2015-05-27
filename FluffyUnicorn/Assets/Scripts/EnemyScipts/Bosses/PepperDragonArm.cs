@@ -123,15 +123,15 @@ public class PepperDragonArm : PepperDragon
 
 	void OnCollisionEnter2D(Collision2D ground)
 	{
-		if(ground.gameObject.tag == "Track0" && this.gameObject.layer == layerIndex)
+		if(ground.gameObject.tag == "Track0")
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 		}
-		else if (ground.gameObject.tag == "Track1" && this.gameObject.layer == layerIndex)
+		else if (ground.gameObject.tag == "Track1")
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 		}
-		else if (ground.gameObject.tag == "Track2" && this.gameObject.layer == layerIndex)
+		else if (ground.gameObject.tag == "Track2")
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 		}
