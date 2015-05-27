@@ -249,8 +249,9 @@ public class PlayerController : MonoBehaviour
             {
                 canSwitchTracks = false;
                 rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z);
-                tracks_[0].enabled = false;
-                tracks_[1].enabled = true;
+                this.gameObject.layer = 20;
+               // tracks_[0].enabled = false;
+                //tracks_[1].enabled = true;
                 m_onFrontTrack = false;
                 m_onMiddleTrack = true;
             }
@@ -258,8 +259,9 @@ public class PlayerController : MonoBehaviour
             {
                 canSwitchTracks = false;
                 rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[2].transform.position.y, targetPoints_[2].transform.position.z);
-                tracks_[2].enabled = true;
-                tracks_[1].enabled = false;
+                this.gameObject.layer = 21;
+                //tracks_[2].enabled = true;
+              //  tracks_[1].enabled = false;
                 m_onMiddleTrack = false;
                 m_onLastTrack = true;
             }
@@ -271,20 +273,22 @@ public class PlayerController : MonoBehaviour
             if (m_onLastTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                //rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z);
-                rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z) * Time.deltaTime);
-                tracks_[1].enabled = true;
-                tracks_[2].enabled = false;
+                rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z);
+                //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z) * Time.deltaTime);
+                this.gameObject.layer = 20;
+               // tracks_[1].enabled = true;
+              //  tracks_[2].enabled = false;
                 m_onLastTrack = false;
                 m_onMiddleTrack = true;
             }
             else if (m_onMiddleTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
-                //rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
-                rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z) * Time.deltaTime);
-                tracks_[0].enabled = true;
-                tracks_[1].enabled = false;
+                rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
+                //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z) * Time.deltaTime);
+                this.gameObject.layer = 19;
+              //  tracks_[0].enabled = true;
+             //   tracks_[1].enabled = false;
                 m_onMiddleTrack = false;
                 m_onFrontTrack = true;
             }
