@@ -27,6 +27,7 @@ public class UpgradeManager : MonoBehaviour
     private int attackRateUpgradeCounter_ = 1;
     private int speedUpgradeCounter_ = 1;
     private int currencyUpgradeCounter_ = 1;
+    private int meleeUpgradeCounter_ = 1;
     //these bools are used once to set the upgrades counters to their right locations. After they are set to false and are not used again. 
     private bool checkProjectileCounter_ = true;
     private bool checkMeleeCounter_ = true;
@@ -48,6 +49,7 @@ public class UpgradeManager : MonoBehaviour
     public Text m_FireRate;
     public Text m_Damage;
     public Text m_Speed;
+    public Text m_Punch;
     public Slider m_FireRateSlider;
     public Button m_HealthButton;
     public Button m_DamageButton;
@@ -57,6 +59,7 @@ public class UpgradeManager : MonoBehaviour
     public Button m_ProjectileButton;
     public Button m_MeleeButton;
     public Button m_ComboButton;
+    public Button m_PunchButton;
     public float m_IncreaseSliderAmount;
     private float sliderValue_ = 0.0f;
     #endregion
@@ -75,6 +78,7 @@ public class UpgradeManager : MonoBehaviour
     public int AttackRateCost { get { return Constants.BASE_UPGRADE_COST * attackRateUpgradeCounter_; } }
     public int SpeedCost { get { return Constants.BASE_UPGRADE_COST * speedUpgradeCounter_; } }
     public int CurrencyCost { get { return Constants.BASE_UPGRADE_COST * currencyUpgradeCounter_; } }
+    public int MeleeCost { get { return Constants.BASE_UPGRADE_COST * meleeUpgradeCounter_; } }
     #endregion
     #endregion
 
@@ -289,6 +293,24 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    public void UpgradeMeleeDamage(float meleeDamage)
+    {
+        if (pData_.m_Currency >= MeleeCost && pData_.m_PunchDamage < Constants.MAX_MELEE_DAMAGE)
+        {
+            pData_.m_Currency -= DamageCost;
+            pData_.m_PunchDamage += meleeDamage;
+            PlayAudio(m_Unlock);
+        }
+        else if (pData_.m_Currency <= DamageCost)
+        {
+            PlayAudio(m_Error);
+        }
+        else
+        {
+            m_PunchButton.interactable = false;
+        }
+    }
+
     public void OpenMenu()
     {
         //disable previous items and enable the upgrade menu 
@@ -344,6 +366,7 @@ public class UpgradeManager : MonoBehaviour
         m_Currency.text = "Currency Scalar: " + pData_.m_CurrencyScalar.ToString();
         m_FireRate.text = "Fire Rate: " + pData_.m_FireRate.ToString("F1");   //'F1' makes it one decimal
         m_Damage.text = "Player Damage: " + pData_.m_PlayerDamage.ToString();
+        m_Punch.text = "Melee Damage: " + pData_.m_PunchDamage.ToString();
     }
 
     public void PlayAudio(AudioClip audioClip)

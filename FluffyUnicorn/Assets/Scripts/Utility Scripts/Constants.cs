@@ -88,6 +88,7 @@ public class Constants : MonoBehaviour
     public const int MAX_PLAYER_HEALTH = 5;
     public const int MAX_PLAYER_DAMAGE = 3;
     public const int MAX_PLAYER_CURRENCY = 3;
+    public const float MAX_MELEE_DAMAGE = 3.0f;
     public const int BASE_UPGRADE_COST = 50;
 
     public const float MAX_PLAYER_Attack_Rate = 0.7f;
