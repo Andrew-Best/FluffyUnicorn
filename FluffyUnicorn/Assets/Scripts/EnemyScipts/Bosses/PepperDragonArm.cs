@@ -11,10 +11,22 @@ public class PepperDragonArm : PepperDragon
 	private float raiseHandTimer_;
 	private bool HandRaising_ = false;
 
+	private bool TooLow_ = false;
+	private bool PosBeingFixed_ = false;
+
+	string OriginLayer;
 	bool ArmIsMoving_;
 
 	public GameObject m_DragonHead;
 
+	public void FixPosition()
+	{
+		GetCurLayer();
+		OriginLayer = curLayerName;
+		this.gameObject.layer = 0;
+		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.RAISE_HAND_VELX, Constants.RAISE_HAND_VELY);
+		PosBeingFixed_ = true;		
+	}
 
 	public void MoveToHeadPos(int armLayerIndex, int headLayerIndex)
 	{		
@@ -119,13 +131,33 @@ public class PepperDragonArm : PepperDragon
 		}
 		GetCurLayer();
 		#endregion
+		#region Position Fixer
+		if (!PosBeingFixed_)
+		{
+			if (this.GetComponent<Rigidbody2D>().transform.position.y < -10)
+			{
+				TooLow_ = true;
+				FixPosition();
+			}
+		}
+		if (PosBeingFixed_)
+		{
+			if (this.GetComponent<Rigidbody2D>().transform.position.y > 30)
+			{
+				this.gameObject.layer = int.Parse(OriginLayer);
+				this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+				PosBeingFixed_ = false;
+				TooLow_ = false;
+			}
+		}
+		#endregion
 	}
 
 	void OnCollisionEnter2D(Collision2D ground)
 	{
 		if(ground.gameObject.tag == "Track0")
 		{
-			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);			
 		}
 		else if (ground.gameObject.tag == "Track1")
 		{
