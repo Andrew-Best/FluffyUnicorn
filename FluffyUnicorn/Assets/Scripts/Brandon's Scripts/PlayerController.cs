@@ -384,7 +384,6 @@ public class PlayerController : MonoBehaviour
                         BuildCombos();
                         PhysicalAttack();
                         meleeChain_++;
-                        playerBoxCollider_.isTrigger = true;
                         activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo
                     }   
                     break;
@@ -397,7 +396,6 @@ public class PlayerController : MonoBehaviour
                         BuildCombos();
                         PhysicalAttack();
                         meleeChain_++;
-                        playerBoxCollider_.isTrigger = true;
                     }
                     break;
 
@@ -410,7 +408,6 @@ public class PlayerController : MonoBehaviour
                         BuildCombos();
                         PhysicalAttack();
                         meleeChain_++;
-                        playerBoxCollider_.isTrigger = true;
                     }
                     break;
             }
@@ -435,7 +432,6 @@ public class PlayerController : MonoBehaviour
                 meleeChain_ = 0;
                 activateComboTimerReset_ = false;
                 m_IsHitting = false;
-                playerBoxCollider_.isTrigger = false;
                 //combo is over so set player back to idle by setting all combo bools to false
                 for (int i = 0; i < projectileCombo_.Length; ++i)
                 {
