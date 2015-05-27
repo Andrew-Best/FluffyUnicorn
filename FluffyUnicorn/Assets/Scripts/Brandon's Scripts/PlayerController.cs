@@ -248,6 +248,7 @@ public class PlayerController : MonoBehaviour
             if (m_onFrontTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
+                //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z) * Time.deltaTime);
                 rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z);
                 this.gameObject.layer = 20;
                // tracks_[0].enabled = false;
@@ -258,6 +259,7 @@ public class PlayerController : MonoBehaviour
             else if (m_onMiddleTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
+                //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[2].transform.position.y, targetPoints_[2].transform.position.z) * Time.deltaTime);
                 rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[2].transform.position.y, targetPoints_[2].transform.position.z);
                 this.gameObject.layer = 21;
                 //tracks_[2].enabled = true;
@@ -285,7 +287,7 @@ public class PlayerController : MonoBehaviour
             {
                 canSwitchTracks = false;
                 rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
-                //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z) * Time.deltaTime);
+               // rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z) * Time.deltaTime);
                 this.gameObject.layer = 19;
               //  tracks_[0].enabled = true;
              //   tracks_[1].enabled = false;
