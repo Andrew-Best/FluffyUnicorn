@@ -50,6 +50,15 @@ public class UpgradeManager : MonoBehaviour
     public Text m_Damage;
     public Text m_Speed;
     public Text m_Punch;
+    public Text m_HealthCost;
+    public Text m_CurrencyCost;
+    public Text m_FireRateCost;
+    public Text m_DamageCost;
+    public Text m_SpeedCost;
+    public Text m_PunchCost;
+    public Text m_PComboCost;
+    public Text m_MComboCost;
+    public Text m_CComboCost;
     public Slider m_FireRateSlider;
     public Button m_HealthButton;
     public Button m_DamageButton;
@@ -101,6 +110,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= HealthCost;
             pData_.m_PlayerHealth += health;
+            healthUpgradeCounter_++;
             PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= HealthCost)
@@ -124,6 +134,7 @@ public class UpgradeManager : MonoBehaviour
             pData_.m_Currency -= AttackRateCost;
             pData_.m_FireRate -= fireRate;
             sliderValue_ += m_IncreaseSliderAmount;
+            attackRateUpgradeCounter_++;
             PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= AttackRateCost)
@@ -146,6 +157,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= DamageCost;
             pData_.m_PlayerDamage += playerDamage;
+            damageUpgradeCounter_++;
             PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= DamageCost)
@@ -164,6 +176,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= SpeedCost;
             pData_.m_MaxSpeed += speed;
+            speedUpgradeCounter_++;
             PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= SpeedCost)
@@ -182,6 +195,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= CurrencyCost;
             pData_.m_CurrencyScalar += currency;
+            currencyUpgradeCounter_++;
             PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= CurrencyCost)
@@ -299,6 +313,7 @@ public class UpgradeManager : MonoBehaviour
         {
             pData_.m_Currency -= DamageCost;
             pData_.m_PunchDamage += meleeDamage;
+            meleeUpgradeCounter_++;
             PlayAudio(m_Unlock);
         }
         else if (pData_.m_Currency <= DamageCost)
@@ -367,6 +382,15 @@ public class UpgradeManager : MonoBehaviour
         m_FireRate.text = "Fire Rate: " + pData_.m_FireRate.ToString("F1");   //'F1' makes it one decimal
         m_Damage.text = "Player Damage: " + pData_.m_PlayerDamage.ToString();
         m_Punch.text = "Melee Damage: " + pData_.m_PunchDamage.ToString();
+        m_HealthCost.text = "Health: " + HealthCost.ToString();
+        m_CurrencyCost.text = "Currency: " + CurrencyCost.ToString();
+        m_FireRateCost.text = "Fire Rate: " + AttackRateCost.ToString();
+        m_DamageCost.text = "Projectile Damage: " + DamageCost.ToString();
+        m_PunchCost.text = "Melee Damage: " + MeleeCost.ToString();
+        m_SpeedCost.text = "Speed: " + SpeedCost.ToString();
+        m_PComboCost.text = "Projectile Combo: " + projectileComboCost_[projectileCounter_].ToString();
+        m_MComboCost.text = "Melee Combo: " + meleeComboCost_[meleeCounter_].ToString();
+        m_CComboCost.text = "Multi Combo: " + multiComboCost_[combinedComboCounter_].ToString();   
     }
 
     public void PlayAudio(AudioClip audioClip)
