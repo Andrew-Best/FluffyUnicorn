@@ -224,20 +224,19 @@ public class UpgradeManager : MonoBehaviour
                 meleeCounter_++;
                 PlayAudio(m_Unlock);
             }
-            else 
+            else if (pData_.m_Currency <= CurrencyCost)
             {
                 PlayAudio(m_Error);
             }
-        }
-        else
-        {
-            m_MeleeButton.interactable = false;
-        }
+            else
+            {
+                m_MeleeButton.interactable = false;
+            }
+        }      
     }
 
     public void UpgradeProjectileCombo()
-    {
-        
+    { 
         if (projectileCounter_ < pController_.m_UnlockedProjectileCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
@@ -249,15 +248,15 @@ public class UpgradeManager : MonoBehaviour
                 projectileCounter_++;
                 PlayAudio(m_Unlock);
             }
-            else
+            else if(pData_.m_Currency <= CurrencyCost)
             {
                 PlayAudio(m_Error);
             }
-        }
-        else
-        {
-            m_ProjectileButton.interactable = false;
-        }
+            else
+            {
+                m_ProjectileButton.interactable = false;
+            }
+        }   
     }
 
     public void UpgradeMultiCombo()
@@ -274,15 +273,15 @@ public class UpgradeManager : MonoBehaviour
                 combinedComboCounter_++;
                 PlayAudio(m_Unlock);
             }
-            else
+            else if (pData_.m_Currency <= CurrencyCost)
             {
                 PlayAudio(m_Error);
             }
-        }
-        else
-        {
-            m_ComboButton.interactable = false;
-        }
+            else
+            {
+                m_ComboButton.interactable = false;
+            }
+        }   
     }
 
     public void UpgradeMeleeDamage(float meleeDamage)
