@@ -402,20 +402,20 @@ public class UpgradeManager : MonoBehaviour
            }
         }
         m_Health.text = "Player Health: " + pData_.m_PlayerHealth.ToString();
-        m_Speed.text = "Player Speed: " + pData_.m_MaxSpeed.ToString("F1");   //'F1' makes it one decimal
+        m_Speed.text = "Player Speed: " + pData_.m_MaxSpeed.ToString("F1");      //'F1' makes it one decimal
         m_Currency.text = "Currency Scalar: " + pData_.m_CurrencyScalar.ToString();
-        m_FireRate.text = "Fire Rate: " + pData_.m_FireRate.ToString("F1");   //'F1' makes it one decimal
+        m_FireRate.text = "Fire Rate: " + pData_.m_FireRate.ToString("F1");      //'F1' makes it one decimal
         m_Damage.text = "Player Damage: " + pData_.m_PlayerDamage.ToString();
         m_Punch.text = "Melee Damage: " + pData_.m_PunchDamage.ToString();
-        m_HealthCost.text = "Health: " + HealthCost.ToString();
-        m_CurrencyCost.text = "Currency: " + CurrencyCost.ToString();
-        m_FireRateCost.text = "Fire Rate: " + AttackRateCost.ToString();
-        m_DamageCost.text = "Projectile Damage: " + DamageCost.ToString();
-        m_PunchCost.text = "Melee Damage: " + MeleeCost.ToString();
-        m_SpeedCost.text = "Speed: " + SpeedCost.ToString();  
-        m_PComboCost.text = "Projectile Combo: " + projectileComboCost_[projectileCounter_].ToString();
-        m_MComboCost.text = "Melee Combo: " + meleeComboCost_[meleeCounter_].ToString();
-        m_CComboCost.text = "Multi Combo: " + multiComboCost_[combinedComboCounter_].ToString();     
+        m_HealthCost.text = "Health: " + HealthCost.ToString() + " beans";   
+        m_CurrencyCost.text = "Currency: " + CurrencyCost.ToString() + " beans";   
+        m_FireRateCost.text = "Fire Rate: " + AttackRateCost.ToString() + " beans";   
+        m_DamageCost.text = "P-Damage: " + DamageCost.ToString() + " beans";   
+        m_PunchCost.text = "M-Damage: " + MeleeCost.ToString() + " beans";   
+        m_SpeedCost.text = "Speed: " + SpeedCost.ToString() + " beans";   
+        m_PComboCost.text = "P-Combo: " + projectileComboCost_[projectileCounter_].ToString() + " beans";   
+        m_MComboCost.text = "M-Combo: " + meleeComboCost_[meleeCounter_].ToString() + " beans";   
+        m_CComboCost.text = "C-Combo: " + multiComboCost_[combinedComboCounter_].ToString() + " beans";     
     }
 
     public void PlayAudio(AudioClip audioClip)
