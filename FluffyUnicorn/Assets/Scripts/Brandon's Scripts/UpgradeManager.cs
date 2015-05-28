@@ -59,6 +59,7 @@ public class UpgradeManager : MonoBehaviour
     public Text m_PComboCost;
     public Text m_MComboCost;
     public Text m_CComboCost;
+    public Text m_PlayerMoney;
     public Slider m_FireRateSlider;
     public Button m_HealthButton;
     public Button m_DamageButton;
@@ -415,7 +416,8 @@ public class UpgradeManager : MonoBehaviour
         m_SpeedCost.text = "Speed: " + SpeedCost.ToString() + " beans";   
         m_PComboCost.text = "P-Combo: " + projectileComboCost_[projectileCounter_].ToString() + " beans";   
         m_MComboCost.text = "M-Combo: " + meleeComboCost_[meleeCounter_].ToString() + " beans";   
-        m_CComboCost.text = "C-Combo: " + multiComboCost_[combinedComboCounter_].ToString() + " beans";     
+        m_CComboCost.text = "C-Combo: " + multiComboCost_[combinedComboCounter_].ToString() + " beans";
+        m_PlayerMoney.text = "Player Beans: " + pData_.m_Currency.ToString();
     }
 
     public void PlayAudio(AudioClip audioClip)
