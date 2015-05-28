@@ -1,0 +1,517 @@
+fileFormatVersion: 2
+guid: a9d5ae88e16fd974ea29e1353a0d8f64
+timeCreated: 1432838096
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Posh-Girl_0
+    21300002: Posh-Girl_1
+    21300004: Posh-Girl_2
+    21300006: Posh-Girl_3
+    21300008: Posh-Girl_4
+    21300010: Posh-Girl_5
+    21300012: Posh-Girl_6
+    21300014: Posh-Girl_7
+    21300016: Posh-Girl_8
+    21300018: Posh-Girl_9
+    21300020: Posh-Girl_10
+    21300022: Posh-Girl_11
+    21300024: Posh-Girl_12
+    21300026: Posh-Girl_13
+    21300028: Posh-Girl_14
+    21300030: Posh-Girl_15
+    21300032: Posh-Girl_16
+    21300034: Posh-Girl_17
+    21300036: Posh-Girl_18
+    21300038: Posh-Girl_19
+    21300040: Posh-Girl_20
+    21300042: Posh-Girl_21
+    21300044: Posh-Girl_22
+    21300046: Posh-Girl_23
+    21300048: Posh-Girl_24
+    21300050: Posh-Girl_25
+    21300052: Posh-Girl_26
+    21300054: Posh-Girl_27
+    21300056: Posh-Girl_28
+    21300058: Posh-Girl_29
+    21300060: Posh-Girl_30
+    21300062: Posh-Girl_31
+    21300064: Posh-Girl_32
+    21300066: Posh-Girl_33
+    21300068: Posh-Girl_34
+    21300070: Posh-Girl_35
+    21300072: Posh-Girl_36
+    21300074: Posh-Girl_37
+    21300076: Posh-Girl_38
+    21300078: Posh-Girl_39
+    21300080: Posh-Girl_40
+    21300082: Posh-Girl_41
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Posh-Girl_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 4
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 342
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 342
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 342
+        width: 30
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_4
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 342
+        width: 26
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 342
+        width: 26
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_6
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 342
+        width: 26
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_7
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 342
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_8
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 342
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_9
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 278
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_10
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 278
+        width: 32
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 278
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 278
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 278
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 278
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_15
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 278
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_16
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 278
+        width: 32
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_17
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 278
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_18
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 210
+        width: 36
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_19
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 210
+        width: 42
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_20
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 210
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 210
+        width: 42
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_22
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 212
+        width: 36
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_23
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 212
+        width: 42
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_24
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 136
+        width: 36
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_25
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 136
+        width: 74
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_26
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 136
+        width: 30
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_27
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 136
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_28
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 136
+        width: 36
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_29
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 136
+        width: 74
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_30
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 72
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_31
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 72
+        width: 36
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_32
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 72
+        width: 36
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_33
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 72
+        width: 26
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_34
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 72
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_35
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 72
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_36
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 72
+        width: 28
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_37
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 72
+        width: 36
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_38
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 72
+        width: 36
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_39
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 6
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_40
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 6
+        width: 38
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Posh-Girl_41
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 8
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
