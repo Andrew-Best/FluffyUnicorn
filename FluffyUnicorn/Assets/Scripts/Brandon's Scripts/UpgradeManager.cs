@@ -96,10 +96,12 @@ public class UpgradeManager : MonoBehaviour
         pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
         pController_ = GameObject.Find("Player").GetComponent<PlayerController>();
         audio_ = GetComponent<AudioSource>();
+        SetCounters();
     }
 
     void Update()
     {
+        FixComboCounters();
         UpdateUpgradeUI();
         m_FireRateSlider.value = sliderValue_;
     }
@@ -210,15 +212,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeMeleeCombo()
     {
-        //set the counter to the right variable as the player may already have upgrades
-        for (int i = 0; i < pController_.m_UnlockedMeleeCombos.Length; ++i)
-        {
-            if (pController_.m_UnlockedMeleeCombos[i] == true && checkMeleeCounter_)
-            {
-                meleeCounter_++;
-            }
-        }
-        checkMeleeCounter_ = false;
+       
         if (meleeCounter_ < pController_.m_UnlockedMeleeCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
@@ -243,15 +237,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeProjectileCombo()
     {
-        //set the counter to the right variable as the player may already have upgrades
-        for (int i = 0; i < pController_.m_UnlockedProjectileCombos.Length; ++i)
-        {
-            if (pController_.m_UnlockedProjectileCombos[i] == true && checkProjectileCounter_)
-            {
-                projectileCounter_++;
-            }
-        }
-        checkProjectileCounter_ = false;
+        
         if (projectileCounter_ < pController_.m_UnlockedProjectileCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
@@ -276,15 +262,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeMultiCombo()
     {
-        //set the counter to the right variable as the player may already have upgrades
-        for (int i = 0; i < pController_.m_UnlockedCombinedCombos.Length; ++i)
-        {
-            if (pController_.m_UnlockedCombinedCombos[i] == true && checkCombinedCounter_)
-            {
-                combinedComboCounter_++;
-            }
-        }
-        checkCombinedCounter_ = false;
+        
         if (combinedComboCounter_ < pController_.m_UnlockedCombinedCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
@@ -324,6 +302,54 @@ public class UpgradeManager : MonoBehaviour
         {
             m_PunchButton.interactable = false;
         }
+    }
+
+    void FixComboCounters()
+    {
+        //if the combo counters go beyond the max number set them to the max
+        if (projectileCounter_ > 2)
+        {
+            projectileCounter_ = 2;
+        }
+        if (meleeCounter_ > 2)
+        {
+            meleeCounter_ = 2;
+        }
+        if (combinedComboCounter_ > 2)
+        {
+            combinedComboCounter_ = 2;
+        }
+    }
+
+    void SetCounters()
+    {
+        //set all combo counters up to the proper locations if the player already has upgrades
+        for (int i = 0; i < pController_.m_UnlockedProjectileCombos.Length; ++i)
+        {
+            if (pController_.m_UnlockedProjectileCombos[i] == true && checkProjectileCounter_)
+            {
+                projectileCounter_++;
+            }
+        }
+        checkProjectileCounter_ = false;
+      
+        for (int i = 0; i < pController_.m_UnlockedMeleeCombos.Length; ++i)
+        {
+            if (pController_.m_UnlockedMeleeCombos[i] == true && checkMeleeCounter_)
+            {
+                meleeCounter_++;
+            }
+        }
+        checkMeleeCounter_ = false;
+
+        for (int i = 0; i < pController_.m_UnlockedCombinedCombos.Length; ++i)
+        {
+            if (pController_.m_UnlockedCombinedCombos[i] == true && checkCombinedCounter_)
+            {
+                combinedComboCounter_++;
+            }
+        }
+        checkCombinedCounter_ = false;
     }
 
     public void OpenMenu()
@@ -387,10 +413,10 @@ public class UpgradeManager : MonoBehaviour
         m_FireRateCost.text = "Fire Rate: " + AttackRateCost.ToString();
         m_DamageCost.text = "Projectile Damage: " + DamageCost.ToString();
         m_PunchCost.text = "Melee Damage: " + MeleeCost.ToString();
-        m_SpeedCost.text = "Speed: " + SpeedCost.ToString();
+        m_SpeedCost.text = "Speed: " + SpeedCost.ToString();  
         m_PComboCost.text = "Projectile Combo: " + projectileComboCost_[projectileCounter_].ToString();
         m_MComboCost.text = "Melee Combo: " + meleeComboCost_[meleeCounter_].ToString();
-        m_CComboCost.text = "Multi Combo: " + multiComboCost_[combinedComboCounter_].ToString();   
+        m_CComboCost.text = "Multi Combo: " + multiComboCost_[combinedComboCounter_].ToString();     
     }
 
     public void PlayAudio(AudioClip audioClip)
