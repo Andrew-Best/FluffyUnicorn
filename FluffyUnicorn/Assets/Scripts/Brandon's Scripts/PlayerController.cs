@@ -326,7 +326,7 @@ public class PlayerController : MonoBehaviour
     void ComboSystem()
     {
         #region Projectile Attack
-        if (Input.GetKey(KeyCode.A) && Time.time > nextFire_)
+        if (Input.GetKeyUp(KeyCode.Q) && Time.time > nextFire_)
         {
             switch (projectileChain_)
             {
@@ -372,7 +372,7 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Melee Attack
-        else if (Input.GetKey(KeyCode.S) && Time.time > nextMeleeAttack_)
+        else if (Input.GetKeyUp(KeyCode.W) && Time.time > nextMeleeAttack_)
         {
             switch (meleeChain_)
             {
