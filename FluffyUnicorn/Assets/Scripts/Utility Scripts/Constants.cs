@@ -73,6 +73,7 @@ public class Constants : MonoBehaviour
 	public const float PEPPER_DRAGON_Z_POS_FRONTROW = -4.5f;
 	public const float PEPPER_DRAGON_Z_VELOCITY = 0.1f;
 	public const float DRAGON_PART_MOVEMENT = 0.5f;
+	public const float SLAP_VELX = 12.0F;
 
 	//Smack constants
 	public const float RAISE_HAND_VELX = 0.1f;
