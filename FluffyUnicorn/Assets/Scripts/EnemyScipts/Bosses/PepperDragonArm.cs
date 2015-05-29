@@ -13,6 +13,7 @@ public class PepperDragonArm : PepperDragon
 
 	private bool TooLow_ = false;
 	private bool PosBeingFixed_ = false;
+	private bool SwipingAtPlayer = false;
 
 	string OriginLayer;
 	bool ArmIsMoving_;
@@ -21,11 +22,11 @@ public class PepperDragonArm : PepperDragon
 
 	public void FixPosition()
 	{
-		GetCurLayer();
-		OriginLayer = curLayerName;
-		this.gameObject.layer = 0;
-		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.RAISE_HAND_VELX, Constants.RAISE_HAND_VELY);
-		PosBeingFixed_ = true;		
+		Vector2 fixedPos = new Vector2(this.transform.position.x, m_Head.transform.position.y + 45 );
+		this.gameObject.GetComponent<Rigidbody2D>().transform.position = fixedPos;
+		PosBeingFixed_ = false;
+		TooLow_ = false;
+		SwipingAtPlayer = true;
 	}
 
 	public void MoveToHeadPos(int armLayerIndex, int headLayerIndex)
@@ -38,6 +39,11 @@ public class PepperDragonArm : PepperDragon
 	{
 		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.RAISE_HAND_VELX, Constants.RAISE_HAND_VELY) ;
 		HandRaising_ = true;
+	}
+
+	public void Slap()
+	{
+
 	}
 
 	public void SmackDown()
@@ -131,6 +137,7 @@ public class PepperDragonArm : PepperDragon
 		}
 		GetCurLayer();
 		#endregion
+
 		#region Position Fixer
 		if (!PosBeingFixed_)
 		{
@@ -140,15 +147,9 @@ public class PepperDragonArm : PepperDragon
 				FixPosition();
 			}
 		}
-		if (PosBeingFixed_)
+		if(SwipingAtPlayer)
 		{
-			if (this.GetComponent<Rigidbody2D>().transform.position.y > 30)
-			{
-				this.gameObject.layer = int.Parse(OriginLayer);
-				this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-				PosBeingFixed_ = false;
-				TooLow_ = false;
-			}
+
 		}
 		#endregion
 	}
