@@ -31,8 +31,8 @@ public class JunkScript : MonoBehaviour
 		//QueenBully_ = GameObject.FindGameObjectWithTag("QueenBully");
 		//Player_ = GameObject.FindGameObjectWithTag("Player");
 
-		this.GetComponent<Rigidbody2D>().transform.position = QueenBully_.transform.position;
-		this.GetComponent<Rigidbody2D>().velocity = ArcShot(Player_.transform, Constants.ARC_DEGREE);//throw angle
+		gameObject.GetComponent<Rigidbody2D>().transform.position = QueenBully_.transform.position;
+		gameObject.GetComponent<Rigidbody2D>().velocity = ArcShot(Player_.transform, Constants.ARC_DEGREE);//throw angle
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
