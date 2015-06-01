@@ -44,6 +44,7 @@ public class UpgradeManager : MonoBehaviour
     public Image[] m_ProjectileImages;
     public Image[] m_CombinedComboImages;
     public Sprite m_FilledJewel;
+    public Text m_UpgradeText;
     public Text m_Health;
     public Text m_Currency;
     public Text m_FireRate;

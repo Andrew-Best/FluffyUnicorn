@@ -47,7 +47,7 @@ public class LevelSelect : MonoBehaviour
             go.gameObject.transform.SetParent(m_LevelButtonsParent.transform, false);
             go.GetComponent<RectTransform>().sizeDelta = new Vector2(buttonWidth_, buttonHeight_);
             go.GetComponent<Button>().onClick.AddListener(delegate { ChooseLevel(go); });
-            go.gameObject.name = "Level" + (i + 1);
+            go.gameObject.name = "Cutscene" + (i + 1);
 
             //If the column has not reached it's maximum, increment the amount of columns and increase the X position for the next button
             if(col < maxCol)
@@ -79,7 +79,7 @@ public class LevelSelect : MonoBehaviour
         {
             for (int j = 1; j < pData_.m_LevelsUnlocked + 1; ++j)
             {
-                if (levelButtons_[i].name == "Level" + j)
+                if (levelButtons_[i].name == "Cutscene" + j)
                 {
                     levelButtons_[i].GetComponent<Button>().interactable = true;
                     levelButtons_[i].gameObject.transform.FindChild("Lock").GetComponent<Image>().enabled = false;

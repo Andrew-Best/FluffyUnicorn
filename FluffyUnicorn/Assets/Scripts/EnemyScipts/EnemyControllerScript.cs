@@ -72,7 +72,7 @@ public class EnemyControllerScript : MonoBehaviour
 				BossName = "RefereeBully";
 			}
 			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, "RefereeBully");
-//			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, BossName);//Index for Each Boss
+			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, BossName);//Index for Each Boss
 			tempBossTimer_ = 1000;
 		}
 	}

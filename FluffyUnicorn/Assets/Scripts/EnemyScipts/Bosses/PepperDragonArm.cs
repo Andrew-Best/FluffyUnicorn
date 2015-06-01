@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PepperDragonArm : PepperDragon
 {
+	public GameObject m_HandBarrier;
+
 	public float m_ThisArmCurPosY;
 	public float m_ThisArmDestPosY;//AKA the start Y of the head
 	public float m_ThisArmStartPosY;
@@ -11,21 +13,21 @@ public class PepperDragonArm : PepperDragon
 	private float raiseHandTimer_;
 	private bool HandRaising_ = false;
 
-	private bool TooLow_ = false;
 	private bool PosBeingFixed_ = false;
+	private bool SwipingAtPlayer = false;
+	private Vector2 startPosOfSlam;
 
-	string OriginLayer;
 	bool ArmIsMoving_;
+	bool MoveToRest_ = false;
 
 	public GameObject m_DragonHead;
 
 	public void FixPosition()
 	{
-		GetCurLayer();
-		OriginLayer = curLayerName;
-		this.gameObject.layer = 0;
-		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.RAISE_HAND_VELX, Constants.RAISE_HAND_VELY);
-		PosBeingFixed_ = true;		
+		Vector2 fixedPos = new Vector2(this.transform.position.x, m_Head.transform.position.y + 45 );
+		this.gameObject.GetComponent<Rigidbody2D>().transform.position = fixedPos;
+		PosBeingFixed_ = false;
+		SwipingAtPlayer = true;
 	}
 
 	public void MoveToHeadPos(int armLayerIndex, int headLayerIndex)
@@ -38,6 +40,12 @@ public class PepperDragonArm : PepperDragon
 	{
 		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.RAISE_HAND_VELX, Constants.RAISE_HAND_VELY) ;
 		HandRaising_ = true;
+	}
+
+	public void Slap()
+	{
+		startPosOfSlam = this.GetComponent<Rigidbody2D>().transform.position;
+		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.SLAP_VELX*-1.0f, 0.0f);
 	}
 
 	public void SmackDown()
@@ -53,24 +61,45 @@ public class PepperDragonArm : PepperDragon
 			GetCurLayer();
 		
 			if (MatchPlayerRowToLayer(curLayerName))
-			{				
+			{
+				--m_HP;
 				m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;
 				m_PepperDragon.GetComponent<PepperDragon>().SwitchRow(m_Head, this.gameObject);
 			}
 		}
 	}
 
+	public void MoveBackToRestPos()
+	{
+		MoveToRest_ = true;
+		
+	}
 	// Use this for initialization
 	void Start()
 	{
 		ArmIsMoving_ = false;
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 		timeUntilHandRises_ = Random.Range(Constants.MIN_TIME_UNTIL_SLAP, Constants.MAX_TIME_UNTIL_SLAP);
+		m_HP = Constants.PEPPER_DRAGON_ARM_HP;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		if(m_HP <= 0)
+		{
+			Destroy(this.gameObject);
+			m_PepperDragon.GetComponent<PepperDragon>().m_DestroyedArms++;
+		}
+		if(MoveToRest_)
+		{
+			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.SLAP_VELX, 0);
+			if(this.gameObject.GetComponent<Rigidbody2D>().transform.position.x >= startPosOfSlam.x)
+			{
+				MoveToRest_ = false;
+				this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			}
+		}
 		#region Smack Attack
 		////////////////////////
 		// Hand Smack //
@@ -131,24 +160,23 @@ public class PepperDragonArm : PepperDragon
 		}
 		GetCurLayer();
 		#endregion
+
 		#region Position Fixer
 		if (!PosBeingFixed_)
 		{
 			if (this.GetComponent<Rigidbody2D>().transform.position.y < -10)
 			{
-				TooLow_ = true;
 				FixPosition();
 			}
 		}
-		if (PosBeingFixed_)
+		if(SwipingAtPlayer)
 		{
-			if (this.GetComponent<Rigidbody2D>().transform.position.y > 30)
+			if(this.gameObject.GetComponent<Rigidbody2D>().velocity == new Vector2(0, 0))
 			{
-				this.gameObject.layer = int.Parse(OriginLayer);
-				this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-				PosBeingFixed_ = false;
-				TooLow_ = false;
+				Slap();
+				SwipingAtPlayer = false;
 			}
+			
 		}
 		#endregion
 	}
@@ -166,6 +194,12 @@ public class PepperDragonArm : PepperDragon
 		else if (ground.gameObject.tag == "Track2")
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+		}
+
+		if(ground.gameObject.tag == "HandBarrier")
+		{
+			Vector2 transformPos = this.gameObject.GetComponent<Rigidbody2D>().transform.position;
+			MoveBackToRestPos();		
 		}
 	}
 

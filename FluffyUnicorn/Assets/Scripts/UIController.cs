@@ -71,5 +71,15 @@ public class UIController : MonoBehaviour
     {
         pController_.MoveDown();
     }
+
+    public void Melee()
+    {
+        pController_.m_UpdateMelee = true;
+    }
+
+    public void RangeAttack()
+    {
+        pController_.m_UpdateProjectile = true;
+    }
     #endregion
 }

@@ -16,6 +16,11 @@ public class BossBaseClass : EnemyBaseClass
 	public int m_CurFrame;
 	public int m_TotalFrames;
 
+	void Start()
+	{
+		
+	}
+
 	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
 	{
 		base.InitEnemy(spawnPos, row, m_ThisBoss);
@@ -27,6 +32,10 @@ public class BossBaseClass : EnemyBaseClass
 
 	void Update()
 	{
+		if(m_EnemyController == null)
+		{
+			m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
+		}
 		List<GameObject> enemiesInList = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
 
 		for (int i = 0; i < enemiesInList.Count; ++i)
