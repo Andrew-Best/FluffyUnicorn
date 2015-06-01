@@ -61,7 +61,8 @@ public class PepperDragonArm : PepperDragon
 			GetCurLayer();
 		
 			if (MatchPlayerRowToLayer(curLayerName))
-			{				
+			{
+				--m_HP;
 				m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;
 				m_PepperDragon.GetComponent<PepperDragon>().SwitchRow(m_Head, this.gameObject);
 			}
@@ -79,21 +80,25 @@ public class PepperDragonArm : PepperDragon
 		ArmIsMoving_ = false;
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 		timeUntilHandRises_ = Random.Range(Constants.MIN_TIME_UNTIL_SLAP, Constants.MAX_TIME_UNTIL_SLAP);
+		m_HP = Constants.PEPPER_DRAGON_ARM_HP;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		if(m_HP <= 0)
+		{
+			Destroy(this.gameObject);
+			m_PepperDragon.GetComponent<PepperDragon>().m_DestroyedArms++;
+		}
 		if(MoveToRest_)
 		{
-/*			do
-			{
-				this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.SLAP_VELX, 0);
-			} while (this.gameObject.GetComponent<Rigidbody2D>().transform.position.x < startPosOfSlam.x);
+			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.SLAP_VELX, 0);
 			if(this.gameObject.GetComponent<Rigidbody2D>().transform.position.x >= startPosOfSlam.x)
 			{
 				MoveToRest_ = false;
-			}*/
+				this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			}
 		}
 		#region Smack Attack
 		////////////////////////

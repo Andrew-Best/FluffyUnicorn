@@ -6,6 +6,7 @@ public class PepperDragon : BossBaseClass
 	public GameObject m_Arm1;
 	public GameObject m_Arm2;
 	public GameObject m_Head;
+	public int m_DestroyedArms;
 
 	public GameObject m_PepperDragon;
 	
@@ -129,5 +130,14 @@ public class PepperDragon : BossBaseClass
 	void Start () 
 	{
 		m_Player = GameObject.FindGameObjectWithTag("Player");
+	}
+
+	void Update()
+	{
+		if(m_DestroyedArms == 2)
+		{
+			//PepperDragon is defeated
+			Destroy(this.gameObject);
+		}
 	}
 }
