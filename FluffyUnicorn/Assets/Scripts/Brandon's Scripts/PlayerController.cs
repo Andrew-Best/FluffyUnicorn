@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public bool m_onLastTrack = false;
     public bool m_IsHitting = false;     //determine if the player is using his physical attack
 
+    public bool m_UpdateMelee = false;
+    public bool m_UpdateProjectile = false;
+
     public BoxCollider2D m_MeleeCollider;
     #endregion
 
@@ -323,11 +326,12 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Combos
-    void ComboSystem()
+    public void ComboSystem()
     {
         #region Projectile Attack
-        if (Input.GetKeyUp(KeyCode.Q) && Time.time > nextFire_)
+        if ( Input.GetKeyUp(KeyCode.Q) || m_UpdateProjectile && Time.time > nextFire_)
         {
+            m_UpdateProjectile = false;
             switch (projectileChain_)
             {
                 //set the last combo to false and turn the current one one and update all the proper variables to what they need to be
@@ -364,6 +368,7 @@ public class PlayerController : MonoBehaviour
                         Attack();
                         projectileChain_++;
                     }
+            
                     break;
             }
             //check if a combo attack has been created
@@ -372,8 +377,9 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Melee Attack
-        else if (Input.GetKeyUp(KeyCode.W) && Time.time > nextMeleeAttack_)
+        else if (Input.GetKeyUp(KeyCode.W) || m_UpdateMelee && Time.time > nextMeleeAttack_)
         {
+            m_UpdateMelee = false;
             switch (meleeChain_)
             {
                 //set the last combo to false and turn the current one one and update all the proper variables to what they need to be
@@ -411,10 +417,13 @@ public class PlayerController : MonoBehaviour
                         PhysicalAttack();
                         meleeChain_++;
                     }
+                   
                     break;
             }
             //check if a combo attack has been created
-            ComboAttack();      
+            ComboAttack();
+      
+     
         }
         #endregion
     }
@@ -529,7 +538,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void PhysicalAttack()
+    public void PhysicalAttack()
     {
         nextMeleeAttack_ = Time.time + playerData_.m_PunchRate;
         //set the physical damage to the appropriate variable based on where the melee state is at 
