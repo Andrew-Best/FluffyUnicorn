@@ -22,13 +22,16 @@ public class SecretArea : MonoBehaviour
     #region private
     private GameObject player_;
     private ArrayList enemyArray_;
+    private PlayerData playerData_;
+    private PlayerController playerController_;
     private bool unlockDoor_ = false;
     #endregion
 
 	void Start ()
     {
         player_ = GameObject.Find("Player");
-   
+        playerData_ = player_.GetComponent<PlayerData>();
+        playerController_ = player_.GetComponent<PlayerController>();
 	}
 	
 	void Update () 
@@ -49,7 +52,7 @@ public class SecretArea : MonoBehaviour
             } 
         }
         //have the required amount of money to unlock the door
-        else if (m_EventType == EventType.ENOUGHMONEY && player_.GetComponent<PlayerData>().m_Currency >= m_DoorCost)
+        else if (m_EventType == EventType.ENOUGHMONEY && playerData_.m_Currency >= m_DoorCost)
         {
             unlockDoor_ = true;
         }
@@ -103,6 +106,7 @@ public class SecretArea : MonoBehaviour
             //if the player touched the secret area and it is unlocked, move to the secret level
             else if(unlockDoor_)
             {
+                player_.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
                 EnterArea(m_SecretAreaName);
             }
         }
