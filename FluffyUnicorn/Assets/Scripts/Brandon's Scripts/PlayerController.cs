@@ -93,6 +93,9 @@ public class PlayerController : MonoBehaviour
         rigidBody_ = GetComponent<Rigidbody2D>();
         playerData_ = GetComponent<PlayerData>();
         playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
+        playerRigidBody_.velocity = new Vector2(0.0f, 0.0f);
+        horizontalMove_ = 0.0f;
+        verticalMove_ = 0.0f;
         playerAnimator_ = player_.GetComponent<Animator>();
         playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
         gameControl_ = GameObject.Find("Main Camera").GetComponent<GameController>();
