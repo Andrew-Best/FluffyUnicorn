@@ -312,18 +312,16 @@ public class PlayerController : MonoBehaviour
             playerData_.m_Currency += (int)Constants.BEAN_VALUE;
             Destroy(other.gameObject);
         }
-        if (m_IsHitting)
-        {
-            m_IsHitting = false;
-            if(other.tag == "Trashcan")
-            {
+        if (other.tag == "Trashcan")
+        {     
+                m_IsHitting = false;
                 DestructableObject hitObject;
                 hitObject = other.gameObject.GetComponentInChildren<DestructableObject>();
                 if (!hitObject.HasDied())
                 {
                     hitObject.Destroy(playerData_.m_PunchDamage);
                 }
-            }
+            
             //attack enemies and do your thing
         }
     }
