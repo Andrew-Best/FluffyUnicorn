@@ -28,6 +28,7 @@ public class RefereeBully : BossBaseClass
     private GameObject newJock;
 
     private List<float> lastDistance_ = new List<float>();
+    private List<GameObject> targetPoints_ = new List<GameObject>();
    
     private bool isMoving_ = false;
     private bool firstStrike_ = true;
@@ -47,11 +48,14 @@ public class RefereeBully : BossBaseClass
         RefAnim_ = gameObject.GetComponent<Animator>();
         Velocity_ = gameObject.GetComponent<Rigidbody2D>();
 
-
+        for (int i = 0; i < 3; ++i)
+        {
+            targetPoints_.Add(GameObject.FindGameObjectWithTag("Targetpoint" + i));
+        }    
 
     }
 
-    /*public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
+    public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
     {
         base.InitEnemy(spawnPos, row, newBully);
 
@@ -64,7 +68,7 @@ public class RefereeBully : BossBaseClass
         m_CurFrame = 0;
         m_CurRow = row;
         //m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
-    }*/
+    }
 
     void Update()
     {
@@ -148,7 +152,7 @@ public class RefereeBully : BossBaseClass
             {
                 distance = (float)Random.Range(3.0f, -4.0f);
             }
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x, m_EnemyBase.m_TargetPoints[row].transform.position.y);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, targetPoints_[row].transform.position.y, targetPoints_[row].transform.position.z);
 
             Debug.Log(distance);
 

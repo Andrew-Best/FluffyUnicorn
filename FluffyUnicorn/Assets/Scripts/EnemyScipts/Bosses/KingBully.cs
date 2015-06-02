@@ -11,10 +11,16 @@ public class KingBully : BossBaseClass
 
 	private float tempTimer;
 	private float tempTimerResetVal = 240.0f;
+    private List<GameObject> targetPoints_ = new List<GameObject>();
 
 	public void Start()
 	{
 		InitEnemy(new Vector2(0, 0), 2, this.gameObject);
+
+        for (int i = 0; i < 3; ++i)
+        {
+            targetPoints_.Add(GameObject.FindGameObjectWithTag("Targetpoint" + i));
+        }   
 	}
 
 	public void WaterGun()//Done
@@ -76,7 +82,7 @@ public class KingBully : BossBaseClass
 			this.changeTrackCountdown -= Time.deltaTime;
 		}
 
-		this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody2D>().transform.position.x, this.GetComponent<EnemyBaseClass>().m_TargetPoints[m_CurRow].transform.position.y);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, targetPoints_[m_CurRow].transform.position.y, targetPoints_[m_CurRow].transform.position.z);
 
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 

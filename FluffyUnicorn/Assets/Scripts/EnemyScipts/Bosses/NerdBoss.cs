@@ -23,19 +23,8 @@ public class NerdBoss : MonoBehaviour
 	
 	void Update () 
     {
-        StayAway();
+        
   	}
 
-    void StayAway()
-    {
-        NerdTran_.position = new Vector3(Player_.transform.position.x + moveAwayDist_, NerdTran_.position.y, Player_.transform.position.z);
-        /*Vector3 toPlayer = Player_.transform.position - NerdTran_.position;
-        toPlayer = toPlayer.normalized;
-
-        if(toPlayer.x >= 1.0f)
-        {
-            NerdTran_.position = new Vector3(NerdTran_.position.x + moveAwayDist_, NerdTran_.position.y, Player_.transform.position.z);
-        }*/
-        
-    }
+    
 }
