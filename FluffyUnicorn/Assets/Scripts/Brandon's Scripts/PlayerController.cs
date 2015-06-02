@@ -106,6 +106,9 @@ public class PlayerController : MonoBehaviour
         }        
         comboTimer_ = m_ComboTimerLength;
         rigidBody_.transform.position = new Vector3(targetPoints_[0].transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
+        m_onFrontTrack = true;
+        m_onMiddleTrack = false;
+        m_onLastTrack = false;
     }
 
     void OnLevelWasLoaded(int level)

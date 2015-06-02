@@ -12,7 +12,6 @@ public class Loot : MonoBehaviour
         MONEY
     };
     public m_Item m_ItemType;
-    public PlayerController m_Player;
 
     //sound effect to be played when chest is opened 
     public AudioClip m_SFX; 
@@ -43,6 +42,8 @@ public class Loot : MonoBehaviour
     private bool updateParticle_ = false;
 
     private float particleTimer_ = 0.0f;
+
+    private PlayerController playerController_;
 
     //animators and sprite renderers
     private Animator animator_;
