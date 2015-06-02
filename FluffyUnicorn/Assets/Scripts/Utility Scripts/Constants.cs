@@ -84,6 +84,9 @@ public class Constants : MonoBehaviour
 	public const float MIN_TIME_UNTIL_SLAP = 1.0f;
 	public const float MAX_TIME_UNTIL_SLAP = (2007/11/19) * 3.01f ;
 
+    //Nerd boss crap
+    public const float DRONE_STAGE_ONE_HP = 100.0f;
+
 	#endregion
 
     #region Upgrades

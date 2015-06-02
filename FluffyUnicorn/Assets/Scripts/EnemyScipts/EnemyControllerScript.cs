@@ -35,7 +35,7 @@ public class EnemyControllerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		m_BulliesOnScreen = m_Bullies.Count;
+		/*m_BulliesOnScreen = m_Bullies.Count;
 
 		if (m_BulliesOnScreen < m_MaxAllowableBulliesOnScreenForLevel)
 		{
@@ -74,7 +74,7 @@ public class EnemyControllerScript : MonoBehaviour
 			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, "RefereeBully");
 			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, BossName);//Index for Each Boss
 			tempBossTimer_ = 1000;
-		}
+		}*/
 	}
 }
 
