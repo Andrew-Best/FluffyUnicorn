@@ -309,9 +309,10 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Bean")
         {
             gameControl_.IncreaseGasLevel(Constants.BEAN_VALUE);
+            playerData_.m_Currency += (int)Constants.BEAN_VALUE;
             Destroy(other.gameObject);
         }
-        else if (m_IsHitting)
+        if (m_IsHitting)
         {
             m_IsHitting = false;
             if(other.tag == "Trashcan")
