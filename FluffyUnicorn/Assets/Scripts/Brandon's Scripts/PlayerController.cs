@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetValues()
     {
+        this.gameObject.layer = 19;
         targetPoints_.Clear();
         tracks_.Clear();
         player_ = GameObject.Find("Player");
@@ -284,9 +285,10 @@ public class PlayerController : MonoBehaviour
             if (m_onLastTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
+                this.gameObject.layer = 20;
                 rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z);
                 //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z) * Time.deltaTime);
-                this.gameObject.layer = 20;
+               // rigidBody_.transform.position = Vector3.MoveTowards(player_.transform.position, targetPoints_[1].transform.position, 0.0f);
                // tracks_[1].enabled = true;
               //  tracks_[2].enabled = false;
                 m_onLastTrack = false;
@@ -295,9 +297,10 @@ public class PlayerController : MonoBehaviour
             else if (m_onMiddleTrack && canSwitchTracks)
             {
                 canSwitchTracks = false;
+                this.gameObject.layer = 19;
                 rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
                // rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z) * Time.deltaTime);
-                this.gameObject.layer = 19;
+              //  rigidBody_.transform.position = Vector3.MoveTowards(player_.transform.position, targetPoints_[1].transform.position, 0.0f);
               //  tracks_[0].enabled = true;
              //   tracks_[1].enabled = false;
                 m_onMiddleTrack = false;
