@@ -65,11 +65,6 @@ public class PlayerController : MonoBehaviour
     public float[] m_PhysicalDamageIncreases = new float[4];    //as physical combos go up so will the physical damage
     public ComboType m_CurrentComboState;                       //current combo state
 
-    //used for upgrades so player can buy different combos
-    public bool[] m_UnlockedMeleeCombos = new bool[3];
-    public bool[] m_UnlockedProjectileCombos = new bool[3];
-    public bool[] m_UnlockedCombinedCombos = new bool[3];
-
     private bool activateComboTimerReset_ = false;      //combo timer reset boolean 
     private bool[] projectileCombo_ = new bool[3];      //array of bools for the projectiles combos
     private bool[] meleeCombo = new bool[3];            //array of bools for the melee combos          
@@ -344,7 +339,7 @@ public class PlayerController : MonoBehaviour
             {
                 //set the last combo to false and turn the current one one and update all the proper variables to what they need to be
                 case 0:
-                    if (m_UnlockedProjectileCombos[0])
+                    if (playerData_.m_UnlockedProjectileCombos[0])
                     {
                         projectileCombo_[2] = false;
                         projectileCombo_[0] = true;
@@ -356,7 +351,7 @@ public class PlayerController : MonoBehaviour
                     }
                     break;
                 case 1:
-                    if (m_UnlockedProjectileCombos[1])
+                    if (playerData_.m_UnlockedProjectileCombos[1])
                     {
                         comboTimer_ = m_ComboTimerLength;
                         projectileCombo_[1] = true;
@@ -367,7 +362,7 @@ public class PlayerController : MonoBehaviour
                     }      
                     break;
                 case 2:
-                    if (m_UnlockedProjectileCombos[2])
+                    if (playerData_.m_UnlockedProjectileCombos[2])
                     {
                         comboTimer_ = m_ComboTimerLength;
                         projectileCombo_[1] = false;
@@ -392,7 +387,7 @@ public class PlayerController : MonoBehaviour
             {
                 //set the last combo to false and turn the current one one and update all the proper variables to what they need to be
                 case 0:
-                    if (m_UnlockedMeleeCombos[0])
+                    if (playerData_.m_UnlockedMeleeCombos[0])
                     {
                         comboTimer_ = m_ComboTimerLength;
                         meleeCombo[2] = false;
@@ -405,7 +400,7 @@ public class PlayerController : MonoBehaviour
                     break;
 
                 case 1:
-                    if (m_UnlockedMeleeCombos[1])
+                    if (playerData_.m_UnlockedMeleeCombos[1])
                     {
                         comboTimer_ = m_ComboTimerLength;
                         meleeCombo[1] = true;
@@ -416,7 +411,7 @@ public class PlayerController : MonoBehaviour
                     break;
 
                 case 2:
-                    if (m_UnlockedMeleeCombos[2])
+                    if (playerData_.m_UnlockedMeleeCombos[2])
                     {
                         comboTimer_ = m_ComboTimerLength;
                         meleeCombo[1] = false;
@@ -584,18 +579,18 @@ public class PlayerController : MonoBehaviour
     {
         //for different animations for the combos
         //set states based on what bools are true and false;    
-        if (projectileCombo_[0] == true && meleeCombo[0] == true && m_UnlockedCombinedCombos[0])
+        if (projectileCombo_[0] == true && meleeCombo[0] == true && playerData_.m_UnlockedCombinedCombos[0])
         {
             combinedCombos[0] = true;
             canUseCombo_ = true;
         }
-        if (projectileCombo_[0] == true && meleeCombo[1] == true && m_UnlockedCombinedCombos[1])
+        if (projectileCombo_[0] == true && meleeCombo[1] == true && playerData_.m_UnlockedCombinedCombos[1])
         {
             combinedCombos[0] = false;
             combinedCombos[1] = true;
             canUseCombo_ = true;
         }
-        if (projectileCombo_[1] == true && meleeCombo[0] == true && m_UnlockedCombinedCombos[2])
+        if (projectileCombo_[1] == true && meleeCombo[0] == true && playerData_.m_UnlockedCombinedCombos[2])
         {
             combinedCombos[1] = false;
             combinedCombos[2] = true;

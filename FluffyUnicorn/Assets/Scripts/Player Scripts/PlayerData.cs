@@ -19,6 +19,11 @@ public class PlayerData : MonoBehaviour
     public int m_LevelsUnlocked = 1; //This is an integer representing how many levels have been unlocked
 
     public UpgradeManager m_Upgrades;
+
+    //used for upgrades so player can buy different combos
+    public bool[] m_UnlockedMeleeCombos = new bool[3];
+    public bool[] m_UnlockedProjectileCombos = new bool[3];
+    public bool[] m_UnlockedCombinedCombos = new bool[3];
     #endregion
 
     //This function only serves as a means to incrememnt m_LevelsUnlocked when the player has successfully completed a level
