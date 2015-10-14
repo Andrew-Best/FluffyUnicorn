@@ -214,14 +214,14 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeMeleeCombo()
     {
-       
-        if (meleeCounter_ < pController_.m_UnlockedMeleeCombos.Length)
+
+        if (meleeCounter_ < pData_.m_UnlockedMeleeCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
-            if (pData_.m_Currency >= meleeComboCost_[meleeCounter_] && pController_.m_UnlockedMeleeCombos[meleeCounter_] != true)
+            if (pData_.m_Currency >= meleeComboCost_[meleeCounter_] && pData_.m_UnlockedMeleeCombos[meleeCounter_] != true)
             {
                 m_MeleeImages[meleeCounter_].sprite = m_FilledJewel;
-                pController_.m_UnlockedMeleeCombos[meleeCounter_] = true;
+                pData_.m_UnlockedMeleeCombos[meleeCounter_] = true;
                 pData_.m_Currency -= meleeComboCost_[meleeCounter_];
                 meleeCounter_++;
                 PlayAudio(m_Unlock);
@@ -238,14 +238,14 @@ public class UpgradeManager : MonoBehaviour
     }
 
     public void UpgradeProjectileCombo()
-    { 
-        if (projectileCounter_ < pController_.m_UnlockedProjectileCombos.Length)
+    {
+        if (projectileCounter_ < pData_.m_UnlockedProjectileCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
-            if (pData_.m_Currency >= projectileComboCost_[projectileCounter_] && pController_.m_UnlockedProjectileCombos[projectileCounter_] != true)
+            if (pData_.m_Currency >= projectileComboCost_[projectileCounter_] && pData_.m_UnlockedProjectileCombos[projectileCounter_] != true)
             {
                 m_ProjectileImages[projectileCounter_].sprite = m_FilledJewel;
-                pController_.m_UnlockedProjectileCombos[projectileCounter_] = true;
+                pData_.m_UnlockedProjectileCombos[projectileCounter_] = true;
                 pData_.m_Currency -= projectileComboCost_[projectileCounter_];
                 projectileCounter_++;
                 PlayAudio(m_Unlock);
@@ -263,14 +263,14 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeMultiCombo()
     {
-        
-        if (combinedComboCounter_ < pController_.m_UnlockedCombinedCombos.Length)
+
+        if (combinedComboCounter_ < pData_.m_UnlockedCombinedCombos.Length)
         {
             //if you have enough money and the combo isn't already unlocked then upgrade
-            if (pData_.m_Currency >= multiComboCost_[combinedComboCounter_] && pController_.m_UnlockedCombinedCombos[combinedComboCounter_] != true)
+            if (pData_.m_Currency >= multiComboCost_[combinedComboCounter_] && pData_.m_UnlockedCombinedCombos[combinedComboCounter_] != true)
             {
                 m_CombinedComboImages[combinedComboCounter_].sprite = m_FilledJewel;
-                pController_.m_UnlockedCombinedCombos[combinedComboCounter_] = true;
+                pData_.m_UnlockedCombinedCombos[combinedComboCounter_] = true;
                 pData_.m_Currency -= multiComboCost_[combinedComboCounter_];
                 combinedComboCounter_++;
                 PlayAudio(m_Unlock);
@@ -325,27 +325,27 @@ public class UpgradeManager : MonoBehaviour
     void SetCounters()
     {
         //set all combo counters up to the proper locations if the player already has upgrades
-        for (int i = 0; i < pController_.m_UnlockedProjectileCombos.Length; ++i)
+        for (int i = 0; i < pData_.m_UnlockedProjectileCombos.Length; ++i)
         {
-            if (pController_.m_UnlockedProjectileCombos[i] == true && checkProjectileCounter_)
+            if (pData_.m_UnlockedProjectileCombos[i] == true && checkProjectileCounter_)
             {
                 projectileCounter_++;
             }
         }
         checkProjectileCounter_ = false;
-      
-        for (int i = 0; i < pController_.m_UnlockedMeleeCombos.Length; ++i)
+
+        for (int i = 0; i < pData_.m_UnlockedMeleeCombos.Length; ++i)
         {
-            if (pController_.m_UnlockedMeleeCombos[i] == true && checkMeleeCounter_)
+            if (pData_.m_UnlockedMeleeCombos[i] == true && checkMeleeCounter_)
             {
                 meleeCounter_++;
             }
         }
         checkMeleeCounter_ = false;
 
-        for (int i = 0; i < pController_.m_UnlockedCombinedCombos.Length; ++i)
+        for (int i = 0; i < pData_.m_UnlockedCombinedCombos.Length; ++i)
         {
-            if (pController_.m_UnlockedCombinedCombos[i] == true && checkCombinedCounter_)
+            if (pData_.m_UnlockedCombinedCombos[i] == true && checkCombinedCounter_)
             {
                 combinedComboCounter_++;
             }
@@ -390,15 +390,15 @@ public class UpgradeManager : MonoBehaviour
         //if there is an upgraded combo switch the image of that upgrade to a filled circle. 
         for (int i = 0; i < m_AmountOfUpgrades; i++)
         {
-           if(pController_.m_UnlockedCombinedCombos[i] == true)
+            if (pData_.m_UnlockedCombinedCombos[i] == true)
            {
                m_CombinedComboImages[i].sprite = m_FilledJewel;
            }
-           if (pController_.m_UnlockedProjectileCombos[i] == true)
+            if (pData_.m_UnlockedProjectileCombos[i] == true)
            {
                m_ProjectileImages[i].sprite = m_FilledJewel;
            }
-           if (pController_.m_UnlockedMeleeCombos[i] == true)
+            if (pData_.m_UnlockedMeleeCombos[i] == true)
            {
                m_MeleeImages[i].sprite = m_FilledJewel;
            }
