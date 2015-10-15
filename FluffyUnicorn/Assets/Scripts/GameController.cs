@@ -84,6 +84,11 @@ public class GameController : MonoBehaviour
             sData.m_UnlockedMeleeCombos = pData_.m_UnlockedMeleeCombos;
             sData.m_UnlockedCombinedCombos = pData_.m_UnlockedCombinedCombos;
 
+            sData.m_Currency = pData_.m_Currency;
+            sData.m_CurrencyScalar = pData_.m_CurrencyScalar;
+            sData.m_PlayerDamage = pData_.m_PlayerDamage;
+            sData.m_PlayerHealth = pData_.m_PlayerHealth;
+
             bf.Serialize(file, sData);
             file.Close();
         }
@@ -100,6 +105,11 @@ public class GameController : MonoBehaviour
             sData.m_UnlockedProjectileCombos = pData_.m_UnlockedProjectileCombos;
             sData.m_UnlockedMeleeCombos = pData_.m_UnlockedMeleeCombos;
             sData.m_UnlockedCombinedCombos = pData_.m_UnlockedCombinedCombos;
+
+            sData.m_Currency = pData_.m_Currency;
+            sData.m_CurrencyScalar = pData_.m_CurrencyScalar;
+            sData.m_PlayerDamage = pData_.m_PlayerDamage;
+            sData.m_PlayerHealth = pData_.m_PlayerHealth;
 
             bf.Serialize(file, sData);
             file.Close();
@@ -125,6 +135,11 @@ public class GameController : MonoBehaviour
             pData_.m_UnlockedProjectileCombos = sData.m_UnlockedProjectileCombos;
             pData_.m_UnlockedMeleeCombos = sData.m_UnlockedMeleeCombos;
             pData_.m_UnlockedCombinedCombos = sData.m_UnlockedCombinedCombos;
+
+            pData_.m_Currency = sData.m_Currency;
+            pData_.m_CurrencyScalar = sData.m_CurrencyScalar;
+            pData_.m_PlayerDamage = sData.m_PlayerDamage;
+            pData_.m_PlayerHealth = sData.m_PlayerHealth;
 
             file.Close();
         }

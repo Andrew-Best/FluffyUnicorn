@@ -9,6 +9,11 @@ public class SaveData
     public int m_LevelsUnlocked;
     public int m_StagesUnlocked;
 
+    public int m_PlayerHealth;
+    public int m_PlayerDamage;
+    public int m_Currency;
+    public int m_CurrencyScalar;
+
     public bool[] m_UnlockedMeleeCombos = new bool[3];
     public bool[] m_UnlockedProjectileCombos = new bool[3];
     public bool[] m_UnlockedCombinedCombos = new bool[3];
