@@ -5,12 +5,12 @@ public class PopJunk : MonoBehaviour
 {
     public GameObject m_Pop;
 
-    private float Death_;
+    private float death_;
     private bool isPoped_;
 
     void Start()
     {
-        Death_ = 6.0f;
+        death_ = 6.0f;
         isPoped_ = false;
     }
 
@@ -18,8 +18,8 @@ public class PopJunk : MonoBehaviour
     {
         if(isPoped_ == true)
         {
-            Death_ -= Time.deltaTime;
-            if(Death_ <= 0.0f)
+            death_ -= Time.deltaTime;
+            if (death_ <= 0.0f)
             {
                 m_Pop.SetActive(false);
                 gameObject.transform.position = new Vector2(100.0f, 0.0f);

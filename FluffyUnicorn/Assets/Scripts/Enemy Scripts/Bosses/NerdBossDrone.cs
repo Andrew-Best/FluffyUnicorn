@@ -5,13 +5,13 @@ using System.Collections.Generic;
 public class NerdBossDrone : MonoBehaviour 
 {
 
-    private GameObject Player_;
-    private GameObject Wall1_;
-    private GameObject Wall2_;
-    private Transform NerdTrans_;
+    private GameObject player_;
+    private GameObject wall1_;
+    private GameObject wall2_;
+    private Transform nerdTrans_;
 
-    private float MoveSpeed_;
-    private float DropThatShit_;
+    private float moveSpeed_;
+    private float dropThatShit_;
     private float HP_;
     
     private string junkName_;
@@ -20,13 +20,13 @@ public class NerdBossDrone : MonoBehaviour
 
 	void Start () 
     {
-        Player_ = GameObject.FindGameObjectWithTag("Player");
-        MoveSpeed_ = 0.02f;
-        NerdTrans_ = gameObject.transform;
-        DropThatShit_ = 5.0f;
+        player_ = GameObject.FindGameObjectWithTag("Player");
+        moveSpeed_ = 0.02f;
+        nerdTrans_ = gameObject.transform;
+        dropThatShit_ = 5.0f;
         HP_ = Constants.DRONE_STAGE_ONE_HP;
-        Wall1_ = GameObject.FindGameObjectWithTag("Wall1");
-        Wall2_ = GameObject.FindGameObjectWithTag("Wall2");
+        wall1_ = GameObject.FindGameObjectWithTag("Wall1");
+        wall2_ = GameObject.FindGameObjectWithTag("Wall2");
         
         AddJunk();
        
@@ -34,19 +34,19 @@ public class NerdBossDrone : MonoBehaviour
 
     void Update()
     {
-        DropThatShit_ -= Time.deltaTime;
+        dropThatShit_ -= Time.deltaTime;
         
-        if(DropThatShit_ <= 0.0f)
+        if(dropThatShit_ <= 0.0f)
         {
             SpawnJunk();
-            DropThatShit_ = 5.0f;
+            dropThatShit_ = 5.0f;
         }
 
         if(HP_ <= 0.0f)
         {
             //HP_ = Constants.DRONE_STAGE_ONE_HP;
-            Destroy(Wall1_);
-            Destroy(Wall2_);
+            Destroy(wall1_);
+            Destroy(wall2_);
             gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         }
 
@@ -60,7 +60,7 @@ public class NerdBossDrone : MonoBehaviour
 
     void Trackplayer()
     {
-        NerdTrans_.position = NerdTrans_.position + (new Vector3(Player_.transform.position.x, NerdTrans_.position.y, Player_.transform.position.z) - NerdTrans_.position) * MoveSpeed_;
+        nerdTrans_.position = nerdTrans_.position + (new Vector3(player_.transform.position.x, nerdTrans_.position.y, player_.transform.position.z) - nerdTrans_.position) * moveSpeed_;
     }
 
     void AddJunk()
@@ -92,7 +92,7 @@ public class NerdBossDrone : MonoBehaviour
     void SpawnJunk()
     {
         int junkSelected = (int)Random.Range(0, 16);
-        Junk_[junkSelected].transform.position = new Vector3(NerdTrans_.position.x, NerdTrans_.position.y - 4.0f, NerdTrans_.position.z);
+        Junk_[junkSelected].transform.position = new Vector3(nerdTrans_.position.x, nerdTrans_.position.y - 4.0f, nerdTrans_.position.z);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

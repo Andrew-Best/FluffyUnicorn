@@ -3,14 +3,14 @@ using System.Collections;
 
 public class JunkScript : MonoBehaviour 
 {
-	public GameObject QueenBully_;
-	public GameObject Player_;
+	public GameObject queenBully_;
+	public GameObject player_;
 
 	public float m_HP;
 	public float m_ReactForce = 0.4f;
 	public int m_Damage = 1;
 
-    private float Death_ = 4.0f;
+    private float death_ = 4.0f;
     private Rigidbody2D rigidbody_; //The object that has this script's rigidbody
 
 	// Use this for initialization
@@ -34,8 +34,8 @@ public class JunkScript : MonoBehaviour
 		//QueenBully_ = GameObject.FindGameObjectWithTag("QueenBully");
 		//Player_ = GameObject.FindGameObjectWithTag("Player");
 
-        rigidbody_.transform.position = QueenBully_.transform.position;
-        rigidbody_.velocity = ArcShot(Player_.transform, Constants.ARC_DEGREE);//throw angle
+        rigidbody_.transform.position = queenBully_.transform.position;
+        rigidbody_.velocity = ArcShot(player_.transform, Constants.ARC_DEGREE);//throw angle
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -44,7 +44,7 @@ public class JunkScript : MonoBehaviour
 		{
 			//
             rigidbody_.velocity = new Vector2(0, 0);
-			Player_.GetComponent<PlayerData>().m_PlayerHealth -= m_Damage;
+			player_.GetComponent<PlayerData>().m_PlayerHealth -= m_Damage;
             rigidbody_.isKinematic = true;
 
 		}
@@ -96,11 +96,11 @@ public class JunkScript : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 
-        Death_ -= Time.deltaTime;
-        if(Death_ <= 0.0f)
+        death_ -= Time.deltaTime;
+        if (death_ <= 0.0f)
         {
             Destroy(gameObject);
-            Death_ = 4.0f;
+            death_ = 4.0f;
         }
 	}
 }

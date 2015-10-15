@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class JockCollision : MonoBehaviour 
 {
-    private RefereeBully Ref_;
+    private RefereeBully ref_;
     private List<GameObject> m_JockHorde = new List<GameObject>();
 	
 	void Start () 
     {
-        Ref_ = GameObject.FindGameObjectWithTag("Referee").GetComponent<RefereeBully>();
-        m_JockHorde = Ref_.m_JockHorde;
+        ref_ = GameObject.FindGameObjectWithTag("Referee").GetComponent<RefereeBully>();
+        m_JockHorde = ref_.m_JockHorde;
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision)

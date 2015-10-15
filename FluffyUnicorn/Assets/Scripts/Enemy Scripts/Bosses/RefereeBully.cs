@@ -33,9 +33,9 @@ public class RefereeBully : BossBaseClass
     private bool isMoving_ = false;
     private bool firstStrike_ = true;
     
-    private Animator RefAnim_;
-    private Rigidbody2D Velocity_;
-    private Rigidbody2D JockRigid_;
+    private Animator refAnim_;
+    private Rigidbody2D velocity_;
+    private Rigidbody2D jockRigid_;
 
     
     void Start()
@@ -45,8 +45,8 @@ public class RefereeBully : BossBaseClass
         maxJockCount_ = Constants.HORDE_SIZE;
         EnemySpawner_ = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<SpawnEnemies>();
         lastDistance_.Add(5.0f);
-        RefAnim_ = gameObject.GetComponent<Animator>();
-        Velocity_ = gameObject.GetComponent<Rigidbody2D>();
+        refAnim_ = gameObject.GetComponent<Animator>();
+        velocity_ = gameObject.GetComponent<Rigidbody2D>();
 
         for (int i = 0; i < 3; ++i)
         {
@@ -98,8 +98,8 @@ public class RefereeBully : BossBaseClass
 
         if (gameObject.transform.position.x <= distance && isMoving_ == true)
         {
-            Velocity_.velocity = new Vector2(0.0f, 0.0f);
-            RefAnim_.SetBool("Moving", false);
+            velocity_.velocity = new Vector2(0.0f, 0.0f);
+            refAnim_.SetBool("Moving", false);
         }
 
         curLifeTime_ += Time.deltaTime;
@@ -121,7 +121,7 @@ public class RefereeBully : BossBaseClass
     {
         if (collision.collider.tag == "Player")
         {
-            Velocity_.velocity = new Vector2(0.0f, 0.0f);
+            velocity_.velocity = new Vector2(0.0f, 0.0f);
         }
     }
 
@@ -145,7 +145,7 @@ public class RefereeBully : BossBaseClass
 
         if (wait_ >= 1.0 && isMoving_ == false)
         {
-            RefAnim_.SetBool("Moving", true);
+            refAnim_.SetBool("Moving", true);
             distance = (float)Random.Range(3.0f, -4.0f);
 
             if (distance == lastDistance_[lastDistance_.Count - 1])
@@ -160,7 +160,7 @@ public class RefereeBully : BossBaseClass
             {
                 if (distance >= lastDistance_[lastDistance_.Count - 1])
                 {
-                    Velocity_.velocity = new Vector2(1.5f, 0.0f); //moves right
+                    velocity_.velocity = new Vector2(1.5f, 0.0f); //moves right
 
                     Vector3 theScale = transform.localScale;
                     theScale.x *= -1;
@@ -168,7 +168,7 @@ public class RefereeBully : BossBaseClass
                 }
                 else if (distance <= lastDistance_[lastDistance_.Count - 1])
                 {
-                    Velocity_.velocity = new Vector2(-1.5f, 0.0f); //moves left
+                    velocity_.velocity = new Vector2(-1.5f, 0.0f); //moves left
                     Vector3 theScale = transform.localScale;
                     theScale.x *= 1;
                     transform.localScale = theScale;
@@ -181,7 +181,7 @@ public class RefereeBully : BossBaseClass
         else
         {
             isMoving_ = false;
-            RefAnim_.SetBool("Moving", false);
+            refAnim_.SetBool("Moving", false);
 
         }
 
