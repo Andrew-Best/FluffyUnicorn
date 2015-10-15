@@ -23,11 +23,12 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region private variables
+    private Vector3 movement_; //Player's movement vector
     private GameObject player_;
     private GameObject startPosition_;
 
     private PlayerData playerData_;         //Player data script
-    private Rigidbody2D rigidBody_;
+    private Rigidbody rigidBody_;
     private GameController gameControl_;    //Game Controller object
 
     private float horizontalMove_;
@@ -42,13 +43,13 @@ public class PlayerController : MonoBehaviour
     private bool canSwitchTracks = true;
     private bool buttonHeld_ = false;
 
-    private List<GameObject> targetPoints_ = new List<GameObject>();     //where the player will move to when switching tracks
-    private List<Collider2D> tracks_ = new List<Collider2D>();           //tracks the player will switch to 
+    //private List<GameObject> targetPoints_ = new List<GameObject>();     //where the player will move to when switching tracks
+    //private List<Collider2D> tracks_ = new List<Collider2D>();           //tracks the player will switch to 
 
-    private Rigidbody2D playerRigidBody_;
+    private Rigidbody playerRigidBody_;
 
     private Animator playerAnimator_;
-    private BoxCollider2D playerBoxCollider_;
+    private BoxCollider playerBoxCollider_;
     #endregion
 
     #region Combo variables
@@ -83,25 +84,25 @@ public class PlayerController : MonoBehaviour
     public void SetValues()
     {
         this.gameObject.layer = 19;
-        targetPoints_.Clear();
-        tracks_.Clear();
+        //targetPoints_.Clear();
+        //tracks_.Clear();
         player_ = GameObject.Find("Player");
-        rigidBody_ = GetComponent<Rigidbody2D>();
+        rigidBody_ = GetComponent<Rigidbody>();
         playerData_ = GetComponent<PlayerData>();
-        playerRigidBody_ = player_.GetComponent<Rigidbody2D>();
-        playerRigidBody_.velocity = new Vector2(0.0f, 0.0f);
+        playerRigidBody_ = player_.GetComponent<Rigidbody>();
+        playerRigidBody_.velocity = new Vector3(0.0f, 0.0f, 0.0f);
         horizontalMove_ = 0.0f;
         verticalMove_ = 0.0f;
         playerAnimator_ = player_.GetComponent<Animator>();
-        playerBoxCollider_ = player_.GetComponent<BoxCollider2D>();
+        playerBoxCollider_ = player_.GetComponent<BoxCollider>();
         gameControl_ = GameObject.Find("Main Camera").GetComponent<GameController>();
-        for (int i = 0; i < 3; ++i)
+        /*for (int i = 0; i < 3; ++i)
         {
             targetPoints_.Add(GameObject.FindGameObjectWithTag("Targetpoint" + i));
             tracks_.Add(GameObject.FindGameObjectWithTag("Track" + i).GetComponent<Collider2D>());
-        }        
+        }      */  
         comboTimer_ = m_ComboTimerLength;
-        rigidBody_.transform.position = new Vector3(targetPoints_[0].transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
+        //rigidBody_.transform.position = new Vector3(targetPoints_[0].transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
         m_onFrontTrack = true;
         m_onMiddleTrack = false;
         m_onLastTrack = false;
@@ -169,6 +170,15 @@ public class PlayerController : MonoBehaviour
         //Set move_ to be the horizontal axis keys
         //horizontalMove_ = Input.GetAxis("Horizontal");
         playerAnimator_.SetFloat("Speed", Mathf.Abs(horizontalMove_));
+
+        horizontalMove_ = Input.GetAxisRaw("Horizontal");
+        verticalMove_ = Input.GetAxisRaw("Vertical");
+        //Set the movement vector based on the horizontal/vertical values
+        movement_.Set(horizontalMove_, 0.0f, verticalMove_);
+        //Normalize the movement vector and scale it based on the movement speed and deltaTime
+        movement_ = movement_.normalized * playerData_.m_MaxSpeed * Time.deltaTime;
+        GetComponent<Rigidbody>().MovePosition(transform.position + movement_);
+
         //player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
         if (horizontalMove_ > 0 || horizontalMove_ < 0)
         {
@@ -224,13 +234,13 @@ public class PlayerController : MonoBehaviour
     public void MoveUp()
     {
         verticalMove_ = 1.0f;
-        ChangeTrack();
+        //ChangeTrack();
     }
 
     public void MoveDown()
     {
         verticalMove_ = -1.0f;
-        ChangeTrack();
+        //ChangeTrack();
     }
     #endregion
 
@@ -243,7 +253,7 @@ public class PlayerController : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    void ChangeTrack()
+    /*void ChangeTrack()
     {
         //verticalMove_ = Input.GetAxisRaw("Vertical");
         //check if the player pressed an up key and determine which track to move to. 
@@ -302,7 +312,7 @@ public class PlayerController : MonoBehaviour
                 m_onFrontTrack = true;
             }
         }
-    }
+    }*/
 
     #region Collision
     void OnTriggerEnter2D(Collider2D other)
