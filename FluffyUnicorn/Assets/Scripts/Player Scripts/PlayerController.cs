@@ -10,16 +10,12 @@ public class PlayerController : MonoBehaviour
     public string m_ProjectileName = "PlayerProjectile";
     public string m_ProjectileName2 = "PlayerProjectile2";
     public string m_ProjectileName3 = "PlayerProjectile3";
-    //used to keep track of what track the player is on
-    public bool m_onFrontTrack = true;
-    public bool m_onMiddleTrack = false;
-    public bool m_onLastTrack = false;
     public bool m_IsHitting = false;     //determine if the player is using his physical attack
 
     public bool m_UpdateMelee = false;
     public bool m_UpdateProjectile = false;
 
-    public BoxCollider2D m_MeleeCollider;
+    public BoxCollider m_MeleeCollider;
     #endregion
 
     #region private variables
@@ -35,16 +31,10 @@ public class PlayerController : MonoBehaviour
     private float verticalMove_;
     private float timer_;               //timer to count how long the player has lifted the key. This determines if he is idle or just switching directions
     private float idleTime_ = 0.1f;     //variable used with the timer to determine if the player is idle 
-    private float trackTimer_;
-    private float trackTime = 0.1f;
 
     private bool facingRight_ = true;
     private bool isMoving_ = false;
-    private bool canSwitchTracks = true;
     private bool buttonHeld_ = false;
-
-    //private List<GameObject> targetPoints_ = new List<GameObject>();     //where the player will move to when switching tracks
-    //private List<Collider2D> tracks_ = new List<Collider2D>();           //tracks the player will switch to 
 
     private Rigidbody playerRigidBody_;
 
@@ -84,8 +74,7 @@ public class PlayerController : MonoBehaviour
     public void SetValues()
     {
         this.gameObject.layer = 19;
-        //targetPoints_.Clear();
-        //tracks_.Clear();
+
         player_ = GameObject.Find("Player");
         rigidBody_ = GetComponent<Rigidbody>();
         playerData_ = GetComponent<PlayerData>();
@@ -96,16 +85,8 @@ public class PlayerController : MonoBehaviour
         playerAnimator_ = player_.GetComponent<Animator>();
         playerBoxCollider_ = player_.GetComponent<BoxCollider>();
         gameControl_ = GameObject.Find("Main Camera").GetComponent<GameController>();
-        /*for (int i = 0; i < 3; ++i)
-        {
-            targetPoints_.Add(GameObject.FindGameObjectWithTag("Targetpoint" + i));
-            tracks_.Add(GameObject.FindGameObjectWithTag("Track" + i).GetComponent<Collider2D>());
-        }      */  
+
         comboTimer_ = m_ComboTimerLength;
-        //rigidBody_.transform.position = new Vector3(targetPoints_[0].transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
-        m_onFrontTrack = true;
-        m_onMiddleTrack = false;
-        m_onLastTrack = false;
     }
 
     void OnLevelWasLoaded(int level)
@@ -121,7 +102,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         UpdateControls();
-        //ChangeTrack();
     }
 
     void Update()
@@ -130,7 +110,6 @@ public class PlayerController : MonoBehaviour
         UpdateComboAnimations();    //update combo animations
         ResetComboAnimations(m_ComboTimerLength);
         UpdateMoveTimer();
-        UpdateTrackTimer();
         ResetComboState(activateComboTimerReset_);
         EnableMeleeCollision();
     }
@@ -147,20 +126,6 @@ public class PlayerController : MonoBehaviour
         {
             isMoving_ = false;
             timer_ = 0.0f;
-        }
-    }
-
-    void UpdateTrackTimer()
-    {
-        //when a vertical key is no longer pressed start a timer to determine if the player is on the next track before allowing another key press
-        if (Input.GetAxisRaw("Vertical") == 0)
-        {
-            trackTimer_ += Time.deltaTime;
-        }
-        if (trackTimer_ >= trackTime)
-        {
-            canSwitchTracks = true;
-            trackTimer_ = 0.0f;
         }
     }
 
@@ -194,11 +159,11 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        /*//Attack if you press space and you're not in cooldown
+        //Attack if you press space and you're not in cooldown
         if (Input.GetKeyUp(KeyCode.Space) && Time.time > nextFire_)
         {
             Attack();
-        }*/
+        }
     }
 
     public void OnPointerDown()
@@ -234,13 +199,11 @@ public class PlayerController : MonoBehaviour
     public void MoveUp()
     {
         verticalMove_ = 1.0f;
-        //ChangeTrack();
     }
 
     public void MoveDown()
     {
         verticalMove_ = -1.0f;
-        //ChangeTrack();
     }
     #endregion
 
@@ -252,67 +215,6 @@ public class PlayerController : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
-    /*void ChangeTrack()
-    {
-        //verticalMove_ = Input.GetAxisRaw("Vertical");
-        //check if the player pressed an up key and determine which track to move to. 
-        if (verticalMove_ > 0)
-        {
-            //if the player switches tracks, put the player on the track's target point, disable collison on the previous track and enable collison on the new track
-            if (m_onFrontTrack && canSwitchTracks)
-            {
-                canSwitchTracks = false;
-                //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z) * Time.deltaTime);
-                rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z);
-                this.gameObject.layer = 20;
-               // tracks_[0].enabled = false;
-                //tracks_[1].enabled = true;
-                m_onFrontTrack = false;
-                m_onMiddleTrack = true;
-            }
-            else if (m_onMiddleTrack && canSwitchTracks)
-            {
-                canSwitchTracks = false;
-                //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[2].transform.position.y, targetPoints_[2].transform.position.z) * Time.deltaTime);
-                rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[2].transform.position.y, targetPoints_[2].transform.position.z);
-                this.gameObject.layer = 21;
-                //tracks_[2].enabled = true;
-              //  tracks_[1].enabled = false;
-                m_onMiddleTrack = false;
-                m_onLastTrack = true;
-            }
-        }
-        //check if the player pressed an down key and determine which track to move to.
-        if (verticalMove_ < 0)
-        {
-            //if the player switches tracks, put the player on the track's target point, disable collison on the previous track and enable collison on the new track
-            if (m_onLastTrack && canSwitchTracks)
-            {
-                canSwitchTracks = false;
-                this.gameObject.layer = 20;
-                rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z);
-                //rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[1].transform.position.y, targetPoints_[1].transform.position.z) * Time.deltaTime);
-               // rigidBody_.transform.position = Vector3.MoveTowards(player_.transform.position, targetPoints_[1].transform.position, 0.0f);
-               // tracks_[1].enabled = true;
-              //  tracks_[2].enabled = false;
-                m_onLastTrack = false;
-                m_onMiddleTrack = true;
-            }
-            else if (m_onMiddleTrack && canSwitchTracks)
-            {
-                canSwitchTracks = false;
-                this.gameObject.layer = 19;
-                rigidBody_.transform.position = new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z);
-               // rigidBody_.transform.Translate(new Vector3(player_.transform.position.x, targetPoints_[0].transform.position.y, targetPoints_[0].transform.position.z) * Time.deltaTime);
-              //  rigidBody_.transform.position = Vector3.MoveTowards(player_.transform.position, targetPoints_[1].transform.position, 0.0f);
-              //  tracks_[0].enabled = true;
-             //   tracks_[1].enabled = false;
-                m_onMiddleTrack = false;
-                m_onFrontTrack = true;
-            }
-        }
-    }*/
 
     #region Collision
     void OnTriggerEnter2D(Collider2D other)
@@ -512,11 +414,11 @@ public class PlayerController : MonoBehaviour
             //Determine which direction to fire in
             if (facingRight_)
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
             }
             else
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
             }
         }
         else if (projectileChain_ == 1)
@@ -527,11 +429,11 @@ public class PlayerController : MonoBehaviour
             //Determine which direction to fire in
             if (facingRight_)
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
             }
             else
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
             }
         }
         else if (projectileChain_ >= 2)
@@ -542,11 +444,11 @@ public class PlayerController : MonoBehaviour
             //Determine which direction to fire in
             if (facingRight_)
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(playerData_.m_ShotSpeed, 0, 0));
             }
             else
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
+                bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(-playerData_.m_ShotSpeed, 0, 0));
             }
         }
     }

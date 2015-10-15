@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour {
         player_ = GameObject.Find("Player");
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         if(player_ != null)
         {

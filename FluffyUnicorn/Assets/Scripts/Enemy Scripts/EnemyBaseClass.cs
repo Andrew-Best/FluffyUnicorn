@@ -392,7 +392,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public virtual void GetPlayerInfo(GameObject thisEnemy)
 	{
-		if (thisEnemy.GetComponent<EnemyBaseClass>().m_Player.GetComponent<PlayerController>().m_onFrontTrack)
+		/*if (thisEnemy.GetComponent<EnemyBaseClass>().m_Player.GetComponent<PlayerController>().m_onFrontTrack)
 		{
 			thisEnemy.GetComponent<EnemyBaseClass>().m_PlayerCurRow = 2;
 		}
@@ -403,7 +403,7 @@ public class EnemyBaseClass : MonoBehaviour
 		else if (thisEnemy.GetComponent<EnemyBaseClass>().m_Player.GetComponent<PlayerController>().m_onLastTrack)
 		{
 			thisEnemy.GetComponent<EnemyBaseClass>().m_PlayerCurRow = 0;
-		}
+		}*/
 
 		m_PlayerPos = m_Player.GetComponent<Rigidbody2D>().transform.position;
 	}

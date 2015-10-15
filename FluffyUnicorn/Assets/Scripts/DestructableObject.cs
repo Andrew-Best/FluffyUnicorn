@@ -84,14 +84,14 @@ public class DestructableObject : MonoBehaviour
         if (dead_)
         {
             //destroys the colliders and rigidbody so it doesn't move after the object has been destoryed 
-            Destroy(this.GetComponent<Rigidbody2D>());
-            if (this.GetComponent<BoxCollider2D>() != null)
+            Destroy(this.GetComponent<Rigidbody>());
+            if (this.GetComponent<BoxCollider>() != null)
             {
-                Destroy(this.GetComponent<BoxCollider2D>());
+                Destroy(this.GetComponent<BoxCollider>());
             }
-            if (this.GetComponent<CircleCollider2D>() != null)
+            if (this.GetComponent<SphereCollider>() != null)
             {
-                Destroy(this.GetComponent<CircleCollider2D>());
+                Destroy(this.GetComponent<SphereCollider>());
             }
         } 
     }

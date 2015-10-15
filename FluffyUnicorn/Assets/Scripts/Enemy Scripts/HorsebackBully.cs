@@ -155,7 +155,8 @@ public class HorsebackBully : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && PC_.m_onMiddleTrack == true)
+        //TRACK BASED CODE
+        /*if (collision.tag == "Player" && PC_.m_onMiddleTrack == true)
         {
             Player_.transform.position = new Vector3(Player_.transform.position.x, Bully_.m_TargetPoints[2].transform.position.y, Bully_.m_TargetPoints[2].transform.position.z);
             PC_.m_onFrontTrack = true;
@@ -175,9 +176,11 @@ public class HorsebackBully : MonoBehaviour
         {
             Player_.transform.position = new Vector3(Player_.transform.position.x, Bully_.m_TargetPoints[1].transform.position.y, Bully_.m_TargetPoints[1].transform.position.z);
             PC_.m_onMiddleTrack = true;
-            PC_.m_onLastTrack = false;
+            PC_.m_onLastTrack = false;*/
+
+
             //Physics2D.IgnoreLayerCollision(0, 18, true);
-        }
+        //}
             /*if(PC_.m_onMiddleTrack == true)
             {
                 Player_.transform.position = new Vector2(Player_.transform.position.x, Bully_.m_TargetPoints[0].transform.position.y);
