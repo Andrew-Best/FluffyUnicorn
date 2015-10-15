@@ -16,10 +16,10 @@ public class DestructableObject : MonoBehaviour
 
     #region private variables
     private GameObject player_;
-    private GameObject upgradeManager_;
+    //private GameObject upgradeManager_;
     private Animator objectAnimator_;
 
-    private Vector3 startPos_;
+    //private Vector3 startPos_;
 
     private bool dead_ = false;
     private bool isDamaged_ = false;
@@ -30,10 +30,10 @@ public class DestructableObject : MonoBehaviour
     void Start()
     {
         player_ = GameObject.FindGameObjectWithTag("Player");
-        upgradeManager_ = GameObject.FindGameObjectWithTag("UpgradeManager");
+        //upgradeManager_ = GameObject.FindGameObjectWithTag("UpgradeManager");
         objectAnimator_ = this.GetComponent<Animator>();
         damage = m_Health / 2;
-        startPos_ = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        //startPos_ = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
     }
 
     void Update()

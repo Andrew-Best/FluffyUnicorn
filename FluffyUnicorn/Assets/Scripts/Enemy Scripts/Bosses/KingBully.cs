@@ -7,7 +7,7 @@ public class KingBully : BossBaseClass
 	public GameObject enemySpawner;
 
 	public float m_AttackUniqueAnimLength;
-	private float AttackUniqueCurTime = 0;
+	//private float AttackUniqueCurTime = 0;
 
 	private float tempTimer;
 	private float tempTimerResetVal = 240.0f;
@@ -30,7 +30,7 @@ public class KingBully : BossBaseClass
 		this.GetComponent<BeamAttack>().Fire(m_ThisBoss, m_ThisBoss.GetComponent<EnemyBaseClass>().m_Player);
 
 		this.m_AttackUniqueAnimLength = Constants.KB_WATER_GUN_LENGTH;
-		this.AttackUniqueCurTime = 0;
+		//this.AttackUniqueCurTime = 0;
 		//water gun animation
 	}
 
@@ -91,7 +91,7 @@ public class KingBully : BossBaseClass
 			this.EnemyMove(m_ThisBoss);
 		}
 
-		float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
+		//float differenceThenNow = this.m_InitialXY.x - enemyPos.x;
 		float pointB = m_MaxDist;
 		float pointA = this.m_InitialXY.x + 1;
 

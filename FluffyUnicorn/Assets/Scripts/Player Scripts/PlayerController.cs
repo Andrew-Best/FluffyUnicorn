@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRigidBody_;
 
     private Animator playerAnimator_;
-    private BoxCollider playerBoxCollider_;
+    //private BoxCollider playerBoxCollider_;
     #endregion
 
     #region Combo variables
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         horizontalMove_ = 0.0f;
         verticalMove_ = 0.0f;
         playerAnimator_ = player_.GetComponent<Animator>();
-        playerBoxCollider_ = player_.GetComponent<BoxCollider>();
+        //playerBoxCollider_ = player_.GetComponent<BoxCollider>();
         gameControl_ = GameObject.Find("Main Camera").GetComponent<GameController>();
 
         comboTimer_ = m_ComboTimerLength;

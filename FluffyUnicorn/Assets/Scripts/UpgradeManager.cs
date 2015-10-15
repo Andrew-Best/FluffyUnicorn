@@ -13,7 +13,7 @@ public class UpgradeManager : MonoBehaviour
 
     #region Private Variables
     private PlayerData pData_;
-    private PlayerController pController_;
+    //private PlayerController pController_;
 
     private int[] meleeComboCost_ = new int[] { 50, 100, 150 };
     private int[] projectileComboCost_ = new int[] { 50, 100, 150 };
@@ -96,7 +96,7 @@ public class UpgradeManager : MonoBehaviour
     void Start()
     {
         pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
-        pController_ = GameObject.Find("Player").GetComponent<PlayerController>();
+        //pController_ = GameObject.Find("Player").GetComponent<PlayerController>();
         audio_ = GetComponent<AudioSource>();
         SetCounters();
     }

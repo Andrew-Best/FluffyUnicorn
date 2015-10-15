@@ -8,7 +8,7 @@ public class QueenBully : BossBaseClass
 	public string m_JunkName;
 
 	public Vector2 m_ThrowForce;
-	private Vector2 playerPosition_;
+	//private Vector2 playerPosition_;
 
 	private float timeUntilNextThrow_ = 5.0f;
 	public const float DEFAULT_TIME_UNTIL_THROW = 5;
@@ -64,7 +64,7 @@ public class QueenBully : BossBaseClass
 		GameObject m_Junk = ObjectPool.Instance.GetObjectForType(m_JunkName, true);
         //get player position
 		GetPlayerInfo(bully);
-		playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
+		//playerPosition_ = GetComponent<EnemyBaseClass>().m_PlayerPos;
     	m_Junk.transform.position = bully.transform.position;
 		//send object in an arc toward the player
 	}

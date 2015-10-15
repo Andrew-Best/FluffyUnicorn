@@ -10,7 +10,7 @@ public class FattestBully : BossBaseClass
 	/**********/
 
 	private float jumpForce_;
-	private float rollSpeed_;
+	//private float rollSpeed_;
 	public float m_JumpTimer;
 
 	public bool inSky;
@@ -30,7 +30,7 @@ public class FattestBully : BossBaseClass
 
 		m_HP = Constants.FATTEST_BULLY_HP;
 		jumpForce_ = Constants.FATTEST_BULLY_JUMP_FORCE;
-		rollSpeed_ = Constants.FATTEST_BULLY_ROLL_SPEED;
+		//rollSpeed_ = Constants.FATTEST_BULLY_ROLL_SPEED;
 
 		m_Curstate = 0;
 		m_BossName = "Fattest Bully";

@@ -13,7 +13,7 @@ public class LevelSelect : MonoBehaviour
     private GameObject currentClick_;
     private PlayerData pData_;
     private List<GameObject> levelButtons_ = new List<GameObject>();
-    private Canvas levelSelectCanvas_;
+    //private Canvas levelSelectCanvas_;
 
     private int timesClicked_;
 
@@ -23,7 +23,7 @@ public class LevelSelect : MonoBehaviour
     void Awake()
     {
         pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
-        levelSelectCanvas_ = FindObjectOfType<Canvas>();
+        //levelSelectCanvas_ = FindObjectOfType<Canvas>();
 
         CreateButtons();
     }

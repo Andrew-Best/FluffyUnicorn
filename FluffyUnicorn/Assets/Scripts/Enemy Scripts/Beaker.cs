@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Beaker : MonoBehaviour 
 {
-    private Rigidbody2D Rigid_;
+    //private Rigidbody2D Rigid_;
     public AudioClip m_Break;
 
     void Start()
     {
-        Rigid_ = GetComponent<Rigidbody2D>();
+        //Rigid_ = GetComponent<Rigidbody2D>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)

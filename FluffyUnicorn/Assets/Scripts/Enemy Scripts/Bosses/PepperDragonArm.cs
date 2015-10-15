@@ -198,7 +198,7 @@ public class PepperDragonArm : PepperDragon
 
 		if(ground.gameObject.tag == "HandBarrier")
 		{
-			Vector2 transformPos = this.gameObject.GetComponent<Rigidbody2D>().transform.position;
+			//Vector2 transformPos = this.gameObject.GetComponent<Rigidbody2D>().transform.position;
 			MoveBackToRestPos();		
 		}
 	}

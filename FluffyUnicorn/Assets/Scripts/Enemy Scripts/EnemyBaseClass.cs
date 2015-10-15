@@ -89,7 +89,7 @@ public class EnemyBaseClass : MonoBehaviour
 	{
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
 
-        float differenceThenNow = bullyBaseClass_.m_InitialXY.x - enemyPos.x;
+        //float differenceThenNow = bullyBaseClass_.m_InitialXY.x - enemyPos.x;
 		float pointB = m_MaxDist;
         float pointA = bullyBaseClass_.m_InitialXY.x + 1;
 		//moving right and has passed pointA

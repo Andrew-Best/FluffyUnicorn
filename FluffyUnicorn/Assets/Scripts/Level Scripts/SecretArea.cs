@@ -23,7 +23,7 @@ public class SecretArea : MonoBehaviour
     private GameObject player_;
     private ArrayList enemyArray_;
     private PlayerData playerData_;
-    private PlayerController playerController_;
+    //private PlayerController playerController_;
     private bool unlockDoor_ = false;
     #endregion
 
@@ -31,7 +31,7 @@ public class SecretArea : MonoBehaviour
     {
         player_ = GameObject.Find("Player");
         playerData_ = player_.GetComponent<PlayerData>();
-        playerController_ = player_.GetComponent<PlayerController>();
+        //playerController_ = player_.GetComponent<PlayerController>();
 	}
 	
 	void Update () 

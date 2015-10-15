@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class HorsebackBully : MonoBehaviour
 {
-    private GameObject Player_;
-    private PlayerController PC_;
+    //private GameObject Player_;
+    //private PlayerController PC_;
     private SpawnEnemies EnemySpawner_;
     private GameObject newEnemy;
     private BullyScript Bully_;
@@ -13,7 +13,7 @@ public class HorsebackBully : MonoBehaviour
     private List<GameObject> Horses_ = new List<GameObject>();
 
     private int MaxSpawn_;
-    private int currRow_;
+    //private int currRow_;
 
     private float Respawn_;
     private float Reset_;
@@ -25,15 +25,15 @@ public class HorsebackBully : MonoBehaviour
     private Vector3 StartPos_;
 
     private bool FirstSpawn_;
-    private bool Turn_;
-    private bool FrontOccupied_;
-    private bool MiddleOccupied_;
-    private bool BackOccupied_;
+    //private bool Turn_;
+    //private bool FrontOccupied_;
+    //private bool MiddleOccupied_;
+    //private bool BackOccupied_;
 	
 	void Start () 
     {
-        Player_ = GameObject.FindGameObjectWithTag("Player");
-        PC_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        //Player_ = GameObject.FindGameObjectWithTag("Player");
+       // PC_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         EnemySpawner_ = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<SpawnEnemies>();
         Velocity_ = gameObject.GetComponent<Rigidbody2D>();
         Bully_ = gameObject.GetComponent<BullyScript>();
@@ -42,12 +42,12 @@ public class HorsebackBully : MonoBehaviour
         Reset_ = 10.0f;
         MaxSpawn_ = 1;
         FirstSpawn_ = true;
-        Turn_ = false;
+        //Turn_ = false;
         XOffset_ = new Vector3(0.0f, 0.0f, 0.0f);
         StartPos_ = new Vector3(0.0f, 0.0f, 0.0f);
-        FrontOccupied_ = false;
-        MiddleOccupied_ = false;
-        BackOccupied_ = false;
+        //FrontOccupied_ = false;
+        //MiddleOccupied_ = false;
+        //BackOccupied_ = false;
 
 	}
 	
@@ -63,13 +63,13 @@ public class HorsebackBully : MonoBehaviour
         }
         if(Respawn_ <= 0.0f)
         {
-            Turn_ = true;
+            //Turn_ = true;
             RecycleJockys();
             Respawn_ = 10.0f;
         }
         else
         {
-            Turn_ = false;
+            //Turn_ = false;
         }
         if(Reset_ <= 0.0f)
         {
@@ -123,22 +123,22 @@ public class HorsebackBully : MonoBehaviour
         {
             StartPos_.y = Bully_.m_TargetPoints[0].transform.position.y;
             StartPos_.z = Bully_.m_TargetPoints[0].transform.position.z;
-            currRow_ = 0;
+            //currRow_ = 0;
             Debug.Log(0);
         }
         if(startPos == 1)
         {
             StartPos_.y = Bully_.m_TargetPoints[1].transform.position.y;
             StartPos_.z = Bully_.m_TargetPoints[1].transform.position.z;
-            currRow_ = 1;
+            //currRow_ = 1;
             Debug.Log(1);
-            MiddleOccupied_ = true;
+            //MiddleOccupied_ = true;
         }
         if (startPos == 2)
         {
             StartPos_.y = Bully_.m_TargetPoints[2].transform.position.y;
             StartPos_.z = Bully_.m_TargetPoints[2].transform.position.z;
-            currRow_ = 2;
+            //currRow_ = 2;
             Debug.Log(2);
         }
 

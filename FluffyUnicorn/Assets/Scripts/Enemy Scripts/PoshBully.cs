@@ -5,24 +5,24 @@ using System.Collections.Generic;
 public class PoshBully : MonoBehaviour 
 {
     private GameObject Player_;
-    private SpawnEnemies EnemySpawner_;
+    //private SpawnEnemies EnemySpawner_;
     private EnemyBaseClass Bully_;
     private Animator PoshAnim_;
     public GameObject Fire_;
 
-    private List<GameObject> Bitches_ = new List<GameObject>();
+    //private List<GameObject> Bitches_ = new List<GameObject>();
 
-    private int MaxSpawn_;
+    //private int MaxSpawn_;
 
-    private float Respawn_;
-    private float Vel_;
+    //private float Respawn_;
+    //private float Vel_;
     private float TooClose_;
     private float SpinSpeed_;
-    private float MaxDist_;
+    //private float MaxDist_;
     private float DistTimer_;
 
     private bool Die_;
-    private bool Start_;
+    //private bool Start_;
 
     private Rigidbody2D Velocity_;
     private Transform PoshTrans_;
@@ -36,23 +36,23 @@ public class PoshBully : MonoBehaviour
 	void Start () 
     {
         Player_ = GameObject.FindGameObjectWithTag("Player");
-        EnemySpawner_ = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<SpawnEnemies>();
+        //EnemySpawner_ = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<SpawnEnemies>();
         //Bully_ = GameObject.FindGameObjectWithTag("EnemyController").GetComponent<EnemyBaseClass>();
         Velocity_ = gameObject.GetComponent<Rigidbody2D>();
         PoshAnim_ = gameObject.GetComponent<Animator>();
         PoshTrans_ = gameObject.transform;
         //Fire_ = GameObject.Find("FireMobile");
 
-        Respawn_ = 25.0f;
-        MaxSpawn_ = 1;
-        Vel_ = 0.0f;
+        //Respawn_ = 25.0f;
+        //MaxSpawn_ = 1;
+        //Vel_ = 0.0f;
         TooClose_ = 3.0f;
         SpinSpeed_ = 15.0f;
         DistTimer_ = 5.0f;
-        MaxDist_ = 1.0f;
+        //MaxDist_ = 1.0f;
 
         Die_ = false;
-        Start_ = false;
+        //Start_ = false;
 
         for (int i = 0; i < 3; ++i)
         {
@@ -162,7 +162,7 @@ public class PoshBully : MonoBehaviour
         if (collision.collider.tag == "Player")
         {
             Die_ = true;
-            Start_ = true;
+            //Start_ = true;
             Physics2D.IgnoreLayerCollision(23, 0, true);
         }
         else
