@@ -11,14 +11,14 @@ public class PepperDragonArm : PepperDragon
 
 	private float timeUntilHandRises_; //time till hand rises
 	private float raiseHandTimer_;
-	private bool HandRaising_ = false;
+	private bool handRaising_ = false;
 
-	private bool PosBeingFixed_ = false;
-	private bool SwipingAtPlayer = false;
+	private bool posBeingFixed_ = false;
+	private bool swipingAtPlayer = false;
 	private Vector2 startPosOfSlam;
 
-	bool ArmIsMoving_;
-	bool MoveToRest_ = false;
+	bool armIsMoving_;
+	bool moveToRest_ = false;
 
 	public GameObject m_DragonHead;
 
@@ -26,20 +26,20 @@ public class PepperDragonArm : PepperDragon
 	{
 		Vector2 fixedPos = new Vector2(this.transform.position.x, m_Head.transform.position.y + 45 );
 		this.gameObject.GetComponent<Rigidbody2D>().transform.position = fixedPos;
-		PosBeingFixed_ = false;
-		SwipingAtPlayer = true;
+		posBeingFixed_ = false;
+		swipingAtPlayer = true;
 	}
 
 	public void MoveToHeadPos(int armLayerIndex, int headLayerIndex)
 	{		
-		ArmIsMoving_ = true;
+		armIsMoving_ = true;
 		this.gameObject.layer =headLayerIndex;
 	}
 
 	public void ReadyTheSlaps()
 	{
 		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.RAISE_HAND_VELX, Constants.RAISE_HAND_VELY) ;
-		HandRaising_ = true;
+		handRaising_ = true;
 	}
 
 	public void Slap()
@@ -71,13 +71,13 @@ public class PepperDragonArm : PepperDragon
 
 	public void MoveBackToRestPos()
 	{
-		MoveToRest_ = true;
+		moveToRest_ = true;
 		
 	}
 	// Use this for initialization
 	void Start()
 	{
-		ArmIsMoving_ = false;
+		armIsMoving_ = false;
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 		timeUntilHandRises_ = Random.Range(Constants.MIN_TIME_UNTIL_SLAP, Constants.MAX_TIME_UNTIL_SLAP);
 		m_HP = Constants.PEPPER_DRAGON_ARM_HP;
@@ -91,12 +91,12 @@ public class PepperDragonArm : PepperDragon
 			Destroy(this.gameObject);
 			m_PepperDragon.GetComponent<PepperDragon>().m_DestroyedArms++;
 		}
-		if(MoveToRest_)
+		if(moveToRest_)
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.SLAP_VELX, 0);
 			if(this.gameObject.GetComponent<Rigidbody2D>().transform.position.x >= startPosOfSlam.x)
 			{
-				MoveToRest_ = false;
+				moveToRest_ = false;
 				this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 			}
 		}
@@ -104,7 +104,7 @@ public class PepperDragonArm : PepperDragon
 		////////////////////////
 		// Hand Smack //
 		////////////////////////
-		if (!HandRaising_)//if the hand is not raising (i.e if falling down or not moving)
+		if (!handRaising_)//if the hand is not raising (i.e if falling down or not moving)
 		{
 			timeUntilHandRises_ -= Time.deltaTime;//countdown until the next time the hand is raised
 			if (timeUntilHandRises_ <= 0)
@@ -114,14 +114,14 @@ public class PepperDragonArm : PepperDragon
 			}
 		}
 
-		if(HandRaising_)//After ReadyTheSlaps is called, If the hand is raising into the air
+		if(handRaising_)//After ReadyTheSlaps is called, If the hand is raising into the air
 		{			
 			raiseHandTimer_ += Time.deltaTime;//count up until the hand SMACKS down
 			if (raiseHandTimer_ >= 6)
 			{
 				raiseHandTimer_ = 0;//set the timer to 0
 				SmackDown();//Slam the hand into the ground
-				HandRaising_ = false;//Change the boolean to clarify the hand should now be smacking the ground
+				handRaising_ = false;//Change the boolean to clarify the hand should now be smacking the ground
 			}
 		}
 		#endregion
@@ -130,7 +130,7 @@ public class PepperDragonArm : PepperDragon
 		// Arm and Head Pos Swap //
 		/////////////////////////////////////////////////////////////////////////
 		m_ThisArmCurPosY = this.GetComponent<Rigidbody2D>().transform.position.y;
-		if(ArmIsMoving_)
+		if(armIsMoving_)
 		{
 			if (m_ThisArmStartPosY > m_DragonHead.GetComponent<PepperDragonHead>().m_ThisHeadStartYPos)//the arm is higher and must be lowered
 			{
@@ -141,7 +141,7 @@ public class PepperDragonArm : PepperDragon
 				else
 				{
 					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-					ArmIsMoving_ = false;
+					armIsMoving_ = false;
 				}
 			}
 			else//the arm is lower and must be raised
@@ -153,7 +153,7 @@ public class PepperDragonArm : PepperDragon
 				else
 				{
 					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-					ArmIsMoving_ = false;
+					armIsMoving_ = false;
 				}
 			}
 			ChangeZPos();
@@ -162,19 +162,19 @@ public class PepperDragonArm : PepperDragon
 		#endregion
 
 		#region Position Fixer
-		if (!PosBeingFixed_)
+		if (!posBeingFixed_)
 		{
 			if (this.GetComponent<Rigidbody2D>().transform.position.y < -10)
 			{
 				FixPosition();
 			}
 		}
-		if(SwipingAtPlayer)
+		if(swipingAtPlayer)
 		{
 			if(this.gameObject.GetComponent<Rigidbody2D>().velocity == new Vector2(0, 0))
 			{
 				Slap();
-				SwipingAtPlayer = false;
+				swipingAtPlayer = false;
 			}
 			
 		}
