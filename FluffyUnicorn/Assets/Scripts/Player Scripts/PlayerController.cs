@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
     }
 
     #region Collision
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Bean")
         {

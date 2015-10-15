@@ -32,11 +32,21 @@ public class GameController : MonoBehaviour
         pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
         StartLevel();
 	}
-	
-	void Update ()
+
+    void OnApplicationQuit()
     {
-	    
-	}
+        PlayerPrefs.Save();
+        Save();
+    }
+
+    void OnApplicationPause(bool paused)
+    {
+        if (paused)
+        {
+            PlayerPrefs.Save();
+            Save();
+        }
+    }
 
     void StartLevel()
     {
