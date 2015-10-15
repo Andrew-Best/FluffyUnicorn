@@ -79,7 +79,10 @@ public class GameController : MonoBehaviour
             SaveData sData = new SaveData();
 
             //Insert save code here
-            
+            sData.m_LevelsUnlocked = pData_.m_LevelsUnlocked;
+            sData.m_UnlockedProjectileCombos = pData_.m_UnlockedProjectileCombos;
+            sData.m_UnlockedMeleeCombos = pData_.m_UnlockedMeleeCombos;
+            sData.m_UnlockedCombinedCombos = pData_.m_UnlockedCombinedCombos;
 
             bf.Serialize(file, sData);
             file.Close();
@@ -93,6 +96,10 @@ public class GameController : MonoBehaviour
             SaveData sData = new SaveData();
 
             //Insert save code here
+            sData.m_LevelsUnlocked = pData_.m_LevelsUnlocked;
+            sData.m_UnlockedProjectileCombos = pData_.m_UnlockedProjectileCombos;
+            sData.m_UnlockedMeleeCombos = pData_.m_UnlockedMeleeCombos;
+            sData.m_UnlockedCombinedCombos = pData_.m_UnlockedCombinedCombos;
 
             bf.Serialize(file, sData);
             file.Close();
@@ -101,6 +108,11 @@ public class GameController : MonoBehaviour
 
     void Load()
     {
+        if(pData_ == null)
+        {
+            Debug.LogError("PlayerData is null, cannot load.");
+            return;
+        }
         if(File.Exists(Application.persistentDataPath + Path.DirectorySeparatorChar + "fuSaveData.dat"))
         {
             Debug.Log("Loading from " + Application.persistentDataPath);
@@ -109,6 +121,10 @@ public class GameController : MonoBehaviour
             SaveData sData = (SaveData)bf.Deserialize(file);
 
             //Insert load code here
+            pData_.m_LevelsUnlocked = sData.m_LevelsUnlocked;
+            pData_.m_UnlockedProjectileCombos = sData.m_UnlockedProjectileCombos;
+            pData_.m_UnlockedMeleeCombos = sData.m_UnlockedMeleeCombos;
+            pData_.m_UnlockedCombinedCombos = sData.m_UnlockedCombinedCombos;
 
             file.Close();
         }
