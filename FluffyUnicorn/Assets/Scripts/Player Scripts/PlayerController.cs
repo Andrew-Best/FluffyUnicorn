@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private GameObject startPosition_;
 
     private PlayerData playerData_;         //Player data script
-    private Rigidbody rigidBody_;
+    //private Rigidbody rigidBody_;
     private GameController gameControl_;    //Game Controller object
 
     private float horizontalMove_;
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         this.gameObject.layer = 19;
 
         player_ = GameObject.Find("Player");
-        rigidBody_ = GetComponent<Rigidbody>();
+        //rigidBody_ = GetComponent<Rigidbody>();
         playerData_ = GetComponent<PlayerData>();
         playerRigidBody_ = player_.GetComponent<Rigidbody>();
         playerRigidBody_.velocity = new Vector3(0.0f, 0.0f, 0.0f);

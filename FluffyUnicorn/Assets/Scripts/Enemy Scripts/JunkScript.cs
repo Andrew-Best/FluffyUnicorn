@@ -11,6 +11,7 @@ public class JunkScript : MonoBehaviour
 	public int m_Damage = 1;
 
     private float Death_ = 4.0f;
+    private Rigidbody2D rigidbody_; //The object that has this script's rigidbody
 
 	// Use this for initialization
 	void Start () 
@@ -28,11 +29,13 @@ public class JunkScript : MonoBehaviour
 			m_HP = Constants.BURNT_TOAST_HP;
 		}
 
+
+        rigidbody_ = GetComponent<Rigidbody2D>();
 		//QueenBully_ = GameObject.FindGameObjectWithTag("QueenBully");
 		//Player_ = GameObject.FindGameObjectWithTag("Player");
 
-		gameObject.GetComponent<Rigidbody2D>().transform.position = QueenBully_.transform.position;
-		gameObject.GetComponent<Rigidbody2D>().velocity = ArcShot(Player_.transform, Constants.ARC_DEGREE);//throw angle
+        rigidbody_.transform.position = QueenBully_.transform.position;
+        rigidbody_.velocity = ArcShot(Player_.transform, Constants.ARC_DEGREE);//throw angle
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -40,30 +43,30 @@ public class JunkScript : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
 			//
-			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            rigidbody_.velocity = new Vector2(0, 0);
 			Player_.GetComponent<PlayerData>().m_PlayerHealth -= m_Damage;
-			this.GetComponent<Rigidbody2D>().isKinematic = true;
+            rigidbody_.isKinematic = true;
 
 		}
 		if (collision.gameObject.tag == "PlayerProjectile")
 		{
 			m_HP -= GetComponent<Projectile>().m_Damage;
-			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-			this.GetComponent<Rigidbody2D>().isKinematic = true;
+            rigidbody_.velocity = new Vector2(0, 0);
+            rigidbody_.isKinematic = true;
 		}
 		if (collision.gameObject.tag == "PlayerProjectile2")
 		{
 			m_HP -= GetComponent<Projectile>().m_Damage;
-			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-			this.GetComponent<Rigidbody2D>().isKinematic = true;
+            rigidbody_.velocity = new Vector2(0, 0);
+            rigidbody_.isKinematic = true;
 		}
 		if (collision.gameObject.tag == "PlayerProjectile3")
 		{
 			m_HP -= GetComponent<Projectile>().m_Damage;
-			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-			this.GetComponent<Rigidbody2D>().isKinematic = true;
+            rigidbody_.velocity = new Vector2(0, 0);
+            rigidbody_.isKinematic = true;
 		}
-		this.GetComponent<Rigidbody2D>().AddForce(new Vector2(m_ReactForce, 0.0f));//Brandon's Wiggle
+        rigidbody_.AddForce(new Vector2(m_ReactForce, 0.0f));//Brandon's Wiggle
 	}
 
 	Vector2 ArcShot(Transform target, float angle)
