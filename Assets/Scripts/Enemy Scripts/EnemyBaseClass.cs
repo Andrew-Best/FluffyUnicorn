@@ -18,15 +18,15 @@ public class EnemyBaseClass : MonoBehaviour
 	public GameObject PepperSpray;
 
 	public Animator m_BullyAnimator;
-	public Collider2D[] m_Tracks;
+	//public Collider2D[] m_Tracks;
 	public GameObject[] m_TargetPoints;
 
 	public int m_VelocityX;
 
 	public int m_PlayerCurRow;
 	public int m_CurRow;
-	public bool m_AbleToChangeTrack = false;
-	public float m_ChangeTrackTimer;
+	//public bool m_AbleToChangeTrack = false;
+	//public float m_ChangeTrackTimer;
 
 	public int m_EnemyType;
 
@@ -391,7 +391,7 @@ public class EnemyBaseClass : MonoBehaviour
 	{
         bullyBaseClass_ = newBully.GetComponent<EnemyBaseClass>();
 
-        bullyBaseClass_.changeTrackCountdown = m_ChangeTrackTimer;
+       // bullyBaseClass_.changeTrackCountdown = m_ChangeTrackTimer;
 
         bullyBaseClass_.m_Player = GameObject.FindGameObjectWithTag("Player");
         bullyBaseClass_.m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);

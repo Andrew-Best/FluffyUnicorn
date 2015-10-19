@@ -183,15 +183,18 @@ public class PepperDragonArm : PepperDragon
 
 	void OnCollisionEnter2D(Collision2D ground)
 	{
-		if(ground.gameObject.tag == "Track0")
+        if (armIsMoving_)
+		//if(ground.gameObject.tag == "Track0")
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);			
 		}
-		else if (ground.gameObject.tag == "Track1")
+        else if (armIsMoving_ == false)
+		//else if (ground.gameObject.tag == "Track1")
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 		}
-		else if (ground.gameObject.tag == "Track2")
+		//else if (ground.gameObject.tag == "Track2")
+        else if (armIsMoving_)
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 		}
