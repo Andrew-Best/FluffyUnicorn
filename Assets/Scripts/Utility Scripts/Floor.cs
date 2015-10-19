@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FloorBoundary : MonoBehaviour 
+public class Floor : MonoBehaviour 
 {
     public GameObject m_PlanePrefab;
 
@@ -10,12 +10,25 @@ public class FloorBoundary : MonoBehaviour
     private GameObject backBoundary_;
     private GameObject frontBoundary_;
 
+    private GameObject floor_;
     private Renderer floorRenderer_;
+
+    private GameObject background_;
 
 	void Start () 
     {
         //Caching the reference to the floor's Mesh Renderer for use in later calculations
         floorRenderer_ = GetComponent<MeshRenderer>();
+        background_ = GameObject.Find("Background");
+
+        if (background_ != null)
+        {
+            gameObject.transform.localScale = new Vector3(background_.transform.localScale.x, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+        }
+        else
+        {
+            Debug.LogErrorFormat("Background is null at line {0}", 26);
+        }
 
         leftBoundary_ = (GameObject)Instantiate(m_PlanePrefab, new Vector3(floorRenderer_.bounds.min.x, 0.0f, 0.0f), Quaternion.identity);
         leftBoundary_.transform.Rotate(new Vector3(0.0f, 0.0f, 270.0f));
@@ -41,5 +54,7 @@ public class FloorBoundary : MonoBehaviour
         rightBoundary_.GetComponent<MeshRenderer>().enabled = false;
         frontBoundary_.GetComponent<MeshRenderer>().enabled = false;
         backBoundary_.GetComponent<MeshRenderer>().enabled = false;
+
+        
 	}
 }
