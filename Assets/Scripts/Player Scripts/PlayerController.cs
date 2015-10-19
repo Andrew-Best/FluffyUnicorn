@@ -512,14 +512,14 @@ public class PlayerController : MonoBehaviour
 
     void EnableMeleeCollision()
     {
-        if(m_IsHitting)
+        /*if(m_IsHitting)
         {
             m_MeleeCollider.enabled = true;
         }
         else
         {
             m_MeleeCollider.enabled = false;
-        }
+        }*/
     }
     #endregion
 }
