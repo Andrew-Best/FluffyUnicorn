@@ -23,7 +23,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public int m_VelocityX;
 
-	public int m_PlayerCurRow;
+	//public int m_PlayerCurRow;
 	public int m_CurRow;
 	//public bool m_AbleToChangeTrack = false;
 	//public float m_ChangeTrackTimer;
@@ -148,7 +148,7 @@ public class EnemyBaseClass : MonoBehaviour
 			else { Row2Occupied = false; }
 		}
 	}
-
+    /*
 	public virtual void ChangeTrack(GameObject bully)//Bully will attempt to change tracks to match the player, but will fail if another bully is on that track
 	{
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
@@ -158,7 +158,7 @@ public class EnemyBaseClass : MonoBehaviour
 		//Moving UP tracks (DOWN on the screen)
         if (bullyBaseClass_.m_CurRow < bullyBaseClass_.m_PlayerCurRow)//If Bully's track is lower in the index than the player's
 		{
-            if (bullyBaseClass_.m_PlayerCurRow++ == 1)//if enemy is on track 0 moving to track 1
+           // if (bullyBaseClass_.m_PlayerCurRow++ == 1)//if enemy is on track 0 moving to track 1
 			{
 				if (!Row1Occupied)//if row one does not have a bully on it
 				{
@@ -210,7 +210,7 @@ public class EnemyBaseClass : MonoBehaviour
 		float yPos = bully.GetComponent<BullyScript>().m_TargetPoints[m_CurRow].transform.position.y;
 
         bullyBaseClass_.GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, yPos);		
-	}
+	} */
 
 	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
 	{
@@ -240,9 +240,9 @@ public class EnemyBaseClass : MonoBehaviour
 		{
 			bully.GetComponent<EnemyBaseClass>().changeTrackCountdown = 0; //set the timer to 0
 			bully.GetComponent<EnemyBaseClass>().m_TimerIsCounting = false;//prevent the timer from continueing to count down
-			if (bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow != bully.GetComponent<EnemyBaseClass>().m_CurRow) //If not on the same track
+			//if (bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow != bully.GetComponent<EnemyBaseClass>().m_CurRow) //If not on the same track
 			{
-				bully.GetComponent<EnemyBaseClass>().ChangeTrack(bully);//will not change track if Idle
+				//bully.GetComponent<EnemyBaseClass>().ChangeTrack(bully);//will not change track if Idle
 				bully.GetComponent<EnemyBaseClass>().secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
 			}
 		}
@@ -292,8 +292,8 @@ public class EnemyBaseClass : MonoBehaviour
 		Vector2 differenceInDistance = new Vector2(bully.transform.position.x, bully.transform.position.y) - playerPos; //get the difference between the two entities
         float forwardDetectionX = bully.transform.position.x - bullyBaseClass_.m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
 
-        if (bullyBaseClass_.m_CurRow == bullyBaseClass_.m_PlayerCurRow)
-		{
+       // if (bullyBaseClass_.m_CurRow == bullyBaseClass_.m_PlayerCurRow)
+		//{
 			//e - p = differenceInDistance
 			//difference in distance == a line between the two p_____e
 			//if this "line" is shorter than the bully's forwardDetection aka "Line Of Sight" (while the player is to the left) -|____e____|+
@@ -302,14 +302,14 @@ public class EnemyBaseClass : MonoBehaviour
 			{
                 bullyBaseClass_.m_isIdle = false;//then the enemy is no longer Idle	
 			}
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			if (differenceInDistance.x <= forwardDetectionX)//if the player is within the detection "range" of a bully
 			{
                 bullyBaseClass_.m_isIdle = false;//then the enemy is no longer Idle	
 			}
-		}
+		//}
 	}
 	#endregion
 
@@ -320,7 +320,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 		int attackSelector = Random.Range(0, 100);
         bullyBaseClass_.EnemyStopMotion(bully);
-        if (bullyBaseClass_.m_CurRow == bullyBaseClass_.m_PlayerCurRow)
+      //  if (bullyBaseClass_.m_CurRow == bullyBaseClass_.m_PlayerCurRow)
 		{
 			//			m_EnemyInMotion = false; //prevent continued motion of the bully
 			if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
@@ -443,21 +443,21 @@ public class EnemyBaseClass : MonoBehaviour
 
 			//Detect Player Track
 			GetPlayerInfo(bully);
-
+            /*
 			//Conditions for changing tracks
             if (!bullyBaseClass_.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
 			{
                 bullyBaseClass_.changeTrackCountdown = Constants.TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
-                bullyBaseClass_.secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
+                //bullyBaseClass_.secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
 			}
 			if (secondaryTrackTimer <= 0) //once the secondary timer reaches 0
 			{
                 bullyBaseClass_.m_TimerIsCounting = true; //enable the primary timer
-                bullyBaseClass_.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
+                //bullyBaseClass_.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
 			}
             if (bullyBaseClass_.m_TimerIsCounting)
 			{
-                bullyBaseClass_.changeTrackCountdown -= Time.deltaTime;
+               // bullyBaseClass_.changeTrackCountdown -= Time.deltaTime;
 			}
 
 			//bully.GetComponent<BullyScript>().GetComponent<Rigidbody2D>().transform.position = new Vector2(bully.GetComponent<BullyScript>().GetComponent<Rigidbody2D>().transform.position.x, bully.GetComponent<BullyScript>().m_TargetPoints[m_CurRow].transform.position.y);
@@ -471,7 +471,7 @@ public class EnemyBaseClass : MonoBehaviour
 			{
                 bullyBaseClass_.EnemyIdle(bully, enemyPos);
 			}
-			else // enemy is not idle, therefore player is nearby
+			//else // enemy is not idle, therefore player is nearby */
 			{
                 bullyBaseClass_.ChasePlayer(m_PlayerPos, enemyPos, bully);
 
