@@ -7,6 +7,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameController : MonoBehaviour 
 {
+    public bool m_BossFight;
+
     private PlayerData pData_;
     private UIController UIControl_;
 

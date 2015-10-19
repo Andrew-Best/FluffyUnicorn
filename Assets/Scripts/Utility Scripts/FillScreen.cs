@@ -4,7 +4,7 @@ using System.Collections;
 public class FillScreen : MonoBehaviour
 {
     public float m_PlaneSize = 10.0f;
-    void Start()
+    void Awake()
     {
         Camera cam = Camera.main;
 

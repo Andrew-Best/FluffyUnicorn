@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
         //Attack if you press space and you're not in cooldown
-        if (Input.GetKeyUp(KeyCode.Space) && Time.time > nextFire_)
+        if (Input.GetKeyUp(KeyCode.Z) && Time.time > nextFire_)
         {
             Attack();
         }
@@ -292,7 +292,7 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Melee Attack
-        else if (Input.GetKeyUp(KeyCode.W) || m_UpdateMelee && Time.time > nextMeleeAttack_)
+        else if (Input.GetKeyUp(KeyCode.E) || m_UpdateMelee && Time.time > nextMeleeAttack_)
         {
             m_UpdateMelee = false;
             switch (meleeChain_)
@@ -466,6 +466,7 @@ public class PlayerController : MonoBehaviour
         {
             m_IsHitting = true;
             m_PhysicalDamage += m_PhysicalDamageIncreases[1];
+           
         }
         else if (meleeChain_ == 2)
         {
