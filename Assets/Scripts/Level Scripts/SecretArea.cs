@@ -87,7 +87,7 @@ public class SecretArea : MonoBehaviour
     #endregion
 
     #region Collision
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         //when the player collides with the secret area spawn the number of enemies specified by the variable m_NumEnemies
         if (other.tag == "Player")
@@ -106,7 +106,7 @@ public class SecretArea : MonoBehaviour
             //if the player touched the secret area and it is unlocked, move to the secret level
             else if(unlockDoor_)
             {
-                player_.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+                player_.GetComponent<Rigidbody>().velocity = new Vector2(0.0f, 0.0f);
                 EnterArea(m_SecretAreaName);
             }
         }
