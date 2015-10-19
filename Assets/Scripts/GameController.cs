@@ -9,25 +9,15 @@ public class GameController : MonoBehaviour
 {
     private PlayerData pData_;
     private UIController UIControl_;
-    private UIController AndroidUI_;
 
     private int currLevel_; //Current level the player is on
 
 	void Start () 
     {
         UIControl_ = GameObject.Find("UI").GetComponent<UIController>();
-        AndroidUI_ = GameObject.Find("AndroidUI").GetComponent<UIController>();
 
         Screen.orientation = ScreenOrientation.Landscape;
-#if UNITY_ANDROID
-        AndroidUI_.gameObject.SetActive(true);
-        UIControl_.gameObject.SetActive(false);
-#endif
 
-#if UNITY_EDITOR
-        AndroidUI_.gameObject.SetActive(false);
-        UIControl_.gameObject.SetActive(true);
-#endif
         currLevel_ = 1; //Temporary default
         pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
         StartLevel();
