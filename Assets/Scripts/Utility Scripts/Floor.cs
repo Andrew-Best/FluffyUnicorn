@@ -10,16 +10,15 @@ public class Floor : MonoBehaviour
     private GameObject backBoundary_;
     private GameObject frontBoundary_;
 
-    private GameObject floor_;
     private Renderer floorRenderer_;
 
     private GameObject background_;
 
-	void Start () 
+	void Start() 
     {
         //Caching the reference to the floor's Mesh Renderer for use in later calculations
         floorRenderer_ = GetComponent<MeshRenderer>();
-        background_ = GameObject.Find("Background");
+        background_ = GameObject.FindGameObjectWithTag("Background");
 
         if (background_ != null)
         {
@@ -54,7 +53,5 @@ public class Floor : MonoBehaviour
         rightBoundary_.GetComponent<MeshRenderer>().enabled = false;
         frontBoundary_.GetComponent<MeshRenderer>().enabled = false;
         backBoundary_.GetComponent<MeshRenderer>().enabled = false;
-
-        
 	}
 }
