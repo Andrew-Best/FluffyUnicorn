@@ -60,7 +60,7 @@ public class PepperDragonArm : PepperDragon
 		{
 			GetCurLayer();
 		
-			if (MatchPlayerRowToLayer(curLayerName))
+			//if (MatchPlayerRowToLayer(curLayerName))
 			{
 				--m_HP;
 				m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;

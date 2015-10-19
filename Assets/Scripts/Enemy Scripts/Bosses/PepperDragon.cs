@@ -93,7 +93,7 @@ public class PepperDragon : BossBaseClass
 		}
 		this.gameObject.GetComponent<Rigidbody2D>().velocity = curVel;
 	}
-
+    /*
 	protected bool MatchPlayerRowToLayer(string LayerOfEnemy)
 	{
 		GetPlayerInfo(this.gameObject);
@@ -120,7 +120,7 @@ public class PepperDragon : BossBaseClass
 			return false;
 		}
 	}
-
+    */
 	private void SpewPepper()
 	{
 
