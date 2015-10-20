@@ -9,22 +9,37 @@ public class SecretArea : MonoBehaviour
         ENEMIESDEAD = 0,    //all enemies are dead
         ENOUGHMONEY         //have enough money 
     };
+    /// <summary>The type of event for this area</summary>
     public EventType m_EventType;
-    public SpawnEnemies m_EnemySpawner;     //drag the spawner that is associated with the secret area into this variable
-    public int m_Row;                       //which row to spawn the enemies on 
-    public int m_EnemyType;                 //number that represents which enemy to spawn
-    public int m_DoorCost;                  //how much money you need to unlock the door if the event type is ENOUGHMONEY
-    public string m_SecretAreaName = "";    //name of scene yoiu want to move to 
+    /// <summary>Spawner that is associated with this secret area</summary>
+    public SpawnEnemies m_EnemySpawner;
+    /// <summary>Number that represents which enemy to spawn</summary>
+    public int m_EnemyType;
+    /// <summary>How much money you need to unlock the door if the event type is ENOUGHMONEY</summary>
+    public int m_DoorCost;
+    /// <summary>Name of the door you want to move to</summary>
+    public string m_SecretAreaName = "";
+    /// <summary>Does this area trigger enemies?</summary>
     public bool m_TriggerEnemies = true;
-
+    /// <summary>Name of this door</summary>
+    public string m_DoorName;
     #endregion
 
     #region private
+    /// <summary>Player object</summary>
     private GameObject player_;
+    /// <summary>Array of enemies</summary>
     private ArrayList enemyArray_;
+    /// <summary>Player Data script</summary>
     private PlayerData playerData_;
-    //private PlayerController playerController_;
+    /// <summary>Whether the door is unlocked or not</summary>
     private bool unlockDoor_ = false;
+    /// <summary>Game Object for the door you want to go to</summary>
+    private GameObject secretDoor_;
+    /// <summary>Offset the player by this Vector when moving them to a secret area</summary>
+    private Vector3 doorOffset_;
+    /// <summary>If the player has not visited this will be false, if they have it will be true and never change back</summary>
+    private bool playerVisited_ = false;
     #endregion
 
 	void Start ()
@@ -32,6 +47,8 @@ public class SecretArea : MonoBehaviour
         player_ = GameObject.Find("Player");
         playerData_ = player_.GetComponent<PlayerData>();
         //playerController_ = player_.GetComponent<PlayerController>();
+        secretDoor_ = GameObject.Find(m_SecretAreaName);
+        doorOffset_ = new Vector3(0.0f, 0.0f, 1.0f);
 	}
 	
 	void Update () 
@@ -92,30 +109,33 @@ public class SecretArea : MonoBehaviour
         //when the player collides with the secret area spawn the number of enemies specified by the variable m_NumEnemies
         if (other.tag == "Player")
         {
-            //initial trigger
-            if (m_TriggerEnemies)
+            if (playerVisited_ == false)
             {
-                m_TriggerEnemies = false;
-                //loop through the spawner's length and spawn how ever many enemies are in the containier 
-                for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
+                //initial trigger
+                if (m_TriggerEnemies)
                 {
-                    m_EnemySpawner.SpawnEnemyFunc(m_Row, i);
+                    m_TriggerEnemies = false;
+                    //loop through the spawner's length and spawn how ever many enemies are in the containier 
+                    for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
+                    {
+                        //m_EnemySpawner.SpawnEnemyFunc(m_Row, i);
+                    }
+                    SetValues();    //after everything is spawned add the enemies to a list so you can monitor who is alive and determine when to unlock the door
                 }
-                SetValues();    //after everything is spawned add the enemies to a list so you can monitor who is alive and determine when to unlock the door
-            }
-            //if the player touched the secret area and it is unlocked, move to the secret level
-            else if(unlockDoor_)
-            {
-                player_.GetComponent<Rigidbody>().velocity = new Vector2(0.0f, 0.0f);
-                EnterArea(m_SecretAreaName);
+                //if the player touched the secret area and it is unlocked, move to the secret level
+                else if (unlockDoor_)
+                {
+                    player_.GetComponent<Rigidbody>().velocity = new Vector2(0.0f, 0.0f);
+                    EnterArea();
+                }
             }
         }
     }
 
-    public void EnterArea(string areaName)
+    public void EnterArea()
     {
-        //load scene based on name 
-        Application.LoadLevel(areaName);
+        player_.transform.position = secretDoor_.transform.position - doorOffset_;
+        playerVisited_ = true;
     }
     #endregion
 }

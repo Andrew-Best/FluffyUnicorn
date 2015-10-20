@@ -138,7 +138,7 @@ public class KingBully : BossBaseClass
 			}
 		}
 
-		if (this.m_CurRow == m_PlayerCurRow)
+		/*if (this.m_CurRow == m_PlayerCurRow)
 		{
 			if (this.GetComponent<BeamAttack>().m_Ammo > 0)//if there is ammo
 			{
@@ -156,7 +156,7 @@ public class KingBully : BossBaseClass
 				this.GetComponent<BeamAttack>().m_Ammo = Constants.KB_WATER_AMMO;
 				//tempTimer = tempTimerResetVal;
 			}
-		}
+		}*/
 		if (this.m_HP <= 0)
 		{
 			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(1, "QueenBully");

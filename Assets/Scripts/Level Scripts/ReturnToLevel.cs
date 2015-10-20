@@ -3,12 +3,24 @@ using System.Collections;
 
 public class ReturnToLevel : MonoBehaviour 
 {
-    public string m_LevelName = "";
+    /// <summary>Name of the door this is associated with</summary>
+    public string m_LevelDoor;
+    /// <summary>Door on the main level</summary>
+    private GameObject levelDoor_;
+    /// <summary>Player object</summary>
+    private GameObject player_;
+    /// <summary>Offset the player by this Vector when moving them to a secret area</summary>
+    private Vector3 doorOffset_;
 
-    public void EnterArea(string areaName)
+    void Start()
     {
-        //load scene based on name 
-        Application.LoadLevel(areaName);
+        doorOffset_ = new Vector3(0.0f, 0.0f, 1.0f);
+        levelDoor_ = GameObject.Find(m_LevelDoor);
+    }
+
+    public void EnterArea()
+    {
+        player_.transform.position = levelDoor_.transform.position - doorOffset_;
     }
 
     void OnTriggerEnter(Collider other)
@@ -16,7 +28,7 @@ public class ReturnToLevel : MonoBehaviour
         //switch back to level when you reach the exit area
         if (other.tag == "Player")
         {
-            EnterArea(m_LevelName);
+            EnterArea();
         }
     }
 }

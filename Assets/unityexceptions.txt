@@ -1,0 +1,18 @@
+Exception: IOException: Sharing violation on path C:\Users\Andrew\Documents\GitHub\FluffyUnicorn\Assets\unityexceptions.txt
+System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean anonymous, FileOptions options) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.IO/FileStream.cs:320)
+System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share)
+(wrapper remoting-invoke-with-check) System.IO.FileStream:.ctor (string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)
+System.IO.StreamWriter..ctor (System.String path, Boolean append, System.Text.Encoding encoding, Int32 bufferSize) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.IO/StreamWriter.cs:124)
+System.IO.StreamWriter..ctor (System.String path)
+(wrapper remoting-invoke-with-check) System.IO.StreamWriter:.ctor (string)
+ExceptionHandler.Awake () (at Assets/Scripts/Utility Scripts/ExceptionHandler.cs:13)
+
+Exception: IOException: Sharing violation on path C:\Users\Andrew\Documents\GitHub\FluffyUnicorn\Assets\unityexceptions.txt
+System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean anonymous, FileOptions options) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.IO/FileStream.cs:320)
+System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share)
+(wrapper remoting-invoke-with-check) System.IO.FileStream:.ctor (string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)
+System.IO.StreamWriter..ctor (System.String path, Boolean append, System.Text.Encoding encoding, Int32 bufferSize) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.IO/StreamWriter.cs:124)
+System.IO.StreamWriter..ctor (System.String path)
+(wrapper remoting-invoke-with-check) System.IO.StreamWriter:.ctor (string)
+ExceptionHandler.Awake () (at Assets/Scripts/Utility Scripts/ExceptionHandler.cs:13)
+
