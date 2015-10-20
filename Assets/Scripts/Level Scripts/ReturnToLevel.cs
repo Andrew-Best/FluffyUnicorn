@@ -11,7 +11,7 @@ public class ReturnToLevel : MonoBehaviour
         Application.LoadLevel(areaName);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         //switch back to level when you reach the exit area
         if (other.tag == "Player")

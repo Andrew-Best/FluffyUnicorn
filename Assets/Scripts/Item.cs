@@ -79,16 +79,16 @@ public class Item : MonoBehaviour
         if (m_ItemType == m_Item.HEALTH)
         {
             this.transform.position = spawn.transform.position + randomPos;
-            this.GetComponent<Rigidbody2D>().AddForce(randomForce);
+            this.GetComponent<Rigidbody>().AddForce(randomForce);
         }
         else if (m_ItemType == m_Item.MONEY)
         {
             this.transform.position = spawn.transform.position + randomPos;
-            this.GetComponent<Rigidbody2D>().AddForce(randomForce);
+            this.GetComponent<Rigidbody>().AddForce(randomForce);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {

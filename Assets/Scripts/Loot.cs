@@ -62,7 +62,7 @@ public class Loot : MonoBehaviour
         UpdateParticleTimer();  //update particles if allowed
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && canGiveLoot_)
         {
