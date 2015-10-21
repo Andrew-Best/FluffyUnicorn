@@ -12,9 +12,9 @@ public class EnemyControllerScript : MonoBehaviour
 	public int m_MaxAllowableBulliesOnScreenForLevel; //This can be assigned a default constant value + a modifier for each level
 	public int m_BulliesOnScreen;
 
-	//private float enemySpawnTimer_;
+	private float enemySpawnTimer_;
 
-	//private float tempBossTimer_;
+	private float tempBossTimer_;
 
 	private int enemySelector_;
 	private int rowSelector_; //the track the enemy is going to be placed on
@@ -26,8 +26,8 @@ public class EnemyControllerScript : MonoBehaviour
 
 	void Start()
 	{
-		//enemySpawnTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;
-		//tempBossTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;
+		enemySpawnTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;
+		tempBossTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;
 
 		m_MaxAllowableBulliesOnScreenForLevel = 5; //For testing purposes only
 	}
@@ -35,7 +35,7 @@ public class EnemyControllerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		/*m_BulliesOnScreen = m_Bullies.Count;
+		m_BulliesOnScreen = m_Bullies.Count;
 
 		if (m_BulliesOnScreen < m_MaxAllowableBulliesOnScreenForLevel)
 		{
@@ -74,7 +74,7 @@ public class EnemyControllerScript : MonoBehaviour
 			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, "RefereeBully");
 			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, BossName);//Index for Each Boss
 			tempBossTimer_ = 1000;
-		}*/
+		}
 	}
 }
 
