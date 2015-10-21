@@ -15,7 +15,7 @@ public class KingBully : BossBaseClass
 
 	public void Start()
 	{
-		InitEnemy(new Vector2(0, 0), 2, this.gameObject);
+		InitEnemy(new Vector3(0, 0,0), 2, this.gameObject);
 
         for (int i = 0; i < 3; ++i)
         {
@@ -34,7 +34,7 @@ public class KingBully : BossBaseClass
 		//water gun animation
 	}
 
-	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
+	public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
 	{
 		base.InitEnemy(spawnPos, row, newBully);
 		this.m_ThisBoss = this.gameObject;
@@ -60,8 +60,8 @@ public class KingBully : BossBaseClass
 	public void KingUpdate()
 	{
 		m_Player = GameObject.FindGameObjectWithTag("Player");
-		
-		Vector2 playerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
+
+        Vector3 playerPos = new Vector3(m_Player.GetComponent<Rigidbody>().position.x, m_Player.GetComponent<Rigidbody>().position.y, m_Player.GetComponent<Rigidbody>().position.z);
 
 		//Detect Player Track
 		GetPlayerInfo(this.gameObject);
@@ -84,7 +84,7 @@ public class KingBully : BossBaseClass
         */
        // gameObject.transform.position = new Vector3(gameObject.transform.position.x, targetPoints_[m_CurRow].transform.position.y, targetPoints_[m_CurRow].transform.position.z);
 
-		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
+        Vector3 enemyPos = new Vector3(this.m_RigidBody.position.x, this.m_RigidBody.position.y, this.m_RigidBody.position.z);
 
 		if (this.m_EnemyInMotion)
 		{

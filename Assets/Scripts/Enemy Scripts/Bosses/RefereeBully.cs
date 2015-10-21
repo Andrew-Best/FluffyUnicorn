@@ -34,8 +34,8 @@ public class RefereeBully : BossBaseClass
     private bool firstStrike_ = true;
     
     private Animator refAnim_;
-    private Rigidbody2D velocity_;
-    private Rigidbody2D jockRigid_;
+    private Rigidbody velocity_;
+    private Rigidbody jockRigid_;
 
     
     void Start()
@@ -46,7 +46,7 @@ public class RefereeBully : BossBaseClass
         EnemySpawner_ = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<SpawnEnemies>();
         lastDistance_.Add(5.0f);
         refAnim_ = gameObject.GetComponent<Animator>();
-        velocity_ = gameObject.GetComponent<Rigidbody2D>();
+        velocity_ = gameObject.GetComponent<Rigidbody>();
 
         for (int i = 0; i < 3; ++i)
         {
@@ -55,7 +55,7 @@ public class RefereeBully : BossBaseClass
 
     }
 
-    public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
+    public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
     {
         base.InitEnemy(spawnPos, row, newBully);
 
@@ -87,7 +87,7 @@ public class RefereeBully : BossBaseClass
 
         for (int i = 0; i < m_JockHorde.Count; ++i)
         {
-            m_JockHorde[i].GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(horizontalSpeedMin, horizontalSpeedMax), Random.Range(verticalSpeedMin, verticalSpeedMax));
+            m_JockHorde[i].GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(horizontalSpeedMin, horizontalSpeedMax), Random.Range(verticalSpeedMin, verticalSpeedMax));
             //error check for null jocks
             if (m_JockHorde[i] == null)
             {
@@ -98,7 +98,7 @@ public class RefereeBully : BossBaseClass
 
         if (gameObject.transform.position.x <= distance && isMoving_ == true)
         {
-            velocity_.velocity = new Vector2(0.0f, 0.0f);
+            velocity_.velocity = new Vector3(0.0f, 0.0f, 0.0f);
             refAnim_.SetBool("Moving", false);
         }
 
@@ -110,14 +110,14 @@ public class RefereeBully : BossBaseClass
         {
             for (int i = 0; i < m_JockHorde.Count; ++i)
             {
-                m_JockHorde[i].GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+                m_JockHorde[i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
             }
             curLifeTime_ = 0.0f;
         }
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Player")
         {
@@ -160,7 +160,7 @@ public class RefereeBully : BossBaseClass
             {
                 if (distance >= lastDistance_[lastDistance_.Count - 1])
                 {
-                    velocity_.velocity = new Vector2(1.5f, 0.0f); //moves right
+                    velocity_.velocity = new Vector3(1.5f, 0.0f, 0.0f); //moves right
 
                     Vector3 theScale = transform.localScale;
                     theScale.x *= -1;
@@ -168,7 +168,7 @@ public class RefereeBully : BossBaseClass
                 }
                 else if (distance <= lastDistance_[lastDistance_.Count - 1])
                 {
-                    velocity_.velocity = new Vector2(-1.5f, 0.0f); //moves left
+                    velocity_.velocity = new Vector3(-1.5f, 0.0f, 0.0f); //moves left
                     Vector3 theScale = transform.localScale;
                     theScale.x *= 1;
                     transform.localScale = theScale;
@@ -191,7 +191,7 @@ public class RefereeBully : BossBaseClass
     void SetJocks()
     {
         int row = 0;
-        Vector2 StartPos = new Vector2(11.0f, 0.0f);
+        Vector3 StartPos = new Vector3(11.0f, 0.0f, 0.0f);
         for (int i = 0; i < EnemySpawner_.mEnemiesToSpawn.Length; ++i)
         {
             string bullyName = EnemySpawner_.mEnemiesToSpawn[i].name;

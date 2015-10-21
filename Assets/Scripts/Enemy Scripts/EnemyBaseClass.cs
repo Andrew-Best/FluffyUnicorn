@@ -64,7 +64,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public int m_EnemyGoingLeft = 1; //1 == left, -1 == right
 
 	public Rigidbody m_RigidBody;
-	public Vector2 m_InitialXY;
+	public Vector3 m_InitialXY;
 
 	//two variables for changing tracks
 	//public float changeTrackCountdown = 2.0f; //primary timer, when this reaches 0 the enemy can change tracks, and the secondary timer start counting down and m_TimerIsCounting is set to false
@@ -85,7 +85,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	}
 
-	public virtual void EnemyIdle(GameObject bully, Vector2 enemyPos)
+	public virtual void EnemyIdle(GameObject bully, Vector3 enemyPos)
 	{
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
 
@@ -123,7 +123,7 @@ public class EnemyBaseClass : MonoBehaviour
 	{
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
 
-        bullyBaseClass_.m_RigidBody.velocity = new Vector2(0, 0); //freeze position
+        bullyBaseClass_.m_RigidBody.velocity = new Vector3(0, 0, 0); //freeze position
         bullyBaseClass_.m_EnemyInMotion = false; //set bool that prevents movement in the update
 	}
     /*
@@ -212,7 +212,7 @@ public class EnemyBaseClass : MonoBehaviour
         bullyBaseClass_.GetComponent<Rigidbody2D>().transform.position = new Vector2(xPos, yPos);		
 	} */
 
-	public virtual void ChasePlayer(Vector2 playerPos, Vector2 enemyPos, GameObject bully)
+	public virtual void ChasePlayer(Vector3 playerPos, Vector3 enemyPos, GameObject bully)
 	{
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
 
@@ -285,11 +285,11 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 	}
 
-	public virtual void DetectPlayer(Vector2 playerPos, GameObject bully)
+	public virtual void DetectPlayer(Vector3 playerPos, GameObject bully)
 	{
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
 
-		Vector2 differenceInDistance = new Vector2(bully.transform.position.x, bully.transform.position.y) - playerPos; //get the difference between the two entities
+        Vector2 differenceInDistance = new Vector3(bully.transform.position.x, bully.transform.position.y, bully.transform.position.z) - playerPos; //get the difference between the two entities
         float forwardDetectionX = bully.transform.position.x - bullyBaseClass_.m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
 
        // if (bullyBaseClass_.m_CurRow == bullyBaseClass_.m_PlayerCurRow)
@@ -387,7 +387,7 @@ public class EnemyBaseClass : MonoBehaviour
 	#endregion
 
 	#region Creation
-	public virtual void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
+	public virtual void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
 	{
         bullyBaseClass_ = newBully.GetComponent<EnemyBaseClass>();
 
@@ -434,12 +434,12 @@ public class EnemyBaseClass : MonoBehaviour
 		//Debug.Log(bully.name);
 		if (bully.name != "FattestBully" && bully.name != "KingBully" && bully.name != "RefereeBully" && bully.name != "QueenBully")
 		{
-            Vector2 enemyPos = new Vector2(bullyRigidbody_.position.x, bullyRigidbody_.position.y);
+            Vector2 enemyPos = new Vector3(bullyRigidbody_.position.x, bullyRigidbody_.position.y, bullyRigidbody_.position.z);
 			bully.GetComponent<BullyScript>().m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully); //Update Enemy Projectiles on screen
 
 			m_Player = GameObject.FindGameObjectWithTag("Player");
 
-			m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody>().position.x, m_Player.GetComponent<Rigidbody>().position.y);
+            m_PlayerPos = new Vector3(m_Player.GetComponent<Rigidbody>().position.x, m_Player.GetComponent<Rigidbody>().position.y, m_Player.GetComponent<Rigidbody>().position.z);
 
 			//Detect Player Track
 			GetPlayerInfo(bully);
@@ -556,7 +556,7 @@ public class EnemyBaseClass : MonoBehaviour
 	}
 
 	#region Collision
-	void OnTriggerEnter2D(Collider2D collision)
+	void OnTriggerEnter(Collider collision)
 	{
 		if (collision.tag == "PlayerProjectile")
 		{		
@@ -564,7 +564,7 @@ public class EnemyBaseClass : MonoBehaviour
 			this.GetComponent<Rigidbody>().isKinematic = true;
 			this.m_HP -= collision.gameObject.GetComponent<Projectile>().m_Damage;
 		}
-		this.GetComponent<Rigidbody>().AddForce(new Vector2(m_ReactForce, 0.0f));//Brandon's Wiggle
+		this.GetComponent<Rigidbody>().AddForce(new Vector3(m_ReactForce, 0.0f));//Brandon's Wiggle
 	}
 	#endregion
 

@@ -7,7 +7,7 @@ public class QueenBully : BossBaseClass
     public Animator m_QueenAnim;
 	public string m_JunkName;
 
-	public Vector2 m_ThrowForce;
+	public Vector3 m_ThrowForce;
 	//private Vector2 playerPosition_;
 
 	private float timeUntilNextThrow_ = 5.0f;
@@ -16,7 +16,7 @@ public class QueenBully : BossBaseClass
     // Use this for initialization
 	void Start () 
 	{
-		InitEnemy(new Vector2(0, 0), 2, this.gameObject);
+		InitEnemy(new Vector3(0, 0), 2, this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -69,11 +69,11 @@ public class QueenBully : BossBaseClass
 		//send object in an arc toward the player
 	}
 
-	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
+	public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
 	{
 		base.InitEnemy(spawnPos, row, newBully);
 
-		m_Position = m_ThisBoss.GetComponent<Rigidbody2D>().position;
+		m_Position = m_ThisBoss.GetComponent<Rigidbody>().position;
 
 		m_HP = Constants.QUEEN_BULLY_HP;
 

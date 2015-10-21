@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class BossBaseClass : EnemyBaseClass
 {
 	public GameObject m_ThisBoss;
-	public Vector2 m_Position;
+	public Vector3 m_Position;
 
 	public GameObject[] m_SpawnPos; //List of possible spawn locaations
 
@@ -21,12 +21,12 @@ public class BossBaseClass : EnemyBaseClass
 		
 	}
 
-	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
+	public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
 	{
 		base.InitEnemy(spawnPos, row, m_ThisBoss);
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
-		this.m_ThisBoss.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Set Boss Velocity to 0
+		this.m_ThisBoss.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);//Set Boss Velocity to 0
 		this.m_IsABoss = true;
 	}
 

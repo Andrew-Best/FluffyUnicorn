@@ -13,7 +13,7 @@ public class BullyScript : EnemyBaseClass
     }
 
 	#region Creation
-	public override void InitEnemy(Vector2 spawnPos, int row, GameObject newBully)
+	public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
 	{
 		base.InitEnemy(spawnPos, row, newBully);
 
@@ -36,7 +36,7 @@ public class BullyScript : EnemyBaseClass
 		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("Targetpoint0");
 
 		//this.changeTrackCountdown = this.m_ChangeTrackTimer;
-		m_MaxDist = this.GetComponent<Rigidbody2D>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
+		m_MaxDist = this.GetComponent<Rigidbody>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
 
 	//	Bully.GetComponent<Rigidbody2D>().transform.position = new Vector3(Bully.transform.position.x, m_TargetPoints[(int)spawnPos.x].transform.position.y, m_TargetPoints[(int)spawnPos.y].transform.position.z);
 
@@ -93,11 +93,11 @@ public class BullyScript : EnemyBaseClass
 	}
 	#endregion
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Player")
         {
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
         }
     }
 
