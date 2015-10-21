@@ -80,7 +80,7 @@ public class QueenBully : BossBaseClass
 		m_Curstate = 0;
 		m_BossName = "Queen Bully";
 		m_CurFrame = 0;
-		this.m_CurRow = row;
+		//this.m_CurRow = row;
 		//m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
 	}
 

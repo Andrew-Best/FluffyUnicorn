@@ -43,7 +43,7 @@ public class KingBully : BossBaseClass
 		this.m_Curstate = 0;
 		this.m_BossName = "King Bully";
 		this.m_CurFrame = 0;
-		this.m_CurRow = row;
+		//this.m_CurRow = row;
 
 		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
 
@@ -65,7 +65,7 @@ public class KingBully : BossBaseClass
 
 		//Detect Player Track
 		GetPlayerInfo(this.gameObject);
-
+        /*
 		//Conditions for changing tracks
 		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
 		{
@@ -81,8 +81,8 @@ public class KingBully : BossBaseClass
 		{
 			this.changeTrackCountdown -= Time.deltaTime;
 		}
-
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, targetPoints_[m_CurRow].transform.position.y, targetPoints_[m_CurRow].transform.position.z);
+        */
+       // gameObject.transform.position = new Vector3(gameObject.transform.position.x, targetPoints_[m_CurRow].transform.position.y, targetPoints_[m_CurRow].transform.position.z);
 
 		Vector2 enemyPos = new Vector2(this.m_RigidBody.position.x, this.m_RigidBody.position.y);
 
@@ -138,7 +138,11 @@ public class KingBully : BossBaseClass
 			}
 		}
 
+<<<<<<< HEAD
+		//if (this.m_CurRow == m_PlayerCurRow)
+=======
 		/*if (this.m_CurRow == m_PlayerCurRow)
+>>>>>>> origin/master
 		{
 			if (this.GetComponent<BeamAttack>().m_Ammo > 0)//if there is ammo
 			{

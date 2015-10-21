@@ -66,7 +66,7 @@ public class RefereeBully : BossBaseClass
         m_Curstate = 0;
         m_BossName = "Referee Bully";
         m_CurFrame = 0;
-        m_CurRow = row;
+      //  m_CurRow = row;
         //m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
     }
 
