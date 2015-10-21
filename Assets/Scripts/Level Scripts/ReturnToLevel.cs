@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ReturnToLevel : MonoBehaviour 
 {
-    /// <summary>Name of the door this is associated with</summary>
+    /// <summary>Name of the door to teleport to</summary>
     public string m_LevelDoor;
     /// <summary>Door on the main level</summary>
     private GameObject levelDoor_;
@@ -16,6 +16,7 @@ public class ReturnToLevel : MonoBehaviour
     {
         doorOffset_ = new Vector3(0.0f, 0.0f, 1.0f);
         levelDoor_ = GameObject.Find(m_LevelDoor);
+        player_ = GameObject.Find("Player");
     }
 
     public void EnterArea()
@@ -28,7 +29,10 @@ public class ReturnToLevel : MonoBehaviour
         //switch back to level when you reach the exit area
         if (other.tag == "Player")
         {
-            EnterArea();
+            if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
+            {
+                EnterArea();
+            }
         }
     }
 }

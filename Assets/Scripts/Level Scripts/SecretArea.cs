@@ -126,7 +126,10 @@ public class SecretArea : MonoBehaviour
                 else if (unlockDoor_)
                 {
                     player_.GetComponent<Rigidbody>().velocity = new Vector2(0.0f, 0.0f);
-                    EnterArea();
+                    if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
+                    {
+                        EnterArea();
+                    }
                 }
             }
         }
