@@ -6,6 +6,7 @@ public class PepperDragonHead : PepperDragon
 	public float m_ThisHeadCurPosY;
 	public float m_ThisHeadDestPosY;
 	public float m_ThisHeadStartYPos;
+    public float m_headVelocity;
 
 	public GameObject m_ArmToMove;
 
@@ -24,13 +25,14 @@ public class PepperDragonHead : PepperDragon
 	{
         headIsMoving_ = false;
 		m_Player = GameObject.FindGameObjectWithTag("Player");
+        m_headVelocity = 0.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 
-
+        m_headVelocity++;
 		m_ThisHeadCurPosY = this.GetComponent<Rigidbody2D>().transform.position.y;
         if (headIsMoving_)
 		{
@@ -38,7 +40,7 @@ public class PepperDragonHead : PepperDragon
 			{
 				if (m_ThisHeadCurPosY > m_ArmToMove.GetComponent<PepperDragonArm>().m_ThisArmStartPosY)
 				{
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f);
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f) * m_headVelocity;
 				}
 				else
 				{

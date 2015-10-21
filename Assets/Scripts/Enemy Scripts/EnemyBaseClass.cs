@@ -24,7 +24,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public int m_VelocityX;
 
 	//public int m_PlayerCurRow;
-	public int m_CurRow;
+	//public int m_CurRow;
 	//public bool m_AbleToChangeTrack = false;
 	//public float m_ChangeTrackTimer;
 
@@ -67,8 +67,8 @@ public class EnemyBaseClass : MonoBehaviour
 	public Vector2 m_InitialXY;
 
 	//two variables for changing tracks
-	public float changeTrackCountdown = 2.0f; //primary timer, when this reaches 0 the enemy can change tracks, and the secondary timer start counting down and m_TimerIsCounting is set to false
-	public float secondaryTrackTimer = 2.0f; //secondary timer, when this reaches 0 then the primary timer starts counting down and it's bool is set to true
+	//public float changeTrackCountdown = 2.0f; //primary timer, when this reaches 0 the enemy can change tracks, and the secondary timer start counting down and m_TimerIsCounting is set to false
+	//public float secondaryTrackTimer = 2.0f; //secondary timer, when this reaches 0 then the primary timer starts counting down and it's bool is set to true
 
     private Rigidbody2D bullyRigidbody_;
     private EnemyBaseClass bullyBaseClass_;
@@ -126,7 +126,7 @@ public class EnemyBaseClass : MonoBehaviour
         bullyBaseClass_.m_RigidBody.velocity = new Vector2(0, 0); //freeze position
         bullyBaseClass_.m_EnemyInMotion = false; //set bool that prevents movement in the update
 	}
-
+    /*
 	public void CheckOccupiedTracks()
 	{
 		for (int i = 0; i < m_Bullies.Count; ++i)
@@ -147,7 +147,7 @@ public class EnemyBaseClass : MonoBehaviour
 			}
 			else { Row2Occupied = false; }
 		}
-	}
+	}*/
     /*
 	public virtual void ChangeTrack(GameObject bully)//Bully will attempt to change tracks to match the player, but will fail if another bully is on that track
 	{
@@ -236,14 +236,14 @@ public class EnemyBaseClass : MonoBehaviour
 		}
 
 		#region track change counter
-		if (bully.GetComponent<EnemyBaseClass>().changeTrackCountdown <= 0)//If Timer is at 0
+		//if (bully.GetComponent<EnemyBaseClass>().changeTrackCountdown <= 0)//If Timer is at 0
 		{
-			bully.GetComponent<EnemyBaseClass>().changeTrackCountdown = 0; //set the timer to 0
+			//bully.GetComponent<EnemyBaseClass>().changeTrackCountdown = 0; //set the timer to 0
 			bully.GetComponent<EnemyBaseClass>().m_TimerIsCounting = false;//prevent the timer from continueing to count down
 			//if (bully.GetComponent<EnemyBaseClass>().m_PlayerCurRow != bully.GetComponent<EnemyBaseClass>().m_CurRow) //If not on the same track
 			{
 				//bully.GetComponent<EnemyBaseClass>().ChangeTrack(bully);//will not change track if Idle
-				bully.GetComponent<EnemyBaseClass>().secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
+				//bully.GetComponent<EnemyBaseClass>().secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; // The secondary timer is assigned its value
 			}
 		}
 		#endregion
@@ -525,17 +525,17 @@ public class EnemyBaseClass : MonoBehaviour
 //						Debug.Log(m_Bullies[i].name + " row " + m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow + " vs " + m_Bullies[j].name + " row " + m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow);
 						if (!m_Bullies[j].GetComponent<EnemyBaseClass>().m_IsABoss)
 						{
-							if (m_Bullies[i].GetComponent<EnemyBaseClass>().m_CurRow == m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow)
-							{
-								if (m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow != 2)
-								{
-									m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow++;
-								}
-								else if (m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow != 0)
-								{
-									m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow--;
-								}
-							}
+							//if (m_Bullies[i].GetComponent<EnemyBaseClass>().collider == m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow)
+							//{
+							//	if (m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow != 2)
+								//{
+								//	m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow++;
+								//}
+								//else if (m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow != 0)
+								//{
+								//	m_Bullies[j].GetComponent<EnemyBaseClass>().m_CurRow--;
+								//}
+							//}
 						}
 					}
 				}

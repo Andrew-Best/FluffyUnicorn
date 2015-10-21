@@ -35,7 +35,7 @@ public class FattestBully : BossBaseClass
 		m_Curstate = 0;
 		m_BossName = "Fattest Bully";
 		m_CurFrame = 0;
-		this.m_CurRow = row;
+		//this.m_CurRow = row;
 
 		tempTimer = tempTimerResetVal;
 
@@ -98,7 +98,11 @@ public class FattestBully : BossBaseClass
 		if (this.GetComponent<Rigidbody2D>().transform.position.y >= Constants.MAX_FATTEST_HEIGHT)
 		{
 			this.GetComponent<Rigidbody2D>().transform.position = new Vector2(playerPos.x, this.GetComponent<Rigidbody2D>().transform.position.y);
+<<<<<<< HEAD
+		//	this.m_CurRow = this.m_PlayerCurRow;
+=======
 			//this.m_CurRow = this.m_PlayerCurRow;
+>>>>>>> origin/master
 			Slam(playerPos);
 		}
 

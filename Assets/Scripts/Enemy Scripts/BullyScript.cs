@@ -27,7 +27,7 @@ public class BullyScript : EnemyBaseClass
 		this.m_UniqueAttackHolder = GameObject.FindGameObjectWithTag("UATKHolder");
 		this.PepperSpray = this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().m_PepperSpray;
 
-		this.m_CurRow = row;
+		//this.m_CurRow = row;
 
 		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("Targetpoint2");
 
