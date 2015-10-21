@@ -138,9 +138,9 @@ public class KingBully : BossBaseClass
 			}
 		}
 
-<<<<<<< HEAD
+
 		//if (this.m_CurRow == m_PlayerCurRow)
-=======
+
 		/*if (this.m_CurRow == m_PlayerCurRow)
 >>>>>>> origin/master
 		{

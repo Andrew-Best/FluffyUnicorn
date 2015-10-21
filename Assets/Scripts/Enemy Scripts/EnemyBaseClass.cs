@@ -63,14 +63,14 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public int m_EnemyGoingLeft = 1; //1 == left, -1 == right
 
-	public Rigidbody2D m_RigidBody;
+	public Rigidbody m_RigidBody;
 	public Vector2 m_InitialXY;
 
 	//two variables for changing tracks
 	//public float changeTrackCountdown = 2.0f; //primary timer, when this reaches 0 the enemy can change tracks, and the secondary timer start counting down and m_TimerIsCounting is set to false
 	//public float secondaryTrackTimer = 2.0f; //secondary timer, when this reaches 0 then the primary timer starts counting down and it's bool is set to true
 
-    private Rigidbody2D bullyRigidbody_;
+    private Rigidbody bullyRigidbody_;
     private EnemyBaseClass bullyBaseClass_;
 
 	#endregion
@@ -80,7 +80,7 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		if (bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion)
 		{
-			bully.GetComponent<Rigidbody2D>().velocity = new Vector2(bully.GetComponent<EnemyBaseClass>().m_VelocityX, 0);//set the enemy's velocity
+			bully.GetComponent<Rigidbody>().velocity = new Vector2(bully.GetComponent<EnemyBaseClass>().m_VelocityX, 0);//set the enemy's velocity
 		}
 
 	}
@@ -394,7 +394,7 @@ public class EnemyBaseClass : MonoBehaviour
        // bullyBaseClass_.changeTrackCountdown = m_ChangeTrackTimer;
 
         bullyBaseClass_.m_Player = GameObject.FindGameObjectWithTag("Player");
-        bullyBaseClass_.m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
+        bullyBaseClass_.m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody>().position.x, m_Player.GetComponent<Rigidbody>().position.y);
 
         bullyBaseClass_.m_InitialXY = spawnPos;
         bullyBaseClass_.m_isIdle = true;
@@ -423,12 +423,12 @@ public class EnemyBaseClass : MonoBehaviour
 			thisEnemy.GetComponent<EnemyBaseClass>().m_PlayerCurRow = 0;
 		}*/
 
-		m_PlayerPos = m_Player.GetComponent<Rigidbody2D>().transform.position;
+		m_PlayerPos = m_Player.GetComponent<Rigidbody>().transform.position;
 	}
 
 	public virtual void EnemyUpdate(GameObject bully)
 	{
-        bullyRigidbody_ = bully.GetComponent<Rigidbody2D>();
+        bullyRigidbody_ = bully.GetComponent<Rigidbody>();
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
 
 		//Debug.Log(bully.name);
@@ -439,7 +439,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 			m_Player = GameObject.FindGameObjectWithTag("Player");
 
-			m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody2D>().position.x, m_Player.GetComponent<Rigidbody2D>().position.y);
+			m_PlayerPos = new Vector2(m_Player.GetComponent<Rigidbody>().position.x, m_Player.GetComponent<Rigidbody>().position.y);
 
 			//Detect Player Track
 			GetPlayerInfo(bully);
@@ -560,11 +560,11 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		if (collision.tag == "PlayerProjectile")
 		{		
-			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-			this.GetComponent<Rigidbody2D>().isKinematic = true;
+			this.GetComponent<Rigidbody>().velocity = new Vector2(0, 0);
+			this.GetComponent<Rigidbody>().isKinematic = true;
 			this.m_HP -= collision.gameObject.GetComponent<Projectile>().m_Damage;
 		}
-		this.GetComponent<Rigidbody2D>().AddForce(new Vector2(m_ReactForce, 0.0f));//Brandon's Wiggle
+		this.GetComponent<Rigidbody>().AddForce(new Vector2(m_ReactForce, 0.0f));//Brandon's Wiggle
 	}
 	#endregion
 
