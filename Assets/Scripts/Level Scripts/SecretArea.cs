@@ -104,7 +104,7 @@ public class SecretArea : MonoBehaviour
     #endregion
 
     #region Collision
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         //when the player collides with the secret area spawn the number of enemies specified by the variable m_NumEnemies
         if (other.tag == "Player")
@@ -126,7 +126,7 @@ public class SecretArea : MonoBehaviour
                 else if (unlockDoor_)
                 {
                     player_.GetComponent<Rigidbody>().velocity = new Vector2(0.0f, 0.0f);
-                    if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
+                    if(Input.GetKeyUp(KeyCode.E))
                     {
                         EnterArea();
                     }

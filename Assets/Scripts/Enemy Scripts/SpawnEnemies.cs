@@ -93,8 +93,5 @@ public class SpawnEnemies : MonoBehaviour
 				}
 			}
 		}
-
-		
-
 	}
 }

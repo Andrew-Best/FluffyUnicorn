@@ -24,12 +24,12 @@ public class ReturnToLevel : MonoBehaviour
         player_.transform.position = levelDoor_.transform.position - doorOffset_;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         //switch back to level when you reach the exit area
         if (other.tag == "Player")
         {
-            if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
+            if(Input.GetKeyUp(KeyCode.E))
             {
                 EnterArea();
             }
