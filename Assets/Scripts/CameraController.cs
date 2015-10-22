@@ -5,6 +5,7 @@ public class CameraController : MonoBehaviour
 {
     private GameObject player_;
     private GameController gc_;
+    private bool positionSet_ = false;
 
     void Start()
     {
@@ -18,7 +19,11 @@ public class CameraController : MonoBehaviour
         {
             if(player_.GetComponent<PlayerController>().InSecretArea)
             {
-                transform.position = new Vector3(player_.transform.position.x, 2, 19);
+                if(!positionSet_)
+                {
+                    transform.position = new Vector3(player_.transform.position.x, 2, 19);
+                    positionSet_ = true;
+                }
             }
             else
             {
