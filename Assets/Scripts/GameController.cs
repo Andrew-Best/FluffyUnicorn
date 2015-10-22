@@ -8,10 +8,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class GameController : MonoBehaviour 
 {
     public bool m_BossFight;
+    public ScreenFade m_ScreenFader;
 
     private PlayerData pData_;
     private UIController UIControl_;
-
+    
     private int currLevel_; //Current level the player is on
 
 	void Start () 
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
 
         currLevel_ = 1; //Temporary default
         pData_ = GameObject.Find("Player").GetComponent<PlayerData>();
+        m_ScreenFader = GameObject.Find("Screen Fader").GetComponent<ScreenFade>();
         StartLevel();
 	}
 

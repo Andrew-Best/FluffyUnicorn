@@ -19,13 +19,15 @@ public class SecretArea : MonoBehaviour
     public int m_DoorCost;
     /// <summary>Does this area trigger enemies?</summary>
     public bool m_TriggerEnemies = true;
-    /// <summary>Name of this door</summary>
-    public string m_DoorName;
     #endregion
 
     #region private
+    /// <summary>Game Controller Script</summary>
+    private GameController gc_;
     /// <summary>Player object</summary>
     private GameObject player_;
+    /// <summary>Player Controller script</summary>
+    private PlayerController pController_;
     /// <summary>Camera object</summary>
     private GameObject camera_;
     /// <summary>Array of enemies</summary>
@@ -38,12 +40,16 @@ public class SecretArea : MonoBehaviour
     private GameObject exit_;
     /// <summary>Whether the door is unlocked or not</summary>
     private bool unlockDoor_ = false;
-    /// <summary>Game Object for the door you want to go to</summary>
-    private GameObject secretDoor_;
     /// <summary>Offset the player by this Vector when moving them to a secret area</summary>
     private Vector3 doorOffset_;
     /// <summary>If the player has not visited this will be false, if they have it will be true and never change back</summary>
     private bool playerVisited_ = false;
+    /// <summary>Whether the screen should be fading</summary>
+    private bool fade_ = false;
+    private float timeBetweenFade_ = 1.0f;
+    private float fadeTimer_;
+    private bool enterArea_;
+    private bool exitArea_;
     #endregion
 
 	void Start ()
@@ -51,6 +57,8 @@ public class SecretArea : MonoBehaviour
         player_ = GameObject.Find("Player");
         camera_ = Camera.main.gameObject;
         playerData_ = player_.GetComponent<PlayerData>();
+        pController_ = player_.GetComponent<PlayerController>();
+        gc_ = Camera.main.GetComponent<GameController>();
 
         entrance_ = gameObject.transform.FindChild("Enter").gameObject;
         exit_ = gameObject.transform.FindChild("Exit").gameObject;
@@ -62,7 +70,47 @@ public class SecretArea : MonoBehaviour
     {
         RemoveEnemies();
         CanUnlockArea();
+        UpdateFade();
 	}
+
+    void UpdateFade()
+    {
+        if(fade_)
+        {
+            pController_.enabled = false;
+            if (!gc_.m_ScreenFader.m_FadeBlackComplete)
+            {
+                gc_.m_ScreenFader.EndScene();
+            }
+            else if(gc_.m_ScreenFader.m_FadeBlackComplete && !gc_.m_ScreenFader.m_FadeClearComplete)
+            {
+                if(enterArea_)
+                {
+                    player_.transform.position = exit_.transform.position - doorOffset_;
+                    player_.GetComponent<PlayerController>().InSecretArea = true;
+                }
+                else if(exitArea_)
+                {
+                    player_.transform.position = entrance_.transform.position - doorOffset_;
+                }
+                if(fadeTimer_ < timeBetweenFade_)
+                {
+                    fadeTimer_ += Time.deltaTime;
+                }
+                if(fadeTimer_ >= timeBetweenFade_)
+                {
+                    gc_.m_ScreenFader.FadeClear();
+                }
+            }
+            else if(gc_.m_ScreenFader.m_FadeClearComplete && gc_.m_ScreenFader.m_FadeBlackComplete)
+            {
+                fade_ = false;
+                gc_.m_ScreenFader.ResetValues();
+                fadeTimer_ = 0.0f;
+                pController_.enabled = true;
+            }
+        }
+    }
 
     void CanUnlockArea()
     {
@@ -135,6 +183,7 @@ public class SecretArea : MonoBehaviour
                     player_.GetComponent<Rigidbody>().velocity = new Vector2(0.0f, 0.0f);
                     if (Input.GetKeyUp(KeyCode.E))
                     {
+                        gc_.m_ScreenFader.EndScene();
                         EnterArea();
                     }
                 }
@@ -152,15 +201,17 @@ public class SecretArea : MonoBehaviour
 
     public void EnterArea()
     {
-        player_.transform.position = exit_.transform.position - doorOffset_;
-        player_.GetComponent<PlayerController>().InSecretArea = true;
+        enterArea_ = true;
         playerVisited_ = true;
+        fade_ = true;
     }
 
     public void ExitArea()
     {
-        player_.transform.position = entrance_.transform.position - doorOffset_;
+        //player_.transform.position = entrance_.transform.position - doorOffset_;
+        exitArea_ = true;
         player_.GetComponent<PlayerController>().InSecretArea = false;
+        fade_ = true;
     }
     #endregion
 }

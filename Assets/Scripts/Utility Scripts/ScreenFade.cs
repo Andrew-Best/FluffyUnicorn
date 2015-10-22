@@ -4,9 +4,13 @@ using System.Collections;
 
 public class ScreenFade : MonoBehaviour
 {
-    public float fadeSpeed = 1.5f;          // Speed that the screen fades to and from black.
-        
-    private bool sceneStarting = true;      // Whether or not the scene is still fading in.
+    /// <summary>Speed that the screen fades to and from black</summary>
+    public float fadeSpeed = 0.1f;
+    /// <summary>Whether or not the scene is still fading in</summary>
+    private bool sceneStarting = true;
+
+    public bool m_FadeClearComplete = false;
+    public bool m_FadeBlackComplete = false;
     
     void Update ()
     {
@@ -28,34 +32,62 @@ public class ScreenFade : MonoBehaviour
         GetComponent<Image>().color = Color.Lerp(GetComponent<Image>().color, Color.black, fadeSpeed * Time.deltaTime);
     }
     
-    void StartScene ()
+    public void StartScene ()
     {
         // Fade the texture to clear.
         FadeToClear();
         
         // If the texture is almost clear...
-        if (GetComponent<Image>().color.a <= 0.05f)
+        if (GetComponent<Image>().color.a <= 0.1f)
         {
             // ... set the colour to clear and disable the GUITexture.
             GetComponent<Image>().color = Color.clear;
-            GetComponent<Image>().enabled = false;
+            //GetComponent<Image>().enabled = false;
             
             // The scene is no longer starting.
             sceneStarting = false;
+            m_FadeClearComplete = true;
+            m_FadeBlackComplete = false;
         }
     }
     
     public void EndScene ()
     {
         // Make sure the texture is enabled.
-        GetComponent<Image>().enabled = true;
+        //GetComponent<Image>().enabled = true;
         
         // Start fading towards black.
         FadeToBlack();
         
         // If the screen is almost black...
-        /*if (GetComponent<Image>().color.a >= 0.95f)
-            // ... reload the level.
-            Application.LoadLevel(0);*/
+        if (GetComponent<Image>().color.a >= 0.99f)
+        {
+            m_FadeBlackComplete = true;
+            m_FadeClearComplete = false;
+        }
+    }
+
+    public void FadeClear()
+    {
+        // Fade the texture to clear.
+        FadeToClear();
+
+        // If the texture is almost clear...
+        if (GetComponent<Image>().color.a <= 0.05f)
+        {
+            // ... set the colour to clear and disable the GUITexture.
+            GetComponent<Image>().color = Color.clear;
+            //GetComponent<Image>().enabled = false;
+
+            // The scene is no longer starting.
+            sceneStarting = false;
+            m_FadeClearComplete = true;
+        }
+    }
+
+    public void ResetValues()
+    {
+        m_FadeBlackComplete = false;
+        m_FadeClearComplete = false;
     }
 }
