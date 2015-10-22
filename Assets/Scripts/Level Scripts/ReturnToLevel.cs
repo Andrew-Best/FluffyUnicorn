@@ -9,6 +9,8 @@ public class ReturnToLevel : MonoBehaviour
     private GameObject levelDoor_;
     /// <summary>Player object</summary>
     private GameObject player_;
+    /// <summary>Camera object</summary>
+    private GameObject camera_;
     /// <summary>Offset the player by this Vector when moving them to a secret area</summary>
     private Vector3 doorOffset_;
 
@@ -17,11 +19,13 @@ public class ReturnToLevel : MonoBehaviour
         doorOffset_ = new Vector3(0.0f, 0.0f, 1.0f);
         levelDoor_ = GameObject.Find(m_LevelDoor);
         player_ = GameObject.Find("Player");
+        camera_ = Camera.main.gameObject;
     }
 
     public void EnterArea()
     {
         player_.transform.position = levelDoor_.transform.position - doorOffset_;
+        player_.GetComponent<PlayerController>().InSecretArea = false;
     }
 
     void OnTriggerStay(Collider other)

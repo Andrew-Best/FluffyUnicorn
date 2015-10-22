@@ -35,12 +35,19 @@ public class PlayerController : MonoBehaviour
     private bool facingRight_ = true;
     private bool isMoving_ = false;
     private bool buttonHeld_ = false;
+    private bool inSecretArea_ = false;
 
     private Rigidbody playerRigidBody_;
 
     private Animator playerAnimator_;
     //private BoxCollider playerBoxCollider_;
     #endregion
+
+    public bool InSecretArea
+    {
+        get { return inSecretArea_; }
+        set { inSecretArea_ = value; }
+    }
 
     #region Combo variables
     public enum ComboType

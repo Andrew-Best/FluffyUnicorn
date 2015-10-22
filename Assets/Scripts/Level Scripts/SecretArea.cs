@@ -17,8 +17,6 @@ public class SecretArea : MonoBehaviour
     public int m_EnemyType;
     /// <summary>How much money you need to unlock the door if the event type is ENOUGHMONEY</summary>
     public int m_DoorCost;
-    /// <summary>Name of the door you want to move to</summary>
-    public string m_SecretAreaName = "";
     /// <summary>Does this area trigger enemies?</summary>
     public bool m_TriggerEnemies = true;
     /// <summary>Name of this door</summary>
@@ -28,10 +26,16 @@ public class SecretArea : MonoBehaviour
     #region private
     /// <summary>Player object</summary>
     private GameObject player_;
+    /// <summary>Camera object</summary>
+    private GameObject camera_;
     /// <summary>Array of enemies</summary>
     private ArrayList enemyArray_;
     /// <summary>Player Data script</summary>
     private PlayerData playerData_;
+    /// <summary>Door which is the entrance</summary>
+    private GameObject entrance_;
+    /// <summary>Door which is the exit</summary>
+    private GameObject exit_;
     /// <summary>Whether the door is unlocked or not</summary>
     private bool unlockDoor_ = false;
     /// <summary>Game Object for the door you want to go to</summary>
@@ -45,9 +49,12 @@ public class SecretArea : MonoBehaviour
 	void Start ()
     {
         player_ = GameObject.Find("Player");
+        camera_ = Camera.main.gameObject;
         playerData_ = player_.GetComponent<PlayerData>();
-        //playerController_ = player_.GetComponent<PlayerController>();
-        secretDoor_ = GameObject.Find(m_SecretAreaName);
+
+        entrance_ = gameObject.transform.FindChild("Enter").gameObject;
+        exit_ = gameObject.transform.FindChild("Exit").gameObject;
+
         doorOffset_ = new Vector3(0.0f, 0.0f, 1.0f);
 	}
 	
@@ -104,6 +111,45 @@ public class SecretArea : MonoBehaviour
     #endregion
 
     #region Collision
+
+    public void Collision(string name)
+    {
+        if(name == "Enter")
+        {
+            if (playerVisited_ == false)
+            {
+                //initial trigger
+                if (m_TriggerEnemies)
+                {
+                    m_TriggerEnemies = false;
+                    //loop through the spawner's length and spawn how ever many enemies are in the containier 
+                    for (int i = 0; i < m_EnemySpawner.mEnemiesToSpawn.Length; ++i)
+                    {
+                        //m_EnemySpawner.SpawnEnemyFunc(m_Row, i);
+                    }
+                    SetValues();    //after everything is spawned add the enemies to a list so you can monitor who is alive and determine when to unlock the door
+                }
+                //if the player touched the secret area and it is unlocked, move to the secret level
+                else if (unlockDoor_)
+                {
+                    player_.GetComponent<Rigidbody>().velocity = new Vector2(0.0f, 0.0f);
+                    if (Input.GetKeyUp(KeyCode.E))
+                    {
+                        EnterArea();
+                    }
+                }
+            }
+        }
+
+        if(name == "Exit")
+        {
+            if(Input.GetKeyUp(KeyCode.E))
+            {
+                ExitArea();
+            }
+        }
+    }
+
     void OnTriggerStay(Collider other)
     {
         //when the player collides with the secret area spawn the number of enemies specified by the variable m_NumEnemies
@@ -137,8 +183,15 @@ public class SecretArea : MonoBehaviour
 
     public void EnterArea()
     {
-        player_.transform.position = secretDoor_.transform.position - doorOffset_;
+        player_.transform.position = exit_.transform.position - doorOffset_;
+        player_.GetComponent<PlayerController>().InSecretArea = true;
         playerVisited_ = true;
+    }
+
+    public void ExitArea()
+    {
+        player_.transform.position = entrance_.transform.position - doorOffset_;
+        player_.GetComponent<PlayerController>().InSecretArea = false;
     }
     #endregion
 }
