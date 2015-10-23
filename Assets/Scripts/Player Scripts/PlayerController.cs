@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
     private float comboTimer_ = 4.0f;           //amount of time you have to reach next combo
     private float nextFire_;                    //next time you can use a projectile attack
     private float nextMeleeAttack_;             //next time you can use a melee attack
+    private float fireDelay_;
     #endregion
 
     public void SetValues()
@@ -94,6 +95,16 @@ public class PlayerController : MonoBehaviour
         gameControl_ = GameObject.Find("Main Camera").GetComponent<GameController>();
 
         comboTimer_ = m_ComboTimerLength;
+
+        RuntimeAnimatorController ac = playerAnimator_.runtimeAnimatorController;
+
+        for (int i = 0; i < ac.animationClips.Length; i++)
+        {
+            if (ac.animationClips[i].name == "Attack1")
+            {
+                fireDelay_ = ac.animationClips[i].length / 2;
+            }
+        }
     }
 
     void OnLevelWasLoaded(int level)
@@ -263,7 +274,7 @@ public class PlayerController : MonoBehaviour
                         projectileCombo_[2] = false;
                         projectileCombo_[0] = true;
                         BuildCombos();
-                        Attack();
+                        Invoke("Attack", fireDelay_);
                         projectileChain_++;
                         m_CurrentComboState = ComboType.COMBOHIT1;
                         activateComboTimerReset_ = true;    //starts a countdown timer to determine when to stop keeping track of the combo                   
@@ -275,7 +286,7 @@ public class PlayerController : MonoBehaviour
                         comboTimer_ = m_ComboTimerLength;
                         projectileCombo_[1] = true;
                         BuildCombos();
-                        Attack();
+                        Invoke("Attack", fireDelay_);
                         projectileChain_++;
                         m_CurrentComboState = ComboType.COMBOHIT2;
                     }      
@@ -287,7 +298,7 @@ public class PlayerController : MonoBehaviour
                         projectileCombo_[1] = false;
                         projectileCombo_[2] = true;
                         BuildCombos();
-                        Attack();
+                        Invoke("Attack", fireDelay_);
                         projectileChain_++;
                     }
             
