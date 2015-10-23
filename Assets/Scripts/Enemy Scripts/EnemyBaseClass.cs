@@ -304,8 +304,9 @@ public class EnemyBaseClass : MonoBehaviour
 	#endregion
 	void Start()
 	{
-        enemyWalker_ = GetComponent<NavMeshAgent>();
+        enemyWalker_ = this.gameObject.GetComponent<NavMeshAgent>();
 		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
+        m_Player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	public virtual void GetPlayerInfo(GameObject thisEnemy)
@@ -323,8 +324,6 @@ public class EnemyBaseClass : MonoBehaviour
 		{
             Vector3 enemyPos = new Vector3(bullyRigidbody_.position.x, bullyRigidbody_.position.y, bullyRigidbody_.position.z);
 			bully.GetComponent<BullyScript>().m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully); //Update Enemy Projectiles on screen
-
-			m_Player = GameObject.FindGameObjectWithTag("Player");
 
             m_PlayerPos = new Vector3(m_Player.GetComponent<Rigidbody>().position.x, m_Player.GetComponent<Rigidbody>().position.y, m_Player.GetComponent<Rigidbody>().position.z);
 
