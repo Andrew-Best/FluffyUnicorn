@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour
     private float comboTimer_ = 4.0f;           //amount of time you have to reach next combo
     private float nextFire_;                    //next time you can use a projectile attack
     private float nextMeleeAttack_;             //next time you can use a melee attack
+    private float timeToFire_;
+    private float fireDelay_;
     #endregion
 
     public void SetValues()
@@ -94,6 +96,16 @@ public class PlayerController : MonoBehaviour
         gameControl_ = GameObject.Find("Main Camera").GetComponent<GameController>();
 
         comboTimer_ = m_ComboTimerLength;
+
+        RuntimeAnimatorController ac = playerAnimator_.runtimeAnimatorController;
+
+        for (int i = 0; i < ac.animationClips.Length; ++i)
+        {
+            if(ac.animationClips[i].name == "Attack1")
+            {
+                timeToFire_ = ac.animationClips[i].length / 2;
+            }
+        }
     }
 
     void OnLevelWasLoaded(int level)
@@ -412,6 +424,7 @@ public class PlayerController : MonoBehaviour
     public void Attack()
     {
         nextFire_ = Time.time + playerData_.m_FireRate;
+
         //use the right projectile based on how far the projectile combo is in the chain
         if (projectileChain_ == 0)
         {
