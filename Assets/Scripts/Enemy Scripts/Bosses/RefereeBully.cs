@@ -55,9 +55,9 @@ public class RefereeBully : BossBaseClass
 
     }
 
-    public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
+    public override void InitEnemy(Vector3 spawnPos, Vector3 zOffSet_, GameObject newBully)
     {
-        base.InitEnemy(spawnPos, row, newBully);
+        base.InitEnemy(spawnPos, zOffSet_, newBully);
 
         m_Position = m_ThisBoss.transform.position;
 
@@ -202,7 +202,7 @@ public class RefereeBully : BossBaseClass
                     newEnemy = Objectpooler.Instance.GetObjectForType(bullyName, true);//new enemy is created
                     newEnemy.transform.position = StartPos;
                     m_JockHorde.Add(newEnemy);
-                    newEnemy.GetComponent<BullyScript>().InitEnemy(StartPos, row, newEnemy);
+                    newEnemy.GetComponent<BullyScript>().InitEnemy(StartPos, new Vector3(0, 0, 0), newEnemy);
                 }
 
             }
@@ -235,7 +235,7 @@ public class RefereeBully : BossBaseClass
         {
             m_JockHorde[j].transform.position = gameObject.transform.position;
             // m_JockHorde[j].transform.position = m_RefStartPos[StartPos].transform.position;
-            m_JockHorde[j].GetComponent<BullyScript>().InitEnemy(gameObject.transform.position, row, newEnemy);
+            m_JockHorde[j].GetComponent<BullyScript>().InitEnemy(gameObject.transform.position, new Vector3(0, 0, 0), newEnemy);
 
             if (StartPos == 0 || StartPos == 6 || StartPos == 5)
             {

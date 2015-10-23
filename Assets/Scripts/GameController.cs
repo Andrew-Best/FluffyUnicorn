@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 
     private PlayerData pData_;
     private UIController UIControl_;
-    
+    public GameObject m_EnemySpawner;
     private int currLevel_; //Current level the player is on
 
 	void Start () 
@@ -49,14 +49,14 @@ public class GameController : MonoBehaviour
 
     void UpdateLevel()
     {
-        /*if(SpawnEnemies.bossSpawned_ == true)
+        if(SpawnEnemies.bossSpawned_ == true)
         {
             m_EnemySpawner.gameObject.SetActive(false);
         }
         else
         {
             m_EnemySpawner.gameObject.SetActive(true);
-        }*/
+        }
     }
 
     //This function is called whenever you want to increase the gas level on the UI

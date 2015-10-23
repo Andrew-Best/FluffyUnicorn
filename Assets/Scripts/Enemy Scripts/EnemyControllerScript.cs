@@ -40,12 +40,12 @@ public class EnemyControllerScript : MonoBehaviour
 		if (m_BulliesOnScreen < m_MaxAllowableBulliesOnScreenForLevel)
 		{
 			enemySelector_ = (int)Random.Range(0, 4);//type of bully that will be spawned
-			rowSelector_ = Random.Range(0, 2); //the track the enemy is going to be placed on
+			//rowSelector_ = Random.Range(0, 2); //the track the enemy is going to be placed on
 
 			enemySpawnTimer_ -= Time.deltaTime;
 			if (enemySpawnTimer_ <= 0)
 			{
-				enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(rowSelector_, enemySelector_);
+                enemySpawner.GetComponent<SpawnEnemies>().SpawnEnemyFunc(new Vector3(0, 0, 0), 0);
 				enemySpawnTimer_ = Constants.ENEMY_SPAWN_TIMER_MAX;				
 			}
 		}
@@ -71,8 +71,8 @@ public class EnemyControllerScript : MonoBehaviour
 			{
 				BossName = "RefereeBully";
 			}
-			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, "RefereeBully");
-			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(rowSelector_, BossName);//Index for Each Boss
+           // enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(new Vector3(0, 0, 0), "RefereeBully");
+          ///  enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(new Vector3(0, 0, 0), BossName);//Index for Each Boss
 			tempBossTimer_ = 1000;
 		}
 	}

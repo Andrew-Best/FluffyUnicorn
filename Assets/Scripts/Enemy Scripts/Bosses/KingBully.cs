@@ -15,7 +15,7 @@ public class KingBully : BossBaseClass
 
 	public void Start()
 	{
-		InitEnemy(new Vector3(0, 0,0), 2, this.gameObject);
+        InitEnemy(new Vector3(0, 0, 0), new Vector3(0, 0, 0), this.gameObject);
 
         for (int i = 0; i < 3; ++i)
         {
@@ -34,9 +34,9 @@ public class KingBully : BossBaseClass
 		//water gun animation
 	}
 
-	public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
+    public override void InitEnemy(Vector3 spawnPos, Vector3  zOffSet_, GameObject newBully)
 	{
-		base.InitEnemy(spawnPos, row, newBully);
+        base.InitEnemy(spawnPos, zOffSet_, newBully);
 		this.m_ThisBoss = this.gameObject;
 		this.m_Position = m_ThisBoss.GetComponent<Rigidbody2D>().position;
 		this.m_HP = Constants.KING_BULLY_HP;
@@ -163,7 +163,7 @@ public class KingBully : BossBaseClass
 		}*/
 		if (this.m_HP <= 0)
 		{
-			enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(1, "QueenBully");
+            //enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(new Vector3(0, 0, 0), "QueenBully");
 		}
 	}
 	//

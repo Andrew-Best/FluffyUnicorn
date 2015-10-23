@@ -18,12 +18,12 @@ public class FattestBully : BossBaseClass
 
 	public void Start()
 	{
-		InitEnemy(new Vector3(0, 0), 2, this.gameObject);
+		InitEnemy(new Vector3(0, 0 ,0), new Vector3(0, 0 ,0), this.gameObject);
 	}
 
-	public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
+    public override void InitEnemy(Vector3 spawnPos, Vector3 zOffSet_, GameObject newBully)
 	{
-		base.InitEnemy(spawnPos, row, newBully);
+        base.InitEnemy(spawnPos, zOffSet_, newBully);
 		//	m_Player = GameObject.FindGameObjectWithTag("Player");
 		//	m_ThisBoss = this.gameObject;
 		m_Position = m_ThisBoss.GetComponent<Rigidbody2D>().position;

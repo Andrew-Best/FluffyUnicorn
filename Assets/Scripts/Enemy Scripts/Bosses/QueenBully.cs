@@ -16,7 +16,7 @@ public class QueenBully : BossBaseClass
     // Use this for initialization
 	void Start () 
 	{
-		InitEnemy(new Vector3(0, 0), 2, this.gameObject);
+        InitEnemy(new Vector3(0, 0), new Vector3(0, 0, 0), this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -69,9 +69,9 @@ public class QueenBully : BossBaseClass
 		//send object in an arc toward the player
 	}
 
-	public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
+	public override void InitEnemy(Vector3 spawnPos, Vector3 zOffSet_, GameObject newBully)
 	{
-		base.InitEnemy(spawnPos, row, newBully);
+        base.InitEnemy(spawnPos, zOffSet_, newBully);
 
 		m_Position = m_ThisBoss.GetComponent<Rigidbody>().position;
 

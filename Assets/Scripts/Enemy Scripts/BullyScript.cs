@@ -11,11 +11,12 @@ public class BullyScript : EnemyBaseClass
     {
         LoadFromXML();		
     }
+    public Vector3 enemyPos;
 
 	#region Creation
-	public override void InitEnemy(Vector3 spawnPos, int row, GameObject newBully)
+    public override void InitEnemy(Vector3 spawnPos, Vector3 enemyPos, GameObject newBully)
 	{
-		base.InitEnemy(spawnPos, row, newBully);
+		base.InitEnemy(spawnPos, zOffSet_, newBully);
 
 		this.m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
         this.LoadFromXML();			//Load bully's stats from xml file
@@ -27,7 +28,6 @@ public class BullyScript : EnemyBaseClass
 		this.m_UniqueAttackHolder = GameObject.FindGameObjectWithTag("UATKHolder");
 		this.PepperSpray = this.m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().m_PepperSpray;
 
-		//this.m_CurRow = row;
 
 		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("Targetpoint2");
 
@@ -35,7 +35,6 @@ public class BullyScript : EnemyBaseClass
 
 		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("Targetpoint0");
 
-		//this.changeTrackCountdown = this.m_ChangeTrackTimer;
 		m_MaxDist = this.GetComponent<Rigidbody>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
 
 	//	Bully.GetComponent<Rigidbody2D>().transform.position = new Vector3(Bully.transform.position.x, m_TargetPoints[(int)spawnPos.x].transform.position.y, m_TargetPoints[(int)spawnPos.y].transform.position.z);

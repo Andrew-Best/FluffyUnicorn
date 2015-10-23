@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class HorsebackBully : MonoBehaviour
 {
-    //private GameObject player_;
-    //private PlayerController pController_;
+    private GameObject player_;
+    private PlayerController pController_;
     private SpawnEnemies enemySpawner_;
     private GameObject newEnemy;
     private BullyScript bully_;
@@ -37,7 +37,7 @@ public class HorsebackBully : MonoBehaviour
         enemySpawner_ = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<SpawnEnemies>();
         velocity_ = gameObject.GetComponent<Rigidbody2D>();
         bully_ = gameObject.GetComponent<BullyScript>();
-
+        pController_ = gameObject.GetComponent<PlayerController>();
         respawn_ = 10.0f;
         reset_ = 10.0f;
         maxSpawn_ = 1;
@@ -45,10 +45,7 @@ public class HorsebackBully : MonoBehaviour
         //turn_ = false;
         xOffset_ = new Vector3(0.0f, 0.0f, 0.0f);
         startPos_ = new Vector3(0.0f, 0.0f, 0.0f);
-        //frontOccupied_ = false;
-        //middleOccupied_ = false;
-        //backOccupied_ = false;
-
+   
 	}
 	
 	void Update () 
@@ -107,7 +104,7 @@ public class HorsebackBully : MonoBehaviour
                     Objectpooler.Instance.GetObjectForType(bullyName, true);//new enemy is created
                     gameObject.transform.position = StartPos;
                     horses_.Add(gameObject);
-                    gameObject.GetComponent<BullyScript>().InitEnemy(StartPos, row, gameObject);
+                    gameObject.GetComponent<BullyScript>().InitEnemy(StartPos, new Vector3(0, 0, 0), gameObject);
                     
                 }
 
@@ -148,7 +145,7 @@ public class HorsebackBully : MonoBehaviour
         for (int j = 0; j < horses_.Count; ++j)
         {
             horses_[j].transform.position = startPos_ + xOffset_;
-            horses_[j].GetComponent<BullyScript>().InitEnemy(startPos_ + xOffset_, row, gameObject);
+            horses_[j].GetComponent<BullyScript>().InitEnemy(startPos_ + xOffset_, new Vector3(0, 0, 0), gameObject);
             
         }
     }
@@ -156,33 +153,15 @@ public class HorsebackBully : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         //TRACK BASED CODE
-        /*if (collision.tag == "Player" && PC_.m_onMiddleTrack == true)
+        if (collision.tag == "Player" )
         {
-            Player_.transform.position = new Vector3(Player_.transform.position.x, Bully_.m_TargetPoints[2].transform.position.y, Bully_.m_TargetPoints[2].transform.position.z);
-            PC_.m_onFrontTrack = true;
-            PC_.m_onMiddleTrack = false;
+            player_.transform.position = new Vector3(player_.transform.position.x, bully_.m_TargetPoints[2].transform.position.y, bully_.m_TargetPoints[2].transform.position.z);
+      
             //Physics2D.IgnoreLayerCollision(0, 18, true);
         }
 
-        if (collision.tag == "Player" && PC_.m_onFrontTrack == true)
-        {
-            Player_.transform.position = new Vector3(Player_.transform.position.x, Bully_.m_TargetPoints[1].transform.position.y, Bully_.m_TargetPoints[1].transform.position.z);
-            PC_.m_onMiddleTrack = true;
-            PC_.m_onFrontTrack = false;
-            //Physics2D.IgnoreLayerCollision(0, 18, true);
-        }
-
-        if (collision.tag == "Player" && PC_.m_onLastTrack == true)
-        {
-            Player_.transform.position = new Vector3(Player_.transform.position.x, Bully_.m_TargetPoints[1].transform.position.y, Bully_.m_TargetPoints[1].transform.position.z);
-            PC_.m_onMiddleTrack = true;
-            PC_.m_onLastTrack = false;*/
-
-
-            //Physics2D.IgnoreLayerCollision(0, 18, true);
-        //}
-            /*if(PC_.m_onMiddleTrack == true)
-            {
+       
+           /* {
                 Player_.transform.position = new Vector2(Player_.transform.position.x, Bully_.m_TargetPoints[0].transform.position.y);
                 PC_.m_onFrontTrack = true;
                 Physics2D.IgnoreLayerCollision(0, 18, true);
@@ -203,7 +182,7 @@ public class HorsebackBully : MonoBehaviour
             }*/
         //}
        
-    }
+    } 
 
     /*void OnCollisionExit2D(Collision2D collision)
     {
