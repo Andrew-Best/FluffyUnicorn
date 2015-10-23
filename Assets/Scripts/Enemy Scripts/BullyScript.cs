@@ -9,7 +9,9 @@ public class BullyScript : EnemyBaseClass
 	
     void Start()
     {
-        LoadFromXML();		
+        LoadFromXML();
+        this.m_NavAgent = GetComponent<NavMeshAgent>();
+        this.m_NavAgent.updateRotation = false;
     }
     public Vector3 enemyPos;
 

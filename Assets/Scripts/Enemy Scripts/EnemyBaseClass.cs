@@ -66,7 +66,7 @@ public class EnemyBaseClass : MonoBehaviour
 
     private Rigidbody bullyRigidbody_;
     private EnemyBaseClass bullyBaseClass_;
-    private NavMeshAgent enemyWalker_;
+    public NavMeshAgent m_NavAgent;
 
 	#endregion
 
@@ -304,7 +304,7 @@ public class EnemyBaseClass : MonoBehaviour
 	#endregion
 	void Start()
 	{
-        enemyWalker_ = this.gameObject.GetComponent<NavMeshAgent>();
+        
 		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
         m_Player = GameObject.FindGameObjectWithTag("Player");
 	}
@@ -332,6 +332,7 @@ public class EnemyBaseClass : MonoBehaviour
           
 			{
                // bullyBaseClass_.ChasePlayer(m_PlayerPos, enemyPos, bully);
+                bullyBaseClass_.m_NavAgent.SetDestination(m_Player.transform.position);
 
 				//Animation
                 if (bullyBaseClass_.m_AnimationLength > 0) //if animating, subtract Delta.Time
@@ -368,7 +369,6 @@ public class EnemyBaseClass : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-        enemyWalker_.SetDestination(m_Player.transform.position);
 		m_Bullies = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
 		for (int i = 0; i < m_Bullies.Count; ++i)
 		{
