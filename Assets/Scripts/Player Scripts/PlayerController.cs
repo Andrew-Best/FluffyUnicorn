@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour
     private float nextFire_;                    //next time you can use a projectile attack
     private float nextMeleeAttack_;             //next time you can use a melee attack
     private float fireDelay_;
+    private bool movementDisabled_ = false;
+    private float movementDisableTimer_;
     #endregion
 
     public void SetValues()
@@ -130,6 +132,16 @@ public class PlayerController : MonoBehaviour
         UpdateMoveTimer();
         ResetComboState(activateComboTimerReset_);
         EnableMeleeCollision();
+
+        if(movementDisabled_)
+        {
+            movementDisableTimer_ += Time.deltaTime;
+            if(movementDisableTimer_ >= (fireDelay_ * 2.0f) + 0.5f)
+            {
+                movementDisabled_ = false;
+                movementDisableTimer_ = 0.0f;
+            }
+        }
     }
 
     void UpdateMoveTimer()
@@ -150,37 +162,35 @@ public class PlayerController : MonoBehaviour
     #region Controls
     void UpdateControls()
     {
-        //Set move_ to be the horizontal axis keys
-        //horizontalMove_ = Input.GetAxis("Horizontal");
-        playerAnimator_.SetFloat("Speed", Mathf.Abs(horizontalMove_));
+        if (!movementDisabled_)
+        {
+            //Set move_ to be the horizontal axis keys
+            //horizontalMove_ = Input.GetAxis("Horizontal");
+            playerAnimator_.SetFloat("Speed", Mathf.Abs(horizontalMove_));
 
-        horizontalMove_ = Input.GetAxisRaw("Horizontal");
-        verticalMove_ = Input.GetAxisRaw("Vertical");
-        //Set the movement vector based on the horizontal/vertical values
-        movement_.Set(horizontalMove_, 0.0f, verticalMove_);
-        //Normalize the movement vector and scale it based on the movement speed and deltaTime
-        movement_ = movement_.normalized * playerData_.m_MaxSpeed * Time.deltaTime;
-        GetComponent<Rigidbody>().MovePosition(transform.position + movement_);
+            horizontalMove_ = Input.GetAxisRaw("Horizontal");
+            verticalMove_ = Input.GetAxisRaw("Vertical");
+            //Set the movement vector based on the horizontal/vertical values
+            movement_.Set(horizontalMove_, 0.0f, verticalMove_);
+            //Normalize the movement vector and scale it based on the movement speed and deltaTime
+            movement_ = movement_.normalized * playerData_.m_MaxSpeed * Time.deltaTime;
+            GetComponent<Rigidbody>().MovePosition(transform.position + movement_);
 
-        //player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
-        if (horizontalMove_ > 0 || horizontalMove_ < 0)
-        {
-            isMoving_ = true;
-        }
-        playerAnimator_.SetBool("IsMoving", isMoving_);
-        //check if player is moving right or left and flip sprite. 1 is right, -1 is left
-        if (horizontalMove_ > 0 && !facingRight_)
-        {
-            Flip();
-        }
-        else if (horizontalMove_ < 0 && facingRight_)
-        {
-            Flip();
-        }
-        //Attack if you press space and you're not in cooldown
-        if (Input.GetKeyUp(KeyCode.Z) && Time.time > nextFire_)
-        {
-            Attack();
+            //player_.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove_ * m_MaxSpeed, player_.GetComponent<Rigidbody2D>().velocity.y);
+            if (horizontalMove_ > 0 || horizontalMove_ < 0)
+            {
+                isMoving_ = true;
+            }
+            playerAnimator_.SetBool("IsMoving", isMoving_);
+            //check if player is moving right or left and flip sprite. 1 is right, -1 is left
+            if (horizontalMove_ > 0 && !facingRight_)
+            {
+                Flip();
+            }
+            else if (horizontalMove_ < 0 && facingRight_)
+            {
+                Flip();
+            }
         }
     }
 
@@ -274,6 +284,7 @@ public class PlayerController : MonoBehaviour
                         projectileCombo_[2] = false;
                         projectileCombo_[0] = true;
                         BuildCombos();
+                        movementDisabled_ = true;
                         Invoke("Attack", fireDelay_);
                         projectileChain_++;
                         m_CurrentComboState = ComboType.COMBOHIT1;
@@ -286,6 +297,7 @@ public class PlayerController : MonoBehaviour
                         comboTimer_ = m_ComboTimerLength;
                         projectileCombo_[1] = true;
                         BuildCombos();
+                        movementDisabled_ = true;
                         Invoke("Attack", fireDelay_);
                         projectileChain_++;
                         m_CurrentComboState = ComboType.COMBOHIT2;
@@ -298,6 +310,7 @@ public class PlayerController : MonoBehaviour
                         projectileCombo_[1] = false;
                         projectileCombo_[2] = true;
                         BuildCombos();
+                        movementDisabled_ = true;
                         Invoke("Attack", fireDelay_);
                         projectileChain_++;
                     }
