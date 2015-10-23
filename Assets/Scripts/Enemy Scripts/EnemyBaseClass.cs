@@ -66,6 +66,7 @@ public class EnemyBaseClass : MonoBehaviour
 
     private Rigidbody bullyRigidbody_;
     private EnemyBaseClass bullyBaseClass_;
+    private NavMeshAgent enemyWalker_;
 
 	#endregion
 
@@ -121,7 +122,7 @@ public class EnemyBaseClass : MonoBehaviour
         bullyBaseClass_.m_EnemyInMotion = false; //set bool that prevents movement in the update
 	}
    
-
+    /*
 	public virtual void ChasePlayer(Vector3 playerPos, Vector3 enemyPos, GameObject bully)
 	{
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
@@ -181,7 +182,7 @@ public class EnemyBaseClass : MonoBehaviour
 		{
             bullyBaseClass_.TurnAround(bully); //correct movement direction
 		}
-	}
+	}*/
 
 	public virtual void DetectPlayer(Vector3 playerPos, GameObject bully)
 	{
@@ -303,6 +304,7 @@ public class EnemyBaseClass : MonoBehaviour
 	#endregion
 	void Start()
 	{
+        enemyWalker_ = GetComponent<NavMeshAgent>();
 		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
 	}
 
@@ -330,7 +332,7 @@ public class EnemyBaseClass : MonoBehaviour
 			GetPlayerInfo(bully);
           
 			{
-                bullyBaseClass_.ChasePlayer(m_PlayerPos, enemyPos, bully);
+               // bullyBaseClass_.ChasePlayer(m_PlayerPos, enemyPos, bully);
 
 				//Animation
                 if (bullyBaseClass_.m_AnimationLength > 0) //if animating, subtract Delta.Time
@@ -367,6 +369,7 @@ public class EnemyBaseClass : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+        enemyWalker_.SetDestination(m_Player.transform.position);
 		m_Bullies = m_EnemyController.GetComponent<EnemyControllerScript>().m_Bullies;
 		for (int i = 0; i < m_Bullies.Count; ++i)
 		{

@@ -112,7 +112,7 @@ public class KingBully : BossBaseClass
 		}
 		else // enemy is not idle, therefore player is nearby
 		{
-			this.ChasePlayer(playerPos, enemyPos, m_ThisBoss);
+			//this.ChasePlayer(playerPos, enemyPos, m_ThisBoss);
 
 			//Animation
 			if (this.m_AnimationLength > 0) //if animating, subtract Delta.Time
