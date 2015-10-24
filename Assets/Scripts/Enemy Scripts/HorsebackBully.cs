@@ -13,7 +13,7 @@ public class HorsebackBully : MonoBehaviour
     private List<GameObject> horses_ = new List<GameObject>();
 
     private int maxSpawn_;
-    //private int currRow_;
+ 
 
     private float respawn_;
     private float reset_;
@@ -25,10 +25,7 @@ public class HorsebackBully : MonoBehaviour
     private Vector3 startPos_;
 
     private bool firstSpawn_;
-    //private bool turn_;
-    //private bool frontOccupied_;
-    //private bool middleOccupied_;
-    //private bool backOccupied_;
+  
 	
 	void Start () 
     {

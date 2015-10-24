@@ -13,7 +13,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public StateMachine m_StateMachine;
 
 	public GameObject m_Player;// = GameObject.FindGameObjectWithTag("Player");
-	public Vector2 m_PlayerPos;// = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
+	public Vector3 m_PlayerPos;// = new Vector2(player.GetComponent<Rigidbody2D>().position.x, player.GetComponent<Rigidbody2D>().position.y);
 
 	public GameObject PepperSpray;
 
@@ -407,7 +407,7 @@ public class EnemyBaseClass : MonoBehaviour
 				m_Bullies.Remove(m_Bullies[i].gameObject);
 				if (BullyJustKilled == "KingBully")
 				{
-                   // m_EnemyController.GetComponent<SpawnEnemies>().SpawnBoss(enemyPos, "QueenBully");
+                    m_EnemyController.GetComponent<SpawnEnemies>().SpawnBoss(enemyPos, "QueenBully");
 				}
 			}
 		}

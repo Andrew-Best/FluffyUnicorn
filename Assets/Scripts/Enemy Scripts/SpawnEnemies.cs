@@ -7,8 +7,7 @@ public class SpawnEnemies : MonoBehaviour
 	public GameObject m_EnemyControl;
 	public GameObject[] mSpawnPos; //List of possible spawn locaations
 	public GameObject[] mEnemiesToSpawn; //List of possible enemies to spawn
-	//public GameObject[] m_Tracks; //The three tracks an enemy can be anchored to
-
+	
 	public GameObject[] m_Bosses; //List of possible enemies to spawn
 
     public static bool bossSpawned_ = false;
@@ -43,7 +42,7 @@ public class SpawnEnemies : MonoBehaviour
 
 	}
 
-    public void SpawnBoss(int zOffSet_, string BossName)
+    public void SpawnBoss(Vector3 zOffSet_, string BossName)
 	{
 		for(int i = 0; i < mEnemiesToSpawn.Length; ++i)
 		{
@@ -51,7 +50,8 @@ public class SpawnEnemies : MonoBehaviour
 			if(mEnemiesToSpawn[i].name == BossName)
 			{
 				GameObject newBoss = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);//new enemy is created
-                newBoss.transform.position = mSpawnPos[zOffSet_].transform.position; //the enemy's position is assigned the position at the selected row
+              //  newBoss.transform.position = mSpawnPos[zOffSet_].transform.position; //the enemy's position is assigned the position at the selected row
+                newBoss.transform.position = startPos_ + xOffSet_ + zOffSet_; 
 				if (newBoss.name == "FattestBully")
 				{
 					//newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[zOffSet_].transform.position, zOffSet_, newBoss);

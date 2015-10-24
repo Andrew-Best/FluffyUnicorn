@@ -15,7 +15,7 @@ public class PepperDragonArm : PepperDragon
 
 	private bool posBeingFixed_ = false;
 	private bool swipingAtPlayer = false;
-	private Vector2 startPosOfSlam;
+	private Vector3 startPosOfSlam;
 
 	bool armIsMoving_;
 	bool moveToRest_ = false;
@@ -24,8 +24,8 @@ public class PepperDragonArm : PepperDragon
 
 	public void FixPosition()
 	{
-		Vector2 fixedPos = new Vector2(this.transform.position.x, m_Head.transform.position.y + 45 );
-		this.gameObject.GetComponent<Rigidbody2D>().transform.position = fixedPos;
+		Vector3 fixedPos = new Vector3(this.transform.position.x, m_Head.transform.position.y + 45,0.0f);
+		this.gameObject.GetComponent<Rigidbody>().transform.position = fixedPos;
 		posBeingFixed_ = false;
 		swipingAtPlayer = true;
 	}
@@ -38,33 +38,33 @@ public class PepperDragonArm : PepperDragon
 
 	public void ReadyTheSlaps()
 	{
-		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.RAISE_HAND_VELX, Constants.RAISE_HAND_VELY) ;
+		this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(Constants.RAISE_HAND_VELX, Constants.RAISE_HAND_VELY, 0) ;
 		handRaising_ = true;
 	}
 
 	public void Slap()
 	{
-		startPosOfSlam = this.GetComponent<Rigidbody2D>().transform.position;
-		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.SLAP_VELX*-1.0f, 0.0f);
+		startPosOfSlam = this.GetComponent<Rigidbody>().transform.position;
+        this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(Constants.SLAP_VELX * -1.0f, 0.0f, 0.0f);
 	}
 
 	public void SmackDown()
 	{
-		this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.SMACK_DOWN_VELX, Constants.SMACK_DOWN_VELY);
+        this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(Constants.SMACK_DOWN_VELX, Constants.SMACK_DOWN_VELY, 0.0f);
 		timeUntilHandRises_ = Random.Range(Constants.MIN_TIME_UNTIL_SLAP, Constants.MAX_TIME_UNTIL_SLAP);
 	}
 
-	void OnTriggerEnter2D(Collider2D playerAttack)
+	void OnTriggerEnter(Collider playerAttack)
 	{
 		if (playerAttack.tag == "PlayerProjectile")
 		{
-			GetCurLayer();
+		//	GetCurLayer();
 		
 			//if (MatchPlayerRowToLayer(curLayerName))
 			{
 				--m_HP;
-				m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;
-				m_PepperDragon.GetComponent<PepperDragon>().SwitchRow(m_Head, this.gameObject);
+				//m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;
+				//m_PepperDragon.GetComponent<PepperDragon>().SwitchRow(m_Head, this.gameObject);
 			}
 		}
 	}
@@ -93,11 +93,11 @@ public class PepperDragonArm : PepperDragon
 		}
 		if(moveToRest_)
 		{
-			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Constants.SLAP_VELX, 0);
-			if(this.gameObject.GetComponent<Rigidbody2D>().transform.position.x >= startPosOfSlam.x)
+			this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(Constants.SLAP_VELX, 0, 0);
+			if(this.gameObject.GetComponent<Rigidbody>().transform.position.x >= startPosOfSlam.x)
 			{
 				moveToRest_ = false;
-				this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+				this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 			}
 		}
 		#region Smack Attack
@@ -129,18 +129,18 @@ public class PepperDragonArm : PepperDragon
 		/////////////////////////////////////////////////////////////////////////
 		// Arm and Head Pos Swap //
 		/////////////////////////////////////////////////////////////////////////
-		m_ThisArmCurPosY = this.GetComponent<Rigidbody2D>().transform.position.y;
+		m_ThisArmCurPosY = this.GetComponent<Rigidbody>().transform.position.y;
 		if(armIsMoving_)
 		{
 			if (m_ThisArmStartPosY > m_DragonHead.GetComponent<PepperDragonHead>().m_ThisHeadStartYPos)//the arm is higher and must be lowered
 			{
 				if (m_ThisArmCurPosY > m_DragonHead.GetComponent<PepperDragonHead>().m_ThisHeadStartYPos)
 				{
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f);
+					this.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, -1.0f , 0.0f);
 				}
 				else
 				{
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0 , 0);
 					armIsMoving_ = false;
 				}
 			}
@@ -148,30 +148,30 @@ public class PepperDragonArm : PepperDragon
 			{
 				if (m_ThisArmCurPosY < m_DragonHead.GetComponent<PepperDragonHead>().m_ThisHeadStartYPos)
 				{
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 1.0f);
+					this.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 1.0f , 0.0f);
 				}
 				else
 				{
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 					armIsMoving_ = false;
 				}
 			}
 			ChangeZPos();
 		}
-		GetCurLayer();
+		//GetCurLayer();
 		#endregion
 
 		#region Position Fixer
 		if (!posBeingFixed_)
 		{
-			if (this.GetComponent<Rigidbody2D>().transform.position.y < -10)
+			if (this.GetComponent<Rigidbody>().transform.position.y < -10)
 			{
 				FixPosition();
 			}
 		}
 		if(swipingAtPlayer)
 		{
-			if(this.gameObject.GetComponent<Rigidbody2D>().velocity == new Vector2(0, 0))
+			if(this.gameObject.GetComponent<Rigidbody>().velocity == new Vector3(0, 0, 0))
 			{
 				Slap();
 				swipingAtPlayer = false;
@@ -181,27 +181,24 @@ public class PepperDragonArm : PepperDragon
 		#endregion
 	}
 
-	void OnCollisionEnter2D(Collision2D ground)
+	void OnCollisionEnter(Collision ground)
 	{
         if (armIsMoving_)
-		//if(ground.gameObject.tag == "Track0")
 		{
-			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);			
+			this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);			
 		}
         else if (armIsMoving_ == false)
-		//else if (ground.gameObject.tag == "Track1")
 		{
-			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 		}
-		//else if (ground.gameObject.tag == "Track2")
         else if (armIsMoving_)
 		{
-			this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 		}
 
 		if(ground.gameObject.tag == "HandBarrier")
 		{
-			//Vector2 transformPos = this.gameObject.GetComponent<Rigidbody2D>().transform.position;
+			Vector3 transformPos = this.gameObject.GetComponent<Rigidbody>().transform.position;
 			MoveBackToRestPos();		
 		}
 	}

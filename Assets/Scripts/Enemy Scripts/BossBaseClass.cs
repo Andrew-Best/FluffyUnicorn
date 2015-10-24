@@ -25,6 +25,7 @@ public class BossBaseClass : EnemyBaseClass
 	{
         base.InitEnemy(spawnPos, zOffSet_, m_ThisBoss);
 		m_Player = GameObject.FindGameObjectWithTag("Player");
+       
 		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
 		this.m_ThisBoss.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);//Set Boss Velocity to 0
 		this.m_IsABoss = true;
