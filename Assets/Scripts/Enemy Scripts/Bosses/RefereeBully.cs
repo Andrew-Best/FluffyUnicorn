@@ -66,7 +66,7 @@ public class RefereeBully : BossBaseClass
         m_Curstate = 0;
         m_BossName = "Referee Bully";
         m_CurFrame = 0;
-      //  m_CurRow = row;
+     
         //m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
     }
 
@@ -121,7 +121,7 @@ public class RefereeBully : BossBaseClass
     {
         if (collision.collider.tag == "Player")
         {
-            velocity_.velocity = new Vector2(0.0f, 0.0f);
+            velocity_.velocity = new Vector3(0.0f, 0.0f, 0.0f);
         }
     }
 

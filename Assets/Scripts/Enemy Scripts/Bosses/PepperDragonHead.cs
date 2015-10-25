@@ -40,11 +40,11 @@ public class PepperDragonHead : PepperDragon
 			{
 				if (m_ThisHeadCurPosY > m_ArmToMove.GetComponent<PepperDragonArm>().m_ThisArmStartPosY)
 				{
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -1.0f) * m_headVelocity;
+                    this.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, -1.0f, 0.0f) * m_headVelocity;
 				}
 				else
 				{
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                     headIsMoving_ = false;
 				}
 			}
@@ -52,11 +52,11 @@ public class PepperDragonHead : PepperDragon
 			{
 				if (m_ThisHeadCurPosY < m_ArmToMove.GetComponent<PepperDragonArm>().m_ThisArmStartPosY)
 				{
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 1.0f);
+                    this.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 1.0f, 0.0f);
 				}
 				else
 				{
-					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                     headIsMoving_ = false;
 				}
 			}

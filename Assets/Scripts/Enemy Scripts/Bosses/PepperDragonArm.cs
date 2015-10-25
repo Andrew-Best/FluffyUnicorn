@@ -58,14 +58,8 @@ public class PepperDragonArm : PepperDragon
 	{
 		if (playerAttack.tag == "PlayerProjectile")
 		{
-		//	GetCurLayer();
-		
-			//if (MatchPlayerRowToLayer(curLayerName))
-			{
-				--m_HP;
-				//m_PepperDragon.GetComponent<BossBaseClass>().m_HP -= playerAttack.GetComponent<Projectile>().m_Damage;
-				//m_PepperDragon.GetComponent<PepperDragon>().SwitchRow(m_Head, this.gameObject);
-			}
+            --m_HP;
+			
 		}
 	}
 

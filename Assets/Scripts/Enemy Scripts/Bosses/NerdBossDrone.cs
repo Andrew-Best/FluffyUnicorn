@@ -47,7 +47,7 @@ public class NerdBossDrone : MonoBehaviour
             //HP_ = Constants.DRONE_STAGE_ONE_HP;
             Destroy(wall1_);
             Destroy(wall2_);
-            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
 
         
@@ -71,21 +71,21 @@ public class NerdBossDrone : MonoBehaviour
             junkName_ = "Beaker";
             m_Junk = ObjectPool.Instance.GetObjectForType(junkName_, true);
             Junk_.Add(m_Junk);
-            m_Junk.transform.position = new Vector2(-100.0f, 0.0f);
+            m_Junk.transform.position = new Vector3(-100.0f, 0.0f, 0.0f);
         }
         for (int i = 0; i < 5; ++i)
         {
             junkName_ = "Box";
             m_Junk = ObjectPool.Instance.GetObjectForType(junkName_, true);
             Junk_.Add(m_Junk);
-            m_Junk.transform.position = new Vector2(-100.0f, 0.0f);
+            m_Junk.transform.position = new Vector3(-100.0f, 0.0f, 0.0f);
         }
         for (int i = 0; i < 4; ++i)
         {
             junkName_ = "Pop";
             m_Junk = ObjectPool.Instance.GetObjectForType(junkName_, true);
             Junk_.Add(m_Junk);
-            m_Junk.transform.position = new Vector2(-100.0f, 0.0f);
+            m_Junk.transform.position = new Vector3(-100.0f, 0.0f, 0.0f);
         }
     }
 
@@ -95,22 +95,22 @@ public class NerdBossDrone : MonoBehaviour
         Junk_[junkSelected].transform.position = new Vector3(nerdTrans_.position.x, nerdTrans_.position.y - 4.0f, nerdTrans_.position.z);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter(Collider collision)
     {
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Junk")
         {
             HP_ -= 10.0f;
             Debug.Log("Hit!");
-            collision.gameObject.transform.position = new Vector2(100.0f, 0.0f);
+            collision.gameObject.transform.position = new Vector3(100.0f, 0.0f, 0.0f);
         }
     }
 
-    void OnParticleCollision2D(Collision2D collision)
+    void OnParticleCollision(Collision collision)
     {
         //if (collision.collider.tag == "Pop")
         //{

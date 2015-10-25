@@ -15,6 +15,7 @@ public class SpawnEnemies : MonoBehaviour
     private Vector3 startPos_;
     private Vector3 xOffSet_;
     private Vector3 zOffSet_;
+    private Vector3 enemyPos;
    
 
 	void Start () 
@@ -30,9 +31,10 @@ public class SpawnEnemies : MonoBehaviour
 		}
         xOffSet_ = new Vector3(11.0f, 0.0f, 0.0f);
         zOffSet_ = new Vector3(0.0f, 0.0f, 11.0f);
+        enemyPos = new Vector3(0.0f, 2.0f, 0.0f);
 	}
-	
-	public void SpawnEnemyFunc(Vector3 zOffSet_, int type)
+
+    public void SpawnEnemyFunc(Vector3 enemyPos, int type)
 	{
        
 		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
@@ -42,15 +44,16 @@ public class SpawnEnemies : MonoBehaviour
 
 	}
 
-    public void SpawnBoss(Vector3 zOffSet_, string BossName)
+    public void SpawnBoss(Vector3 enemyPos, string BossName)
 	{
-		for(int i = 0; i < mEnemiesToSpawn.Length; ++i)
+        for (int i = 0; i < m_Bosses.Length; ++i)
 		{
             
 			if(mEnemiesToSpawn[i].name == BossName)
 			{
 				GameObject newBoss = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);//new enemy is created
-              //  newBoss.transform.position = mSpawnPos[zOffSet_].transform.position; //the enemy's position is assigned the position at the selected row
+                //newBoss.transform.position = mSpawnPos[zOffSet_].transform.position; //the enemy's position is assigned the position at the selected row
+
                 newBoss.transform.position = startPos_ + xOffSet_ + zOffSet_; 
 				if (newBoss.name == "FattestBully")
 				{
@@ -81,6 +84,7 @@ public class SpawnEnemies : MonoBehaviour
                     bossSpawned_ = false;
 					Debug.Log("No boss.");
 				}
+                newBoss.GetComponent<BullyScript>().InitEnemy(startPos_ + xOffSet_, enemyPos, newBoss);
 			}
 		}
 	}

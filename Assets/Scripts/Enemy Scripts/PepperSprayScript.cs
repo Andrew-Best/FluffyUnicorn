@@ -6,7 +6,7 @@ public class PepperSprayScript : MonoBehaviour
 {
 //	new List<GameObject> bullets;
 
-	void OnTriggerEnter2D(Collider2D collision)
+	void OnTriggerEnter(Collider collision)
 	{
 		if (collision.tag == "Player")
 		{

@@ -9,7 +9,7 @@ public class UniqueAttackScript : MonoBehaviour
 	public GameObject m_UATKController;
 	public List<GameObject> bullets = new List<GameObject>();
 
-	public Vector2 m_Velocity;
+	public Vector3 m_Velocity;
 	public float m_ShotSpeed;
 	public string m_ProjectileName = "PepperSpray";
 
@@ -49,7 +49,7 @@ public class UniqueAttackScript : MonoBehaviour
 
 		this.fatUATK_ = true;
 
-		bully.GetComponent<Rigidbody2D>().velocity = this.m_Velocity * 2;	
+		bully.GetComponent<Rigidbody>().velocity = this.m_Velocity * 2;	
 	}
 
 	public void JockUniqueAttack(GameObject bully)//Requires Animation
@@ -62,7 +62,7 @@ public class UniqueAttackScript : MonoBehaviour
 		this.jockUATK_ = true;
 
 		//increase Velocity x
-		bully.GetComponent<Rigidbody2D>().velocity += new Vector2(this.m_Velocity.x * 2, this.GetComponent<Rigidbody2D>().velocity.y);
+		bully.GetComponent<Rigidbody>().velocity += new Vector3(this.m_Velocity.x * 2, this.GetComponent<Rigidbody>().velocity.y, 0);
 		
 	}
 
@@ -88,7 +88,7 @@ public class UniqueAttackScript : MonoBehaviour
 		{
 			this.GetComponent<UniqueAttackScript>().m_ShotSpeed *= -1;//make the shot go left
 		}
-		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<UniqueAttackScript>().m_ShotSpeed, 0);
+		bullet.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<UniqueAttackScript>().m_ShotSpeed, 0, 0);
 		bullets.Add(bullet);
 
 		this.m_AttackUniqueAnimLength = Constants.PEPPER_UNIQUE_ATK_LENGTH;
@@ -107,7 +107,7 @@ public class UniqueAttackScript : MonoBehaviour
 			{
 				bullets.Remove(bullets[i].gameObject);
 			}
-			else if(bullets[i].GetComponent<Rigidbody2D>().transform.position.x <= -25 || bullets[i].GetComponent<Rigidbody2D>().transform.position.x >= 25)
+			else if(bullets[i].GetComponent<Rigidbody>().transform.position.x <= -25 || bullets[i].GetComponent<Rigidbody>().transform.position.x >= 25)
 			{
 				Destroy(bullets[i]);
 				bullets.Remove(bullets[i].gameObject);

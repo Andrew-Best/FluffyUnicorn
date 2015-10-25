@@ -34,9 +34,9 @@ public class KingBully : BossBaseClass
 		//water gun animation
 	}
 
-    public override void InitEnemy(Vector3 spawnPos, Vector3  zOffSet_, GameObject newBully)
+    public override void InitEnemy(Vector3 spawnPos, Vector3  enemyPos, GameObject newBully)
 	{
-        base.InitEnemy(spawnPos, zOffSet_, newBully);
+        base.InitEnemy(spawnPos, enemyPos, newBully);
 		this.m_ThisBoss = this.gameObject;
 		this.m_Position = m_ThisBoss.GetComponent<Rigidbody2D>().position;
 		this.m_HP = Constants.KING_BULLY_HP;
@@ -65,24 +65,8 @@ public class KingBully : BossBaseClass
 
 		//Detect Player Track
 		GetPlayerInfo(this.gameObject);
-        /*
-		//Conditions for changing tracks
-		if (!this.m_TimerIsCounting) //if the primary timer is not able to count down (disabled)
-		{
-			this.changeTrackCountdown = Constants.TRACK_COUNTDOWN_DEFAULT; //set the primary timer to its default value
-			this.secondaryTrackTimer -= Time.deltaTime; // decrement the secondary timer
-		}
-		if (secondaryTrackTimer <= 0) //once the secondary timer reaches 0
-		{
-			this.m_TimerIsCounting = true; //enable the primary timer
-			this.secondaryTrackTimer = Constants.TRACK_COUNTDOWN_DEFAULT; //set the secondary timer to it's default value
-		}
-		if (this.m_TimerIsCounting)
-		{
-			this.changeTrackCountdown -= Time.deltaTime;
-		}
-        */
-       // gameObject.transform.position = new Vector3(gameObject.transform.position.x, targetPoints_[m_CurRow].transform.position.y, targetPoints_[m_CurRow].transform.position.z);
+
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 
         Vector3 enemyPos = new Vector3(this.m_RigidBody.position.x, this.m_RigidBody.position.y, this.m_RigidBody.position.z);
 

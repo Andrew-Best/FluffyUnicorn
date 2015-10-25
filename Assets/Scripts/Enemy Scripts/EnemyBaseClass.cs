@@ -58,11 +58,8 @@ public class EnemyBaseClass : MonoBehaviour
 	public Rigidbody m_RigidBody;
 	public Vector3 m_InitialXY;
     public Vector3 zOffSet_;
-    public Vector3 enemyPos;
+    //public Vector3 enemyPos;
 
-	//two variables for changing tracks
-	//public float changeTrackCountdown = 2.0f; //primary timer, when this reaches 0 the enemy can change tracks, and the secondary timer start counting down and m_TimerIsCounting is set to false
-	//public float secondaryTrackTimer = 2.0f; //secondary timer, when this reaches 0 then the primary timer starts counting down and it's bool is set to true
 
     private Rigidbody bullyRigidbody_;
     private EnemyBaseClass bullyBaseClass_;
@@ -75,7 +72,7 @@ public class EnemyBaseClass : MonoBehaviour
 	{
 		if (bully.GetComponent<EnemyBaseClass>().m_EnemyInMotion)
 		{
-			bully.GetComponent<Rigidbody>().velocity = new Vector3(bully.GetComponent<EnemyBaseClass>().m_VelocityX, 0,0);//set the enemy's velocity
+			bully.GetComponent<Rigidbody>().velocity = new Vector3(bully.GetComponent<EnemyBaseClass>().m_VelocityX, 0, 0);//set the enemy's velocity
 		}
 
 	}
@@ -188,27 +185,23 @@ public class EnemyBaseClass : MonoBehaviour
 	{
         bullyBaseClass_ = bully.GetComponent<EnemyBaseClass>();
 
-        Vector2 differenceInDistance = new Vector3(bully.transform.position.x, bully.transform.position.y, bully.transform.position.z) - playerPos; //get the difference between the two entities
+        Vector3 differenceInDistance = new Vector3(bully.transform.position.x, bully.transform.position.y, bully.transform.position.z) - playerPos; //get the difference between the two entities
         float forwardDetectionX = bully.transform.position.x - bullyBaseClass_.m_DetectionDist; //x position player has to reach or pass for the enemy to wake up
 
-       // if (bullyBaseClass_.m_CurRow == bullyBaseClass_.m_PlayerCurRow)
-		//{
 			//e - p = differenceInDistance
 			//difference in distance == a line between the two p_____e
 			//if this "line" is shorter than the bully's forwardDetection aka "Line Of Sight" (while the player is to the left) -|____e____|+
 			//or if the "line" is shorter than (player is inside the line) the bully's ForwardDetectionX (while the player is to the right)
-			if (differenceInDistance.x <= forwardDetectionX || differenceInDistance.x <= -forwardDetectionX)
-			{
-                bullyBaseClass_.m_isIdle = false;//then the enemy is no longer Idle	
-			}
-		//}
-		//else
-		//{
-			if (differenceInDistance.x <= forwardDetectionX)//if the player is within the detection "range" of a bully
-			{
-                bullyBaseClass_.m_isIdle = false;//then the enemy is no longer Idle	
-			}
-		//}
+		if (differenceInDistance.x <= forwardDetectionX || differenceInDistance.x <= -forwardDetectionX)
+		{
+            bullyBaseClass_.m_isIdle = false;//then the enemy is no longer Idle	
+		}
+	
+		if (differenceInDistance.x <= forwardDetectionX)//if the player is within the detection "range" of a bully
+		{
+            bullyBaseClass_.m_isIdle = false;//then the enemy is no longer Idle	
+		}
+		
 	}
 	#endregion
 
@@ -219,23 +212,22 @@ public class EnemyBaseClass : MonoBehaviour
 
 		int attackSelector = Random.Range(0, 100);
         bullyBaseClass_.EnemyStopMotion(bully);
-      //  if (bullyBaseClass_.m_CurRow == bullyBaseClass_.m_PlayerCurRow)
+      
+		//	m_EnemyInMotion = false; //prevent continued motion of the bully
+		if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
 		{
-			//			m_EnemyInMotion = false; //prevent continued motion of the bully
-			if (attackSelector <= m_AttackPunchOdds) //If attack selector is less than the odds of punching
-			{
-                bullyBaseClass_.EnemyAttackPunch(bully); //PAWNCH
-			}
-			else if (attackSelector <= m_AttackKickOdds)//not less than Punch odds, so check if less than kick odds
-			{
-                bullyBaseClass_.EnemyAttackKick(bully); //Kick
-			}
-			else if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
-			{
-                bullyBaseClass_.EnemyAttackUnique(bully); //
-			}
+            bullyBaseClass_.EnemyAttackPunch(bully); //PAWNCH
 		}
-		if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
+		else if (attackSelector <= m_AttackKickOdds)//not less than Punch odds, so check if less than kick odds
+		{
+            bullyBaseClass_.EnemyAttackKick(bully); //Kick
+		}
+		else if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
+		{
+            bullyBaseClass_.EnemyAttackUnique(bully); //
+		}
+		
+		else if (attackSelector >= m_AttackKickOdds)//must be greater than kick odds by now so Unique Attack is called
 		{
             bullyBaseClass_.EnemyAttackUnique(bully); //
 		}
@@ -322,7 +314,7 @@ public class EnemyBaseClass : MonoBehaviour
 		//Debug.Log(bully.name);
 		if (bully.name != "FattestBully" && bully.name != "KingBully" && bully.name != "RefereeBully" && bully.name != "QueenBully")
 		{
-            Vector3 enemyPos = new Vector3(bullyRigidbody_.position.x, bullyRigidbody_.position.y, bullyRigidbody_.position.z);
+           Vector3 enemyPos = new Vector3(bullyRigidbody_.position.x, bullyRigidbody_.position.y, bullyRigidbody_.position.z);
 			bully.GetComponent<BullyScript>().m_UniqueAttackHolder.GetComponent<UniqueAttackScript>().UpdateUATKs(bully); //Update Enemy Projectiles on screen
 
             m_PlayerPos = new Vector3(m_Player.GetComponent<Rigidbody>().position.x, m_Player.GetComponent<Rigidbody>().position.y, m_Player.GetComponent<Rigidbody>().position.z);
@@ -407,7 +399,7 @@ public class EnemyBaseClass : MonoBehaviour
 				m_Bullies.Remove(m_Bullies[i].gameObject);
 				if (BullyJustKilled == "KingBully")
 				{
-                    m_EnemyController.GetComponent<SpawnEnemies>().SpawnBoss(enemyPos, "QueenBully");
+                    m_EnemyController.GetComponent<SpawnEnemies>().SpawnBoss(zOffSet_, "QueenBully");
 				}
 			}
 		}

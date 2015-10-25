@@ -92,7 +92,7 @@ public class PepperDragon : BossBaseClass
                 }
             }
         }
-        this.gameObject.GetComponent<Rigidbody2D>().velocity = curVel;
+        this.gameObject.GetComponent<Rigidbody>().velocity = curVel;
     }
 
     private void SpewPepper()

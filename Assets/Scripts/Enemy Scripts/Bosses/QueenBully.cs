@@ -8,7 +8,7 @@ public class QueenBully : BossBaseClass
 	public string m_JunkName;
 
 	public Vector3 m_ThrowForce;
-	//private Vector2 playerPosition_;
+	private Vector3 playerPosition_;
 
 	private float timeUntilNextThrow_ = 5.0f;
 	public const float DEFAULT_TIME_UNTIL_THROW = 5;
@@ -16,7 +16,7 @@ public class QueenBully : BossBaseClass
     // Use this for initialization
 	void Start () 
 	{
-        InitEnemy(new Vector3(0, 0), new Vector3(0, 0, 0), this.gameObject);
+        InitEnemy(new Vector3(0, 0), playerPosition_, this.gameObject);
 	}
 	
 	// Update is called once per frame

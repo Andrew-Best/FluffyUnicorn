@@ -13,12 +13,11 @@ public class BullyScript : EnemyBaseClass
         this.m_NavAgent = GetComponent<NavMeshAgent>();
         this.m_NavAgent.updateRotation = false;
     }
-    public Vector3 enemyPos;
-
+   
 	#region Creation
     public override void InitEnemy(Vector3 spawnPos, Vector3 enemyPos, GameObject newBully)
 	{
-		base.InitEnemy(spawnPos, zOffSet_, newBully);
+		base.InitEnemy(spawnPos, enemyPos, newBully);
 
 		this.m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");
         this.LoadFromXML();			//Load bully's stats from xml file
@@ -39,7 +38,7 @@ public class BullyScript : EnemyBaseClass
 
 		m_MaxDist = this.GetComponent<Rigidbody>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
 
-	//	Bully.GetComponent<Rigidbody2D>().transform.position = new Vector3(Bully.transform.position.x, m_TargetPoints[(int)spawnPos.x].transform.position.y, m_TargetPoints[(int)spawnPos.y].transform.position.z);
+        newBully.GetComponent<Rigidbody>().transform.position = new Vector3(newBully.transform.position.x, m_TargetPoints[(int)spawnPos.x].transform.position.y, m_TargetPoints[(int)spawnPos.y].transform.position.z);
 
 	}
 	#endregion
@@ -129,7 +128,7 @@ public class BullyScript : EnemyBaseClass
                 m_AttackResetTime = float.Parse(node.Attributes["AttackReset"].Value); //Load the attack reset time from the XML file
                 m_VelocityX = int.Parse(node.Attributes["Velocity"].Value); //Load the velocity from the XML file
 				m_AttackDist = int.Parse(node.Attributes["AttackDist"].Value);
-			//	m_ChangeTrackTimer = int.Parse(node.Attributes["ChangeTrackDelay"].Value);
+			
             }
         }
     }
