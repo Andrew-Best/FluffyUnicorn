@@ -324,7 +324,10 @@ public class EnemyBaseClass : MonoBehaviour
           
 			{
                // bullyBaseClass_.ChasePlayer(m_PlayerPos, enemyPos, bully);
-                bullyBaseClass_.m_NavAgent.SetDestination(m_Player.transform.position);
+                if (bullyBaseClass_.m_NavAgent != null)
+                {
+                    bullyBaseClass_.m_NavAgent.SetDestination(m_Player.transform.position);
+                }
 
 				//Animation
                 if (bullyBaseClass_.m_AnimationLength > 0) //if animating, subtract Delta.Time

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class SpawnEnemies : MonoBehaviour 
 {
 	public GameObject m_EnemyControl;
-	public GameObject[] mSpawnPos; //List of possible spawn locaations
 	public GameObject[] mEnemiesToSpawn; //List of possible enemies to spawn
 	
 	public GameObject[] m_Bosses; //List of possible enemies to spawn
@@ -21,14 +20,7 @@ public class SpawnEnemies : MonoBehaviour
 	void Start () 
 	{
 		m_EnemyControl = GameObject.FindGameObjectWithTag("EnemyController"); 
-		mSpawnPos[0] = GameObject.FindGameObjectWithTag("ESRL");
-		mSpawnPos[1] = GameObject.FindGameObjectWithTag("ESRM");
-		mSpawnPos[2] = GameObject.FindGameObjectWithTag("ESRF");
-       // m_Tracks = GameObject.FindGameObjectWithTag("EnemyController").GetComponent<EnemyBaseClass>().m_TargetPoints;
-		if(mSpawnPos.Length == 0)
-		{
-			Debug.LogError("Spawn Area needs spawn positions.");
-		}
+
         xOffSet_ = new Vector3(11.0f, 0.0f, 0.0f);
         zOffSet_ = new Vector3(0.0f, 0.0f, 11.0f);
         enemyPos = new Vector3(0.0f, 2.0f, 0.0f);
@@ -57,25 +49,25 @@ public class SpawnEnemies : MonoBehaviour
                 newBoss.transform.position = startPos_ + xOffSet_ + enemyPos; 
 				if (newBoss.name == "FattestBully")
 				{
-					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[i].transform.position, enemyPos, newBoss);
+					newBoss.GetComponent<FattestBully>().InitEnemy(new Vector3(0.0f, 0.0f, 0.0f), enemyPos, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
                     bossSpawned_ = true;
 				}
 				else if (newBoss.name == "RefereeBully")
 				{
-                    newBoss.GetComponent<RefereeBully>().InitEnemy(mSpawnPos[i].transform.position, enemyPos, newBoss);
+                    newBoss.GetComponent<RefereeBully>().InitEnemy(new Vector3(0.0f, 0.0f, 0.0f), enemyPos, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
                     bossSpawned_ = true;
 				}
 				else if (newBoss.name == "QueenBully")
 				{
-                    newBoss.GetComponent<QueenBully>().InitEnemy(mSpawnPos[i].transform.position, enemyPos, newBoss);
+                    newBoss.GetComponent<QueenBully>().InitEnemy(new Vector3(0.0f, 0.0f, 0.0f), enemyPos, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
                     bossSpawned_ = true;
 				}
 				else if (newBoss.name == "KingBully")
 				{
-                    newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[i].transform.position, enemyPos, newBoss);
+                    newBoss.GetComponent<KingBully>().InitEnemy(new Vector3(0.0f, 0.0f, 0.0f), enemyPos, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
                     bossSpawned_ = true;
 				}

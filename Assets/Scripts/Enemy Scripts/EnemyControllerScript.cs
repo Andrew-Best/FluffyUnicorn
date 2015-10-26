@@ -18,6 +18,7 @@ public class EnemyControllerScript : MonoBehaviour
 	private int enemySelector_;
 
     private Vector3 enemyPos;
+    private bool bossSpawned_ = false;
 
 
 	public void AddBullyToList(GameObject bully)
@@ -55,10 +56,10 @@ public class EnemyControllerScript : MonoBehaviour
         }
         
 		tempBossTimer_ -= Time.deltaTime;
-		if(tempBossTimer_ <= 0)
+		if(tempBossTimer_ <= 0 && !bossSpawned_)
 		{
 			string BossName;
-
+            bossSpawned_ = true;
 			int BossSelectorRange = Random.Range(0, 30);
 			int BossSelector=0;
 
@@ -77,7 +78,8 @@ public class EnemyControllerScript : MonoBehaviour
 				BossName = "RefereeBully";
 			}
             enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(enemyPos, "RefereeBully");
-            bossSpawner.GetComponent<SpawnEnemies>().SpawnBoss(enemyPos, BossName);//Index for Each Boss
+            //bossSpawner.GetComponent<SpawnEnemies>().SpawnBoss(enemyPos, BossName);//Index for Each Boss
+            
 			tempBossTimer_ = 100;
 		}
 	}

@@ -152,9 +152,7 @@ public class RefereeBully : BossBaseClass
             {
                 distance = (float)Random.Range(3.0f, -4.0f);
             }
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, targetPoints_[row].transform.position.y, targetPoints_[row].transform.position.z);
-
-            Debug.Log(distance);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 
             if (lastDistance_[lastDistance_.Count - 1] != null)
             {
