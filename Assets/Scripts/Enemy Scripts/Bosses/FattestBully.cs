@@ -10,7 +10,7 @@ public class FattestBully : BossBaseClass
 	/**********/
 
 	private float jumpForce_;
-	//private float rollSpeed_;
+	private float rollSpeed_;
 	public float m_JumpTimer;
 
 	public bool inSky;
@@ -18,19 +18,19 @@ public class FattestBully : BossBaseClass
 
 	public void Start()
 	{
-		InitEnemy(new Vector3(0, 0 ,0), new Vector3(0, 0 ,0), this.gameObject);
+		InitEnemy(new Vector3(0, 0 ,0), enemyPos, this.gameObject);
 	}
 
-    public override void InitEnemy(Vector3 spawnPos, Vector3 zOffSet_, GameObject newBully)
+    public override void InitEnemy(Vector3 spawnPos, Vector3 enemyPos, GameObject newBully)
 	{
         base.InitEnemy(spawnPos, zOffSet_, newBully);
 		//	m_Player = GameObject.FindGameObjectWithTag("Player");
 		//	m_ThisBoss = this.gameObject;
-		m_Position = m_ThisBoss.GetComponent<Rigidbody2D>().position;
+		m_Position = m_ThisBoss.GetComponent<Rigidbody>().position;
 
 		m_HP = Constants.FATTEST_BULLY_HP;
 		jumpForce_ = Constants.FATTEST_BULLY_JUMP_FORCE;
-		//rollSpeed_ = Constants.FATTEST_BULLY_ROLL_SPEED;
+		rollSpeed_ = Constants.FATTEST_BULLY_ROLL_SPEED;
 
 		m_Curstate = 0;
 		m_BossName = "Fattest Bully";
@@ -53,18 +53,18 @@ public class FattestBully : BossBaseClass
 	// Update is called once per frame
 	public void FattestUpdate()
 	{
-//		GetPlayerInfo(this.gameObject);
+		GetPlayerInfo(this.gameObject);
 
 		if (this.gameObject.GetComponent<Rigidbody>().transform.position.y <= 0)
 		{
 			isFlying = false;
 			this.inSky = false;
 
-			this.GetComponent<Rigidbody2D>().transform.position = new Vector2(this.GetComponent<Rigidbody>().transform.position.x, 0);
+			this.GetComponent<Rigidbody>().transform.position = new Vector3(this.GetComponent<Rigidbody>().transform.position.x, 0, 0);
 		}
 		m_Player = GameObject.FindGameObjectWithTag("Player");
 
-		Vector3 playerPos = new Vector2(m_Player.GetComponent<Rigidbody>().transform.position.x, m_Player.GetComponent<Rigidbody>().transform.position.y);
+		Vector3 playerPos = new Vector3(m_Player.GetComponent<Rigidbody>().transform.position.x, m_Player.GetComponent<Rigidbody>().transform.position.y, 0);
 		if (!inSky)
 		{
 			tempTimer -= Time.deltaTime;//
@@ -90,18 +90,15 @@ public class FattestBully : BossBaseClass
 		if (m_JumpTimer <= 0)
 		{
 			m_JumpTimer = Constants.FATTEST_BULLY_JUMP_TIMER;
-			this.GetComponent<Rigidbody>().velocity = new Vector2(this.GetComponent<Rigidbody>().velocity.x, jumpForce_);
+			this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x, jumpForce_, 0);
 			isFlying = true;
 		}
 
 		//once off screen/high enough, adjust x pos and CurRow to match player
 		if (this.GetComponent<Rigidbody>().transform.position.y >= Constants.MAX_FATTEST_HEIGHT)
 		{
-			this.GetComponent<Rigidbody>().transform.position = new Vector2(playerPos.x, this.GetComponent<Rigidbody>().transform.position.y);
+			this.GetComponent<Rigidbody>().transform.position = new Vector3(playerPos.x, this.GetComponent<Rigidbody>().transform.position.y, 0);
 
-		//	this.m_CurRow = this.m_PlayerCurRow;
-
-			//this.m_CurRow = this.m_PlayerCurRow;
 
 			Slam(playerPos);
 		}
@@ -113,7 +110,7 @@ public class FattestBully : BossBaseClass
 	{
 		float SLAMFORCE = jumpForce_ * -1;
 
-		this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x, SLAMFORCE);
+		this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x, SLAMFORCE, 0);
 	}
 
 }

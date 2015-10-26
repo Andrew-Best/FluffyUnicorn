@@ -7,7 +7,7 @@ public class KingBully : BossBaseClass
 	public GameObject enemySpawner;
 
 	public float m_AttackUniqueAnimLength;
-	//private float AttackUniqueCurTime = 0;
+	private float AttackUniqueCurTime = 0;
 
 	private float tempTimer;
 	private float tempTimerResetVal = 240.0f;
@@ -15,7 +15,8 @@ public class KingBully : BossBaseClass
 
 	public void Start()
 	{
-        InitEnemy(new Vector3(0, 0, 0), new Vector3(0, 0, 0), this.gameObject);
+
+        InitEnemy(new Vector3(1, 0, 0), enemyPos, this.gameObject);
 
         for (int i = 0; i < 3; ++i)
         {
@@ -30,7 +31,7 @@ public class KingBully : BossBaseClass
 		this.GetComponent<BeamAttack>().Fire(m_ThisBoss, m_ThisBoss.GetComponent<EnemyBaseClass>().m_Player);
 
 		this.m_AttackUniqueAnimLength = Constants.KB_WATER_GUN_LENGTH;
-		//this.AttackUniqueCurTime = 0;
+		this.AttackUniqueCurTime = 0;
 		//water gun animation
 	}
 
@@ -45,11 +46,11 @@ public class KingBully : BossBaseClass
 		this.m_CurFrame = 0;
 		//this.m_CurRow = row;
 
-		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
+		//this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
 
-		this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
+		//this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
 
-		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
+		//this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
 
 		this.GetComponent<BeamAttack>().m_Ammo = Constants.KB_WATER_AMMO;
 		//m_TotalFrames = this.GetComponent<Animator>().framesInAnim;
@@ -121,30 +122,23 @@ public class KingBully : BossBaseClass
 				this.m_BullyAnimator.SetBool("IsUnique", false);
 			}
 		}
+        if (this.GetComponent<BeamAttack>().m_Ammo > 0)//if there is ammo
+        {
+            WaterGun();//fire the water gun
+            this.GetComponent<BeamAttack>().m_Ammo--;//decrease ammo
+            tempTimer = tempTimerResetVal;
+        }
+        else //if out of ammo
+        {
+            --tempTimer;//countdown the timer until reload
+        }
+        if (tempTimer <= 0)
+        {
+            Debug.Log("Reload");
+            this.GetComponent<BeamAttack>().m_Ammo = Constants.KB_WATER_AMMO;
+            //tempTimer = tempTimerResetVal;
+        }
 
-
-		//if (this.m_CurRow == m_PlayerCurRow)
-
-		/*if (this.m_CurRow == m_PlayerCurRow)
->>>>>>> origin/master
-		{
-			if (this.GetComponent<BeamAttack>().m_Ammo > 0)//if there is ammo
-			{
-				WaterGun();//fire the water gun
-				this.GetComponent<BeamAttack>().m_Ammo--;//decrease ammo
-				tempTimer = tempTimerResetVal;
-			}
-			else //if out of ammo
-			{
-				--tempTimer;//countdown the timer until reload
-			}
-			if (tempTimer <= 0)
-			{
-				Debug.Log("Reload");
-				this.GetComponent<BeamAttack>().m_Ammo = Constants.KB_WATER_AMMO;
-				//tempTimer = tempTimerResetVal;
-			}
-		}*/
 		if (this.m_HP <= 0)
 		{
             //enemySpawner.GetComponent<SpawnEnemies>().SpawnBoss(new Vector3(0, 0, 0), "QueenBully");

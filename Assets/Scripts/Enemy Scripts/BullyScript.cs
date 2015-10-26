@@ -38,7 +38,7 @@ public class BullyScript : EnemyBaseClass
 
 		m_MaxDist = this.GetComponent<Rigidbody>().position.x - Constants.BULLY_MAX_TRAVEL_DIST; //Set the maximum travel distance
 
-        newBully.GetComponent<Rigidbody>().transform.position = new Vector3(newBully.transform.position.x, m_TargetPoints[(int)spawnPos.x].transform.position.y, m_TargetPoints[(int)spawnPos.y].transform.position.z);
+        newBully.GetComponent<Rigidbody>().transform.position = new Vector3(newBully.transform.position.x, newBully.transform.position.y, newBully.transform.position.z);
 
 	}
 	#endregion

@@ -58,7 +58,7 @@ public class EnemyBaseClass : MonoBehaviour
 	public Rigidbody m_RigidBody;
 	public Vector3 m_InitialXY;
     public Vector3 zOffSet_;
-    //public Vector3 enemyPos;
+    public Vector3 enemyPos;
 
 
     private Rigidbody bullyRigidbody_;
@@ -399,7 +399,7 @@ public class EnemyBaseClass : MonoBehaviour
 				m_Bullies.Remove(m_Bullies[i].gameObject);
 				if (BullyJustKilled == "KingBully")
 				{
-                    m_EnemyController.GetComponent<SpawnEnemies>().SpawnBoss(zOffSet_, "QueenBully");
+                    m_EnemyController.GetComponent<SpawnEnemies>().SpawnBoss(enemyPos, "QueenBully");
 				}
 			}
 		}
