@@ -38,7 +38,7 @@ public class SpawnEnemies : MonoBehaviour
 	{
        
 		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
-        newEnemy.transform.position = startPos_ + xOffSet_ + zOffSet_; //mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
+        newEnemy.transform.position = startPos_ + xOffSet_ + enemyPos; //mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 		m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newEnemy);
         newEnemy.GetComponent<BullyScript>().InitEnemy(startPos_ + xOffSet_,  zOffSet_, newEnemy);
 
@@ -46,18 +46,18 @@ public class SpawnEnemies : MonoBehaviour
 
     public void SpawnBoss(Vector3 enemyPos, string BossName)
 	{
-        for (int i = 0; i < m_Bosses.Length; ++i)
+        for (int i = 0; i < mEnemiesToSpawn.Length; ++i)
 		{
             
 			if(mEnemiesToSpawn[i].name == BossName)
 			{
 				GameObject newBoss = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);//new enemy is created
-                //newBoss.transform.position = mSpawnPos[zOffSet_].transform.position; //the enemy's position is assigned the position at the selected row
+             //   newBoss.transform.position = mSpawnPos[enemyPos].transform.position; //the enemy's position is assigned the position at the selected row
 
-                newBoss.transform.position = startPos_ + xOffSet_ + zOffSet_; 
+                newBoss.transform.position = startPos_ + xOffSet_ + enemyPos; 
 				if (newBoss.name == "FattestBully")
 				{
-					//newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[zOffSet_].transform.position, zOffSet_, newBoss);
+					newBoss.GetComponent<FattestBully>().InitEnemy(mSpawnPos[i].transform.position, enemyPos, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
                     bossSpawned_ = true;
 				}
