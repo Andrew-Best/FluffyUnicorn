@@ -63,19 +63,19 @@ public class SpawnEnemies : MonoBehaviour
 				}
 				else if (newBoss.name == "RefereeBully")
 				{
-					//newBoss.GetComponent<RefereeBully>().InitEnemy(mSpawnPos[zOffSet_].transform.position,zOffSet_, newBoss);
+                    newBoss.GetComponent<RefereeBully>().InitEnemy(mSpawnPos[i].transform.position, enemyPos, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
                     bossSpawned_ = true;
 				}
 				else if (newBoss.name == "QueenBully")
 				{
-					//newBoss.GetComponent<QueenBully>().InitEnemy(mSpawnPos[zOffSet_].transform.position, zOffSet_, newBoss);
+                    newBoss.GetComponent<QueenBully>().InitEnemy(mSpawnPos[i].transform.position, enemyPos, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
                     bossSpawned_ = true;
 				}
 				else if (newBoss.name == "KingBully")
 				{
-					//newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[zOffSet_].transform.position, zOffSet_, newBoss);
+                    newBoss.GetComponent<KingBully>().InitEnemy(mSpawnPos[i].transform.position, enemyPos, newBoss);
 					m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newBoss);
                     bossSpawned_ = true;
 				}
