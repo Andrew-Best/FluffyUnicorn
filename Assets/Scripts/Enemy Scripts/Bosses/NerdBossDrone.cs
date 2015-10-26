@@ -110,7 +110,7 @@ public class NerdBossDrone : MonoBehaviour
         }
     }
 
-    void OnParticleCollision(Collision collision)
+    void OnParticleCollision(GameObject collision)
     {
         //if (collision.collider.tag == "Pop")
         //{
