@@ -27,12 +27,12 @@ public class SecretFloor : MonoBehaviour
         rightBoundary_.transform.localScale = new Vector3(rightBoundary_.transform.localScale.x, rightBoundary_.transform.localScale.y, (floorRenderer_.bounds.size.z / 10) + 0.1f);
         rightBoundary_.gameObject.name = "RightBoundary";
 
-        frontBoundary_ = (GameObject)Instantiate(m_PlanePrefab, new Vector3(0.0f, 0.0f, floorRenderer_.bounds.min.z), Quaternion.identity);
+        frontBoundary_ = (GameObject)Instantiate(m_PlanePrefab, new Vector3(floorRenderer_.transform.position.x, 0.0f, floorRenderer_.bounds.min.z), Quaternion.identity);
         frontBoundary_.transform.Rotate(0.0f, 90.0f, 90.0f);
         frontBoundary_.transform.localScale = new Vector3(frontBoundary_.transform.localScale.x, frontBoundary_.transform.localScale.y, (floorRenderer_.bounds.size.x / 10) + 0.1f);
         frontBoundary_.gameObject.name = "FrontBoundary";
 
-        backBoundary_ = (GameObject)Instantiate(m_PlanePrefab, new Vector3(0.0f, 0.0f, floorRenderer_.bounds.max.z), Quaternion.identity);
+        backBoundary_ = (GameObject)Instantiate(m_PlanePrefab, new Vector3(floorRenderer_.transform.position.x, 0.0f, floorRenderer_.bounds.max.z), Quaternion.identity);
         backBoundary_.transform.Rotate(0.0f, 90.0f, 270.0f);
         backBoundary_.transform.localScale = new Vector3(backBoundary_.transform.localScale.x, backBoundary_.transform.localScale.y, (floorRenderer_.bounds.size.x / 10) + 0.1f);
         backBoundary_.gameObject.name = "BackBoundary";
