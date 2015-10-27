@@ -21,9 +21,9 @@ public class BossBaseClass : EnemyBaseClass
 		
 	}
 
-	public override void InitEnemy(Vector3 spawnPos, Vector3 zOffSet_, GameObject newBully)
+	public override void InitEnemy(Vector3 spawnPos, Vector3 enemyPos, GameObject newBully)
 	{
-        base.InitEnemy(spawnPos, zOffSet_, m_ThisBoss);
+        base.InitEnemy(spawnPos, enemyPos, m_ThisBoss);
 		m_Player = GameObject.FindGameObjectWithTag("Player");
        
 		m_EnemyController = GameObject.FindGameObjectWithTag("EnemyController");

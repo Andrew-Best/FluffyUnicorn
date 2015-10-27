@@ -16,7 +16,7 @@ public class KingBully : BossBaseClass
 	public void Start()
 	{
 
-        InitEnemy(new Vector3(1, 0, 0), enemyPos, this.gameObject);
+       // InitEnemy(new Vector3(1, 0, 0), enemyPos, this.gameObject);
 
         for (int i = 0; i < 3; ++i)
         {
@@ -46,11 +46,11 @@ public class KingBully : BossBaseClass
 		this.m_CurFrame = 0;
 		//this.m_CurRow = row;
 
-		//this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
+		this.m_TargetPoints[0] = GameObject.FindGameObjectWithTag("TargetLastTrack");
 
-		//this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
+		this.m_TargetPoints[1] = GameObject.FindGameObjectWithTag("TargetMidTrack");
 
-		//this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
+		this.m_TargetPoints[2] = GameObject.FindGameObjectWithTag("TargetFrontTrack");
 
 		this.GetComponent<BeamAttack>().m_Ammo = Constants.KB_WATER_AMMO;
 		//m_TotalFrames = this.GetComponent<Animator>().framesInAnim;

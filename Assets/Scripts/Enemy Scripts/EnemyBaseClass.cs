@@ -57,7 +57,7 @@ public class EnemyBaseClass : MonoBehaviour
 
 	public Rigidbody m_RigidBody;
 	public Vector3 m_InitialXY;
-    public Vector3 zOffSet_;
+  //  public Vector3 zOffSet_;
     public Vector3 enemyPos;
 
 

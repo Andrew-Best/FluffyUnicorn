@@ -15,6 +15,7 @@ public class FattestBully : BossBaseClass
 
 	public bool inSky;
 	public bool isFlying;
+    private GameObject newBully;
 
 	public void Start()
 	{
@@ -23,9 +24,9 @@ public class FattestBully : BossBaseClass
 
     public override void InitEnemy(Vector3 spawnPos, Vector3 enemyPos, GameObject newBully)
 	{
-        base.InitEnemy(spawnPos, zOffSet_, newBully);
-		//	m_Player = GameObject.FindGameObjectWithTag("Player");
-		//	m_ThisBoss = this.gameObject;
+        base.InitEnemy(spawnPos, enemyPos, newBully);
+		m_Player = GameObject.FindGameObjectWithTag("Player");
+		m_ThisBoss = this.gameObject;
 		m_Position = m_ThisBoss.GetComponent<Rigidbody>().position;
 
 		m_HP = Constants.FATTEST_BULLY_HP;

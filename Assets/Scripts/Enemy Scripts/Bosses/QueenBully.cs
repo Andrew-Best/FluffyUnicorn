@@ -69,9 +69,9 @@ public class QueenBully : BossBaseClass
 		//send object in an arc toward the player
 	}
 
-	public override void InitEnemy(Vector3 spawnPos, Vector3 zOffSet_, GameObject newBully)
+	public override void InitEnemy(Vector3 spawnPos, Vector3 enemyPos, GameObject newBully)
 	{
-        base.InitEnemy(spawnPos, zOffSet_, newBully);
+        base.InitEnemy(spawnPos, enemyPos, newBully);
 
 		m_Position = m_ThisBoss.GetComponent<Rigidbody>().position;
 

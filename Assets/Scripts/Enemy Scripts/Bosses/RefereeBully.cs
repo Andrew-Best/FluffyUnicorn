@@ -122,6 +122,7 @@ public class RefereeBully : BossBaseClass
         if (collision.collider.tag == "Player")
         {
             velocity_.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            m_Player.GetComponent<PlayerController>().m_PhysicalDamage += 20;
         }
     }
 

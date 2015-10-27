@@ -13,7 +13,7 @@ public class SpawnEnemies : MonoBehaviour
 
     private Vector3 startPos_;
     private Vector3 xOffSet_;
-    private Vector3 zOffSet_;
+   // private Vector3 zOffSet_;
     private Vector3 enemyPos;
    
 
@@ -22,7 +22,7 @@ public class SpawnEnemies : MonoBehaviour
 		m_EnemyControl = GameObject.FindGameObjectWithTag("EnemyController"); 
 
         xOffSet_ = new Vector3(11.0f, 0.0f, 0.0f);
-        zOffSet_ = new Vector3(0.0f, 0.0f, 11.0f);
+      //  zOffSet_ = new Vector3(0.0f, 0.0f, 11.0f);
         enemyPos = new Vector3(0.0f, 2.0f, 0.0f);
 	}
 
@@ -32,7 +32,8 @@ public class SpawnEnemies : MonoBehaviour
 		GameObject newEnemy = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[type].name, true);//new enemy is created
         newEnemy.transform.position = startPos_ + xOffSet_ + enemyPos; //mSpawnPos[row].transform.position; //the enemy's position is assigned the position at the selected row
 		m_EnemyControl.GetComponent<EnemyControllerScript>().AddBullyToList(newEnemy);
-        newEnemy.GetComponent<BullyScript>().InitEnemy(startPos_ + xOffSet_,  zOffSet_, newEnemy);
+        newEnemy.GetComponent<BullyScript>().InitEnemy(startPos_ + xOffSet_,  enemyPos, newEnemy);
+        
 
 	}
 
@@ -44,7 +45,7 @@ public class SpawnEnemies : MonoBehaviour
 			if(mEnemiesToSpawn[i].name == BossName)
 			{
 				GameObject newBoss = Objectpooler.Instance.GetObjectForType(mEnemiesToSpawn[i].name, true);//new enemy is created
-             //   newBoss.transform.position = mSpawnPos[enemyPos].transform.position; //the enemy's position is assigned the position at the selected row
+                
 
                 newBoss.transform.position = startPos_ + xOffSet_ + enemyPos; 
 				if (newBoss.name == "FattestBully")
@@ -76,7 +77,8 @@ public class SpawnEnemies : MonoBehaviour
                     bossSpawned_ = false;
 					Debug.Log("No boss.");
 				}
-                newBoss.GetComponent<BullyScript>().InitEnemy(startPos_ + xOffSet_, enemyPos, newBoss);
+                //newBoss.GetComponent<BullyScript>().InitEnemy(startPos_ + xOffSet_, enemyPos, newBoss);
+                //newBoss.GetComponent<FattestBully>().InitEnemy(startPos_ + xOffSet_, enemyPos, newBoss);
 			}
 		}
 	}
